@@ -9,7 +9,7 @@ const config = {
   title: 'Fairblock Docs',
   tagline:
     'We are building blockchain infrastructure using applied cryptography for applications with pre-execution privacy and conditional decryption. In all ecosystems.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://your-docusaurus-test-site.com',
