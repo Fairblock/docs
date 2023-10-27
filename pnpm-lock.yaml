@@ -33,9 +33,6 @@ devDependencies:
   '@tsconfig/docusaurus':
     specifier: ^1.0.5
     version: 1.0.5
-  theme-classic:
-    specifier: link:@types/@docusaurus/theme-classic
-    version: link:@types/@docusaurus/theme-classic
   typescript:
     specifier: ^4.7.4
     version: 4.7.4
@@ -532,7 +529,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.22.15(@babel/core@7.12.9)
     dev: false
