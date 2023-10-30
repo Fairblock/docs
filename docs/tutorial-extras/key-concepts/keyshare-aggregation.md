@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # KeyShare Aggregation
 
-Once at least 2/3rd of the validators have submitted their keyshares, the aggregated Keyshare is automatically generated from these. The Aggregated Keyshare is esentially the decryption key for transactions of that target block. See [here](/x/keyshare/specs/02_concepts.md) for more information.
+Once at least 2/3rd of the validators have submitted their keyshares, the aggregated Keyshare is automatically generated from these. The Aggregated Keyshare is esentially the decryption key for transactions of that target block.
 
 ## Destination Chains
 
