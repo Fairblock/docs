@@ -112,7 +112,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                href: 'https://medium.com/@fair_block',
               },
               {
                 label: 'GitHub',
