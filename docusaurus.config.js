@@ -69,6 +69,7 @@ const config = {
         logo: {
           alt: 'Fairblock',
           src: 'img/logo/logo.svg',
+          srcDark: 'img/logo/logo-dark.svg',
         },
         items: [
           {
