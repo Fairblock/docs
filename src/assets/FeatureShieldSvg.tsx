@@ -8,8 +8,8 @@ export default function FeatureShieldSvg() {
   return (
     <>
       <svg
-        width="100%"
-        height="100%"
+        width="50%"
+        height="50%"
         viewBox="0 0 476 472"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

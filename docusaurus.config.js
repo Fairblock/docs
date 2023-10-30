@@ -77,7 +77,8 @@ const config = {
             position: 'left',
             label: 'Learn',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
+          { href: 'https://www.fairblock.network/', label: 'Website', position: 'right' },
+          { href: 'https://medium.com/@fair_block', label: 'Blog', position: 'right' },
           {
             href: 'https://github.com/Fairblock',
             label: 'GitHub',
