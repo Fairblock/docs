@@ -1,6 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import FeatureEncryptSvg from '../../assets/FeatureEncryptSvg';
+import FeatureProtectSvg from '../../assets/FeatureProtectSvg';
+import FeatureShieldSvg from '../../assets/FeatureShieldSvg';
 
 type FeatureItem = {
   title: string;
@@ -11,7 +14,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Encrypt',
-    Svg: require('@site/static/img/encrypt.svg').default,
+    Svg: FeatureEncryptSvg,
     description: (
       <>
         Encrypting votes and bids for private governance and sealed-bid auctions
@@ -20,12 +23,12 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Protect',
-    Svg: require('@site/static/img/protect.svg').default,
+    Svg: FeatureProtectSvg,
     description: <>Protecting DeFi users from bad-MEV bots</>,
   },
   {
     title: 'Private',
-    Svg: require('@site/static/img/shield.svg').default,
+    Svg: FeatureShieldSvg,
     description: <>Storing encrypted limit orders and on-chain intents</>,
   },
 ];
