@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Fairyring
 
-`Fairyring` is the Cosmos-SDK app chain responsible for the management of the decryption keys that power the Fairblock network. The chain is composed of two modules: `keyshare` and `pep` (pre-execution privacy).  
+**Fairyring** is the Cosmos-SDK app chain responsible for the management of the decryption keys that power the Fairblock network. The chain is composed of two modules: **Keyshare** and **PEP** (pre-execution privacy).  
 Currently, the sole purpose of the chain is to allow (registered) validators to submit keyshares. Upon reaching a threshold of shares submitted each block, the submitted shares are generated, aggregated, and emitted.
 
 - Registration
