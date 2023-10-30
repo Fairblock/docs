@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # ABCI++
 
-Currently, `fairyring` chain requires each validator to submit keyshares every block in order to generate an aggregated decryption key.
+Currently, `Fairyring` chain requires each validator to submit keyshares every block in order to generate an aggregated decryption key.
 With `ABCI++`, we can make use of the `VoteExtensions` functionality to submit keys instead of relying on transactions.
 Additionally, this would allow for same block execution for encrypted transactions, removing the need for the 1 block delay.
 

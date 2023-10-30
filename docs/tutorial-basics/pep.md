@@ -8,7 +8,7 @@ The `pep` module is a Cosmos-SDK module responsible for the decryption and execu
 
 ## Encrypted Tx Array
 
-We store the encrypted transactions in an array based on their target execution height. The height corresponds to the block height of `fairyring`, that is, depending on the block time of the destination chain, in a particular block on the destination chain multiple keyshares may be received within the block.
+We store the encrypted transactions in an array based on their target execution height. The height corresponds to the block height of `Fairyring`, that is, depending on the block time of the destination chain, in a particular block on the destination chain multiple keyshares may be received within the block.
 Can think of the encrypted tx array as a temporary sequencer for encrypted transactions yet to be executed.
 
 ```proto
