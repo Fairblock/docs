@@ -1,8 +1,6 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { themes } = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -40,14 +38,12 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -62,7 +58,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/social-card.png',
       navbar: {
         title: 'Fairblock Docs',
@@ -78,8 +73,16 @@ const config = {
             position: 'left',
             label: 'Learn',
           },
-          { href: 'https://www.fairblock.network/', label: 'Website', position: 'right' },
-          { href: 'https://medium.com/@fair_block', label: 'Blog', position: 'right' },
+          {
+            href: 'https://www.fairblock.network/',
+            label: 'Website',
+            position: 'right',
+          },
+          {
+            href: 'https://medium.com/@fair_block',
+            label: 'Blog',
+            position: 'right',
+          },
           {
             href: 'https://github.com/Fairblock',
             label: 'GitHub',
@@ -130,18 +133,18 @@ const config = {
       },
     }),
 
-    markdown: {
-      format: 'mdx',
-      mermaid: true,
-      preprocessor: ({filePath, fileContent}) => {
-        return fileContent.replaceAll('{{MY_VAR}}', 'MY_VALUE');
-      },
-      mdx1Compat: {
-        comments: true,
-        admonitions: true,
-        headingIds: true,
-      },
+  markdown: {
+    format: 'mdx',
+    mermaid: true,
+    preprocessor: ({ filePath, fileContent }) => {
+      return fileContent.replaceAll('{{MY_VAR}}', 'MY_VALUE');
     },
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
+  },
 };
 
 module.exports = config;
