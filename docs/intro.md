@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Intro
@@ -7,3 +7,4 @@ sidebar_position: 1
 This document provides an overview of the Fairblock architecture and its components.
 
 ![Fairblock Architecture](../static/img/assets/architecture.png)
+
