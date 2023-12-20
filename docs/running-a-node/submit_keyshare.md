@@ -5,13 +5,13 @@ sidebar_position: 4
 # Submitting keyshares to `fairyring`
 
 This tutorial goes over on different ways to submit keyshares to `fairyring` and in particular, to the `keyshare` module.
-Make sure you have installed [`fairyring`](installation.md) prior to following the instructions below.
+Make sure you have installed [`fairyring`](./installation.md) prior to following the instructions below.
 
 ## Requirements
 
 In order to be able to submit keyshare to `fairyring`, there are few requirements:
 
-1. You are a [validator](validating_on_testnet.md) in the staking module with a minimum `100000000000ufairy` staked.
+1. You are a [validator](./validating_on_testnet.md) in the staking module with a minimum `100000000000ufairy` staked.
 Check if you are currently a validator as well as how many tokens you have staked with the following command:
 
 ```bash
@@ -35,12 +35,12 @@ fairyringd tx keyshare register-validator --from YOUR_WALLET_NAME
 ## `fairyringclient`
 
 `fairyringclient` is a tool which:
-    1. Fetches your master keyshare from our [Share Generation API Server](share_generation_api.md)
+    1. Fetches your master keyshare from our [Share Generation API Server](./share_generation_api.md)
     2. Computes the derived keyshare every block
     3. Automatically submits the derived keyshare to `fairyring` every block.
 
 This is the recommended way to submit keyshares.
-Make sure you have completed the steps in the [prerequisites](prerequisites.md) prior to following the instructions below.
+Make sure you have completed the steps in the [prerequisites](./prerequisites.md) prior to following the instructions below.
 
 1. Download & Install `fairyringclient` by the following command:
 

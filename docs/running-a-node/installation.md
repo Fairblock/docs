@@ -5,7 +5,7 @@ sidebar_position: 1
 # Installation
 
 This tutorial goes over building and installing the `fairyring` binary.
-This tutorial assumes you completed the [prerequisites](prerequisites.md).
+This tutorial assumes you completed the [prerequisites](./prerequisites.md).
 
 1. Remove any existing `fairyring` nodes & clone the repository:
 
@@ -40,4 +40,4 @@ The output should show `0.2.1`
 
 To upgrade your binary, you can install the latest version from the instructions above and restart your node.
 You can check the latest version [here](https://github.com/Fairblock/fairyring/releases).
-If you run into any issues, refer to the [troubleshooting section](troubleshooting_fairyring.md).
+If you run into any issues, refer to the [troubleshooting section](../faqs/troubleshooting_fairyring.md).

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Validating on Testnet
 
-Before creating a testnet validator, ensure you have first followed the instructions on [running the testnet node](run_testnet_node.md).
+Before creating a testnet validator, ensure you have first followed the instructions on [running the testnet node](./run_testnet_node.md).
 
 ## Create Wallet
 
@@ -138,4 +138,4 @@ git push -u origin your-branch-name
 
 ## Troubleshooting
 
-If you run into any issues, please refer to the [troubleshooting section](troubleshooting_fairyring.md)
+If you run into any issues, please refer to the [troubleshooting section](../faqs/troubleshooting_fairyring.md)

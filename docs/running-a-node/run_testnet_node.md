@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Running a Testnet
 
-Make sure you have installed the [`fairyring` binary](installation.md) prior to following the instructions below.
+Make sure you have installed the [`fairyring` binary](./installation.md) prior to following the instructions below.
 
 ## Initialize the `fairyring` node
 
@@ -36,6 +36,6 @@ fairyringd start
 
 ## Next Steps
 
-If you would like to become a validator in the testnet, please follow [this guide](validating_on_testnet.md).
+If you would like to become a validator in the testnet, please follow [this guide](./validating_on_testnet.md).
 
-If you run into any issues, please refer to the [troubleshooting section](troubleshooting_fairyring.md)
+If you run into any issues, please refer to the [troubleshooting section](../faqs/troubleshooting_fairyring.md)
