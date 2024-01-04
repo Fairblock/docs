@@ -19,6 +19,7 @@ The `x/keyshare` module keeps state of the following primary objects:
 3. Aggregated keyshares
 4. Active & queued public key
 5. Authorized addresss
+6. Submit General keyshares
 
 ## Params
 
@@ -171,6 +172,31 @@ The message will fail under the following conditions:
 - Target is not authorized
 - Sender is not the creator of the target authorized address and the authorized address itself
 
+### MsgCreateGeneralKeyShare
+
+Create general key share
+
+`proto/fairyring/keyshare/tx.proto`
+
+```proto
+message MsgCreateGeneralKeyShare {  
+  string creator             = 1;  
+  string idType              = 2;  
+  string idValue             = 3;  
+  string keyShare            = 4;  
+  uint64 keyShareIndex       = 5;  
+}
+```
+
+<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L79">See full code on GitHub</a></p> -->
+
+The message will fail under the following conditions:
+- Sender is not validator in the validator set
+- Sender is not an authorized address
+- Keyshare Index is incorrect
+- Keyshare is incorrect
+- ID Type is not supported
+
 ## Events
 
 The keyshare module emits the following events:
@@ -202,6 +228,30 @@ When enough keyshares are received & the decryption key is aggregated:
 | `keyshare-aggregated` | `keyshare-aggregated-block-height` | `height` |
 | `keyshare-aggregated` | `keyshare-aggregated-data` | `aggregatedKeyShareInHex` |
 | `keyshare-aggregated` | `keyshare-aggregated-pubkey` | `pubKeyForTheAggregatedKey` |
+
+#### MsgCreateGeneralKeyShare
+
+When a valid key share is received:
+
+| Type | Attribute Key | Attribute Value |
+|---|---|---|
+| `keyshare-sent` | `validator` | `validatorAddress` |
+| `keyshare-sent` | `received-block-height` | `height` |
+| `keyshare-sent` | `keyshare-message` | `keyshareInHex` |
+| `keyshare-sent` | `keyshare-index` | `keyshareIndex` |
+| `keyshare-sent` | `keyshare-id-type` | `keyshareIdType` |
+| `keyshare-sent` | `keyshare-id-value` | `keyshareIdValue` |
+
+
+When enough key share received & decryption key is being aggregated:
+
+| Type | Attribute Key | Attribute Value |
+|---|---|---|
+| `keyshare-aggregated` | `keyshare-aggregated-block-height` | `height` |
+| `keyshare-aggregated` | `keyshare-aggregated-data` | `aggregatedKeyShareInHex` |
+| `keyshare-aggregated` | `keyshare-aggregated-pubkey` | `pubKeyForTheAggregatedKey` |
+| `keyshare-aggregated` | `keyshare-aggregated-id-value` | `aggregatedKeyShareIdValue` |
+| `keyshare-aggregated` | `keyshare-aggregated-id-type` | `aggregatedKeyShareIdType` |
 
 #### MsgCreateLatestPubKey
 
@@ -286,6 +336,33 @@ keyShare:
   receivedBlockHeight: "123456"
   receivedTimestamp: "1696420024"
   validator: fairy14qekdkj2nmmwea4ufg0n113a4pud23y8tcf8bb
+pagination:
+  next_key: ZmFpcnkxNHFla2RrajJubW13ZWE0dWZnOW4wMDJhM3B1ZDIzeTh0Y2Y4YWEvAAAAAAABdFcv
+  total: "0"
+```
+
+##### list-general-key-share
+
+The `list-general-key-share` command allow users to query all the general keyshare submitted by validators.
+
+`fairyringd query keyshare list-general-key-share [flags]`
+
+Example:
+
+`fairyringd query keyshare list-general-key-share`
+
+Example Output:
+
+```
+generalKeyShare:
+- validator: fairy14qekdkj2nmmwea4ufg0n113a4pud23y8tcf8bb
+  idType: "private-gov-identity"
+  idValue: "1/rq"
+  keyShare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
+  keyShareIndex: "1"
+  receivedBlockHeight: "123456"
+  receivedTimestamp: "1696420024"
+  
 pagination:
   next_key: ZmFpcnkxNHFla2RrajJubW13ZWE0dWZnOW4wMDJhM3B1ZDIzeTh0Y2Y4YWEvAAAAAAABdFcv
   total: "0"
@@ -440,6 +517,29 @@ keyShare:
   receivedBlockHeight: "100000"
   receivedTimestamp: "1697561125"
   validator: fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb
+```
+
+##### show-general-key-share
+
+The `show-general-key-share` command allow users to query the target general key share submitted by its validator, id type and id value.
+
+`fairyringd query show-general-key-share [validator] [id-type] [id-value] [flags]`
+
+Example:
+
+`fairyringd query keyshare show-general-key-share fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb private-gov-identity "1/rq"`
+
+Example Output:
+
+```
+generalKeyShare:
+  validator: fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb
+  idType: "private-gov-identity"
+  idValue: "1/rq"
+  keyShare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
+  keyShareIndex: "1"
+  receivedBlockHeight: "123456"
+  receivedTimestamp: "1696420024"
 ```
 
 ##### show-validator-set

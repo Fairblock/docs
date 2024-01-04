@@ -16,10 +16,10 @@ git clone https://github.com/Fairblock/fairyring.git
 cd fairyring
 ```
 
-2. Checkout to the latest release of `fairyring` (currently `v0.2.1`):
+2. Checkout to the latest release of `fairyring` (currently `v0.3.1`):
 
 ```bash
-git checkout v0.2.1
+git checkout v0.3.1
 ```
 
 3. Install `fairyringd` binary:
@@ -34,7 +34,7 @@ make install
 fairyringd version
 ```
 
-The output should show `0.2.1`
+The output should show `0.3.1`
 
 ## Upgrading your binary
 
