@@ -1,10 +1,14 @@
+---
+sidebar_position: 6 
+---
+
 # Metrics
 
-`Fairyring` & `Fairyringclient` provide support for metrics to allow users to monitor the health, performance and status of `Fairyring` chain & `Fairyringclient`
+`fairyring` & `fairyringclient` provide support for metrics to allow users to monitor the health, performance and status of `fairyring` & `fairyringclient`.
 
-## Fairyring Setup
+## `fairyring` setup
 
-`Fairyring` uses [Prometheus](https://prometheus.io/) to publish metrics, It can be enabled through the `config.toml` file.
+`fairyring` uses [Prometheus](https://prometheus.io/) to publish metrics, It can be enabled through the `config.toml` file.
 
 ```toml
 #######################################################
@@ -30,13 +34,13 @@ max_open_connections = 3
 namespace = "fairyring"
 ```
 
-After enabling metrics in `config.toml`, If you restart your node, you can check if metrics is working by:
+After enabling metrics in `config.toml`, If you restart your node, you can check if the metrics are working by:
 
 `curl localhost:26660/metrics`
 
-### Fairyringclient Setup
+### `fairyringclient` setup
 
-`Fairyringclient` enable metrics on port `:2222` by default, you can check your metrics port by:
+`fairyringclient` enables metrics on port `:2222` by default, you can check your metrics port by:
 
 ```bash
 fairyringclient config show
@@ -61,9 +65,9 @@ You can update the metrics port by the following command:
 fairyringclient config update --metrics-port NEW_PORT
 ```
 
-### Prometheus Installation and Setup
+### Prometheus installation and Setup
 
-After enabling metrics on `Fairyring` node / `Fairyringclient`, you will need a program to scrape its data, we suggest using `Prometheus` in this example.
+After enabling metrics on `fairyring` node / `fairyringclient`, you will need a program to scrape its data, we suggest using `Prometheus` in this example.
 
 1. Install Prometheus by following the [Official Installation guide](https://prometheus.io/docs/prometheus/latest/installation/) in the same machine as your node.
 2. Create a Prometheus config file, we will create one at `$HOME/.fairyring/config/prometheus.yml` in this example.
@@ -87,17 +91,21 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:2222']
 ```
+
 3. Start Prometheus server:
 
 `prometheus --config.file="$HOME/.fairyring/config/prometheus.yml" --web.listen-address="0.0.0.0:2112"`
 
-Prometheus runs its server on port `9090` by default, we suggest to run prometheus in a different port, `2112` in this case, to avoid conflict with Fairyring node gRPC port (`9090` by default`.
+Prometheus runs its server on port `9090` by default, we suggest to run Prometheus in a different port, `2112` in this case, to avoid conflict with the `fairyring` node gRPC port (`9090` by default`).
 
 ## Visualization
 
-After Installing Prometheus and enabling Fairyring metrics, you will need something to visualize the data it got, we suggest using [Grafana](https://grafana.com/) for building a dashboard to visualize the data.
+After installing Prometheus and enabling `fairyring` metrics, you will need something to visualize the data.
+We suggest using [Grafana](https://grafana.com/) for building a dashboard to visualize the data.
 
-You can use their cloud service of run it yourself. You can follow their [Official Installation Guide](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) for tutorial on installing `Grafana`. After installing `Grafana`, you can start it by:
+You can use their cloud service of run it yourself.
+You can follow their [Official Installation Guide](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) for a tutorial on installing `Grafana`.
+After installing `Grafana`, you can start it by:
 
 ```bash
 grafana server
@@ -105,4 +113,5 @@ grafana server
 
 The command above will start a server on `localhost:3000`.
 
-After you started a Grafana server, you can now create your own dashboard or import the one we already created for [Fairyring]([fairyring_dashboard.json](https://raw.githubusercontent.com/Fairblock/fairyring/main/fairyring_dashboard.json)) & [Fairyringclient]([fairyringclient_dashboard.json](https://raw.githubusercontent.com/Fairblock/fairyringclient/main/fairyringclient_dashboard.json)).
+After you started a Grafana server, you can now create your own dashboard or import the one we already created for [`fairyring`](https://raw.githubusercontent.com/Fairblock/fairyring/main/fairyring_dashboard.json) & [`fairyringclient`](https://raw.githubusercontent.com/Fairblock/fairyringclient/main/fairyringclient_dashboard.json).
+
