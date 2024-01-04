@@ -105,4 +105,4 @@ grafana server
 
 The command above will start a server on `localhost:3000`.
 
-After you started a Grafana server, you can now create your own dashboard or import the one we already created for [Fairyring](fairyring_dashboard.json) & [Fairyringclient](fairyringclient_dashboard.json).
+After you started a Grafana server, you can now create your own dashboard or import the one we already created for [Fairyring]([fairyring_dashboard.json](https://raw.githubusercontent.com/Fairblock/fairyring/main/fairyring_dashboard.json)) & [Fairyringclient]([fairyringclient_dashboard.json](https://raw.githubusercontent.com/Fairblock/fairyringclient/main/fairyringclient_dashboard.json)).
