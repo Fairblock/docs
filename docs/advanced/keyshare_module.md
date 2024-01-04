@@ -19,7 +19,7 @@ The `x/keyshare` module keeps state of the following primary objects:
 3. Aggregated keyshares
 4. Active & queued public key
 5. Authorized addresss
-6. Submit General keyshares
+6. Submit general keyshares
 
 ## Params
 
@@ -37,8 +37,6 @@ message Params {
 }
 ```
 
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/params.proto">See full code on GitHub</a></p> -->
-
 ## Messages
 
 ### MsgRegisterValidator
@@ -52,8 +50,6 @@ message MsgRegisterValidator {
   string creator = 1;  
 }
 ```
-
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L20">See full code on GitHub</a></p> -->
 
 The message will fail under the following conditions:
 
@@ -74,8 +70,6 @@ message MsgSendKeyshare {
   uint64 blockHeight   = 4;
 }
 ```
-
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L28">See full code on GitHub</a></p> -->
 
 The message will fail under the following conditions:
 
@@ -99,8 +93,6 @@ message MsgCreateLatestPubKey {
 }
 ```
 
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L46">See full code on GitHub</a></p> -->
-
 The message will fail under the following conditions:
 
 - Sender is not a trusted address
@@ -119,8 +111,6 @@ message MsgCreateAuthorizedAddress {
   string creator      = 2;
 }
 ```
-
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L54">See full code on GitHub</a></p> -->
 
 The message will fail under the following conditions:
 
@@ -144,8 +134,6 @@ message MsgUpdateAuthorizedAddress {
 }
 ```
 
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L61">See full code on GitHub</a></p> -->
-
 The message will fail under the following conditions:
 
 - Target is not authorized
@@ -165,8 +153,6 @@ message MsgDeleteAuthorizedAddress {
 }
 ```
 
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L69">See full code on GitHub</a></p> -->
-
 The message will fail under the following conditions:
 
 - Target is not authorized
@@ -174,7 +160,7 @@ The message will fail under the following conditions:
 
 ### MsgCreateGeneralKeyShare
 
-Create general key share
+Create general keyshare
 
 `proto/fairyring/keyshare/tx.proto`
 
@@ -188,14 +174,13 @@ message MsgCreateGeneralKeyShare {
 }
 ```
 
-<!-- <p style="text-align: center;"><a href="https://github.com/Fairblock/fairyring/blob/36589b54b24f5e116ae7b3d0fb8cc33ce7388194/proto/fairyring/keyshare/tx.proto#L79">See full code on GitHub</a></p> -->
-
 The message will fail under the following conditions:
-- Sender is not validator in the validator set
+
+- Sender is not a validator in the validator set
 - Sender is not an authorized address
-- Keyshare Index is incorrect
+- Keyshare index is incorrect
 - Keyshare is incorrect
-- ID Type is not supported
+- ID type is not supported
 
 ## Events
 
@@ -231,7 +216,7 @@ When enough keyshares are received & the decryption key is aggregated:
 
 #### MsgCreateGeneralKeyShare
 
-When a valid key share is received:
+When a valid keyshare is received:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
@@ -242,8 +227,7 @@ When a valid key share is received:
 | `keyshare-sent` | `keyshare-id-type` | `keyshareIdType` |
 | `keyshare-sent` | `keyshare-id-value` | `keyshareIdValue` |
 
-
-When enough key share received & decryption key is being aggregated:
+When enough keyshares are received & decryption key is being aggregated:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
@@ -521,7 +505,7 @@ keyShare:
 
 ##### show-general-key-share
 
-The `show-general-key-share` command allow users to query the target general key share submitted by its validator, id type and id value.
+The `show-general-key-share` command allow users to query the target general keyshare submitted by its validator, id type and id value.
 
 `fairyringd query show-general-key-share [validator] [id-type] [id-value] [flags]`
 
