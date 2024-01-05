@@ -11,7 +11,7 @@ Make sure you have installed [`fairyring`](./installation.md) prior to following
 
 In order to be able to submit keyshare to `fairyring`, there are few requirements:
 
-1. You are a [validator](./validating_on_testnet.md) in the staking module with a minimum `100000000000ufairy` staked.
+1. You are a [validator](./validating_on_testnet.md) in the staking module with a minimum `100000000000stake` staked.
 Check if you are currently a validator as well as how many tokens you have staked with the following command:
 
 ```bash
@@ -73,7 +73,7 @@ Example output of the command:
 Using config file: /Users/fairblock/.fairyringclient/config.yml
 GRPC Endpoint: 127.0.0.1:9090
 FairyRing Node Endpoint: http://127.0.0.1:26657
-Chain ID: fairytest-2
+Chain ID: fairytest-3
 Chain Denom: ufairy
 InvalidSharePauseThreshold: 5
 MetricsPort: 2222
@@ -88,7 +88,7 @@ fairyringclient config update
 
 Here are the flags for updating different field of the config:
 
-- `--chain-id CHAIN_ID`, `CHAIN_ID` is the chain id you are working with, the current default is `fairytest-2`
+- `--chain-id CHAIN_ID`, `CHAIN_ID` is the chain id you are working with, the current default is `fairytest-3`
 - `--denom DENOM`, `DENOM` is the token denom of the chain, default is `ufairy`
 - `--grpc-port PORT`, `PORT` is the gRPC port of the node you are connecting to, default is `9090`
 - `--ip IP`, `IP` is the IP address of the node you are connecting to, default is `"127.0.0.1"`

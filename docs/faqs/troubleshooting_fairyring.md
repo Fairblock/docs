@@ -18,7 +18,7 @@ The command above will show you the binary config:
 
 ```bash
 {
- "chain-id": "fairytest-2",
+ "chain-id": "fairytest-3",
  "keyring-backend": "test",
  "output": "text",
  "node": "tcp://localhost:26657",
@@ -26,7 +26,7 @@ The command above will show you the binary config:
 }
 ```
 
-Make sure the `chain-id` is set correctly, the chain id for latest testnet is `fairytest-2` and you can update it in `$HOME/.fairyring/config/client.toml`
+Make sure the `chain-id` is set correctly, the chain id for latest testnet is `fairytest-3` and you can update it in `$HOME/.fairyring/config/client.toml`
 
 2. If you are validator and running `fairyringclient`, stop it and wait for around 10 seconds (2 blocks), then try sending the transaction again.
 
@@ -35,14 +35,14 @@ Make sure the `chain-id` is set correctly, the chain id for latest testnet is `f
 When running the node, if you get error like this:
 
 ```bash
-Error reconnecting to peer. Trying again addr={"id":"21f2101e89236698274555b985822857c3ec5918","ip":"35.38.127.127","port":24756} err="incompatible: peer is on a different network. Got fairyring-2, expected fairytest-2" module=p2p tries=7`
+Error reconnecting to peer. Trying again addr={"id":"21f2101e89236698274555b985822857c3ec5918","ip":"35.38.127.127","port":24756} err="incompatible: peer is on a different network. Got fairyring-2, expected fairytest-3" module=p2p tries=7`
 ```
 
 It means your chain id is incorrect, you can update it by following [this](#sequence-mismatch-or-invalid-signature)
 
 ## Gentx bonded token amount confusion
 
-Currently `100000000000ufairy` is the suggested amount.
+Currently `10000000000stake` is the suggested amount.
 It is recommended to bond the amount not less than the suggested amount if you would like to participate in submitting keyshares,
 because there is a minimum bonded token requirement when registering as a validator in the `keyshare` module.
 
@@ -97,7 +97,7 @@ You can run the following command to unjail your validator:
 ```bash
 fairyringd tx slashing unjail \
   --from=<YOUR KEY NAME> \
-  --chain-id=fairytest-2 \
+  --chain-id=fairytest-3 \
   --gas=auto \
   --gas-adjustment=1.4
 ```
