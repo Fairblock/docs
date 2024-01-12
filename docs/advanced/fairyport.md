@@ -1,11 +1,14 @@
 ---
 sidebar_position: 4
 ---
-# Fairyport
 
-Fairyport is an off-chain service for fetching aggregated keyshares to Destination Chains from Fairyring. This tutorial explains how to setup & run fairyport. Ensure you have followed the [prerequisites](https://github.com/Fairblock/docs/blob/main/docs/running-a-node/prerequisites.md) and installed the [`fairyring binary`](https://github.com/Fairblock/docs/blob/main/docs/running-a-node/installation.md) prior to following the instructions below.
+# `fairyport`
 
-## Install `Fairyport`
+`fairyport` is an off-chain service for sending aggregated keyshares to destination chains from `fairyring`.
+This tutorial explains how to setup and run `fairyport`.
+Ensure you have followed the [prerequisites](https://github.com/Fairblock/docs/blob/main/docs/running-a-node/prerequisites.md) and installed the [`fairyring` binary](https://github.com/Fairblock/docs/blob/main/docs/running-a-node/installation.md) prior to following the instructions below.
+
+## Install `fairyport`
 
 1. Cloning the repository:
 
@@ -22,7 +25,7 @@ go mod tidy
 go install
 ```
 
-## Setup `Fairyport`
+## Setup `fairyport`
 
 Initialize `fairyport` config:
 
@@ -33,22 +36,22 @@ fairyport init
 `init` command create a default config `config.yml` in the default directory `$HOME/.fairyport` . The config looks like this:
 
 ```yml
-destinationnode:
+FairyRingNode:
     grpcport: 9090
     ip: 127.0.0.1
     port: 26657
     protocol: rpc
-fairyringnode:
+DestinationNode:
     grpcport: 9090
     ip: 127.0.0.1
     port: 26657
     protocol: rpc
-mnemonic: '# mnemonic'
+Mnemonic: '# mnemonic'
 ```
 
-Detail explanation on the config:
+Detailed explanation on the config:
 
-**FairyRing Node**
+**FairyRingNode**
 
 | Option    | Description                                                                      |
 |-----------|----------------------------------------------------------------------------------|
@@ -57,7 +60,7 @@ Detail explanation on the config:
 | protocol  | The protocol used for communication via the TendermintRPC                        |
 | grpcport  | The port that Fairy Ring Node will use for gRPC communication with other nodes.  |
 
-**Destination Node**
+**DestinationNode**
 
 | Option | Description |
 | ---- | ---- |
@@ -72,7 +75,8 @@ Detail explanation on the config:
 |-----------|----------------------------------------------------------------------------------|
 | Mnemonic  | The seed phrase used to generate the private key for the account responsible for making transactions to the Destination Chain|
 
-Update the node ip and ports for `fairyport` to connect to, `# mnemonic` to your mnemonic phase, `fairyport` derive your address with path `m/44'/118'/0'/0/0` by default. 
+Update the node ip and ports for `fairyport` to connect to and `Mnemonic` to your mnemonic phase.
+Note that `fairyport` derives your address with path `m/44'/118'/0'/0/0` by default.
 
 The updated config should looks like this:
 
@@ -92,9 +96,9 @@ DestinationNode:
 Mnemonic: "banana unusual correct orange dwarf fortune tennis sell primary giggle canal ask fish movie loud elite region glory session wonder frozen clap mountain barrel"
 ```
 
-## Start `Fairyport`
+## Start `fairyport`
 
-After you setup `Fairyport`, you can start running `Fairyport` by:
+After you setup `fairyport`, you can start running `fairyport` by:
 
 ```bash
 fairyport start --config $HOME/.fairyport/config.yml
