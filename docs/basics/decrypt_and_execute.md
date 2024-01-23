@@ -7,7 +7,7 @@ sidebar_position: 5
 Upon reaching the target height, the transaction is decrypted using the derived private key of the particular block height
 and executed before any of the mempool transactions for that block can be processed.
 
-The derived private key for target block heights are sent to the destination chain via [`fairyport`],
+The derived private key for target block heights are sent to the destination chain via [`fairyport`](../advanced/fairyport.md),
 a messaging bridge developed by the Fairblock team that reads the states of the destination chain and `fairyring` to communicate to
 `fairyring` when conditions for decryption are met on the destination chain.
 When `fairyring` is notified that the decryption conditions have been met,
