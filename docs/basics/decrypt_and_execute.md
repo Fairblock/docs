@@ -25,4 +25,4 @@ Note the following two things:
 - interactions between `fairyring` and Cosmos chains will work differently than non-Cosmos chains. We will share information regarding non-Cosmos chains soon.
 
 Here is a diagram to show how this process works from end to end:
-![](../assets/architecture.png)
+![](docs/assets/Fairblock architecture - cosmos.png)
