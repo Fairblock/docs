@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Keyshare aggregation
 
-The key share aggregation process is made possible through Threshold Encryption.
+The key share aggregation process is made possible through threshold cryptography.
 Once enough validators have submitted keyshares for a particular block,
 the keyshares are aggregated to generate the derived private key for that block.
 The derived private key can then be used to decrypt all encrypted transactions under a certain condition and execute them.
