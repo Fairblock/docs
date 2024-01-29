@@ -43,7 +43,7 @@ The derived private key is obtained by aggregating a threshold number of derived
 
 ### Frontrunning
 
-Frontrunning is an example of bad-MEV ([maximal extractable value](https://ethereum.org/developers/docs/mev#mev-extraction-generalized-frontrunners)) where MEV searchers can observe a user's unexecuted profitable trade in a mempool and manipulate the ordering of transactions within a block. The most common type of frontrunning is *sandwich attacks*.
+Frontrunning is an example of bad-MEV ([`maximal extractable value`](https://ethereum.org/developers/docs/mev#mev-extraction-generalized-frontrunners)) where MEV searchers can observe a user's unexecuted profitable trade in a mempool and manipulate the ordering of transactions within a block. The most common type of frontrunning is *sandwich attacks*.
 
 ## Public keys
 
