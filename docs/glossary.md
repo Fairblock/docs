@@ -25,7 +25,7 @@ which can construct the derived private key once the threshold of validator keys
 A public key is a large cryptographic value that is used to encrypt data.
 The public key is publicly visible and used to identify some encrypted data.
 The public key is derived from the private key, a randomly generated cryptographic value that is needed to decrypt data.
-In asymmetric encryption and its derivatives, public keys are openly known, while private keys are only made available to owners or receivers of some dataset,
+In asymmetric encryption and its derivatives, public keys are openly known, while private keys are only made available to owners or receivers of some dataset
 and signify true owners of data.
 In Fairblock, we use a Master Public Key (MPK) that is used to encrypt every transaction within an epoch.
 The MPK is discarded after the end of an epoch.
