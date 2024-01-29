@@ -8,7 +8,7 @@ sidebar_position: 0
 
 This document specifies the `keyshare` module of `fairyring`.
 
-The `keyshare` module is responsible for collecting all the keyshares from validators and aggregating it to one decryption key every block.
+The `keyshare` module is responsible for collecting all the keyshares from validators and aggregating it to one derived private key every block.
 
 ## State
 
@@ -206,7 +206,7 @@ When a valid keyshare is received:
 | `keyshare-sent` | `keyshare-message` | `keyshareInHex` |
 | `keyshare-sent` | `keyshare-index` | `keyshareIndex` |
 
-When enough keyshares are received & the decryption key is aggregated:
+When enough keyshares are received & the derived private key is aggregated:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
@@ -227,7 +227,7 @@ When a valid keyshare is received:
 | `keyshare-sent` | `keyshare-id-type` | `keyshareIdType` |
 | `keyshare-sent` | `keyshare-id-value` | `keyshareIdValue` |
 
-When enough keyshares are received & decryption key is being aggregated:
+When enough keyshares are received & the derived private key is being aggregated:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
