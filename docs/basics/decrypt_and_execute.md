@@ -24,4 +24,5 @@ Note the following two things:
 - the target height for executing an encrypted transaction corresponds to the height on `fairyring`. Decryption triggered by another chain's conditions is live for private governance, while alternative conditions for decryption on destination chains will soon be implemented.
 - interactions between `fairyring` and Cosmos chains will work differently than non-Cosmos chains. We will share information regarding non-Cosmos chains soon.
 
-Here is a diagram to show how this process works from end to end: docs/assets/Fairblock architecture - cosmos.png
+Here is a diagram to show how this process works from end to end:
+![](../assets/cosmos_architecture.png)
