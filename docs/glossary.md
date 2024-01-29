@@ -18,7 +18,7 @@ Fairblock uses **threshold** IBE so that no single party controls the decryption
 Threshold encryption is a form of cryptography that allows a private key to be derived as long as a certain threshold of network participants come together to aggregate their private keyshares.
 Fairblock uses Threshold IBE, which allows validators to generate a share of the private key using their Master Secret Keyshare once a condition (ID) is met on-chain.
 Validators then submit their derived private keyshares to `fairyring`,
-which can construct the derive private key once the threshold of validator keyshare submissions are met.
+which can construct the derived private key once the threshold of validator keyshare submissions is met.
 
 ### Public key
 
@@ -43,8 +43,7 @@ The derived private key is obtained by aggregating a threshold number of derived
 
 ### Frontrunning
 
-Frontrunning is an example of bad-MEV (maximal extractable value) where MEV searchers can observe a user's unexecuted profitable trade in a mempool and manipulate
-the ordering of transactions within a block. The most common type of frontrunning attack are *sandwich attacks*.
+Frontrunning is an example of bad-MEV ([maximal extractable value]([url](https://ethereum.org/developers/docs/mev#mev-extraction-generalized-frontrunners))) where MEV searchers can observe a user's unexecuted profitable trade in a mempool and manipulate the ordering of transactions within a block. The most common type of frontrunning is *sandwich attacks*.
 
 ## Public keys
 
