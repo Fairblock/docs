@@ -90,6 +90,7 @@ message MsgCreateLatestPubKey {
   string creator   = 1;
   string publicKey = 2;
   repeated string commitments = 3;
+  uint64 numberOfValidators = 4;
 }
 ```
 
@@ -245,6 +246,7 @@ When enough keyshares are received & the derived private key is being aggregated
 | `queued-pubkey-created` | `queued-pubkey-created-expiry-height` | `height` |
 | `queued-pubkey-created` | `queued-pubkey-created-creator` | `creatorAddress` |
 | `queued-pubkey-created` | `queued-pubkey-created-pubkey` | `pubKeyCreated` |
+| `queued-pubkey-created` | `number-of-validators` | `numberOfValidators` |
 
 ## Client
 
@@ -415,10 +417,12 @@ activePubKey:
   creator: fairy1cmly9rn64tp5pmdwjbf40t0h7ttme6ld85je6f
   expiry: "123456"
   publicKey: 8cef6ace8b47e47e7b0488f1550bcd9555a74be99677c3a487e57f3de76c28d274bc936ffa9b8da06c0fa5ded6412378
+  numberOfValidators: 8
 queuedPubKey:
   creator: fairy1cmly9rn64tp5pmdwjbf40t0h7ttme6ld85je6f
   expiry: "133456"
   publicKey: 859f30ece2ea1e25897bfd2bdb64c4762c6bd32e683600ca7a04572b1c639c6885cff981daab8bbf1dd9b1cd523c3e18
+  numberOfValidators: 8
 ```
 
 ##### show-aggregated-key-share
@@ -874,12 +878,14 @@ Example Output:
   "activePubKey": {
     "publicKey": "8cef6ace8b47e47e7b0598f0449abc9445a74be99677c3a487e57f3de76c28d274bc936ffa9b8da06c0fa5ded6412378",
     "creator": "fairy1cmly8rn86tp5pmdwjbe40t9h7ttmd6ld85je6f",
-    "expiry": "123456"
+    "expiry": "123456",
+    "numberOfValidators": 8
   },
   "queuedPubKey": {
     "publicKey": "859f30ece2ea1e25897bfc1bdb65c4973c6bd32e683600ca7a04572b1c639c6885cff981daab8bbf1dd9b1cf412b2f07",
     "creator": "fairy1cmly8rn86tp5pmdwjbe40t9h7ttmd6ld85je6f",
-    "expiry": "133456"
+    "expiry": "133456",
+    "numberOfValidators": 8
   }
 }
 ```
