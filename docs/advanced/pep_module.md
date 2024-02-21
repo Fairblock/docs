@@ -98,10 +98,10 @@ The pep module emits the following events:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `new-encrypted-tx-submitted` | `new-encrypted-tx-creator` | `creatorAddress` |
-| `new-encrypted-tx-submitted` | `new-encrypted-tx-target-height` | `height` |
-| `new-encrypted-tx-submitted` | `new-encrypted-tx-index` | `txIndex` |
-| `new-encrypted-tx-submitted` | `new-encrypted-tx-data` | `txData` |
+| `new-encrypted-tx-submitted` | `creator` | `creatorAddress` |
+| `new-encrypted-tx-submitted` | `ntarget-height` | `height` |
+| `new-encrypted-tx-submitted` | `index` | `txIndex` |
+| `new-encrypted-tx-submitted` | `data` | `txData` |
 
 #### MsgCreateAggregatedKeyShare
 
@@ -109,9 +109,9 @@ The following events will be emitted when the aggregated keyshare is invalid:
 
 | Type | Attribute Key | Attribute Value |
 | --- | --- | --- |
-| `keyshare-verification` | `keyshare-verification-creator` | `creatorAddress` |
-| `keyshare-verification` | `keyshare-verification-height` | `height` |
-| `keyshare-verification` | `keyshare-verification-reason` | `failReason` |
+| `keyshare-verification` | `creator` | `creatorAddress` |
+| `keyshare-verification` | `height` | `height` |
+| `keyshare-verification` | `reason` | `failReason` |
 
 ### Block Events
 
@@ -121,19 +121,21 @@ When the transaction is reverted:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `reverted-encrypted-tx` | `reverted-encrypted-tx-creator` | `creatorAddress` |
-| `reverted-encrypted-tx` | `reverted-encrypted-tx-target-height` | `processedHeight` |
-| `reverted-encrypted-tx` | `reverted-encrypted-tx-index` | `txIndex` |
-| `reverted-encrypted-tx` | `reverted-encrypted-tx-reason` | `failReason` |
+| `reverted-encrypted-tx` | `creator` | `creatorAddress` |
+| `reverted-encrypted-tx` | `target-height` | `processedHeight` |
+| `reverted-encrypted-tx` | `index` | `txIndex` |
+| `reverted-encrypted-tx` | `reason` | `failReason` |
 
 When the transaction is executed successfully:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `executed-encrypted-tx` | `executed-encrypted-tx-creator` | `maskedAddress` |
-| `executed-encrypted-tx` | `executed-encrypted-tx-target-height` | `confirmedHeight` |
-| `executed-encrypted-tx` | `executed-encrypted-tx-index` | `transactionIndex` |
-| `executed-encrypted-tx` | `executed-encrypted-tx-data` | `redactedData` |
+| `executed-encrypted-tx` | `creator` | `maskedAddress` |
+| `executed-encrypted-tx` | `target-height` | `confirmedHeight` |
+| `executed-encrypted-tx` | `index` | `transactionIndex` |
+| `executed-encrypted-tx` | `data` | `redactedData` |
+| `executed-encrypted-tx` | `memo` | `underlyingTxMemo` |
+| `executed-encrypted-tx` | `events` | `underlyingTxEvents` |
 
 ## Client
 
