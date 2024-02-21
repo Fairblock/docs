@@ -7,7 +7,7 @@ sidebar_position: 5
 The Share Generation API is currently responsible for performing the verifiable secret sharing for keyshares.
 Keyshares will be rotated every `N` blocks meaning that the master public key (used for encrypting transactions),
 keyshares and keyshare commitments (used for submitting to `fairyring`) will be different every round.
-The keyshares stored on the server are encrypted with public key of registered validators.
+The keyshares stored on the server are encrypted with the public key of registered validators.
 The master public key will be submitted to `fairyring` (along with keyshare commitments and number of validators) at the beginning of every round.
 
 This tutorial explains how to interact with our Share Generation API.
@@ -40,7 +40,7 @@ Fetches your keyshare for the current round.
 - `httpMethod`, request method, `GET` in this case.
 - `publicKey`, your validator cosmos account public key encoded in base64, for the server to know who is sending the request.
 - `msg`, the timestamp of when the request is being made as a string.
-- `signedMsg`, `SHA256` hashed timestamp and signed with your validator cosmos account private key, encoded in bae64, for the server to verify you are actually the owner of the public key.
+- `signedMsg`, `SHA256` hashed timestamp and signed with your validator cosmos account private key, encoded in base64, for the server to verify you are actually the owner of the public key.
 
 Here is the example request body (without the full public key & signed message):
 
