@@ -99,7 +99,7 @@ The pep module emits the following events:
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
 | `new-encrypted-tx-submitted` | `creator` | `creatorAddress` |
-| `new-encrypted-tx-submitted` | `ntarget-height` | `height` |
+| `new-encrypted-tx-submitted` | `target-height` | `height` |
 | `new-encrypted-tx-submitted` | `index` | `txIndex` |
 | `new-encrypted-tx-submitted` | `data` | `txData` |
 
