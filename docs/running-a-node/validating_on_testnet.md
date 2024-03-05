@@ -35,7 +35,7 @@ Here is the command for creating a validator:
 
 ```bash
 fairyringd tx staking create-validator \
-  --amount `100000000000stake` \
+  --amount `10000000000ufairy` \
   --commission-max-change-rate 0.01 \
   --commission-max-rate 0.2 \
   --commission-rate 0.1 \
@@ -46,23 +46,23 @@ fairyringd tx staking create-validator \
   --website [optional.web.page.com] \
   --details [optional-details] \
   --pubkey $(fairyringd tendermint show-validator) \
-  --chain-id fairytest-3
+  --chain-id fairyring-testnet-1
 ```
 
 Explanation for each of the command flags:
 
-- `amount` is the amount you stake in your own validator (in this example it is `100000000000stake`)
+- `amount` is the amount you stake in your own validator (in this example it is `10000000000ufairy`)
 - `commission-max-change-rate` is how much you can increase your commission rate in a 24 hour period (in the example above, 1% per day until reaching the max rate)
 - `commission-max-rate` is the most you are allowed to charge your delegates (in the example above, 20%)
 - `commission-rate` is the rate you will charge your delegates (in the example above, 5%)
 - `from` is the account name of the wallet you just created
-- `min-self-delegation` is the lowest amount of personal funds the validator is required to have in their own validator to stay bonded (in the example above, `1stake`)
+- `min-self-delegation` is the lowest amount of personal funds the validator is required to have in their own validator to stay bonded (in the example above, `1ufairy`)
 - `moniker` is your validator name
 - `security-contact` is your email address
 - `website` is the URL of your website
 - `details` is detail of your validator node
 - `pubkey` is the validator public key
-- `chain-id` in this case is `fairytest-3`, or whatever `chain-id` you are working with
+- `chain-id` in this case is `fairyring-testnet-1`, or whatever `chain-id` you are working with
 
 If you are joining the validator set after the genesis creation, that will be all you need to do.
 
@@ -75,7 +75,7 @@ If you are joining the validator set before the genesis creation, here is the st
 ```bash
 fairyringd gentx \
   [account_key_name] \
-  100000000000stake \
+  10000000000ufairy \
   --commission-max-change-rate 0.01 \
   --commission-max-rate 0.2 \
   --commission-rate 0.05 \
@@ -85,7 +85,7 @@ fairyringd gentx \
   --security-contact "[optional-security@example.com]" \
   --website [optional.web.page.com] \
   --moniker [node_moniker] \
-  --chain-id fairytest-3
+  --chain-id fairyring-testnet-1
 ```
 
 If you would like to know the explanation on each of flags, please see the explanation above.
@@ -97,7 +97,7 @@ After running the command above, it will create a `gentx-XXXXXX.json` file under
 2. Copy the contents inside `$HOME/.fairyring/config/gentx/gentx-XXXXXX.json` to `fairyring/gentxs/` directory (replace `VALIDATOR_NAME` to your validator name):
 
 ```bash
-cp $HOME/.fairyring/config/gentx/gentx-*.json $HOME/fairyring/networks/testnets/fairytest-3/gentxs/gentx-VALIDATOR_NAME.json
+cp $HOME/.fairyring/config/gentx/gentx-*.json $HOME/fairyring/networks/testnets/fairyring-testnet-1/gentxs/gentx-VALIDATOR_NAME.json
 ```
 
 3. Create a json file with all your node information like the example below, and name it `peers-VALIDATOR_NAME.json` (replace `VALIDATOR_NAME` to your validator name)
@@ -124,7 +124,7 @@ curl ipinfo.io/ip
 
 For your `port`, the default is `26656` if you did not change the config.
 
-4. After creating the file, put it under `$HOME/fairyring/networks/testnets/fairytest-3/peers/` directory
+4. After creating the file, put it under `$HOME/fairyring/networks/testnets/fairyring-testnet-1/peers/` directory
 
 5. Create a new branch with the peers & gentx files, make a commit and push the update to Github.
 
