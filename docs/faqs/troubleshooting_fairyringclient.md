@@ -74,7 +74,7 @@ You can run the following command to unjail your validator:
 ```bash
 fairyringd tx slashing unjail \
   --from=<YOUR KEY NAME> \
-  --chain-id=fairytest-3 \
+  --chain-id=fairyring-testnet-1 \
   --gas=auto \
   --gas-adjustment=1.4
 ```

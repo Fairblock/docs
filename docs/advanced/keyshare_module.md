@@ -202,18 +202,18 @@ When a valid keyshare is received:
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
 | `keyshare-sent` | `validator` | `validatorAddress` |
-| `keyshare-sent` | `keyshare-block-height` | `height` |
-| `keyshare-sent` | `received-block-height` | `height` |
-| `keyshare-sent` | `keyshare-message` | `keyshareInHex` |
-| `keyshare-sent` | `keyshare-index` | `keyshareIndex` |
+| `keyshare-sent` | `keyshare-height` | `height` |
+| `keyshare-sent` | `received-height` | `height` |
+| `keyshare-sent` | `message` | `keyshareInHex` |
+| `keyshare-sent` | `index` | `keyshareIndex` |
 
 When enough keyshares are received & the derived private key is aggregated:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `keyshare-aggregated` | `keyshare-aggregated-block-height` | `height` |
-| `keyshare-aggregated` | `keyshare-aggregated-data` | `aggregatedKeyShareInHex` |
-| `keyshare-aggregated` | `keyshare-aggregated-pubkey` | `pubKeyForTheAggregatedKey` |
+| `keyshare-aggregated` | `height` | `height` |
+| `keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
+| `keyshare-aggregated` | `pubkey` | `pubKeyForTheAggregatedKey` |
 
 #### MsgCreateGeneralKeyShare
 
@@ -232,20 +232,19 @@ When enough keyshares are received & the derived private key is being aggregated
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `keyshare-aggregated` | `keyshare-aggregated-block-height` | `height` |
-| `keyshare-aggregated` | `keyshare-aggregated-data` | `aggregatedKeyShareInHex` |
-| `keyshare-aggregated` | `keyshare-aggregated-pubkey` | `pubKeyForTheAggregatedKey` |
-| `keyshare-aggregated` | `keyshare-aggregated-id-value` | `aggregatedKeyShareIdValue` |
-| `keyshare-aggregated` | `keyshare-aggregated-id-type` | `aggregatedKeyShareIdType` |
+| `general-keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
+| `general-keyshare-aggregated` | `pubkey` | `pubKeyForTheAggregatedKey` |
+| `general-keyshare-aggregated` | `id-value` | `aggregatedKeyShareIdValue` |
+| `general-keyshare-aggregated` | `id-type` | `aggregatedKeyShareIdType` |
 
 #### MsgCreateLatestPubKey
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `queued-pubkey-created` | `queued-pubkey-created-active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
-| `queued-pubkey-created` | `queued-pubkey-created-expiry-height` | `height` |
-| `queued-pubkey-created` | `queued-pubkey-created-creator` | `creatorAddress` |
-| `queued-pubkey-created` | `queued-pubkey-created-pubkey` | `pubKeyCreated` |
+| `queued-pubkey-created` | `active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
+| `queued-pubkey-created` | `expiry-height` | `height` |
+| `queued-pubkey-created` | `creator` | `creatorAddress` |
+| `queued-pubkey-created` | `pubkey` | `pubKeyCreated` |
 | `queued-pubkey-created` | `number-of-validators` | `numberOfValidators` |
 
 ## Client
