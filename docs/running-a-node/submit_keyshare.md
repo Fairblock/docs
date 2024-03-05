@@ -58,9 +58,6 @@ go install
 fairyringclient config init
 ```
 
-You can add `--no-rsa-key` flag to initialize config without creating a new RSA key if you already have one.
-The RSA key is for whitelisting your identity in the Share Generation API Server as well as for decrypting your master keyshare.
-
 3. Check the client config:
 
 ```bash
@@ -100,7 +97,7 @@ Here are the flags for updating different field of the config:
 5. Add validator account private key
 
 ```bash
-fairyringclient keys cosmos add "private key in hex"
+fairyringclient keys add "private key in hex"
 ```
 
 **The private key should be the validator address that is staking on fairyring chain**  
@@ -108,14 +105,14 @@ fairyringclient keys cosmos add "private key in hex"
 Example:
   
 ```bash  
-> fairyringclient keys cosmos add f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04
+> fairyringclient keys add f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04
 Using config file: /Users/fairblock/.fairyringclient/config.ymlSuccessfully added cosmos private key to config!
 ```  
   
 6. Check the key is added to the client correctly:
   
 ```bash  
-> fairyringclient keys cosmos list  
+> fairyringclient keys list  
 Using config file: /Users/fairblock/.fairyringclient/config.yml
 Found total 1 private keys in config file
 [0] f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04  
@@ -123,17 +120,7 @@ Found total 1 private keys in config file
 
 **The `[0]` at the beginning of the key is the index of your key, which is used to delete the key**
 
-7. Submit the RSA Key that the client generated:
-
-You can get the public RSA Key in the following path (assuming you didn't update the client config path): `$HOME/.fairyringclient/keys`  
-  
-The public key file should be named `pk1.pem`  
-  
-Submit the `pk1.pem` via [this form](https://forms.gle/NC65NkDsjsExaxrA9)
-
-Once your RSA Key is whitelisted, you can start the client.
-
-8. Start the client:
+7. Start the client:
 
 ```bash
 fairyringclient start
