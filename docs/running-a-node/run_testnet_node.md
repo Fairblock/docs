@@ -17,13 +17,13 @@ fairyringd init NODE_NAME
 2. If you are unable to get the genesis file from the link above:
 
 ```bash
-cp ~/fairyring/networks/testnets/fairyring-testnet-1/genesis.json ~/.fairyringd/config/genesis.json
+cp ~/fairyring/networks/testnets/fairyring-testnet-1/genesis.json ~/.fairyring/config/genesis.json
 ```
 
-3. Set peers in the `$HOME/.fairyringd/config/config.toml`:
+3. Set peers in the `$HOME/.fairyring/config/config.toml`:
 
 ```bash
-SEEDS=$(cat $HOME/fairyring/networks/testnets/fairyring-testnet-1/peers-nodes.txt)
+SEEDS=$(cat $HOME/fairyring/networks/testnets/fairyring-testnet-1/peers-node.txt)
 echo $SEEDS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$SEEDS\"/" $HOME/.fairyring/config/config.toml
 ```
