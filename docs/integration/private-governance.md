@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Getting started
+# Private Governance
 
 In this tutorial, you will learn how to implement private governance voting on your frontend application.
 
