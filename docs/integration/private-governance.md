@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Getting started
+# Private Governance
 
 In this tutorial, you will learn how to implement private governance voting on your frontend application.
 
@@ -15,19 +15,19 @@ To submit an encrypted voting on your frontend application, you will need to ins
 Using npm:
 
 ```bash
-$ npm install ts-ibe
+npm install ts-ibe
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add ts-ibe
+yarn add ts-ibe
 ```
 
 Using pnpm:
 
 ```bash
-$ pnpm add ts-ibe
+pnpm add ts-ibe
 ```
 
 ## Prepare voting data
