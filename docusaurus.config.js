@@ -6,7 +6,7 @@ const darkCodeTheme = themes.dracula;
 const config = {
   title: 'Fairblock Docs',
   tagline:
-    'We are building blockchain infrastructure using applied cryptography for applications with pre-execution privacy and conditional decryption. In all ecosystems.',
+    "The modular ecosystem of privacy-enabled infrastructure and applications. Fairblock's programmable privacy unlocks a wide range of applications as well as protecting users from malicious actors.",
   favicon: 'img/favicon/favicon.ico',
 
   // Set the production url of your site here
