@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       // title={`${siteConfig.title}`}
-      description="We are building blockchain infrastructure using applied cryptography for applications with pre-execution privacy and conditional decryption. In all ecosystems."
+      description="The modular ecosystem of privacy-enabled infrastructure and applications. Fairblock's programmable privacy unlocks a wide range of applications as well as protecting users from malicious actors."
     >
       <HomepageHeader />
       <main>

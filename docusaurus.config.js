@@ -81,11 +81,11 @@ const config = {
             label: 'Blog',
             position: 'right',
           },
-          {
-            href: 'https://github.com/Fairblock',
-            label: 'GitHub',
-            position: 'right',
-          },
+          // {
+          //   href: 'https://github.com/Fairblock',
+          //   label: 'GitHub',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {
