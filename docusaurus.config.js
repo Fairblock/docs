@@ -107,18 +107,26 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/Fair_Block',
               },
+              {
+                label: 'Discord',
+                href: 'https://discord.gg/jhNBCCAMPK',
+              },
             ],
           },
           {
             title: 'More',
             items: [
               {
+                label: 'News',
+                href: 'https://blog.fairblock.network',
+              },
+              {
                 label: 'Blog',
                 href: 'https://medium.com/@fair_block',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/Fairblock/',
+                href: 'https://github.com/Fairblock',
               },
             ],
           },
