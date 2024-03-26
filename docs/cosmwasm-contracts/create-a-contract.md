@@ -1,6 +1,3 @@
----
-sidebar_position: 1
----
 
 # Create a cosmwasm contract
 
@@ -10,7 +7,7 @@ Sample contracts can also be found in [cosmwasm-examples](https://github.com/deu
 
 For the rest of this tutorial, we use the `to-do-list` contract from the above link as an example.
 
-## Compile the contract
+## Compile and deploy the contract
 
 Inside the contract directory, run the following command to compile and build the contract (In this example, the corresponding directory is: `cw-contracts/contracts/cw-to-do-list`). Note that in order to use this command, `docker` needs to be installed on the system: 
 ```sh
