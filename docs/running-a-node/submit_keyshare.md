@@ -74,7 +74,6 @@ Chain ID: fairyring-testnet-1
 Chain Denom: ufairy
 InvalidSharePauseThreshold: 5
 MetricsPort: 2222
-Share API Url: https://7d3q6i0uk2.execute-api.us-east-1.amazonaws.com
 ```
 
 4. Update the client config:
@@ -97,7 +96,7 @@ Here are the flags for updating different field of the config:
 5. Add validator account private key
 
 ```bash
-fairyringclient keys add "private key in hex"
+fairyringclient keys set "private key in hex"
 ```
 
 **The private key should be the validator address that is staking on fairyring chain**  
@@ -105,17 +104,16 @@ fairyringclient keys add "private key in hex"
 Example:
   
 ```bash  
-> fairyringclient keys add f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04
+> fairyringclient keys set f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04
 Using config file: /Users/fairblock/.fairyringclient/config.ymlSuccessfully added cosmos private key to config!
 ```  
   
 6. Check the key is added to the client correctly:
   
 ```bash  
-> fairyringclient keys list  
+> fairyringclient keys show  
 Using config file: /Users/fairblock/.fairyringclient/config.yml
-Found total 1 private keys in config file
-[0] f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04  
+Private Key: f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04  
 ```
 
 **The `[0]` at the beginning of the key is the index of your key, which is used to delete the key**

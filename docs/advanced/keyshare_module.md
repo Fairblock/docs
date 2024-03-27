@@ -20,6 +20,7 @@ The `x/keyshare` module keeps state of the following primary objects:
 4. Active & queued public key
 5. Authorized addresss
 6. Submit general keyshares
+7. Keyshares encrypted with validator public key
 
 ## Params
 
@@ -55,6 +56,22 @@ The message will fail under the following conditions:
 
 - Creator address staked token is less than minimum requirement
 - Creator address already registered as a validator in `x/keyshare` module
+  
+### MsgDeRegisterValidator
+
+Register as a validator in the `x/keyshare` module validator set.
+
+`proto/fairyring/keyshare/tx.proto`
+
+```proto
+message MsgDeRegisterValidator {  
+  string creator = 1;  
+}
+```
+
+The message will fail under the following condition:
+
+- Creator address is not a registerd validator in keyshare module
 
 ### MsgSendKeyShare
 
@@ -87,10 +104,11 @@ Create master public key used for encrypting transactions.
 
 ```proto
 message MsgCreateLatestPubKey {
-  string creator   = 1;
-  string publicKey = 2;
+  string creator     = 1;
+  string publicKey   = 2;
   repeated string commitments = 3;
   uint64 numberOfValidators = 4;
+  repeated EncryptedKeyShare encryptedKeyShares = 5;
 }
 ```
 
@@ -99,6 +117,32 @@ The message will fail under the following conditions:
 - Sender is not a trusted address
 - A queued public key already exists
 - Commitments array is empty
+- encrypted keyshare array is empty
+- numberOfValidators is 0
+
+### MsgOverrideLatestPubKey
+
+Create master public key used for encrypting transactions.
+
+`proto/fairyring/keyshare/tx.proto`
+
+```proto
+message MsgOverrideLatestPubKey {
+  string creator     = 1;
+  string publicKey   = 2;
+  repeated string commitments = 3;
+  uint64 numberOfValidators = 4;
+  repeated EncryptedKeyShare encryptedKeyShares = 5;
+}
+```
+
+The message will fail under the following conditions:
+
+- Sender is not a trusted address
+- A queued public key already exists
+- Commitments array is empty
+- encrypted keyshare array is empty
+- numberOfValidators is 0
 
 ### MsgCreateAuthorizedAddress
 
@@ -195,6 +239,12 @@ The keyshare module emits the following events:
 | ---- | ------------- | --------------- |
 | `new-validator-registered` | `creator` | `creatorAddress` |
 
+#### MsgDeRegisterValidator
+
+| Type | Attribute Key | Attribute Value |
+| ---- | ------------- | --------------- |
+| `validator-deregistered` | `creator` | `creatorAddress` |
+
 #### MsgSendKeyshare
 
 When a valid keyshare is received:
@@ -246,6 +296,18 @@ When enough keyshares are received & the derived private key is being aggregated
 | `queued-pubkey-created` | `creator` | `creatorAddress` |
 | `queued-pubkey-created` | `pubkey` | `pubKeyCreated` |
 | `queued-pubkey-created` | `number-of-validators` | `numberOfValidators` |
+| `queued-pubkey-created` | `encrypted-shares` | `encryptedKeySharesArray` |
+
+#### MsgOverrideLatestPubKey
+
+| Type | Attribute Key | Attribute Value |
+|---|---|---|
+| `pubkey-overrode` | `active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
+| `pubkey-overrode` | `expiry-height` | `height` |
+| `pubkey-overrode` | `creator` | `creatorAddress` |
+| `pubkey-overrode` | `pubkey` | `pubKeyCreated` |
+| `pubkey-overrode` | `number-of-validators` | `numberOfValidators` |
+| `pubkey-overrode` | `encrypted-shares` | `encryptedKeySharesArray` |
 
 ## Client
 
@@ -401,7 +463,7 @@ params:
 
 ##### show-active-pub-key
 
-The `show-active-pub-key` command allows users to query current active & queued public keys.
+The `show-active-pub-key` command allows users to query current active & queued public keys and encrypted key shares.
 
 `fairyringd query keyshare show-active-pub-key [flags]`
 
@@ -416,12 +478,18 @@ activePubKey:
   creator: fairy1cmly9rn64tp5pmdwjbf40t0h7ttme6ld85je6f
   expiry: "123456"
   publicKey: 8cef6ace8b47e47e7b0488f1550bcd9555a74be99677c3a487e57f3de76c28d274bc936ffa9b8da06c0fa5ded6412378
-  numberOfValidators: 8
+  numberOfValidators: 1
+  encryptedKeyShares:
+  - data: XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==
+    validator: fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td
 queuedPubKey:
   creator: fairy1cmly9rn64tp5pmdwjbf40t0h7ttme6ld85je6f
   expiry: "133456"
   publicKey: 859f30ece2ea1e25897bfd2bdb64c4762c6bd32e683600ca7a04572b1c639c6885cff981daab8bbf1dd9b1cd523c3e18
-  numberOfValidators: 8
+  numberOfValidators: 1
+  encryptedKeyShares:
+  - data: XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==
+    validator: fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td
 ```
 
 ##### show-aggregated-key-share
@@ -589,13 +657,13 @@ Example:
 
 ##### create-latest-pub-key
 
-The `create-latest-pub-key` command allow trusted addresses to submit public key & commitments.
+The `create-latest-pub-key` command allow trusted addresses to submit public key, commitments and encrypted key shares.
 
-`fairyringd tx keyshare create-latest-pub-key [public-key] [commitments] [flags]`
+`fairyringd tx keyshare create-latest-pub-key [public-key] [commitments] [number-of-validators] [encrypted-key-shares] [flags]`
 
 Example:
 
-`fairyringd tx keyshare create-latest-pub-key "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09" "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09,a6f02f598d3b89c524792889b0b115cd229ba60aeb568c228de7db1e8c182fd07bb473fab5258564c26fe5164e287e35"`
+`fairyringd tx keyshare create-latest-pub-key "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09" "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09,a6f02f598d3b89c524792889b0b115cd229ba60aeb568c228de7db1e8c182fd07bb473fab5258564c26fe5164e287e35" 1 '[{"data": "XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==", "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"}]'`
 
 ##### register-validator
 
@@ -606,6 +674,16 @@ The `register-validator` command allow validators to register as a validator in 
 Example:
 
 `fairyringd tx keyshare register-validator`
+
+##### deregister-validator
+
+The `deregister-validator` command allow validators to deregister in `x/keyshare` module validator set.
+
+`fairyringd tx keyshare deregister-validator [flags]`
+
+Example:
+
+`fairyringd tx keyshare deregister-validator`
 
 ##### send-keyshare
 
@@ -862,7 +940,7 @@ Example Output:
 
 ### PubKey
 
-The `PubKey` endpoint allows users to query active & queued public keys.
+The `PubKey` endpoint allows users to query active & queued public keys and encrypted key shares.
 
 `fairyring.keyshare.Query/PubKey`
 
@@ -875,16 +953,28 @@ Example Output:
 ```json
 {
   "activePubKey": {
-    "publicKey": "8cef6ace8b47e47e7b0598f0449abc9445a74be99677c3a487e57f3de76c28d274bc936ffa9b8da06c0fa5ded6412378",
-    "creator": "fairy1cmly8rn86tp5pmdwjbe40t9h7ttmd6ld85je6f",
-    "expiry": "123456",
-    "numberOfValidators": 8
+    "publicKey": "8d56d4fc13b594fbb28edd326dcb957e1da44846caeacb6414d0a6335e8b1c71595bfb0d3856ddba081c95c100db3853",
+    "creator": "fairy10tq25z63m3fedlwmtssf5g5qzh9zsjswvmcxc9",
+    "expiry": "205",
+    "numberOfValidators": "1",
+    "encryptedKeyShares": [
+      {
+        "data": "z3dRFcwsIBsMtbLAfWnCJQLKACC7q6t+Ox64n9g7iRah4ojv0qyNoRMG0keZvU53urgqMgAgecCv1SKJ9nhx7F3iEmaO2p6MZSHAsCFVavSXyovIPtHX4VugFjx41LsO800HT6Fp5I3RU1yjFWWJ8RwpnkPjXCit7TGCD+5mvLAO0YlTQepuIxqbxr62SIG++dfklRwzfJleesQEXpc9gzsjNDq5/Q==",
+        "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"
+      }
+    ]
   },
   "queuedPubKey": {
-    "publicKey": "859f30ece2ea1e25897bfc1bdb65c4973c6bd32e683600ca7a04572b1c639c6885cff981daab8bbf1dd9b1cf412b2f07",
-    "creator": "fairy1cmly8rn86tp5pmdwjbe40t9h7ttmd6ld85je6f",
-    "expiry": "133456",
-    "numberOfValidators": 8
+    "publicKey": "8aa4996b6622432eead77305c8774ed65c700c10c31da586af5db7bedb512ee437f37baaf19080bbfcd700bfbe0e862f",
+    "creator": "fairy10tq25z63m3fedlwmtssf5g5qzh9zsjswvmcxc9",
+    "expiry": "255",
+    "numberOfValidators": "1",
+    "encryptedKeyShares": [
+      {
+        "data": "W+5TnZxz4q33vaY8a3i6AQLKACCqYvBl0KpBglT5LiYMd02uAW7gcFkRYjNNOZbAXo4PIQAgBaxzXRl/PEurAbheNotnaXK2twRttRVDIDffDHmd+S615Oo4T/orCl5qYUWa2fnrz0o6+0BxtCdS3O2+0HNYQJhupPFs9SEW/r1jju8/IaNR4GgYpISY99zh6A7aH/1ToqlAJWLzvMLC3yCOE5AgGg==",
+        "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"
+      }
+    ]
   }
 }
 ```
