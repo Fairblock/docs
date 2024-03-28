@@ -68,12 +68,9 @@ The submitted keyshares are then used to construct the derived private key.
 
 ### `ShareGenerationClient`
 
-The `ShareGenerationClient` is the nucleus of `fairyring`’s privacy features.
-It is responsible for generating the MSK and distributing it to the validator network using VSS
-([Verifiable Secret Sharing](https://en.wikipedia.org/wiki/Verifiable_secret_sharing)),
-performing a function to derive the MPK from the MSK, and then discarding the MSK once it’s distributed to `fairyring` validators.
-The `ShareGenerationClient` submits each MPK (active & queued) as a transaction within `fairyring` so that each MPK can then be sent to the destination chains of apps using Fairblock’s encryption features.
-MPKs are then used to encrypt transactions with certain conditions for decryption.
+The `ShareGenerationClient` is responsible for generating the MSK and distributing it to the validator network using VSS
+([Verifiable Secret Sharing](https://en.wikipedia.org/wiki/Verifiable_secret_sharing)).
+Refer to [`ShareGenerationClient`](./advanced/share_generator.md) for more details.
 
 **Note:** The `ShareGenerationClient` will soon be replaced by distributed key generation (DKG).
 

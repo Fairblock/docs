@@ -2,9 +2,9 @@
 sidebar_position: 5
 ---
 
-# Share Generation Client
+# `ShareGenerationClient`
 
-The Share Generation Client is currently responsible for performing the verifiable secret sharing for keyshares.
+The `ShareGenerationClient` is currently responsible for performing verifiable secret sharing for keyshares.
 Keyshares will be rotated every `N` blocks meaning that the master public key (used for encrypting transactions),
 keyshares and keyshare commitments (used for submitting to `fairyring`) will be different every round.
 The keyshares submitted to fairyring are encrypted with the public key of registered validators.

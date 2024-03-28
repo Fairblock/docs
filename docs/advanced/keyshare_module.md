@@ -20,7 +20,7 @@ The `x/keyshare` module keeps state of the following primary objects:
 4. Active & queued public key
 5. Authorized addresss
 6. Submit general keyshares
-7. Keyshares encrypted with validator public key
+7. Keyshares encrypted with the validator's public key
 
 ## Params
 
@@ -59,7 +59,7 @@ The message will fail under the following conditions:
   
 ### MsgDeRegisterValidator
 
-Register as a validator in the `x/keyshare` module validator set.
+Deregisters a validator from the `x/keyshare` module validator set.
 
 `proto/fairyring/keyshare/tx.proto`
 
@@ -71,7 +71,7 @@ message MsgDeRegisterValidator {
 
 The message will fail under the following condition:
 
-- Creator address is not a registerd validator in keyshare module
+- Creator address is not a registered validator in the keyshare module
 
 ### MsgSendKeyShare
 
@@ -122,7 +122,7 @@ The message will fail under the following conditions:
 
 ### MsgOverrideLatestPubKey
 
-Create master public key used for encrypting transactions.
+Override the latest master public key used for encrypting transactions.
 
 `proto/fairyring/keyshare/tx.proto`
 
