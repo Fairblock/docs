@@ -4,11 +4,13 @@ sidebar_position: 2
 
 # Keyshares
 
-Each MPK is derived from a Master Secret Key (MSK), which is generated each epoch by the [Share Generation API](../running-a-node/share_generation_api.md).
-Once the MSK is generated, the [Share Generation API](../running-a-node/share_generation_api.md) then performs a function to derive the MPK,
-then breaks up and distributes the MSK to the validators in the network via Verifiable Secret Sharing (VSS),
-such that each validator holds a share of the MSK, known as the **MSK share**.
-After the MSK shares are distributed, the [Share Generation API](../running-a-node/share_generation_api.md) discards the full MSK.
+Each MPK is derived from a Master Secret Key (MSK), which is generated each epoch by the [Share Generation Client](../running-a-node/share_generation_client.md).
+Once the MSK is generated, the [Share Generation Client](../running-a-node/share_generation_client.md) then performs a function to
+
+1. Derive the MPK
+2. Splits up the MSK into individual keyshares encrypted by each validator's public key
+3. Submits the encrypted keyshares along with the MPK to `fairyring`
+4. Discards the full MSK.
 
 Each validator stores its share of the MSK locally and uses the [`fairyringclient`](../running-a-node/submit_keyshare.md#fairyringclient)
 to derive the private keyshare for each block height corresponding to the `ActivePubKey`.

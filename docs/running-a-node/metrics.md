@@ -56,7 +56,6 @@ Chain ID: fairyring-testnet-1
 Chain Denom: ufairy
 InvalidSharePauseThreshold: 5
 MetricsPort: 2222
-Share API Url: https://7d3q6i0uk2.execute-api.us-east-1.amazonaws.com
 ```
 
 You can update the metrics port by the following command:
