@@ -35,7 +35,7 @@ fairyringd tx keyshare register-validator --from YOUR_WALLET_NAME
 ## `fairyringclient`
 
 `fairyringclient` is a tool which:
-    1. Fetches your master keyshare from our [Share Generation API Server](./share_generation_api.md)
+    1. Fetches your master keyshare from our [Share Generation Client](./share_generation_client.md)
     2. Computes the derived keyshare every block
     3. Automatically submits the derived keyshare to `fairyring` every block.
 
