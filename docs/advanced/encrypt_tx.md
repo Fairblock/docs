@@ -93,7 +93,7 @@ The `unsigned.json` looks something like this:
 ```bash
 SIGNED=$(fairyringd tx sign unsigned.json --from [ACCOUNT_NAME] --offline \
 --account-number $(fairyringd query account $(fairyringd keys show [ACCOUNT_NAME] -a) -o json | jq -r '.account_number') \
---sequence $(fairyringd query pep show-pep-nonce $(fairyringd keys show [ACCOUNT_NAME] -a) -o json | jq -r '.pepNonce.nonce')
+--sequence $(fairyringd query pep show-pep-nonce $(fairyringd keys show [ACCOUNT_NAME] -a) -o json | jq -r '.pepNonce.nonce'))
 ```
 
 - `[ACCOUNT_NAME]` replace all instances to the account name you are using to sign the transaction.
@@ -106,7 +106,7 @@ Example:
 ```bash
 SIGNED=$(fairyringd tx sign unsigned.json --from alice --offline \
 --account-number $(fairyringd query account $(fairyringd keys show alice -a) -o json | jq -r '.account_number') \
---sequence $(fairyringd query pep show-pep-nonce $(fairyringd keys show alice -a) -o json | jq -r '.pepNonce.nonce')
+--sequence $(fairyringd query pep show-pep-nonce $(fairyringd keys show alice -a) -o json | jq -r '.pepNonce.nonce'))
 ```
 
 The signed transaction looks like this:
