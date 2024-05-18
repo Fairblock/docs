@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       // title={`${siteConfig.title}`}
-      description="The modular ecosystem of privacy-enabled infrastructure and applications. Fairblock's programmable privacy unlocks a wide range of applications as well as protecting users from malicious actors."
+      description="The encryption coprocessor for an unlocked ecosystem of DeFi, Gaming, and AI applications. Available to every block."
     >
       <HomepageHeader />
       <main>
