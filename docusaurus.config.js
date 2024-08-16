@@ -104,7 +104,7 @@ const config = {
             items: [
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/Fair_Block',
+                href: 'https://x.com/0xfairblock',
               },
               {
                 label: 'Discord',
