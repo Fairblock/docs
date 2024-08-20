@@ -23,7 +23,7 @@ Using `fairyring` as a mechanism for encrypting the bids, a developer wanting to
 Any user can request a new identity by running the command
 
 ```bash
-fairyringd tx pep request-general-keyshare --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
+fairyringd tx pep request-general-keyshare 30s --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
 ```
 
 # Querying identities
