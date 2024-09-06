@@ -76,7 +76,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://medium.com/@fair_block',
+            href: 'https://medium.com/@0xfairblock',
             label: 'Blog',
             position: 'right',
           },
@@ -121,7 +121,7 @@ const config = {
               },
               {
                 label: 'Blog',
-                href: 'https://medium.com/@fair_block',
+                href: 'https://medium.com/@0xfairblock',
               },
               {
                 label: 'GitHub',
