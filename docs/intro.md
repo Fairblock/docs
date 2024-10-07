@@ -2,7 +2,13 @@
 sidebar_position: 0
 ---
 
-# Introduction
+<!-- Changes to be made:
+- Rename this section to Vision instead of Intro
+- Outline clear vision statement & how Fairblock technologies unlocks new paradigms in blockchain ecosystem. List some key examples & key gotchas (what it is vs what it isn't).
+- MVP on buttons, add links to learn and build sections.
+- Move old content from this page to new "Learn" section at the start. -->
+
+# Intro
 
 Encryption is desperately lacking in blockchain networks and their applications. This lack is a critical roadblock to the global adoption of blockchains - a roadblock that stands tall for millions of everyday users and institutions alike.
 
