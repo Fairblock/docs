@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 ---
 
-# Transaction decryption and execution
+# Transaction Decryption and Execution
 
 Upon reaching the target height, the transaction is decrypted using the derived private key of the particular block height
 and executed before any of the mempool transactions for that block can be processed.

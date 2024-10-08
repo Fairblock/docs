@@ -1,8 +1,8 @@
 ---
-sidebar_position: 0
+sidebar_position: 1
 ---
 
-# Overview
+# Background
 
 The `fairyring` chain uses Threhsold IBE (Identity Based Encryption) to allow users to encrypt transactions using a public key,
 which then decrypts and executes automatically at the target height.
