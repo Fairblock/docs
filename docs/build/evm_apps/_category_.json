@@ -1,0 +1,10 @@
+{
+  "label": "EVM Apps",
+  "position": 2, 
+  "link": {
+    "type": "doc",
+    "id": "evm_apps" 
+  },
+  "collapsible": true, 
+  "collapsed": true
+}

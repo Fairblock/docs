@@ -9,6 +9,8 @@ sidebar_position: 5
 - Outline key steps with Appchains (where encrypted txs are stored, etc.)
 - Outline key steps with EVM Apps (communicating with immutable contract that exposes precompile functions) -->
 
+
+
 ## EVMs
 
 <!-- EVM Chains:

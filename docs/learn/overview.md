@@ -4,12 +4,9 @@ sidebar_position: 1
 
 # Overview
 
-<!-- The org of this section should be (assuming reader has read the intro, but then jumped straight to Learn to understand the protocol): 
+<!-- The org of this section should be (assuming reader has read the intro, but then jumped straight to Learn to understand the protocol). We will assume that it is an average reader: 
 1. Overview of how Fairblock works again (schematic); use the schematic and walk through key points. Make sure to point out how AppChains and EVMs differ in how they work under the hood, but not in practice.
-2. Outline the rest of the section's details:
-3. Pub Keys and Encryption
-4. Keyshares and Aggregation
-<!-- 5. Decrypt and Execute -->
+2. Introduce the next pages: cryptography and the network. -->
 
 Fairblock's appchain, The `fairyring` chain uses Threhsold IBE (Identity Based Encryption) to allow users to encrypt transactions using a public key,
 which then decrypts and executes automatically at the target height.
@@ -33,6 +30,12 @@ Apps can do this because their EVMs will have access to a immutable contract exp
 The later pages in this section covers the detailed fundamentals of Fairblock. These include:
 
 <!-- Links will be to their respective pages in the docs -->
+
+**The Cryptography**
+
+1. TBD
+
+**The Network**
 
 1. [The purpose of Master Public Keys (MPKs), and how they are used to encrypt transactions.](TODO-GetLinkToPage)
 2. [How MPKs and Decryption Keys (keyshares) are generated using the `fairyring` and its validators in a decentralized manner.](TODO-GetLinkToPage)

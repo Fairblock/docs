@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Public Keys and Encrypting Transactions
 
-<!-- Add an intro blurb here -->
+<!-- TODO - Not sure if all these pages should go to advanced (there may be redundancy and we can possibly just combine the text there with text here). TODO - Add an intro blurb here -->
 
 ## Public Keys
 

@@ -17,7 +17,7 @@ and then `fairyport` sends the private key to the destination chain after observ
 
 Once the destination chain has access to the derived private key, it decrypts the encrypted transaction in the mempool and executes it.
 
-![Begin Block Logic](../assets/BeginBlockLogic.png)
+![Begin Block Logic](../../assets/BeginBlockLogic.png)
 
 Note the following two things:
 
@@ -27,4 +27,4 @@ Note the following two things:
 - interactions between `fairyring` and Cosmos chains will work differently than non-Cosmos chains. We will share information regarding non-Cosmos chains soon.
 
 Here is a diagram to show how this process works from end to end:
-![](../assets/cosmos_architecture.png)
+![](../../assets/cosmos_architecture.png)
