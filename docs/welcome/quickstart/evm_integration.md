@@ -4,15 +4,9 @@ sidebar_position: 2
 
 # Developer Quickstart: Encrypt & Decrypt with EVMs
 
-<!-- Define the key gotchas of how apps and appchains work with Fairblock tech.
-- Split this section into AppChain & EVMs
-- Provide relevant SDKs
-- Provide a quick start repo showcasing key simple integration points (easily understood for ppl wanting to bring it to their own projects)
-- Deploy quickstart example to test appchains and test EVMs (that are compatible) -->
+<!-- TODO - get a repo started for app integrations quick start, use that here. -->
 
-<!-- Show visual for apps and appchains talking to Fairyring -->
+By the end of this tutorial you will have:
 
-Follow each of these tutorials to build either an app or appchain to:
-
-1. [Clone the respective repo and set up your dev environment](TODO-GetLink)
-2. [Write, compile, and test your first encrypted/decrypted app using Fairblock in a local dev environment](TODO-GetLink)
+1. [Cloned the respective repo and set up your dev environment](TODO-GetLink)
+2. [Written, compiled, and tested your first encrypted/decrypted EVM App using Fairblock in a local dev environment](TODO-GetLink)

@@ -4,9 +4,9 @@ sidebar_position: 3
 
 # Developer Quickstart: Encrypt & Decrypt with AppChains
 
-<!-- Define the key gotchas of how apps and appchains work with Fairblock tech.
-- Split this section into AppChain & EVMs
-- Provide relevant SDKs
-- Provide a quick start repo showcasing key simple integration points (easily understood for ppl wanting to bring it to their own projects)
-- Deploy quickstart example to test appchains and test EVMs (that are compatible) -->
+<!-- TODO - get a repo started for appchain integrations quick start, use that here. -->
 
+By the end of this tutorial you will have:
+
+1. [Cloned the respective repo and set up your dev environment](TODO-GetLink)
+2. [Written, compiled, and tested your first encrypted/decrypted Appchain using Fairblock in a local dev environment](TODO-GetLink)

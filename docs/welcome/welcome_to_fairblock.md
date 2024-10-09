@@ -2,12 +2,6 @@
 sidebar_position: 0
 ---
 
-<!-- Changes to be made:
-- Rename this section to Welcome instead of Intro
-- Outline clear vision statement & how Fairblock technologies unlocks new paradigms in blockchain ecosystem. List some key examples & key gotchas (what it is vs what it isn't).
-- MVP on buttons, add links to learn and build sections.
-- Move old content from this page to new "Learn" section at the start. -->
-
 # Welcome
 
 <!-- Need input from high-level team as this is an important page for introducing people to project. -->
@@ -23,6 +17,10 @@ Fairblock technologies help solve this challenge by offering encryption and cond
 - Integrate into Fairblock for programmable encryption, and paired conditional decryption and execution into their tech stack (both AppChains & EVMs).
 - Leverage advanced cryptographic schemes including threshold identity-based encryption (tIBE), and threshold fully homomorphic encryption (tFHE)
 
+
+<!-- TODO - not sure about this paragraph being here -->
+Fairblock is currently in the first phase of its rollout, strictly utilizing tIBE and witness encryption for its encryption features. We have an applied research and development arm committed to exploring and furthering practical implementations of FHE and more advanced forms of Witness Encryption, each of which will eventually be implemented at the protocol level. 
+
 The docs here are organized to meet the needs of two main demographics: developers building apps, and validators supporting the Fairblock chain, Fairyring. They primarily provide information for developer quickstarts, fundamentals within the Learn section, and how to support the validator network. 
 
-Come join the fun at our community here at our [Discord](https://discord.gg/8zFvUJrz3z). We carry out technical discussions with our community, as well as distribute protocol updates, opportunities, and immaculate vibes. We’re excited for you to join us!
+We look forward to collaborating with members of the blockchain and cryptography communities to complete our vision and enshrine encryption as a standard in blockchain networks and their applications. Come join the fun at our community here at our [Discord](https://discord.gg/8zFvUJrz3z). We carry out technical discussions with our community, as well as distribute protocol updates, opportunities, and immaculate vibes. We’re excited for you to join us! 
