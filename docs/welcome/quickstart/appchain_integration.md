@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Developer Quickstart: Encrypt & Decrypt with EVMs & AppChains
+# Developer Quickstart: Encrypt & Decrypt with AppChains
 
 <!-- Define the key gotchas of how apps and appchains work with Fairblock tech.
 - Split this section into AppChain & EVMs
