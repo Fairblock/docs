@@ -13,15 +13,16 @@ sidebar_position: 1
 ## What is an Encrypted/Decrypted App?
 
 <!-- TODO - replace encrypted/decrypted with a name for apps that use fairblock - we need to finalize that term -->
+
 An encrypted/decrypted App or Appchain unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized appchain, Fairyring.
 
-Key concepts to help with the quickstart are:
+Key concepts to help with the quickstart are listed below. These are elaborated further in the [learn](TODO-GetLink) section.
 
-- Apps or AppChains have active communication with the Fairyring chain. This communiation mainly consists of two steps:
+Apps or AppChains have active communication with the Fairyring chain. This communication mainly consists of the following steps:
 
-   1. App or Appchain listens to the Fairyring for new Master Public Keys (MPKs) to encrypt their respective transactions.
-   2. Fairyring listens for a condition, and corresponding ID, to trigger generating a decryption key (keyshare).
-   3. Once generated, keyshare is shared with the respective App or Appchain. The App or Appchain then executes the transaction at the beginning of the block to avoid risks arising from delayed execution.
+1.  App or Appchain listens to the Fairyring for new Master Public Keys (MPKs) to encrypt their respective transactions.
+2.  Fairyring listens for a condition, and corresponding ID, to trigger generating a decryption key (keyshare).
+3.  Once generated, keyshare is shared with the respective App or Appchain. The App or Appchain then executes the transaction at the beginning of the block to avoid risks arising from delayed execution.
 
 <!-- Show visual for apps and appchains talking to Fairyring -->
 
@@ -30,6 +31,8 @@ Key concepts to help with the quickstart are:
 ## Start Building Encrypted/Decrypted Apps with Fairblock
 
 There are two tutorials within this Quickstart:
+
+<!-- Links will be to their respective pages in the docs -->
 
 1. [Encrypt & Decrypt with EVMs](TODO-GetLink)
 2. [Encrypt & Decrypt with AppChains](TODO-GetLink)

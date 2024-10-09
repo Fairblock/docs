@@ -17,7 +17,6 @@ Fairblock technologies help solve this challenge by offering encryption and cond
 - Integrate into Fairblock for programmable encryption, and paired conditional decryption and execution into their tech stack (both AppChains & EVMs).
 - Leverage advanced cryptographic schemes including threshold identity-based encryption (tIBE), and threshold fully homomorphic encryption (tFHE)
 
-
 <!-- TODO - not sure about this paragraph being here -->
 Fairblock is currently in the first phase of its rollout, strictly utilizing tIBE and witness encryption for its encryption features. We have an applied research and development arm committed to exploring and furthering practical implementations of FHE and more advanced forms of Witness Encryption, each of which will eventually be implemented at the protocol level. 
 
