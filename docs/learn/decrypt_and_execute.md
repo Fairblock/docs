@@ -17,6 +17,8 @@ and then `fairyport` sends the private key to the destination chain after observ
 
 Once the destination chain has access to the derived private key, it decrypts the encrypted transaction in the mempool and executes it.
 
+![Begin Block Logic](../assets/BeginBlockLogic.png)
+
 Note the following two things:
 
 - encrypted transactions are stored in the [`x/pep`](../advanced/pep_module.md) of their corresponding chains. They are not transferred over IBC to `fairyring`.

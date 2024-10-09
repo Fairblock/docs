@@ -25,6 +25,8 @@ Key concepts to help with the quickstart are:
 
 <!-- Show visual for apps and appchains talking to Fairyring -->
 
+<!-- TODO - Consider either adding in schematic showing that the tx is executed at the beginning of the block, or do this in the learn section. I opt for the learn section. -->
+
 ## Start Building Encrypted/Decrypted Apps with Fairblock
 
 There are two tutorials within this Quickstart:
