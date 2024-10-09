@@ -2,15 +2,7 @@
 sidebar_position: 1
 ---
 
-# Why Fairblock
-
-<!-- TODO - reword this copy that was the original intro to remove redundancies that arise after the reorg. -->
-
-Encryption is desperately lacking in blockchain networks and their applications. This lack is a critical roadblock to the global adoption of blockchains - a roadblock that stands tall for millions of everyday users and institutions alike.
-
-Fairblock is building programmable encryption solutions that serve as building blocks for decentralized applications and networks. We’re developing encryption services that can be integrated directly into application frontends and as deep as the protocol level of blockchains. 
-
-# How Fairblock Works
+# Overview
 
 Fairblock's appchain, The `fairyring` chain uses Threhsold IBE (Identity Based Encryption) to allow users to encrypt transactions using a public key,
 which then decrypts and executes automatically at the target height.
@@ -25,3 +17,9 @@ On `fairyring` itself, any encrypted transactions can also automatically be decr
 The following flow gives an idea of how `fairyring` works.
 
 ![General flow for `fairyring`](../assets/fairyring-overview.png)
+
+The later pages in this section covers the detailed fundamentals of Fairblock. These include:
+
+1. [The purpose of Master Public Keys (MPKs), and how they are used to encrypt transactions.](TODO-GetLinkToPage)
+2. [How MPKs and Decryption Keys (keyshares) are generated using the `fairyring` and its validators in a decentralized manner.](TODO-GetLinkToPage)
+3. [How the keyshares are used to decrypt and enact automatic execution of an encrypted transaction at the beginning of a block.](TODO-GetLinkToPage)

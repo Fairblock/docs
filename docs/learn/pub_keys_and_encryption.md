@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Public Keys and Encrypting Transactions
 
+<!-- Add an intro blurb here -->
+
 ## Public Keys
 
 Users encrypt their transactions using a master public key (MPK) and then choose the condition for decryption (the ID).

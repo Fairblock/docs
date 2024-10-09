@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Keyshares and Aggregation
 
+<!-- Add an intro blurb here -->
+
 ## Keyshares
 
 Each MPK is derived from a Master Secret Key (MSK), which is generated each epoch by the [Share Generation Client](../running-a-node/share_generation_client.md).
