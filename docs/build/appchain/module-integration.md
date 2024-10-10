@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1 
+sidebar_position: 1
 ---
 
 # Integrating the `pep` module into your own app-chain
