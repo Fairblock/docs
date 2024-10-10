@@ -33,7 +33,7 @@ The later pages in this section covers the detailed fundamentals of Fairblock. T
 
 **The Cryptography**
 
-1. TBD
+1. [An explanation on how IBE and tIBE are used within the `fairyring` chain.](TODO-GetLinkToPage)
 
 **The Network**
 
