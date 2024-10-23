@@ -2,21 +2,23 @@
 sidebar_position: 0
 ---
 
-# Developer Quickstart: Encrypt & Decrypt with EVMs & AppChains
+# Developer Quickstart: Build Encrypted/Decrypted Apps or Chains with Fairyring
 
-<!-- Define the key gotchas of how apps and appchains work with Fairblock tech.
-- Split this section into AppChain & EVMs
-- Provide relevant SDKs
-- Provide a quick start repo showcasing key simple integration points (easily understood for ppl wanting to bring it to their own projects)
-- Deploy quickstart example to test appchains and test EVMs (that are compatible) -->
+An encrypted/decrypted App or Appchain unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized appchain, Fairyring. 
+
+When working with Fairyring, there are two main developer audiences that have been highlighted, and subsequent quickstarts to assist them at the [bottom of the page](TODO-GetLinkToBottomOfPageWhenInProd).
+
+1. Blockchain Developers creating their own chains leveraging Fairblock Technologies, such as Roll-Ups and AppChains.
+2. App Developers creating apps on EVMs or appchains. 
+
+<!-- OK, the layout of the quickstart:
+1. Describe the NECESSARY things to not get lost in the quickstart. REMEMBER: the quickstart itself will have explanations for key fundamental concepts.
+2. Outline that there are two different quickstart categories: chain development and app development
+3. Inside each of the quickstarts, that's where you can break out what they will learn in them -->
 
 ## What is an Encrypted/Decrypted App?
 
-<!-- TODO - replace encrypted/decrypted with a name for apps that use fairblock - we need to finalize that term -->
-
-An encrypted/decrypted App or Appchain unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized appchain, Fairyring.
-
-Key concepts to help with the quickstart are listed below. These are elaborated further in the [learn](TODO-GetLink) section.
+<!-- TODO ALL: - replace encrypted/decrypted with a name for apps that use fairblock - we need to finalize that term -->
 
 Apps or AppChains have active communication with the Fairyring chain. This communication mainly consists of the following steps:
 
@@ -24,20 +26,25 @@ Apps or AppChains have active communication with the Fairyring chain. This commu
 2.  Fairyring listens for a condition, and corresponding ID, to trigger generating a decryption key (keyshare).
 3.  Once generated, keyshare is shared with the respective App or Appchain. The App or Appchain then executes the transaction at the beginning of the block to avoid risks arising from delayed execution.
 
-<!-- Show visual for apps and appchains talking to Fairyring -->
+_To learn more about the concepts above, read more in the [learn](TODO-GetLink) section._
 
-<!-- TODO - Consider either adding in schematic showing that the tx is executed at the beginning of the block, or do this in the learn section. I opt for the learn section. -->
+<!-- TODO - Show visual for apps and appchains talking to Fairyring -->
 
-## Start Building Encrypted/Decrypted Apps with Fairblock
+### Quickstarts for App Developers 
 
-There are two tutorials within this Quickstart:
+These quickstarts will guide you through the steps to spin up a local chain or appchain quickly and deploy your own apps using fairyring functionality.
 
 <!-- Links will be to their respective pages in the docs -->
 
-1. [Encrypt & Decrypt with EVMs](TODO-GetLink)
-2. [Encrypt & Decrypt with AppChains](TODO-GetLink)
+1. [Create an App that works with encryption and decryption offering fairyring functionality](TODO-GetLink)
+2. [Create an App that works with encryption and decryption with an AppChain offering fairyring functionality](TODO-GetLink)
 
-Follow each of these tutorials to build either an app or appchain to:
+### Quickstarts for Chain Developers 
 
-1. Clone the respective repo and set up your dev environment
-2. Write, compile, and test your first encrypted/decrypted app using Fairblock in a local dev environment
+<!-- Links will be to their respective pages in the docs -->
+These quickstarts will guide you through the steps to modify your EVM or appchain to work with fairyring, and deploy it in a local environment.
+
+1. [Modify EVMs with Precompiles to Integrate with Fairblock Technologies](TODO-GetLink)
+2. [Integrate Fairblock Technologies Modules into Your Own AppChain](TODO-GetLink)
+
+
