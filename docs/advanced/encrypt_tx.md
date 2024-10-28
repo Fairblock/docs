@@ -4,33 +4,15 @@ sidebar_position: 2
 
 # Encrypt transactions for `x/pep` module
 
-This tutorial explains how to encrypt your transaction for `x/pep` module using [`encrypter`](https://github.com/Fairblock/encrypter).
-Ensure you have followed the [prerequisites](../running-a-node/prerequisites.md) and installed the [`fairyring` binary](../running-a-node/installation.md)
-prior to following the instructions below.
-
-## Install `encrypter`
-
-1. Cloning the repository:
-
-```bash
-cd $HOME
-git clone https://github.com/Fairblock/encrypter.git
-cd encrypter
-```
-
-2. Install `encrypter` binary
-
-```bash
-go mod tidy
-go install
-```
+This tutorial explains how to encrypt your transaction for `x/pep` module using `encrypter` that built-in `fairyringd`.
+Ensure you installed the [`fairyring` binary](../running-a-node/installation.md) prior to following the instructions below.
 
 ## Encrypt your transaction
 
 1. Getting the public key for encryption
 
 ```bash
-PUBKEY=$(fairyringd query pep show-active-pub-key | jq -r '.activePubKey.publicKey')
+PUBKEY=$(fairyringd query pep show-active-pub-key | jq -r '.active_pubkey.public_key')
 ```
 
 2. Create the signed transaction. We'll use a bank send transaction in this example.
@@ -159,7 +141,7 @@ You can check your signed transaction with the following command:
 4. Encrypting the transaction
 
 ```bash
-ENCRYPTED=$(encrypter [TARGET_HEIGHT] $PUBKEY $SIGNED)
+ENCRYPTED=$(fairyringd encrypt [TARGET_HEIGHT] $PUBKEY $SIGNED)
 ```
 
 - `[TARGET_HEIGHT]` is the target execution height of your transaction, it will also be used when you submit the encrypted transaction.
