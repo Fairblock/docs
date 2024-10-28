@@ -8,15 +8,6 @@ sidebar_position: 1
 
 <!-- Outline for this page:
 1. Diagram for how new chain interacts with Fairyring -->
-The purpose of this quickstart is to help developers work with Fairblock in an EVM.
-
-This quickstart will cover:
-
-- Creation of a modified EVM with precompiled Fairyring functionality integrated within an Orbit Chain settling on Arbitrum Sepolia Testnet, all contained within two docker images.
-- Setting up single script to spin up local local docker container simulating your own local orbit chain, Fairblock_Demo_Chain, settling on Arbitrum Sepolia Testnet.
------
-
-# High-Level
 
 The point of this quickstart: create your first app using Fairyring for encryption and conditional decryption in less than 30 minutes. Throughout this, we'll repeat context on how fairblock interacts with blockchains and apps. 
 
@@ -45,7 +36,7 @@ For those new to Arbitrum technologies, here are the main pre-requisite knowledg
 EVM runtime exists alongside WASM to support existing Solidity contracts. This enables seamless deployment of ERC-20, ERC-721, and custom dApps written in Solidity. -->
 - New Orbit chains are deployed with initial registration on the respective settlement layer, typically Arbitrum One, but can be Nova or other settlement layers.
 
-## 1. Modify geth and compile it
+## 1. Modify `geth` and Compile It
 
 To start, you will clone the nitro tech stack from Arbitrum, adjust dependencies as needed, and modify the geth file `contracts.go`. This file contains the core logic pertaining to operations within the Arbitrum Orbit Chain's EVM.
 
@@ -182,7 +173,7 @@ make docker
 
 This command will regenerate your `nitro-node` docker image locally. This will be used next to get an updated WASM Module Root (since you have added the pre-compile aspects). 
 
-## 2. compile the new image with WASM module root
+## 2. Compile the New Image with WASM Module Root
 
 <!-- TODO - complete / update the WASM module root part of this tutorial. Backburning it for now.  I need to go through it again (including part b and c). Because for the regular orbit chain, it looks like I didn't update the nitro-node I was running with the WASM Module Root, so I have to try that to ensure it is all working properly. -->
 
@@ -227,7 +218,7 @@ make docker
 
 Now that we have the modified nitro node almost ready to run, we can go ahead and begin setting up the orbit chain settled on the Arbitrum Sepolia network.
 
-## 3. Clone the eigenda-orbit-setup-script repository
+## 3. Clone the `orbit-setup-script` Repo and Launch Your Base Contracts on Arbitrum Sepolia Testnet
 
 It is recommended to follow the quickstart provided by the Arbitrum Orbit docs, to set up your own orbit chain. We recommend setting it up with the default settings. The quickstart can be found [here](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart). Here, you will deploy your orbit chain to get the configuration files. 
 
@@ -278,7 +269,7 @@ Simply find the `nitro` var within the `docker-compose.yaml` file, and instill t
     command: --dev
 ```
 
-# Step 11: Finish setting up your chain
+# Finish Setting Up Your Chain with Custom Hardhat Setup Script
 
 Using the quickstart resources from the Arbitrum Orbit docs, we can use a pre-made script to carry out necessary setup transactions with the base contracts to complete setting up your local Orbit Chain.
 
