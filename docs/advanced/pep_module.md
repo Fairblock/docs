@@ -261,7 +261,7 @@ The pep module emits the following events:
 | `new-general-encrypted-tx-submitted` | `index` | `txIndex` |
 | `new-general-encrypted-tx-submitted` | `data` | `txData` |
 
-#### MsgCreateAggregatedKeyShare
+#### MsgCreateAggregatedKeyshare
 
 The following events will be emitted when the aggregated keyshare is invalid:
 
