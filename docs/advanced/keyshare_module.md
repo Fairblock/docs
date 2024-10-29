@@ -102,7 +102,7 @@ The message will fail under the following conditions:
 - Keyshare index is incorrect
 - Keyshare is incorrect
 
-### MsgCreateLatestPubKey
+### MsgCreateLatestPubkey
 
 Create master public key used for encrypting transactions.
 
@@ -127,14 +127,14 @@ The message will fail under the following conditions:
 - encrypted keyshare array is empty
 - numberOfValidators is 0
 
-### MsgOverrideLatestPubKey
+### MsgOverrideLatestPubkey
 
 Override the latest master public key used for encrypting transactions.
 
 `proto/fairyring/keyshare/tx.proto`
 
 ```proto
-message MsgOverrideLatestPubKey {
+message MsgOverrideLatestPubkey {
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
   string public_key = 2;
@@ -299,7 +299,7 @@ When enough keyshares are received & the derived private key is aggregated:
 |---|---|---|
 | `keyshare-aggregated` | `height` | `height` |
 | `keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
-| `keyshare-aggregated` | `pubkey` | `pubKeyForTheAggregatedKey` |
+| `keyshare-aggregated` | `pubkey` | `pubkeyForTheAggregatedKey` |
 
 #### MsgCreateGeneralKeyShare
 
@@ -319,7 +319,7 @@ When enough keyshares are received & the derived private key is being aggregated
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
 | `general-keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
-| `general-keyshare-aggregated` | `pubkey` | `pubKeyForTheAggregatedKey` |
+| `general-keyshare-aggregated` | `pubkey` | `pubkeyForTheAggregatedKey` |
 | `general-keyshare-aggregated` | `id-value` | `aggregatedKeyShareIdValue` |
 | `general-keyshare-aggregated` | `id-type` | `aggregatedKeyShareIdType` |
 
@@ -335,25 +335,25 @@ When a valid encrypted keyshare is received:
 | `encrypted-keyshare-sent` | `index` | `keyshareIndex` |
 | `encrypted-keyshare-sent` | `id-value` | `keyshareIdValue` |
 
-#### MsgCreateLatestPubKey
+#### MsgCreateLatestPubkey
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `queued-pubkey-created` | `active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
+| `queued-pubkey-created` | `active-pubkey-expiry-height` | `activePubkeyExpiryHeight` |
 | `queued-pubkey-created` | `expiry-height` | `height` |
 | `queued-pubkey-created` | `creator` | `creatorAddress` |
-| `queued-pubkey-created` | `pubkey` | `pubKeyCreated` |
+| `queued-pubkey-created` | `pubkey` | `pubkeyCreated` |
 | `queued-pubkey-created` | `number-of-validators` | `numberOfValidators` |
 | `queued-pubkey-created` | `encrypted-shares` | `encryptedKeySharesArray` |
 
-#### MsgOverrideLatestPubKey
+#### MsgOverrideLatestPubkey
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `pubkey-overrode` | `active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
+| `pubkey-overrode` | `active-pubkey-expiry-height` | `activePubkeyExpiryHeight` |
 | `pubkey-overrode` | `expiry-height` | `height` |
 | `pubkey-overrode` | `creator` | `creatorAddress` |
-| `pubkey-overrode` | `pubkey` | `pubKeyCreated` |
+| `pubkey-overrode` | `pubkey` | `pubkeyCreated` |
 | `pubkey-overrode` | `number-of-validators` | `numberOfValidators` |
 | `pubkey-overrode` | `encrypted-shares` | `encryptedKeySharesArray` |
 
@@ -761,11 +761,11 @@ Example Output:
 
 ```json
 {
-  "active_commitments": {
+  "activeCommitments": {
     "commitments": [ "8d42569a19d9823c14b9720ea58d533edac69862ab1559745978fb5a99db3eecaeefee7a511134714f04a08c0043ae03","8280c76cf24d52e993ff146ea2368fe9a122e5ba3b7ddc3e6467328f5f74806ed7d1df191330226cb4b6b337d31ded5d",
     ]
   },
-  "queued_commitments": {
+  "queuedCommitments": {
     "commitments": [   "96aabdd25677133b70e0e1a6648e3510c950f822152bb283d3f5e6b251a5b70762f6de7a1b5ecc2d35e27744d7389284",  "b1cec7b713d48bb10cb9b218cfb9e7f201b7d750837a64b5a4b2a2d48704a7ffc55cb8db3efa27ba15a5e1bbe21d3ada",
     ]
   }
@@ -787,14 +787,14 @@ Example Output:
 ```json
 {
   "params": {
-    "key_expiry": "10000",
-    "trusted_addresses": [
+    "keyExpiry": "10000",
+    "trustedAddresses": [
       "fairy1cmly9rn75tp5pmdwjae39t8h8ttme6ld85jf7g",
     ],
-    "slash_fraction_no_keyshare": "NTAwMDAwMDAwMDAwMDAwMDAw",
-    "slash_fraction_wrong_keyshare": "NTAwMDAwMDAwMDAwMDAwMDAw",
-    "minimum_bonded": "100000000000",
-    "max_idled_block": "10000"
+    "slashFractionNoKeyshare": "NTAwMDAwMDAwMDAwMDAwMDAw",
+    "slashFractionWrongKeyshare": "NTAwMDAwMDAwMDAwMDAwMDAw",
+    "minimumBonded": "100000000000",
+    "maxIdledBlock": "10000"
   }
 }
 ```
@@ -818,11 +818,11 @@ Example Output:
 
 ```json
 {
-  "validator_set": {
+  "validatorSet": {
     "index": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
     "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
-    "cons_addr": "475c76e62b5ad583fdd33575610f973fcb1ca0a8",
-    "is_active": true
+    "consAddr": "475c76e62b5ad583fdd33575610f973fcb1ca0a8",
+    "isActive": true
   }
 }
 ```
@@ -841,18 +841,18 @@ Example Output:
 
 ```json
 { 
-  "validator_set": [
+  "validatorSet": [
     {
       "index": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
       "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
-      "cons_addr": "475c76e62b5ad583fdd33575610f973fcb1ca0a8",
-      "is_active": true
+      "consAddr": "475c76e62b5ad583fdd33575610f973fcb1ca0a8",
+      "isActive": true
     },
     {
       "index": "fairy15davlswu4dfud5zushgp1ybm70p5cnu6w5vcfd",
       "validator": "fairy15davlswu4dfud5zushgp1ybm70p5cnu6w5vcfd",
-      "cons_addr": "21d6289fb05259639afe91963ebb18d06f8a976f",
-      "is_active": true
+      "consAddr": "21d6289fb05259639afe91963ebb18d06f8a976f",
+      "isActive": true
     },
   ],
   "pagination": {
@@ -908,19 +908,19 @@ Example Output:
   "keyshare": [
     {
       "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
-      "block_height": "95219",
+      "blockHeight": "95219",
       "keyshare": "91d7674f9feff2275971dda90bc25d1f75c64f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96ffffff9c58c30c4bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e",
-      "keyshare_index": "9",
-      "received_timestamp": "1697533024",
-      "received_block_height": "95219"
+      "keyshareIndex": "9",
+      "receivedTimestamp": "1697533024",
+      "receivedBlockHeight": "95219"
     },
     {
       "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
-      "block_height": "95220",
+      "blockHeight": "95220",
       "keyshare": "aa35cbbe3394308f823080085ffa82940f5f79d622b0dc48fe12413cd9717d6730dd0f192d52a079812cab8ba67d9b6712dbf0558e8db3e1ec099be66d5ccc29b4e40a7f244f80ee7a5585b25205971daa10d1da68e783c0e12b865ccb9dd465",
-      "keyshare_index": "9",
-      "received_timestamp": "1697533030",
-      "received_block_height": "95220"
+      "keyshareIndex": "9",
+      "receivedTimestamp": "1697533030",
+      "receivedBlockHeight": "95220"
     }
   ],
   "pagination": {
@@ -949,7 +949,7 @@ Example Output:
 
 ```json
 {
-  "decryption_key": {
+  "decryptionKey": {
     "height": "100000",
     "data": "a19e5b345e236f9d07bbea401321e7d2e6f5d5cdfcfc0c7948609c263006036bf73a2db2b4ee726be48ea2181c093fc807442a8b81d135ca98d1db206d31fe4d082c5b9ad4483d6933989dace8a142b28927c6b868470116dc3d194b3934d276"
   }
@@ -970,7 +970,7 @@ Example Output:
 
 ```json
 {
-  "decryption_keys": [
+  "decryptionKeys": [
     {
       "height": "15229",
       "data": "a32dd1859edf01bdae54e3e4f4a0ea95d2c461ed006ea384b223cef0e3e5d87fc560954f43aba363da21aabfbc0c57340f02604965a96bd83fc9fb28b23f1586b29def1e75b3a9df06353921f33ad80cf9903899a7a9843be8be559956b06391"
@@ -984,17 +984,18 @@ Example Output:
     "nextKey": "AAAAAAAAO+Ev",
     "total": "831477"
   }
+}
 ```
 
-### PubKey
+### Pubkey
 
-The `PubKey` endpoint allows users to query active & queued public keys and encrypted key shares.
+The `Pubkey` endpoint allows users to query active & queued public keys and encrypted key shares.
 
-`fairyring.keyshare.Query/PubKey`
+`fairyring.keyshare.Query/Pubkey`
 
 Example:
 
-`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/PubKey`
+`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/Pubkey`
 
 Example Output:
 
