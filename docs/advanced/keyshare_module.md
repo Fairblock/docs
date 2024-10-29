@@ -78,7 +78,7 @@ The message will fail under the following condition:
 
 - Creator address is not a registered validator in the keyshare module
 
-### MsgSendKeyShare
+### MsgSendKeyshare
 
 Submit keyshare for target height
 
@@ -221,7 +221,7 @@ Submit general keyshare
 `proto/fairyring/keyshare/tx.proto`
 
 ```proto
-message MsgCreateGeneralKeyShare {  
+message MsgCreateGeneralKeyshare {  
   option (cosmos.msg.v1.signer) = "creator";
   string creator = 1;
   string id_type = 2;
@@ -298,10 +298,10 @@ When enough keyshares are received & the derived private key is aggregated:
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
 | `keyshare-aggregated` | `height` | `height` |
-| `keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
+| `keyshare-aggregated` | `data` | `aggregatedKeyshareInHex` |
 | `keyshare-aggregated` | `pubkey` | `pubkeyForTheAggregatedKey` |
 
-#### MsgCreateGeneralKeyShare
+#### MsgCreateGeneralKeyshare
 
 When a valid general keyshare is received:
 
@@ -318,10 +318,10 @@ When enough keyshares are received & the derived private key is being aggregated
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `general-keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
+| `general-keyshare-aggregated` | `data` | `aggregatedKeyshareInHex` |
 | `general-keyshare-aggregated` | `pubkey` | `pubkeyForTheAggregatedKey` |
-| `general-keyshare-aggregated` | `id-value` | `aggregatedKeyShareIdValue` |
-| `general-keyshare-aggregated` | `id-type` | `aggregatedKeyShareIdType` |
+| `general-keyshare-aggregated` | `id-value` | `aggregatedKeyshareIdValue` |
+| `general-keyshare-aggregated` | `id-type` | `aggregatedKeyshareIdType` |
 
 #### MsgSubmitEncryptedKeyshare
 
@@ -344,7 +344,7 @@ When a valid encrypted keyshare is received:
 | `queued-pubkey-created` | `creator` | `creatorAddress` |
 | `queued-pubkey-created` | `pubkey` | `pubkeyCreated` |
 | `queued-pubkey-created` | `number-of-validators` | `numberOfValidators` |
-| `queued-pubkey-created` | `encrypted-shares` | `encryptedKeySharesArray` |
+| `queued-pubkey-created` | `encrypted-shares` | `encryptedKeysharesArray` |
 
 #### MsgOverrideLatestPubkey
 
@@ -355,7 +355,7 @@ When a valid encrypted keyshare is received:
 | `pubkey-overrode` | `creator` | `creatorAddress` |
 | `pubkey-overrode` | `pubkey` | `pubkeyCreated` |
 | `pubkey-overrode` | `number-of-validators` | `numberOfValidators` |
-| `pubkey-overrode` | `encrypted-shares` | `encryptedKeySharesArray` |
+| `pubkey-overrode` | `encrypted-shares` | `encryptedKeysharesArray` |
 
 ## Client
 
@@ -424,7 +424,7 @@ Example:
 Example Output:
 
 ```json
-keyShare:
+keyshare:
 - block_height: "95219"
   keyshare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
   keyshare_index: "1"
@@ -880,13 +880,13 @@ Example Output:
 
 ```json
 {
-  "key_share": {
+  "keyshare": {
     "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
-    "block_height": "100000",
+    "blockHeight": "100000",
     "keyshare": "845da5dfe6ddc0fb685d5cbb1691abaca678ba4743c18d968caecbf050426e56450b999feb44bdb26032f0d67188999a187e3acb5ccfb92cfe25aedda0adb887edd65931aa7d94fc4f3fa49d26f420df5d51d24b539ec54d288b80c3720959b0",
-    "keyshare_index": "9",
-    "received_timestamp": "1697561125",
-    "received_block_height": "100000"
+    "keyshareIndex": "9",
+    "receivedTimestamp": "1697561125",
+    "receivedBlockHeight": "100000"
   }
 }
 ```
@@ -1001,24 +1001,24 @@ Example Output:
 
 ```json
 {
-  "active_pubkey": {
-    "public_key": "8d56d4fc13b594fbb28edd326dcb957e1da44846caeacb6414d0a6335e8b1c71595bfb0d3856ddba081c95c100db3853",
+  "activePubkey": {
+    "publicKey": "8d56d4fc13b594fbb28edd326dcb957e1da44846caeacb6414d0a6335e8b1c71595bfb0d3856ddba081c95c100db3853",
     "creator": "fairy10tq25z63m3fedlwmtssf5g5qzh9zsjswvmcxc9",
     "expiry": "205",
-    "number_of_validators": "1",
-    "encrypted_keyshares": [
+    "numberOfValidators": "1",
+    "encryptedKeyshares": [
       {
         "data": "z3dRFcwsIBsMtbLAfWnCJQLKACC7q6t+Ox64n9g7iRah4ojv0qyNoRMG0keZvU53urgqMgAgecCv1SKJ9nhx7F3iEmaO2p6MZSHAsCFVavSXyovIPtHX4VugFjx41LsO800HT6Fp5I3RU1yjFWWJ8RwpnkPjXCit7TGCD+5mvLAO0YlTQepuIxqbxr62SIG++dfklRwzfJleesQEXpc9gzsjNDq5/Q==",
         "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"
       }
     ]
   },
-  "queued_pubkey": {
-    "public_key": "8aa4996b6622432eead77305c8774ed65c700c10c31da586af5db7bedb512ee437f37baaf19080bbfcd700bfbe0e862f",
+  "queuedPubkey": {
+    "publicKey": "8aa4996b6622432eead77305c8774ed65c700c10c31da586af5db7bedb512ee437f37baaf19080bbfcd700bfbe0e862f",
     "creator": "fairy10tq25z63m3fedlwmtssf5g5qzh9zsjswvmcxc9",
     "expiry": "255",
-    "number_of_validators": "1",
-    "encrypted_keyshares": [
+    "numberOfValidators": "1",
+    "encryptedKeyshares": [
       {
         "data": "W+5TnZxz4q33vaY8a3i6AQLKACCqYvBl0KpBglT5LiYMd02uAW7gcFkRYjNNOZbAXo4PIQAgBaxzXRl/PEurAbheNotnaXK2twRttRVDIDffDHmd+S615Oo4T/orCl5qYUWa2fnrz0o6+0BxtCdS3O2+0HNYQJhupPFs9SEW/r1jju8/IaNR4GgYpISY99zh6A7aH/1ToqlAJWLzvMLC3yCOE5AgGg==",
         "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"
@@ -1047,10 +1047,10 @@ Example Output:
 
 ```json
 {
-  "authorized_address": {
+  "authorizedAddress": {
     "target": "fairy1f6mx8wgfb9xdxeswwavh9228uv6d7yga3qqtyv",
-    "is_authorized": true,
-    "authorized_by": "fairy1zrpp7dfav7kancgse2peh3k98u9ueajwvq4w4q"
+    "isAuthorized": true,
+    "authorizedBy": "fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q"
   }
 }
 ```
@@ -1069,11 +1069,11 @@ Example Output:
 
 ```json
 {
-  "authorized_address": [
+  "authorizedAddress": [
     {
       "target": "fairy1f6mx8wgfb9xdxeswwavh9228uv6d7yga3qqtyv",
-      "is_authorized": true,
-      "authorized_by": "fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q"
+      "isAuthorized": true,
+      "authorizedBy": "fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q"
     }
   ],
   "pagination": {
