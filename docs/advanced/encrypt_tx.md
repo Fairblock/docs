@@ -141,10 +141,10 @@ You can check your signed transaction with the following command:
 4. Encrypting the transaction
 
 ```bash
-ENCRYPTED=$(fairyringd encrypt [TARGET_HEIGHT] $PUBKEY $SIGNED)
+ENCRYPTED=$(fairyringd encrypt [TARGET_HEIGHT / REQ-ID] $PUBKEY $SIGNED)
 ```
 
-- `[TARGET_HEIGHT]` is the target execution height of your transaction, it will also be used when you submit the encrypted transaction.
+- `[TARGET_HEIGHT / REQ-ID]` is the target execution height of your transaction, or if you are encrypting a general tx, it is the request id / identity. It will also be used when you submit the encrypted transaction.
 - `$PUBKEY` is the public key (encryption key) you got from Step 1.
 - `$SIGNED` is the signed transaction from Step 3.
 
@@ -162,3 +162,12 @@ fairyringd tx pep submit-encrypted-tx $ENCRYPTED [TARGET_HEIGHT] --from [ACCOUNT
 - `[TARGET_HEIGHT]` is the target execution height of your transaction. This should be the same as the `[TARGET_HEIGHT]` used when encrypting the transaction using `encrypter`
 - `[ACCOUNT_NAME]` is the account you would like to send the transaction from. This should be the same as the account you used to sign the transaction.
 
+If you are submitting a general encrypted transaction:
+
+```bash
+fairyringd tx pep submit-general-encrypted-tx $ENCRYPTED [REQ-ID] --from [ACCOUNT_NAME] --gas-prices 1ufairy -y
+```
+
+- `$ENCRYPTED` is the hex encoded encrypted tx from `encrypter`
+- `[REQ-ID]` is the request id / identity used in encryption. This should be the same as the `[REQ-ID]` used when encrypting the transaction using `encrypter`
+- `[ACCOUNT_NAME]` is the account you would like to send the transaction from. This should be the same as the account you used to sign the transaction.
