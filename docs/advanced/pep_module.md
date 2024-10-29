@@ -1100,19 +1100,17 @@ Example Output:
 ```json
 {
   "params": {
-    "trusted_counter_parties": [
-      {
-        "client_id": "07-tendermint-0",
-        "connection_id": "connection-0",
-        "channel_id": "channel-0"
-      }
-    ],
-    "trusted_addresses": [
+    "keyshareChannelId": "channel-1",
+    "isSourceChain": true,
+    "trustedAddresses": [
       "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td",
       "fairy1qnk2n4nlkpw9xfqntladh74w6ujtulwnsgww3g"
     ],
-    "channel_id": "channel-0",
-    "min_gas_price": {
+    "minGasPrice": {
+      "denom": "ufairy",
+      "amount": "300000"
+    },
+    "privateDecryptionKeyPrice": {
       "denom": "ufairy",
       "amount": "300000"
     }
