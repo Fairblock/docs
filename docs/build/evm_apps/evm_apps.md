@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # EVM App Tutorials
 
-TBD.
+This page is under progress and will be updated shortly.
 
 <!-- TODO - fill out with EVM tutorial as we develop them -->
 
