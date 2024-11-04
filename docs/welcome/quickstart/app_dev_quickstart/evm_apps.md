@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Encrypted/Decrypted Apps on EVMs
+# OP Stack Quickstart
 
 This page is under progress and will be updated shortly.
 

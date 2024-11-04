@@ -9,7 +9,7 @@ The first version, v1, of this quickstart simply has Fairblock technologies depl
 The intent of this tutorial is to have:
 
 - Deployed fairblock technologies via several rust contracts using Arbitrum Stylus into the respective Arbitrum test network.
-- Provide a solidity smart contract that interacts with the main Fairblock `Decrypter` contract that provides Fairblock decryption methodologies.
+- Provide a solidity smart contract sealed bid auction example that interacts with the main Fairblock `Decrypter` contract that provides Fairblock decryption methodologies.
 - Run simple tests showcasing the new smart contract carrying out conditional decryption and execution using the `Decrypter`.
 
 The repo for this tutorial can be found [here](https://github.com/Fairblock/ArbitrumContracts). For convenience, steps to set up and walk through the tutorial are listed below as well.

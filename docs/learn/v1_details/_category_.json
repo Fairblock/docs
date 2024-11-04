@@ -1,0 +1,10 @@
+{
+  "label": "v1 Details",
+  "position": 1, 
+  "link": {
+    "type": "doc",
+    "id": "v1_overview" 
+  },
+  "collapsible": true, 
+  "collapsed": true
+}

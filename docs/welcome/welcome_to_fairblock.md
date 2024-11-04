@@ -6,12 +6,12 @@ sidebar_position: 0
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
-V1 is live on testnet with bespoke MPC and threshold identity-based encryption, which offer conditional confidentiality dependent on users’ needs. Two core functions are possible today:
+V1 is live on testnet with bespoke MPEC and threshold identity-based encryption, which offer conditional confidentiality dependent on users’ needs. Two core functions are possible today:
 
 1. Export confidential computation for external chains and applications.
 2. Host native applications only possible with confidentiality.
 
-Our V2 will support more dynamicity for confidentiality solutions such as verifiable MPC, re-encryption, and computation over encrypted data.
+Our V2 will support more dynamicity for confidentiality solutions such as computation over encrypted data, private input verification, and proxy reencryption.
 
 These docs will provide instructions for:
 

@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# Cryptography
+# v1 Cryptography
 
-Fairblock mainly focuses on using Threshold Identity Based Encryption (tIBE) for its services as an Appchain. After reading this section you will understand:
+Fairblock v1 mainly focuses on using Threshold Identity Based Encryption (tIBE) for its services as an Appchain. After reading this section you will understand:
 
 1. What is IBE and tIBE
 2. What basic functions are exposed to Appchains and Apps integrating with Fairblock

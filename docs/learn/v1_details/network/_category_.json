@@ -1,10 +1,9 @@
 {
-  "label": "Network",
+  "label": "v1 Network",
   "position": 2, 
   "link": {
     "type": "doc",
     "id": "network" 
   },
-  "collapsible": true, 
-  "collapsed": true
+  "collapsible": false
 }

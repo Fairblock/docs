@@ -1,8 +1,8 @@
 ---
-sidebar_position: 0
+sidebar_position: 2
 ---
 
-# Network
+# v1 Network
 
 The `fairyring` chain unlocks novel capabilities for Apps and Appchains. 
 
