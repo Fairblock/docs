@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Start Building
 
-This section acts as a growing repository for different confidentiality solutions. Simple and more advanced tutorials will be found in this section, aside from those dicsused within the quickstart.
+This section acts as a growing repository for different confidentiality solutions. The idea is that once developers have gone through the quickstart, we invite other developers to build with this ecosystem. Simple and more advanced tutorials will be found in this section, aside from those dicsused within the quickstart.
 
 > This page is under progress and will be updated shortly.
 
