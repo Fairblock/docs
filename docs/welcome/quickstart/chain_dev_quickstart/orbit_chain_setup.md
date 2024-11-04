@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # EVMs Modified with Pre-Compiles
 
+This page is under progress and will be updated shortly.
+<!-- 
 <!-- TODO - have a disclaimer on every page, or at least the quickstart / build pages that these walk throughs are not production ready, and are purely for educational purposes. -->
 
 <!-- Outline for this page:
@@ -311,4 +313,4 @@ To fully ensure that your custom EVM chain works as intended, go through the Fou
 
 <!-- TODO: not sure about this being true or not - it may be just old from Mao's writeup.
 
-"You'll see an outputInfo.json file in the main directory of your script folder - this contains more information about your chain, including the addresses of your chain's base contracts." -->
+"You'll see an outputInfo.json file in the main directory of your script folder - this contains more information about your chain, including the addresses of your chain's base contracts." --> -->
