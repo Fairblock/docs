@@ -16,7 +16,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro"
+            to="/docs/welcome/welcome_to_fairblock"
           >
             Fairblock Docs
           </Link>
@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       // title={`${siteConfig.title}`}
-      description="The encryption coprocessor for an unlocked ecosystem of DeFi, Gaming, and AI applications. Available to every block."
+      description="Build efficient onchain markets and AI supply chains with confidential execution."
     >
       <HomepageHeader />
       <main>

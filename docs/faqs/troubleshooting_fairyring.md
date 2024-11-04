@@ -4,6 +4,8 @@ sidebar_position: 0
 
 # Troubleshooting `fairyring`
 
+<!-- TODO - Perhaps add a more general FAQ to start, then get into the nitty gritty of fairyring and fairyclient -->
+
 ## Sequence mismatch or Invalid Signature
 
 When sending transactions using the `fairyringd` binary, If you get `sequence mismatch` / `Invalid Signature` error:

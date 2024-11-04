@@ -2,12 +2,12 @@
 sidebar_position: 5
 ---
 
-# Transaction decryption and execution
+# Transaction Decryption and Execution
 
 Upon reaching the target height, the transaction is decrypted using the derived private key of the particular block height
 and executed before any of the mempool transactions for that block can be processed.
 
-The derived private key for target block heights is sent to the destination chain via [`fairyport`](../advanced/fairyport.md),
+The derived private key for target block heights is sent to the destination chain via [`fairyport`](../../../advanced/fairyport.md),
 a messaging bridge developed by the Fairblock team that reads the state of the destination chain and `fairyring` to communicate to
 `fairyring` when conditions for decryption are met on the destination chain.
 When `fairyring` is notified that the decryption conditions have been met,
@@ -17,6 +17,8 @@ and then `fairyport` sends the private key to the destination chain after observ
 
 Once the destination chain has access to the derived private key, it decrypts the encrypted transaction in the mempool and executes it.
 
+![Begin Block Logic](../../../assets/BeginBlockLogic.png)
+
 Note the following two things:
 
 - encrypted transactions are stored in the [`x/pep`](../advanced/pep_module.md) of their corresponding chains. They are not transferred over IBC to `fairyring`.
@@ -25,4 +27,4 @@ Note the following two things:
 - interactions between `fairyring` and Cosmos chains will work differently than non-Cosmos chains. We will share information regarding non-Cosmos chains soon.
 
 Here is a diagram to show how this process works from end to end:
-![](../assets/cosmos_architecture.png)
+![](../../../assets/cosmos_architecture.png)

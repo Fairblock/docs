@@ -1,8 +1,12 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 ---
 
-# Keyshares
+# Keyshares and Aggregation
+
+<!-- Add an intro blurb here -->
+
+## Keyshares
 
 Each MPK is derived from a Master Secret Key (MSK), which is generated each epoch by the [Share Generation Client](../running-a-node/share_generation_client.md).
 Once the MSK is generated, the [Share Generation Client](../running-a-node/share_generation_client.md) then performs a function to
@@ -23,3 +27,13 @@ and then submit the private keyshare to `fairyring` for private key construction
 
 The initial release will be a Proof of Authority (PoA) chain similar to the approach used by [Noble](https://github.com/strangelove-ventures/noble).
 There are some simple slashing conditions implemented for now (such as submitting incorrect keyshares, or skipping blocks), but this may change.
+
+## Keyshare Aggregation
+
+The key share aggregation process is made possible through threshold cryptography.
+Once enough validators have submitted keyshares for a particular block,
+the keyshares are aggregated to generate the derived private key for that block.
+The derived private key can then be used to decrypt all encrypted transactions under a certain condition and execute them.
+To create the aggregated keyshare, it is not required for every validator to submit their individual keyshares.
+The aggregation can be performed as long as a threshold number of keyshares are submitted.
+Currently, at least `2/3 + 1` of the validators have to submit keyshares to create the aggregated keyshare.

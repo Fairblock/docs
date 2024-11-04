@@ -6,7 +6,7 @@ sidebar_position: 2
 
 In this tutorial, you will learn how to implement private governance voting on your frontend application.
 
-![voting modal](./img/voting-modal.png)
+![voting modal](../img/voting-modal.png)
 
 ## Installing packages
 
