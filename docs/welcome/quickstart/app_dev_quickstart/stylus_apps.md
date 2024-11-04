@@ -17,7 +17,6 @@ The repo for this tutorial can be found [here](https://github.com/Fairblock/Arbi
 ---
 # Decryption Contracts
 
-
 Run the following command to clone the appropriate repo:
 
 ```bash
@@ -119,7 +118,7 @@ Stylus is required for deploying Rust contracts. Install it via Cargo:
 cargo install --force cargo-stylus
 ```
 #### 4. Private Key Setup
-You will need a private key to interact with the blockchain. You can replace the <PRIVATE_KEY> placeholder in the scripts.
+You will need a private key to interact with the blockchain. You can replace the `<PRIVATE_KEY>` placeholder in the scripts.
 
 ### Running Tests
 

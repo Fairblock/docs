@@ -11,7 +11,7 @@ This page is under progress and will be updated shortly.
 <!-- Outline for this page:
 1. Diagram for how new chain interacts with Fairyring -->
 
-The point of this quickstart: create your first app using Fairyring for encryption and conditional decryption in less than 30 minutes. Throughout this, we'll repeat context on how fairblock interacts with blockchains and apps. 
+<!-- The point of this quickstart: create your first app using Fairyring for encryption and conditional decryption in less than 30 minutes. Throughout this, we'll repeat context on how fairblock interacts with blockchains and apps. 
 
 The key checkpoints for this quickstart are:
 
@@ -313,4 +313,4 @@ To fully ensure that your custom EVM chain works as intended, go through the Fou
 
 <!-- TODO: not sure about this being true or not - it may be just old from Mao's writeup.
 
-"You'll see an outputInfo.json file in the main directory of your script folder - this contains more information about your chain, including the addresses of your chain's base contracts." --> -->
+"You'll see an outputInfo.json file in the main directory of your script folder - this contains more information about your chain, including the addresses of your chain's base contracts." --> --> -->
