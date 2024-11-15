@@ -46,7 +46,7 @@ fairyringd tx staking create-validator \
   --website [optional.web.page.com] \
   --details [optional-details] \
   --pubkey $(fairyringd tendermint show-validator) \
-  --chain-id fairyring-testnet-1
+  --chain-id fairyring-testnet-3
 ```
 
 Explanation for each of the command flags:
@@ -62,7 +62,7 @@ Explanation for each of the command flags:
 - `website` is the URL of your website
 - `details` is detail of your validator node
 - `pubkey` is the validator public key
-- `chain-id` in this case is `fairyring-testnet-1`, or whatever `chain-id` you are working with
+- `chain-id` in this case is `fairyring-testnet-3`, or whatever `chain-id` you are working with
 
 If you are joining the validator set after the genesis creation, that will be all you need to do.
 
@@ -73,7 +73,7 @@ If you are joining the validator set before the genesis creation, here is the st
 1. Create a genesis transaction to become validator:
 
 ```bash
-fairyringd gentx \
+fairyringd genesis gentx \
   [account_key_name] \
   10000000000ufairy \
   --commission-max-change-rate 0.01 \
@@ -85,7 +85,7 @@ fairyringd gentx \
   --security-contact "[optional-security@example.com]" \
   --website [optional.web.page.com] \
   --moniker [node_moniker] \
-  --chain-id fairyring-testnet-1
+  --chain-id fairyring-testnet-3
 ```
 
 If you would like to know the explanation on each of flags, please see the explanation above.
@@ -97,7 +97,7 @@ After running the command above, it will create a `gentx-XXXXXX.json` file under
 2. Copy the contents inside `$HOME/.fairyring/config/gentx/gentx-XXXXXX.json` to `fairyring/gentxs/` directory (replace `VALIDATOR_NAME` to your validator name):
 
 ```bash
-cp $HOME/.fairyring/config/gentx/gentx-*.json $HOME/fairyring/networks/testnets/fairyring-testnet-1/gentxs/gentx-VALIDATOR_NAME.json
+cp $HOME/.fairyring/config/gentx/gentx-*.json $HOME/fairyring/networks/testnets/fairyring-testnet-3/gentxs/gentx-VALIDATOR_NAME.json
 ```
 
 3. Create a json file with all your node information like the example below, and name it `peers-VALIDATOR_NAME.json` (replace `VALIDATOR_NAME` to your validator name)
@@ -113,7 +113,7 @@ cp $HOME/.fairyring/config/gentx/gentx-*.json $HOME/fairyring/networks/testnets/
 You can get your `node_id` by the following command:
 
 ```bash
-fairyringd tendermint show-node-id
+fairyringd comet show-node-id
 ```
 
 You can get your `public_ip` by the following command:
@@ -124,7 +124,7 @@ curl ipinfo.io/ip
 
 For your `port`, the default is `26656` if you did not change the config.
 
-4. After creating the file, put it under `$HOME/fairyring/networks/testnets/fairyring-testnet-1/peers/` directory
+4. After creating the file, put it under `$HOME/fairyring/networks/testnets/fairyring-testnet-3/peers/` directory
 
 5. Create a new branch with the peers & gentx files, make a commit and push the update to Github.
 

@@ -37,7 +37,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.profile
 source $HOME/.profile
 ```
 
-5. Verify Go was installed correctly. Note that the `fairyring` binary requires Go `v1.21`:
+5. Verify Go was installed correctly. Note that the `fairyring` binary requires Go `v1.22`:
 
 ```bash
 go version

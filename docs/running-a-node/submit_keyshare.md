@@ -35,7 +35,7 @@ fairyringd tx keyshare register-validator --from YOUR_WALLET_NAME
 ## `fairyringclient`
 
 `fairyringclient` is a tool which:
-    1. Fetches your master keyshare from our [`ShareGenerationClient`](./share_generation_client.md)
+    1. Fetches your encrypted master keyshare from `fairyring` chain
     2. Computes the derived keyshare every block
     3. Automatically submits the derived keyshare to `fairyring` every block.
 
@@ -70,7 +70,7 @@ Example output of the command:
 Using config file: /Users/fairblock/.fairyringclient/config.yml
 GRPC Endpoint: 127.0.0.1:9090
 FairyRing Node Endpoint: http://127.0.0.1:26657
-Chain ID: fairyring-testnet-1
+Chain ID: fairyring-testnet-3
 Chain Denom: ufairy
 InvalidSharePauseThreshold: 5
 MetricsPort: 2222
