@@ -10,7 +10,7 @@ Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This repo wil
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
-V1 is live on testnet with bespoke MPEC and threshold identity-based encryption, which offer conditional confidentiality dependent on users’ needs. 
+V1 is live on testnet with bespoke MPEC and threshold condition id-based encryption, which offer conditional confidentiality dependent on users’ needs. 
 
 This tutorial focuses on the deployment of decryption contracts, using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and smart contracts to integrate with Fairblock v1 testnet, thus unlocking the power of a dynamic fondientiality network.
 
@@ -121,7 +121,7 @@ Feel free to learn more about the components making up the full decryption proce
 The decryption process involves 5 contracts. Below is a breakdown of each contract and their respective gas consumption:
 
 ### 1. **IBE Contract (Hashing)**
-- **Functionality:** Verifies the correctness of the ciphertext based on the Boneh-Franklin Identity-Based Encryption (BF-IBE) algorithm. It calculates a hash over the message and sigma, multiplies it by `P`, and verifies that the result matches the `U` component in the ciphertext.
+- **Functionality:** Verifies the correctness of the ciphertext based on the Boneh-Franklin Condition ID-Based Encryption (BF-IBE) algorithm. It calculates a hash over the message and sigma, multiplies it by `P`, and verifies that the result matches the `U` component in the ciphertext.
 - **Gas Consumption:** ~1,587,000
   - **Key Contributor:** Scalar and G1 point multiplication, consuming 1,366,619 gas.
 

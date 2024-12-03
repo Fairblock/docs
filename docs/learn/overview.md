@@ -4,17 +4,17 @@ sidebar_position: 0
 
 # Fairblock and Cryptography
 
-Fairblock Network has three core functions: 
+Fairblock Network has three core functions:
 
 1. Offload confidential compute for a network of blockchains and applications requiring confidentiality.
 2. Host an ecosystem of [next-generation applications](https://www.notion.so/69cd0c7747904e89bd27257a359a80f1?pvs=21) that are only possible with native in-protocol access to dynamic confidentiality.
-3. Orchestrate custom protocol/app needs with specialized MPEC clusters of our validator set. 
+3. Orchestrate custom protocol/app needs with specialized MPEC clusters of our validator set.
 
-For the protocols and applications leveraging Fairblock, our network offers optimized Multi-Party Encrypted Computation and multimodal cryptography techniques. These MPEC schemes include cryptographic computations such as threshold decryption, computation over encrypted data,  private input verification, re-encryption and randomness. TEEs and ZKPs are not required for most MPEC applications. However, Fairblock’s multimodal cryptography approach can leverage them for complementary security-in-depth and further optimization. Accessible confidential computation will expedite the development of cutting-edge apps that require confidentiality.
+For the protocols and applications leveraging Fairblock, our network offers optimized Multi-Party Encrypted Computation and multimodal cryptography techniques. These MPEC schemes include cryptographic computations such as threshold decryption, computation over encrypted data, private input verification, re-encryption and randomness. TEEs and ZKPs are not required for most MPEC applications. However, Fairblock’s multimodal cryptography approach can leverage them for complementary security-in-depth and further optimization. Accessible confidential computation will expedite the development of cutting-edge apps that require confidentiality.
 
 ## Fairblock V1
 
-For our V1, we’ve launched FairyRing on testnet with threshold identity-based encryption (TIBE), an encryption scheme built for pre-execution confidentiality. 
+For our V1, we’ve launched FairyRing on testnet with threshold condition id-based encryption (TIBE), an encryption scheme built for pre-execution confidentiality.
 
 Learn more about the v1 architecture, including its cryptography and network design [here](TODO-GetLink).
 
@@ -24,7 +24,7 @@ For more sensitive applications within emerging encrypted economies such as conf
 
 ## V2: Extending the Dynamic Confidentiality Network
 
-There is no one-size-fits-all solution for confidentiality services — they exist on a spectrum, each requiring different operational and technical overhead and consisting of various tradeoffs. To serve the widest range of confidentiality needs for AI and DeFi applications, we are partnering with Symbiotic to expand our dynamic confidentiality network with specialized clusters of our operator set customized to execute concentrated confidentiality needs. These clusters will be connected by their shared participation in FairyRing and secured by the Fairy token. FairyRing orchestrates the allocation of confidential computation to the most capable clusters and coordinates fee distribution as well as slashing penalties in cases of misbehavior. 
+There is no one-size-fits-all solution for confidentiality services — they exist on a spectrum, each requiring different operational and technical overhead and consisting of various tradeoffs. To serve the widest range of confidentiality needs for AI and DeFi applications, we are partnering with Symbiotic to expand our dynamic confidentiality network with specialized clusters of our operator set customized to execute concentrated confidentiality needs. These clusters will be connected by their shared participation in FairyRing and secured by the Fairy token. FairyRing orchestrates the allocation of confidential computation to the most capable clusters and coordinates fee distribution as well as slashing penalties in cases of misbehavior.
 
 These clusters deliver specialized confidentiality solutions to applications requiring tailored economic and cryptographic security. Examples of tailored solutions include:
 
@@ -48,6 +48,6 @@ FairyKit is available on testnet to all Cosmos and EVM chains, and will soon be 
 
 **Glue + Coprocessor Architectures**
 
-Many established blockchains have high integration barriers for new infrastructure and may not be able to quickly support FairyKit. This is where the [glue and coprocessor architecture](https://vitalik.eth.limo/general/2024/09/02/gluecp.html) comes in. 
+Many established blockchains have high integration barriers for new infrastructure and may not be able to quickly support FairyKit. This is where the [glue and coprocessor architecture](https://vitalik.eth.limo/general/2024/09/02/gluecp.html) comes in.
 
 Leading blockchain VMs are mainly optimized for general computation that is not very resource-intensive. Instead, these VMs should act as the “glue” for a number of specialized opcodes, precompiles, or hardware like ASICs, GPUs, and CPUs that act as coprocessors for more specialized and resource-intensive computation. With this architecture, complex computation can be processed FairyRing and delivered to Ethereum and other established chains for efficient in-contract processing.
