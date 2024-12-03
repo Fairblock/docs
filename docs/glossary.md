@@ -81,3 +81,10 @@ Malicious validators in `fairyring` are designated as malicious if they send inc
 ### Proof of authority
 
 Proof of authority (POA) is a consensus mechanism that gives a vetted, designated number of validators permission to validate transactions on the network.
+
+## FairyPort - TODO
+
+The `FairyPort` is a messaging bridge, often referred to as an off-chain relayer. It reads state of the destination chain and FairyRing and is used to communicate between the two networks for passing of keys for decryption.
+   - Each tx has a respective ID. That corresponds to a respective keyshare. That keyshare is used to decrypt on the destination chain, and thus enact execution of some sort for the respective tx.
+
+<!-- ## Fairblock Encryption SDK - TODO -->
