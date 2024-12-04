@@ -16,7 +16,7 @@ For the protocols and applications leveraging Fairblock, our network offers opti
 
 For our V1, we’ve launched FairyRing on testnet with threshold condition id-based encryption (TIBE), an encryption scheme built for pre-execution confidentiality.
 
-Learn more about the v1 architecture, including its cryptography and network design [here](TODO-GetLink).
+Learn more about the v1 architecture, including its cryptography and network design [here](./v1_overview.md).
 
 Compared to alternative encryption schemes, [we chose to deliver TIBE](https://eprint.iacr.org/2024/1516.pdf) in our V1 because it is lightweight, efficient, compliant and addresses 90% of the use cases for onchain confidentiality today without needing added complexity like zero-knowledge computation. These referred-to use cases are confidential AI supply chains and optimized onchain markets.
 

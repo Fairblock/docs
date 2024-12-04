@@ -12,9 +12,11 @@ When integrating with `fairyring` chain, Apps or AppChains carry out active comm
 
 ## Sequenced Steps When Integrating with `fairyring`
 
+<!-- TODO: assess if this section needs to be here, or can be combined into the high level architecture page -->
+
 The core fundamentals can be seen in sequenced steps with the below schematic.
 
-<!-- TODO - Get Schematic -->
+![Simplified Architecture of Fairblock v1](../../../../static/img/FairyRingInfoGraphic.png)
 
 1. **Setup:** Setup of `fairyring` `x/pep` module within the AppChain or other setups (pre-compiles for some EVMs) are carried out to enable communication with the `fairyring` chain.
 2. **Encrypt Transaction for later Execution:** App or Appchain listens to the `fairyring` for new Master Public Keys (MPKs) to encrypt their respective transactions. To encrypt a transaction the App or Appchain also obtains a unique id from `fairyring` corresponding to its respective chain and transaction details.
@@ -26,4 +28,4 @@ The above sequence is carried out by the integration and use of two modules main
 1. `x/pep module` - On both the `fairyring`, and the Appchain or EVM, it handles all things related to encrypted transactions.
 2. `x/keyshare module` - Only on `fairyring`, it handles all things related to threshold IBE key generation.
 
-You can find more details on both modules and more in the [Advanced](TODO-GetLink) section.
+You can find more details on both modules and more in the [Advanced](../../../category/advanced) section.
