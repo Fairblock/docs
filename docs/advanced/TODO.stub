@@ -1,0 +1,5 @@
+# Advanced Sections to Add 
+
+- [ ] Rename Encryption SDK and Repos named it
+- [ ] `fairy` module encompassing the idea of a "module" that allows the integration of chains and EVM apps. Instead of referring to the specific x/pep, or precompiles.
+- [ ] 

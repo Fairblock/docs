@@ -12,15 +12,15 @@ Suppose one wishes to create a sealed-bid auction application.
 A sealed-bid auction is an auction mechanism in which bids submitted to the auction are not made available to the participants during the course of the auction.
 Using `fairyring` as a mechanism for encrypting the bids, a developer wanting to create this application will take the following steps:
 
-1. For each auction, request a new identity from `fairyring`. This identity will be crucial for encrypting the bids.
+1. For each auction, request a new condition id from `fairyring`. This condition id will be crucial for encrypting the bids.
 2. Provide users with some functionality to encrypt their bids. This can be done using our [`encrypter` tool](/docs/advanced/encrypt_tx.md).
 3. Accept and store the encrypted bids within the applcation. This logic will primarily be the responsibility of the application developer.
 4. Have a way to notify `fairyring` that the auction has concluded. This can be built into the application itself (meaning the chain initiates the request for decryption to `fairyring`) or can be a simple keeper that notifies `fairyring` when a certain condition has been met (end of auction).
 5. Relay the decryption key from `fairyring` to the application. This can be done using our [`fairyport` tool](/docs/advanced/fairyport.md).
 
-# Requesting a new identity
+# Requesting a new condition id
 
-Any user can request a custom identity by running the command
+Any user can request a new condition id by running the command
 
 ```bash
 fairyringd tx pep request-general-identity 30s testing123 --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1

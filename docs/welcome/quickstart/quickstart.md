@@ -1,44 +1,29 @@
 ---
-sidebar_position: 0
+sidebar_position: 1
 ---
 
-# Developer Quickstart: Build Confidentiality Apps or Chains with Fairyring
+# Developer Quickstart: Build Confidential Apps or Chains with Fairyring
 
-A Confidentiality App, or cApps, unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized appchain, Fairyring. They can take the form as an App itself on a network like an EVM or an Appchain itself.
+A Confidential App, or cApp, unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized blockchain, Fairyring. They can take the form as an App itself on a network like an EVM or other independent chain itself.
 
-When working with Fairyring, there are two main developer audiences that have been highlighted, and subsequent quickstarts will be provided to assist them.  
+When working with Fairyring, there are two main developer audiences that have been highlighted, and subsequent quickstarts will be provided to assist them.
 
-1. Blockchain Developers creating their own chains leveraging Fairblock Technologies, such as Roll-Ups and AppChains.
-2. App Developers creating apps on EVMs or appchains. 
+1. Blockchain Developers working on their own chains leveraging Fairblock, including, but not limited to, Roll-Ups and Cosmos Chains.
+2. App Developers creating apps on EVMs or other blockchains.
 
-## What is a cApp?
+> **App Developers do not need to know how to setup the blockchain integration, and Blockchain Developers do not need to know how to setup apps.**
 
-Apps or AppChains have active communication with the Fairyring chain. This communication mainly consists of the following steps:
+### Quickstarts
 
-1.  App or Appchain listens to the Fairyring for new Master Public Keys (MPKs) to encrypt their respective transactions.
-2.  Fairyring listens for a condition, and corresponding ID, to trigger generating a decryption key (keyshare).
-3.  Once generated, keyshare is shared with the respective App or Appchain. The App or Appchain then executes the transaction at the beginning of the block to avoid risks arising from delayed execution.
+These quickstarts will guide you through the steps to spin up a local blockchain quickly and deploy your own cApps using fairyring functionality.
 
-_To learn more about the concepts above, read more in the [learn](TODO-GetLink) section._
+> **Within each quickstart, developers are invited to skip ahead if they have already integrated the Fairblock modules within the chain that they are working with. This is the recommended route app developers take if possible, and is clearly marked within the beginning of each quickstart.**
 
-<!-- TODO - Show visual for apps and appchains talking to Fairyring -->
+The Fairblock can already be integrated with various EVM Rollups, and other blockchains. More tutorials are being actively worked on showcasing different integration setups, and will be published more over the coming months. If you would like help integrating with a different tech stack that our current tutorials do not cover, please reach out!
 
-### Quickstarts for App Developers 
+<!-- TODO: Links will be to their respective pages in the docs -->
 
-These quickstarts will guide you through the steps to spin up a local chain or appchain quickly and deploy your own cApps using fairyring functionality. 
-
-> The Fairblock technology can already be integrated with various EVM Rollups, Appchains, and other tech stacks. More tutorials are being actively worked on showcasing different integration setups, and will be published more over the coming months. If you would like help integrating with a different tech stack that our current tutorials do not cover, please reach out!
-
-<!-- Links will be to their respective pages in the docs -->
-
-1. [Deploy and interact with a cApp using Arbitrum Stylus](https://github.com/Fairblock/ArbitrumContracts)
-2. Deploy and interact with a cApp using OP Stack - TBD
-3. Deploy and interact with a cApp using an AppChain integrated with Fairyring - TBD
-
-### Quickstarts for Chain Developers 
-
-<!-- Links will be to their respective pages in the docs -->
-These quickstarts are for developers interested in creating their own EVM rollups, Appchains, or other networks integrated with fairyring functionalities. These quickstarts will guide you through the steps to modify your EVM or appchain to work with fairyring, and deploy it in a local environment.
-
-1. Modify EVMs with Precompiles to Integrate with Fairblock Technologies - TBD
-2. Integrate Fairblock Technologies Modules into Your Own AppChain - TBD
+1. [Arbitrum Stylus Quickstart](./stylus_apps.md)
+2. [OP Stack Quickstart](./op_stack.md)
+3. [Cosmos Chains Quickstart](./cosmos_chain.md)
+4. [EVMs Modified with Pre-Compiles (Orbit Chains)](./orbit_chain.md)

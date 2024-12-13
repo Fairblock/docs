@@ -1,10 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Integrating the `pep` module into your own app-chain
-
-<!-- TODO - consider revamping this section to "Advanced Tutorials" or something. We want the docs clear, but since we will have a quickstart already for EVMs and AppChains, perhaps we don't want to clutter the docs with more tutorials. I have seen others try to have a cookbook, but eventually projects like LayerZero ended up just having a github repo full of patterns and other relevant tutorials. -->
+# Integrating the `x/pep` Module
 
 In this tutorial, you will learn how to integrate the `pep` module in your own app chain to enable encrypted transactions.
 To integrate, you will be modifying your `app.go` file.

@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-<!-- I think we need a introduction to the advanced section. Simply outlining the purpose of it. From the looks of it, it is going through the details of each key component of Fairblock. -->
-
 # `x/pep`
+
+<!-- I think we need a introduction to the advanced section. Simply outlining the purpose of it. From the looks of it, it is going through the details of each key component of Fairblock. -->
 
 ## Abstract
 
