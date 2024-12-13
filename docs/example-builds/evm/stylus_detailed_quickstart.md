@@ -142,7 +142,7 @@ What you will see within your terminal are detailed logs revolving around the de
 
 > Once you have your `DECRYPTER` address, copy and paste the address into the `.env` populating the `DECRYPTION_ADDRESS` var. This is a crucial step required for the integration tests later on in this tutorial.
 
-🎉🎉 Congratulations, you have now launched the encryption contracts necessary to use Fairblock Fairyring v1 technologies on an Arbitrum Stylus integrated test network!
+🎉🎉 Congratulations, you have now launched the encryption contracts necessary to use Fairblock Fairyring v1 on an Arbitrum Stylus integrated test network!
 
 Next, you will test integration with these newly deployed encryption contracts via rust and solidity examples. This highlights the power of using stylus within the Arbitrum network and various smart contract languages, all interfacing simply with a now deployed `Decrypter` contract.
 

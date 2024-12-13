@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# EVMs Modified with Pre-Compiles (Orbit Chains)
+# EVMs Modified with Pre-Compiles
 
 This page is under progress and will be updated shortly.
 

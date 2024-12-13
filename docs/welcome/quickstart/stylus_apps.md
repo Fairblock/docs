@@ -8,6 +8,9 @@ Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](h
 
 > **If you are looking to learn how to build an app that integrates with Fairblock on a Stylus network, and already have the Decrypter modules and other setup complete, skip further into the [video!](https://www.youtube.com/watch?v=gIzPgSw11uU&t=1178s) Otherwise, keep going anon.**
 
+> **This tutorial focuses on the deployment of decryption contracts, using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and traditional EVM smart contracts to integrate with Fairblock v1 testnet, thus unlocking the power of a dynamic confidentiality network.**
+
+
 <iframe
   width="100%"
   height="315"
@@ -21,8 +24,6 @@ Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](h
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
 V1 is live on testnet with bespoke MPEC and threshold condition id-based encryption, which offer conditional confidentiality dependent on users’ needs.
-
-This tutorial focuses on the deployment of decryption contracts, using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and traditional EVM smart contracts to integrate with Fairblock v1 testnet, thus unlocking the power of a dynamic confidentiality network.
 
 > Typical integration steps, including the use of software such as the `Encrypter` and `Fairyport`, for transaction encryption and communication between the Fairyring and Destination chains, respectively, is not focused on or omitted from this tutorial. Please see the advanced sections for further detail pertaining to these two and other more detailed integration steps.
 
@@ -153,7 +154,7 @@ The Sealed Bid Auction:
 - Bids are then revealed using the Decryption process from Fairblock.
 - The winning bid is announced.
 
-For the sake of the tutorial, typical smart contract aspects such as transference of ERC20s, ETH, or other tokens are not focused on within the smart contract. There are common patterns for the transference of funds. **The key thing to notice within these solidity files is that conditional encryption and decryption can be used easily within a solidity smart contract by leveraging Fairblock v1 technologies.**
+For the sake of the tutorial, typical smart contract aspects such as transference of ERC20s, ETH, or other tokens are not focused on within the smart contract. There are common patterns for the transference of funds. **The key thing to notice within these solidity files is that conditional encryption and decryption can be used easily within a solidity smart contract by leveraging Fairblock v1.**
 
 All a developer really needs to do to start developing an auction contract that actually transfers values is follow typical smart contract patterns and take the decrypted bid amounts once the auction is over to carry out respective transactions.
 
