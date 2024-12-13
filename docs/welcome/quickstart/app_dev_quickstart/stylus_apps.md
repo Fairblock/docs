@@ -6,7 +6,15 @@ sidebar_position: 1
 
 Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock Technologies. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
 
-<!-- TODO: put a video walking through the quickstart here. -->
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/gIzPgSw11uU&ab_channel=FairblockNetwork"
+  title="Fairblock v1 Testnet and Arbitrum Stylus Integration Tutorial"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>## Watch This Video
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
