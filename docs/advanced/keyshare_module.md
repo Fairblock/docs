@@ -20,21 +20,25 @@ The `x/keyshare` module keeps state of the following primary objects:
 4. Active & queued public key
 5. Authorized addresss
 6. Submit general keyshares
-7. Keyshares encrypted with the validator's public key
+7. Submit encrypted keyshares
+8. Keyshares encrypted with the validator's public key
 
 ## Params
 
 `proto/fairyring/keyshare/params.proto`
 
 ```proto
-message Params {  
-  option (gogoproto.goproto_stringer) = false;  
-  uint64 key_expiry = 1;  
-  repeated string trusted_addresses = 2;  
-  bytes slash_fraction_no_keyshare = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];  
-  bytes slash_fraction_wrong_keyshare = 4 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];  
-  uint64 minimum_bonded = 5;  
-  uint64 max_idled_block = 6;  
+message Params {
+  option (amino.name) = "github.com/Fairblock/fairyring/x/keyshare/Params";
+  option (gogoproto.equal) = true;
+
+  uint64 key_expiry = 1 [(gogoproto.moretags) = "yaml:\"key_expiry\""];
+  uint64 minimum_bonded = 2 [(gogoproto.moretags) = "yaml:\"minimum_bonded\""];
+  uint64 max_idled_block = 3 [(gogoproto.moretags) = "yaml:\"max_idled_block\""];
+  repeated string trusted_addresses = 4 [(gogoproto.moretags) = "yaml:\"trusted_addresses\""];
+  bytes slash_fraction_no_keyshare = 5 [(gogoproto.customtype) = "cosmossdk.io/math.LegacyDec", (gogoproto.nullable) = false, (gogoproto.moretags) = "yaml:\"slash_fraction_no_keyshare\""];
+  bytes slash_fraction_wrong_keyshare = 6 [(gogoproto.customtype) = "cosmossdk.io/math.LegacyDec", (gogoproto.nullable) = false, (gogoproto.moretags) = "yaml:\"slash_fraction_wrong_keyshare\""];
+
 }
 ```
 
@@ -47,7 +51,8 @@ Register as a validator in the `x/keyshare` module validator set.
 `proto/fairyring/keyshare/tx.proto`
 
 ```proto
-message MsgRegisterValidator {  
+message MsgRegisterValidator { 
+  option (cosmos.msg.v1.signer) = "creator"; 
   string creator = 1;  
 }
 ```
@@ -73,7 +78,7 @@ The message will fail under the following condition:
 
 - Creator address is not a registered validator in the keyshare module
 
-### MsgSendKeyShare
+### MsgSendKeyshare
 
 Submit keyshare for target height
 
@@ -81,10 +86,11 @@ Submit keyshare for target height
 
 ```proto
 message MsgSendKeyshare {
-  string creator       = 1;
-  string message       = 2;
-  uint64 keyShareIndex = 3;
-  uint64 blockHeight   = 4;
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string message = 2;
+  uint64 keyshare_index = 3;
+  uint64 block_height = 4;
 }
 ```
 
@@ -96,19 +102,20 @@ The message will fail under the following conditions:
 - Keyshare index is incorrect
 - Keyshare is incorrect
 
-### MsgCreateLatestPubKey
+### MsgCreateLatestPubkey
 
 Create master public key used for encrypting transactions.
 
 `proto/fairyring/keyshare/tx.proto`
 
 ```proto
-message MsgCreateLatestPubKey {
-  string creator     = 1;
-  string publicKey   = 2;
+message MsgCreateLatestPubkey {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string public_key = 2;
   repeated string commitments = 3;
-  uint64 numberOfValidators = 4;
-  repeated EncryptedKeyShare encryptedKeyShares = 5;
+  uint64 number_of_validators = 4;
+  repeated EncryptedKeyshare encrypted_keyshares = 5;
 }
 ```
 
@@ -120,19 +127,20 @@ The message will fail under the following conditions:
 - encrypted keyshare array is empty
 - numberOfValidators is 0
 
-### MsgOverrideLatestPubKey
+### MsgOverrideLatestPubkey
 
 Override the latest master public key used for encrypting transactions.
 
 `proto/fairyring/keyshare/tx.proto`
 
 ```proto
-message MsgOverrideLatestPubKey {
-  string creator     = 1;
-  string publicKey   = 2;
+message MsgOverrideLatestPubkey {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string public_key = 2;
   repeated string commitments = 3;
-  uint64 numberOfValidators = 4;
-  repeated EncryptedKeyShare encryptedKeyShares = 5;
+  uint64 number_of_validators = 4;
+  repeated EncryptedKeyshare encrypted_keyshares = 5;
 }
 ```
 
@@ -152,8 +160,9 @@ Authorize the target address to submit keyshares for the sender address.
 
 ```proto
 message MsgCreateAuthorizedAddress {
-  string target       = 1;
-  string creator      = 2;
+  option (cosmos.msg.v1.signer) = "creator";
+  string target = 1;
+  string creator = 2;
 }
 ```
 
@@ -173,9 +182,10 @@ Update the status of the target authorized address
 
 ```proto
 message MsgUpdateAuthorizedAddress {
-  string  target        = 1;
-  bool    isAuthorized  = 2;
-  string  creator       = 3;
+  option (cosmos.msg.v1.signer) = "creator";
+  string target = 1;
+  bool is_authorized = 2;
+  string creator = 3;
 }
 ```
 
@@ -193,8 +203,9 @@ Delete authorized address
 
 ```proto
 message MsgDeleteAuthorizedAddress {
-  string target       = 1;
-  string creator      = 2;
+  option (cosmos.msg.v1.signer) = "creator";
+  string target = 1;
+  string creator = 2;
 }
 ```
 
@@ -203,19 +214,20 @@ The message will fail under the following conditions:
 - Target is not authorized
 - Sender is not the creator of the target authorized address and the authorized address itself
 
-### MsgCreateGeneralKeyShare
+### MsgSubmitGeneralKeyshare
 
-Create general keyshare
+Submit general keyshare
 
 `proto/fairyring/keyshare/tx.proto`
 
 ```proto
-message MsgCreateGeneralKeyShare {  
-  string creator             = 1;  
-  string idType              = 2;  
-  string idValue             = 3;  
-  string keyShare            = 4;  
-  uint64 keyShareIndex       = 5;  
+message MsgCreateGeneralKeyshare {  
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string id_type = 2;
+  string id_value = 3;
+  string keyshare = 4;
+  uint64 keyshare_index = 5;
 }
 ```
 
@@ -223,9 +235,33 @@ The message will fail under the following conditions:
 
 - Sender is not a validator in the validator set
 - Sender is not an authorized address
-- Keyshare index is incorrect
 - Keyshare is incorrect
 - ID type is not supported
+- Decryption Key Request (ID Value) not found
+
+### MsgSubmitEncryptedKeyshare
+
+Submit encrypted keyshare
+
+`proto/fairyring/keyshare/tx.proto`
+
+```proto
+message MsgSubmitEncryptedKeyshare {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string identity = 2;
+  string encrypted_keyshare = 3;
+  uint64 keyshare_index = 4;
+  string requester = 5;
+}
+```
+
+The message will fail under the following conditions:
+
+- Sender is not a validator in the validator set
+- Sender is not an authorized address
+- Encrypted keyshare is incorrect
+- Private Decryption Key Request (Identity) not found
 
 ## Events
 
@@ -262,52 +298,64 @@ When enough keyshares are received & the derived private key is aggregated:
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
 | `keyshare-aggregated` | `height` | `height` |
-| `keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
-| `keyshare-aggregated` | `pubkey` | `pubKeyForTheAggregatedKey` |
+| `keyshare-aggregated` | `data` | `aggregatedKeyshareInHex` |
+| `keyshare-aggregated` | `pubkey` | `pubkeyForTheAggregatedKey` |
 
-#### MsgCreateGeneralKeyShare
+#### MsgCreateGeneralKeyshare
 
-When a valid keyshare is received:
+When a valid general keyshare is received:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
 | `keyshare-sent` | `validator` | `validatorAddress` |
-| `keyshare-sent` | `received-block-height` | `height` |
-| `keyshare-sent` | `keyshare-message` | `keyshareInHex` |
-| `keyshare-sent` | `keyshare-index` | `keyshareIndex` |
-| `keyshare-sent` | `keyshare-id-type` | `keyshareIdType` |
-| `keyshare-sent` | `keyshare-id-value` | `keyshareIdValue` |
+| `keyshare-sent` | `received-height` | `height` |
+| `keyshare-sent` | `message` | `keyshareInHex` |
+| `keyshare-sent` | `index` | `keyshareIndex` |
+| `keyshare-sent` | `id-type` | `keyshareIdType` |
+| `keyshare-sent` | `id-value` | `keyshareIdValue` |
 
 When enough keyshares are received & the derived private key is being aggregated:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `general-keyshare-aggregated` | `data` | `aggregatedKeyShareInHex` |
-| `general-keyshare-aggregated` | `pubkey` | `pubKeyForTheAggregatedKey` |
-| `general-keyshare-aggregated` | `id-value` | `aggregatedKeyShareIdValue` |
-| `general-keyshare-aggregated` | `id-type` | `aggregatedKeyShareIdType` |
+| `general-keyshare-aggregated` | `data` | `aggregatedKeyshareInHex` |
+| `general-keyshare-aggregated` | `pubkey` | `pubkeyForTheAggregatedKey` |
+| `general-keyshare-aggregated` | `id-value` | `aggregatedKeyshareIdValue` |
+| `general-keyshare-aggregated` | `id-type` | `aggregatedKeyshareIdType` |
 
-#### MsgCreateLatestPubKey
+#### MsgSubmitEncryptedKeyshare
+
+When a valid encrypted keyshare is received:
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `queued-pubkey-created` | `active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
+| `encrypted-keyshare-sent` | `validator` | `validatorAddress` |
+| `encrypted-keyshare-sent` | `received-height` | `height` |
+| `encrypted-keyshare-sent` | `message` | `keyshareInHex` |
+| `encrypted-keyshare-sent` | `index` | `keyshareIndex` |
+| `encrypted-keyshare-sent` | `id-value` | `keyshareIdValue` |
+
+#### MsgCreateLatestPubkey
+
+| Type | Attribute Key | Attribute Value |
+|---|---|---|
+| `queued-pubkey-created` | `active-pubkey-expiry-height` | `activePubkeyExpiryHeight` |
 | `queued-pubkey-created` | `expiry-height` | `height` |
 | `queued-pubkey-created` | `creator` | `creatorAddress` |
-| `queued-pubkey-created` | `pubkey` | `pubKeyCreated` |
+| `queued-pubkey-created` | `pubkey` | `pubkeyCreated` |
 | `queued-pubkey-created` | `number-of-validators` | `numberOfValidators` |
-| `queued-pubkey-created` | `encrypted-shares` | `encryptedKeySharesArray` |
+| `queued-pubkey-created` | `encrypted-shares` | `encryptedKeysharesArray` |
 
-#### MsgOverrideLatestPubKey
+#### MsgOverrideLatestPubkey
 
 | Type | Attribute Key | Attribute Value |
 |---|---|---|
-| `pubkey-overrode` | `active-pubkey-expiry-height` | `activePubKeyExpiryHeight` |
+| `pubkey-overrode` | `active-pubkey-expiry-height` | `activePubkeyExpiryHeight` |
 | `pubkey-overrode` | `expiry-height` | `height` |
 | `pubkey-overrode` | `creator` | `creatorAddress` |
-| `pubkey-overrode` | `pubkey` | `pubKeyCreated` |
+| `pubkey-overrode` | `pubkey` | `pubkeyCreated` |
 | `pubkey-overrode` | `number-of-validators` | `numberOfValidators` |
-| `pubkey-overrode` | `encrypted-shares` | `encryptedKeySharesArray` |
+| `pubkey-overrode` | `encrypted-shares` | `encryptedKeysharesArray` |
 
 ## Client
 
@@ -321,20 +369,20 @@ The `query` commands allows users to query `keyshare` state.
 
 `fairyringd query keyshare --help`
 
-##### list-aggregated-key-share
+##### list-decryption-keys
 
-The `list-aggregated-key-share` command allows users to query all the aggregated keyshares.
+The `list-decryption-keys` command allows users to query all the decryption keys.
 
-`fairyringd query keyshare list-aggregated-key-share [flags]`
+`fairyringd query keyshare list-decryption-keys [flags]`
 
 Example:
 
-`fairyringd query keyshare list-aggregated-key-share`
+`fairyringd query keyshare list-decryption-keys`
 
 Example Output:
 
 ```json
-aggregatedKeyShare:
+decryption_keys:
 - data: a32dd1859edf01bdae54e3e4f4a0ea95e3d461ed006ea384b223cef0e3e5d87fc560954f43aba363da21aabfbc0c57340f02604965a96bd83fc9fb28b23f1586b29def1e75b3a9df06353921f33ad80cf9903899a7a9843be8be559956b06391
   height: "12345"
 pagination:
@@ -355,60 +403,60 @@ Example:
 Example Output:
 
 ```json
-- authorizedBy: fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q
-  isAuthorized: true
+- authorized_by: fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q
+  is_authorized: true
   target: fairy1f6mx8wgfb9xdxeswwavh9228uv6d7yga3qqtyv
 pagination:
   next_key: null
   total: "0"
 ```
 
-##### list-key-share
+##### list-keyshares
 
 The `list-key-share` command allows users to query all the keyshare submitted by validators.
 
-`fairyringd query keyshare list-key-share [flags]`
+`fairyringd query keyshare list-keyshares [flags]`
 
 Example:
 
-`fairyringd query keyshare list-key-share`
+`fairyringd query keyshare list-keyshares`
 
 Example Output:
 
 ```json
-keyShare:
-- blockHeight: "95219"
-  keyShare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
-  keyShareIndex: "1"
-  receivedBlockHeight: "123456"
-  receivedTimestamp: "1696420024"
+keyshare:
+- block_height: "95219"
+  keyshare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
+  keyshare_index: "1"
+  received_block_height: "123456"
+  received_timestamp: "1696420024"
   validator: fairy14qekdkj2nmmwea4ufg0n113a4pud23y8tcf8bb
 pagination:
   next_key: ZmFpcnkxNHFla2RrajJubW13ZWE0dWZnOW4wMDJhM3B1ZDIzeTh0Y2Y4YWEvAAAAAAABdFcv
   total: "0"
 ```
 
-##### list-general-key-share
+##### list-general-keyshares
 
-The `list-general-key-share` command allow users to query all the general keyshare submitted by validators.
+The `list-general-keyshares` command allow users to query all the general keyshare submitted by validators.
 
-`fairyringd query keyshare list-general-key-share [flags]`
+`fairyringd query keyshare list-general-keyshares [flags]`
 
 Example:
 
-`fairyringd query keyshare list-general-key-share`
+`fairyringd query keyshare list-general-keyshares`
 
 Example Output:
 
 ```
-generalKeyShare:
+general_keyshare:
 - validator: fairy14qekdkj2nmmwea4ufg0n113a4pud23y8tcf8bb
-  idType: "private-gov-identity"
-  idValue: "1/rq"
-  keyShare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
-  keyShareIndex: "1"
-  receivedBlockHeight: "123456"
-  receivedTimestamp: "1696420024"
+  id_type: "private-gov-identity"
+  id_value: "1/rq"
+  keyshare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
+  keyshare_index: "1"
+  received_block_height: "123456"
+  received_timestamp: "1696420024"
   
 pagination:
   next_key: ZmFpcnkxNHFla2RrajJubW13ZWE0dWZnOW4wMDJhM3B1ZDIzeTh0Y2Y4YWEvAAAAAAABdFcv
@@ -432,9 +480,9 @@ pagination:
   next_key: null
   total: "0"
 validatorSet:
-- consAddr: 475c76e62b6bd684fdd33575610f973fcb1ca0a8
+- cons_addr: 475c76e62b6bd684fdd33575610f973fcb1ca0a8
   index: fairy14qekdkj2nmmwea4ufg0n134b6pud23y9tcf8aa
-  isActive: true
+  is_active: true
   validator: fairy14qekdkj2nmmwea4ufg0n134b6pud23y9tcf8aa
 ```
 
@@ -474,38 +522,38 @@ Example:
 Example Output:
 
 ```json
-activePubKey:
+active_pubkey:
   creator: fairy1cmly9rn64tp5pmdwjbf40t0h7ttme6ld85je6f
   expiry: "123456"
-  publicKey: 8cef6ace8b47e47e7b0488f1550bcd9555a74be99677c3a487e57f3de76c28d274bc936ffa9b8da06c0fa5ded6412378
-  numberOfValidators: 1
-  encryptedKeyShares:
+  public_key: 8cef6ace8b47e47e7b0488f1550bcd9555a74be99677c3a487e57f3de76c28d274bc936ffa9b8da06c0fa5ded6412378
+  number_of_validators: 1
+  encrypted_keyshares:
   - data: XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==
     validator: fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td
-queuedPubKey:
+queued_pubhey:
   creator: fairy1cmly9rn64tp5pmdwjbf40t0h7ttme6ld85je6f
   expiry: "133456"
-  publicKey: 859f30ece2ea1e25897bfd2bdb64c4762c6bd32e683600ca7a04572b1c639c6885cff981daab8bbf1dd9b1cd523c3e18
-  numberOfValidators: 1
-  encryptedKeyShares:
+  public_key: 859f30ece2ea1e25897bfd2bdb64c4762c6bd32e683600ca7a04572b1c639c6885cff981daab8bbf1dd9b1cd523c3e18
+  number_of_validators: 1
+  encrypted_keyshares:
   - data: XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==
     validator: fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td
 ```
 
-##### show-aggregated-key-share
+##### show-decryption-key
 
-The `show-aggregated-key-share` command allows users to query aggregated keyshare of the target height.
+The `show-decryption-key` command allows users to query decryption key of the target height.
 
-`fairyringd query keyshare show-aggregated-key-share [height] [flags]`
+`fairyringd query keyshare show-decryption-key [height] [flags]`
 
 Example:
 
-`fairyringd query keyshare show-aggregated-key-share 100000`
+`fairyringd query keyshare show-decryption-key 100000`
 
 Example Output:
 
 ```json
-aggregatedKeyShare:
+decryption_key:
   data: a19e5b345e236f9d07bbea401332e8d3f6f5d5cdfcfc0c7948609c263006036bf73a2db2b4ee726be48ea2181c093fc807442a8b81d135ca98d1db206d31fe4d082c5b9ad4483d6933989dace8a142b28927c6b868470116dc3d194b3934d276
   height: "100000"
 ```
@@ -523,9 +571,9 @@ Example:
 Example Output:
 
 ```json
-authorizedAddress:
-  authorizedBy: fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q
-  isAuthorized: true
+authorized_address:
+  authorized_by: fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q
+  is_authorized: true
   target: fairy1f6mx8wgfb9xdxeswwavh9228uv6d7yga3qqtyv
 ```
 
@@ -542,59 +590,59 @@ Example:
 Example Output:
 
 ```json
-activeCommitments:
+active_commitments:
   commitments:
   - 8d42569a19d9823c14b9720ea68da33edac30863ab1559745978fb5a99db3eecaeefee7a511134714f04a08c0043ae03
   - 8280c76cf24d52e993ff157eb4368fe8a192e5ba3b7ddc3e6467328f5f74806ed7d1df191330226cb4b6b337d31ded5d
-queuedCommitments:
+queued_commitments:
   commitments:
   - 95aabdd25677133b81f0e2a6648e3510c950f822152bb283d3f5e6b251a5b70762f6de7a1b5ecc2d35e17743d7389284
   - b1cec7b711c48bb21cb9b218cfb9e7f201b7d750837a64b5a4b2a2d48704a7ffc55cb8db3efa27ba15a5e1bae11d3adb
 ```
 
-##### show-key-share
+##### show-keyshare
 
-The `show-key-share` command allows users to query the keyshare submitted by the target validator on a particular height.
+The `show-keyshare` command allows users to query the keyshare submitted by the target validator on a particular height.
 
-`fairyringd query show-key-share [validator] [block-height] [flags]`
+`fairyringd query show-keyshare [validator] [block-height] [flags]`
 
 Example:
 
-`fairyringd query keyshare show-key-share fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb 100000`
+`fairyringd query keyshare show-keyshare fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb 100000`
 
 Example Output:
 
 ```
-keyShare:
-  blockHeight: "100000"
-  keyShare: 845da5dfe6ddc0fb685d5cbb2702bcbdb678ba4743c18d968caecbf050426e56450b999feb44bdb26032f0d67188999a187e3acb6dcfb92cfe25aedda0adb887edd65931aa7d94fc4f3fa49d26f420df5d51d24b539ec54d288b80c3720959b0
-  keyShareIndex: "9"
-  receivedBlockHeight: "100000"
-  receivedTimestamp: "1697561125"
+keyshare:
+  block_height: "100000"
+  keyshare: 845da5dfe6ddc0fb685d5cbb2702bcbdb678ba4743c18d968caecbf050426e56450b999feb44bdb26032f0d67188999a187e3acb6dcfb92cfe25aedda0adb887edd65931aa7d94fc4f3fa49d26f420df5d51d24b539ec54d288b80c3720959b0
+  keyshare_index: "9"
+  received_block_height: "100000"
+  received_timestamp: "1697561125"
   validator: fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb
 ```
 
-##### show-general-key-share
+##### show-general-keyshare
 
-The `show-general-key-share` command allow users to query the target general keyshare submitted by its validator, id type and id value.
+The `show-general-keyshare` command allow users to query the target general keyshare submitted by its validator, id type and id value.
 
-`fairyringd query show-general-key-share [validator] [id-type] [id-value] [flags]`
+`fairyringd query show-general-keyshare [validator] [id-type] [id-value] [flags]`
 
 Example:
 
-`fairyringd query keyshare show-general-key-share fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb private-gov-identity "1/rq"`
+`fairyringd query keyshare show-general-keyshare fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb private-gov-identity "1/rq"`
 
 Example Output:
 
 ```
-generalKeyShare:
+general_keyshare:
   validator: fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb
-  idType: "private-gov-identity"
-  idValue: "1/rq"
-  keyShare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
-  keyShareIndex: "1"
-  receivedBlockHeight: "123456"
-  receivedTimestamp: "1696420024"
+  id_type: "private-gov-identity"
+  id_value: "1/rq"
+  keyshare: 91d7674f9feff2275971dda90bc25d2f65c75f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96fdffff9c58c31d5bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e
+  keyshare_index: "1"
+  received_block_height: "123456"
+  received_timestamp: "1696420024"
 ```
 
 ##### show-validator-set
@@ -613,9 +661,9 @@ Example Output:
 
 ```
 validatorSet:
-  consAddr: 475c76e62b5ad583fdd23587710f973fcb2ca0a8
+  cons_addr: 475c76e62b5ad583fdd23587710f973fcb2ca0a8
   index: fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb
-  isActive: true
+  is_active: true
   validator: fairy14qekdkj3mnmveb5ugh0n112a3pud23y8tcf9bb
 ```
 
@@ -655,15 +703,15 @@ Example:
 
 `fairyringd tx keyshare delete-authorized-address fairy1...`
 
-##### create-latest-pub-key
+##### create-latest-pubkey
 
-The `create-latest-pub-key` command allow trusted addresses to submit public key, commitments and encrypted key shares.
+The `create-latest-pubkey` command allow trusted addresses to submit public key, commitments and encrypted key shares.
 
-`fairyringd tx keyshare create-latest-pub-key [public-key] [commitments] [number-of-validators] [encrypted-key-shares] [flags]`
+`fairyringd tx keyshare create-latest-pubkey [public-key] [commitments] [number-of-validators] [encrypted-key-shares] [flags]`
 
 Example:
 
-`fairyringd tx keyshare create-latest-pub-key "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09" "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09,a6f02f598d3b89c524792889b0b115cd229ba60aeb568c228de7db1e8c182fd07bb473fab5258564c26fe5164e287e35" 1 '[{"data": "XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==", "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"}]'`
+`fairyringd tx keyshare create-latest-pubkey "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09" "856ec61e4a6adc43f76262afbe503276e3798b35d7a329548322eac342f819f42466d92b81e7861e341326668f4f9a09,a6f02f598d3b89c524792889b0b115cd229ba60aeb568c228de7db1e8c182fd07bb473fab5258564c26fe5164e287e35" 1 '[{"data": "XaMhXRlQ/wLVzXsQn4K/vwLKACBPV90koTC452UXPjgq1sSakgr33jLBNGFpzc71p7niKwAgfWc5Yd9ZupN3pcz9aC7EBG+Q2/ocxZerPR2rpbkq5NNAAnTY/yN7+xA7HcSm61fBFcv/ZPhthtvA8Qg+QYHfnQI8PouunWpHXjlOtWNY8g5GGFSqFSEkyHtaHOcC9OApPeosvv1o3Mrp+HenxURUqw==", "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"}]'`
 
 ##### register-validator
 
@@ -813,64 +861,64 @@ Example Output:
 }
 ```
 
-### KeyShare
+### Keyshare
 
-The `KeyShare` endpoint allows users to query the keyshare submitted by target validator on particular block height.
+The `Keyshare` endpoint allows users to query the keyshare submitted by target validator on particular block height.
 
-`fairyring.keyshare.Query/KeyShare`
+`fairyring.keyshare.Query/Keyshare`
 
 Example:
 
 ```bash
 grpcurl -plaintext \
- -d '{"validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb", "blockHeight": 100000}' \
+ -d '{"validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb", "block_height": 100000}' \
  localhost:9090 \
- fairyring.keyshare.Query/KeyShare
+ fairyring.keyshare.Query/Keyshare
 ```
 
 Example Output:
 
 ```json
 {
-  "keyShare": {
+  "keyshare": {
     "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
     "blockHeight": "100000",
-    "keyShare": "845da5dfe6ddc0fb685d5cbb1691abaca678ba4743c18d968caecbf050426e56450b999feb44bdb26032f0d67188999a187e3acb5ccfb92cfe25aedda0adb887edd65931aa7d94fc4f3fa49d26f420df5d51d24b539ec54d288b80c3720959b0",
-    "keyShareIndex": "9",
+    "keyshare": "845da5dfe6ddc0fb685d5cbb1691abaca678ba4743c18d968caecbf050426e56450b999feb44bdb26032f0d67188999a187e3acb5ccfb92cfe25aedda0adb887edd65931aa7d94fc4f3fa49d26f420df5d51d24b539ec54d288b80c3720959b0",
+    "keyshareIndex": "9",
     "receivedTimestamp": "1697561125",
     "receivedBlockHeight": "100000"
   }
 }
 ```
 
-### KeyShareAll
+### KeyshareAll
 
-The `KeyShareAll` endpoint allows users to query all the submitted keyshares.
+The `KeyshareAll` endpoint allows users to query all the submitted keyshares.
 
-`fairyring.keyshare.Query/KeyShareAll`
+`fairyring.keyshare.Query/KeyshareAll`
 
 Example:
 
-`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/KeyShareAll`
+`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/KeyshareAll`
 
 Example Output:
 
 ```json
 {
-  "keyShare": [
+  "keyshare": [
     {
       "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
       "blockHeight": "95219",
-      "keyShare": "91d7674f9feff2275971dda90bc25d1f75c64f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96ffffff9c58c30c4bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e",
-      "keyShareIndex": "9",
+      "keyshare": "91d7674f9feff2275971dda90bc25d1f75c64f87efeb3195a4b4b00430b0cc7c4dba29a27abdf7f5fde7ebe8d95435950c763d1b81cf96ffffff9c58c30c4bbb21d6d503c4c78e4cbbdb29c3c7d290debb2dfdcfd027b81e1f88fa9b165ef45e",
+      "keyshareIndex": "9",
       "receivedTimestamp": "1697533024",
       "receivedBlockHeight": "95219"
     },
     {
       "validator": "fairy14qekdkj3nmmwea5ufg9n002a3pud23y8tcf7bb",
       "blockHeight": "95220",
-      "keyShare": "aa35cbbe3394308f823080085ffa82940f5f79d622b0dc48fe12413cd9717d6730dd0f192d52a079812cab8ba67d9b6712dbf0558e8db3e1ec099be66d5ccc29b4e40a7f244f80ee7a5585b25205971daa10d1da68e783c0e12b865ccb9dd465",
-      "keyShareIndex": "9",
+      "keyshare": "aa35cbbe3394308f823080085ffa82940f5f79d622b0dc48fe12413cd9717d6730dd0f192d52a079812cab8ba67d9b6712dbf0558e8db3e1ec099be66d5ccc29b4e40a7f244f80ee7a5585b25205971daa10d1da68e783c0e12b865ccb9dd465",
+      "keyshareIndex": "9",
       "receivedTimestamp": "1697533030",
       "receivedBlockHeight": "95220"
     }
@@ -882,11 +930,11 @@ Example Output:
 }
 ```
 
-### AggregatedKeyShare
+### DecryptionKey
 
-The `AggregatedKeyShare` endpoint allows users to query the aggregated keyshare on a particular height.
+The `DecryptionKey` endpoint allows users to query the decryption key on a particular height.
 
-`fairyring.keyshare.Query/AggregatedKeyShare`
+`fairyring.keyshare.Query/DecryptionKey`
 
 Example:
 
@@ -894,35 +942,35 @@ Example:
 grpcurl -plaintext \
  -d '{"height": 100000}' \
  localhost:9090 \
- fairyring.keyshare.Query/AggregatedKeyShare
+ fairyring.keyshare.Query/DecryptionKey
 ```
 
 Example Output:
 
 ```json
 {
-  "aggregatedKeyShare": {
+  "decryptionKey": {
     "height": "100000",
     "data": "a19e5b345e236f9d07bbea401321e7d2e6f5d5cdfcfc0c7948609c263006036bf73a2db2b4ee726be48ea2181c093fc807442a8b81d135ca98d1db206d31fe4d082c5b9ad4483d6933989dace8a142b28927c6b868470116dc3d194b3934d276"
   }
 }
 ```
 
-### AggregatedKeyShareAll
+### DecryptionKeyAll
 
-The `AggregatedKeyShareAll` endpoint allows users to query all aggregated keyshares.
+The `DecryptionKeyAll` endpoint allows users to query all decryption keys.
 
-`fairyring.keyshare.Query/AggregatedKeyShareAll`
+`fairyring.keyshare.Query/DecryptionKeyAll`
 
 Example:
 
-`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/AggregatedKeyShareAll`
+`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/DecryptionKeyAll`
 
 Example Output:
 
 ```json
 {
-  "aggregatedKeyShare": [
+  "decryptionKeys": [
     {
       "height": "15229",
       "data": "a32dd1859edf01bdae54e3e4f4a0ea95d2c461ed006ea384b223cef0e3e5d87fc560954f43aba363da21aabfbc0c57340f02604965a96bd83fc9fb28b23f1586b29def1e75b3a9df06353921f33ad80cf9903899a7a9843be8be559956b06391"
@@ -936,40 +984,41 @@ Example Output:
     "nextKey": "AAAAAAAAO+Ev",
     "total": "831477"
   }
+}
 ```
 
-### PubKey
+### Pubkey
 
-The `PubKey` endpoint allows users to query active & queued public keys and encrypted key shares.
+The `Pubkey` endpoint allows users to query active & queued public keys and encrypted key shares.
 
-`fairyring.keyshare.Query/PubKey`
+`fairyring.keyshare.Query/Pubkey`
 
 Example:
 
-`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/PubKey`
+`grpcurl -plaintext localhost:9090 fairyring.keyshare.Query/Pubkey`
 
 Example Output:
 
 ```json
 {
-  "activePubKey": {
+  "activePubkey": {
     "publicKey": "8d56d4fc13b594fbb28edd326dcb957e1da44846caeacb6414d0a6335e8b1c71595bfb0d3856ddba081c95c100db3853",
     "creator": "fairy10tq25z63m3fedlwmtssf5g5qzh9zsjswvmcxc9",
     "expiry": "205",
     "numberOfValidators": "1",
-    "encryptedKeyShares": [
+    "encryptedKeyshares": [
       {
         "data": "z3dRFcwsIBsMtbLAfWnCJQLKACC7q6t+Ox64n9g7iRah4ojv0qyNoRMG0keZvU53urgqMgAgecCv1SKJ9nhx7F3iEmaO2p6MZSHAsCFVavSXyovIPtHX4VugFjx41LsO800HT6Fp5I3RU1yjFWWJ8RwpnkPjXCit7TGCD+5mvLAO0YlTQepuIxqbxr62SIG++dfklRwzfJleesQEXpc9gzsjNDq5/Q==",
         "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"
       }
     ]
   },
-  "queuedPubKey": {
+  "queuedPubkey": {
     "publicKey": "8aa4996b6622432eead77305c8774ed65c700c10c31da586af5db7bedb512ee437f37baaf19080bbfcd700bfbe0e862f",
     "creator": "fairy10tq25z63m3fedlwmtssf5g5qzh9zsjswvmcxc9",
     "expiry": "255",
     "numberOfValidators": "1",
-    "encryptedKeyShares": [
+    "encryptedKeyshares": [
       {
         "data": "W+5TnZxz4q33vaY8a3i6AQLKACCqYvBl0KpBglT5LiYMd02uAW7gcFkRYjNNOZbAXo4PIQAgBaxzXRl/PEurAbheNotnaXK2twRttRVDIDffDHmd+S615Oo4T/orCl5qYUWa2fnrz0o6+0BxtCdS3O2+0HNYQJhupPFs9SEW/r1jju8/IaNR4GgYpISY99zh6A7aH/1ToqlAJWLzvMLC3yCOE5AgGg==",
         "validator": "fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td"
@@ -1001,7 +1050,7 @@ Example Output:
   "authorizedAddress": {
     "target": "fairy1f6mx8wgfb9xdxeswwavh9228uv6d7yga3qqtyv",
     "isAuthorized": true,
-    "authorizedBy": "fairy1zrpp7dfav7kancgse2peh3k98u9ueajwvq4w4q"
+    "authorizedBy": "fairy1zrpp8efav7kancgse2peh3k98u9ueajwvq5w5q"
   }
 }
 ```

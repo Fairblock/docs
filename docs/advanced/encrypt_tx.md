@@ -4,33 +4,15 @@ sidebar_position: 2
 
 # Encrypt transactions for `x/pep` module
 
-This tutorial explains how to encrypt your transaction for `x/pep` module using [`encrypter`](https://github.com/Fairblock/encrypter).
-Ensure you have followed the [prerequisites](../running-a-node/prerequisites.md) and installed the [`fairyring` binary](../running-a-node/installation.md)
-prior to following the instructions below.
-
-## Install `encrypter`
-
-1. Cloning the repository:
-
-```bash
-cd $HOME
-git clone https://github.com/Fairblock/encrypter.git
-cd encrypter
-```
-
-2. Install `encrypter` binary
-
-```bash
-go mod tidy
-go install
-```
+This tutorial explains how to encrypt your transaction for `x/pep` module using `encrypter` that built-in `fairyringd`.
+Ensure you installed the [`fairyring` binary](../running-a-node/installation.md) prior to following the instructions below.
 
 ## Encrypt your transaction
 
 1. Getting the public key for encryption
 
 ```bash
-PUBKEY=$(fairyringd query pep show-active-pub-key | jq -r '.activePubKey.publicKey')
+PUBKEY=$(fairyringd query pep show-active-pub-key | jq -r '.active_pubkey.public_key')
 ```
 
 2. Create the signed transaction. We'll use a bank send transaction in this example.
@@ -159,10 +141,10 @@ You can check your signed transaction with the following command:
 4. Encrypting the transaction
 
 ```bash
-ENCRYPTED=$(encrypter [TARGET_HEIGHT] $PUBKEY $SIGNED)
+ENCRYPTED=$(fairyringd encrypt [TARGET_HEIGHT / REQ-ID] $PUBKEY $SIGNED)
 ```
 
-- `[TARGET_HEIGHT]` is the target execution height of your transaction, it will also be used when you submit the encrypted transaction.
+- `[TARGET_HEIGHT / REQ-ID]` is the target execution height of your transaction, or if you are encrypting a general tx, it is the request id / identity. It will also be used when you submit the encrypted transaction.
 - `$PUBKEY` is the public key (encryption key) you got from Step 1.
 - `$SIGNED` is the signed transaction from Step 3.
 
@@ -180,3 +162,12 @@ fairyringd tx pep submit-encrypted-tx $ENCRYPTED [TARGET_HEIGHT] --from [ACCOUNT
 - `[TARGET_HEIGHT]` is the target execution height of your transaction. This should be the same as the `[TARGET_HEIGHT]` used when encrypting the transaction using `encrypter`
 - `[ACCOUNT_NAME]` is the account you would like to send the transaction from. This should be the same as the account you used to sign the transaction.
 
+If you are submitting a general encrypted transaction:
+
+```bash
+fairyringd tx pep submit-general-encrypted-tx $ENCRYPTED [REQ-ID] --from [ACCOUNT_NAME] --gas-prices 1ufairy -y
+```
+
+- `$ENCRYPTED` is the hex encoded encrypted tx from `encrypter`
+- `[REQ-ID]` is the request id / identity used in encryption. This should be the same as the `[REQ-ID]` used when encrypting the transaction using `encrypter`
+- `[ACCOUNT_NAME]` is the account you would like to send the transaction from. This should be the same as the account you used to sign the transaction.

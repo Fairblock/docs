@@ -23,15 +23,16 @@ Using `fairyring` as a mechanism for encrypting the bids, a developer wanting to
 Any user can request a new condition id by running the command
 
 ```bash
-fairyringd tx pep request-general-keyshare 30s --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
+fairyringd tx pep request-general-identity 30s testing123 --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
 ```
+- `testing123` is the custom identity, it can be anything you want, but it can only be used once per address
 
 # Querying identities
 
 You can also query the chain to find the identities that have been generated via the command
 
 ```bash
-fairyringd q pep list-keyshare-req
+fairyringd q pep list-general-identities
 ```
 
 # Requesting a decryption key
@@ -40,10 +41,16 @@ Once encrypted data has been committed by users of your application, you need to
 To start the generation process, one can run the command
 
 ```bash
-fairyringd tx pep get-general-keyshare [req-id] --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
+fairyringd tx pep request-general-decryption-key [req-id] --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
 ```
 
-One can also then query the generated decryption key by using the same query command as above.
+Remember the `req-id` is different from the `identity`, `req-id` is: `{YOUR_ADDRESS}/{IDENTITY}`
+
+Let's say you address is `fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td` and you requested identity `testing123`
+
+Then your request id would be `fairy18hl5c9xn5dze2g50uaw0l2mr02ew57zkynp0td/testing123`
+
+- The generated decryption key can only be queried by the identity creator
 
 # Decrypting and executing
 
