@@ -4,10 +4,10 @@ sidebar_position: 1
 
 # v1 Cryptography
 
-Fairblock v1 mainly focuses on using Threshold Condition ID Based Encryption (tIBE) for its services as an Appchain. After reading this section you will understand:
+Fairblock v1 mainly focuses on using Threshold Condition ID Based Encryption (tIBE) for its services as a chain. After reading this section you will understand:
 
 1. What is IBE and tIBE
-2. What basic functions are exposed to Appchains and Apps integrating with Fairblock
+2. What basic functions are exposed to chains and Apps integrating with Fairblock
 
 ## Condition ID Based Encryption (IBE)
 
@@ -53,7 +53,7 @@ $$
 
 ## Threshold IBE (tIBE)
 
-The `fairyring` chain not only provides the capabilities to encrypt, decrypt, and communicate with inherent apps on its appchain, and destination chains, but it also does so in a decentralized way. It does this by splitting up the master secret key amongst it's decentralized validator set and in order to obtain the respective decryption key, a threshold, `t`, of validators need to present their parts of said key; explaining the term Threshold IBE.
+The `fairyring` chain not only provides the capabilities to encrypt, decrypt, and communicate with inherent apps on its chain, and destination chains, but it also does so in a decentralized way. It does this by splitting up the master secret key amongst it's decentralized validator set and in order to obtain the respective decryption key, a threshold, `t`, of validators need to present their parts of said key; explaining the term Threshold IBE.
 
 At a high-level, this is done through Lagrange interpolation, where the secret key can be mathetmatically derived.
 

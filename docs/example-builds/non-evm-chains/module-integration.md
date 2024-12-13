@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Integrating the `pep` module into your own app-chain
+# Integrating the `x/pep` Module
 
 In this tutorial, you will learn how to integrate the `pep` module in your own app chain to enable encrypted transactions.
 To integrate, you will be modifying your `app.go` file.

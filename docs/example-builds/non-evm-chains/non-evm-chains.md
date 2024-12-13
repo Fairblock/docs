@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 
-# Appchain Tutorials
+# Non-EVM Chain Tutorials
 
 This page is under progress and will be updated shortly.
 

@@ -1,9 +1,9 @@
 {
-  "label": "Appchain",
+  "label": "Non-EVM Chains",
   "position": 2, 
   "link": {
     "type": "doc",
-    "id": "appchain" 
+    "id": "non-evm-chains" 
   },
   "collapsible": true, 
   "collapsed": true

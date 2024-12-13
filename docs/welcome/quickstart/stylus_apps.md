@@ -4,7 +4,9 @@ sidebar_position: 2
 
 # Arbitrum Stylus Quickstart
 
-Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock Technologies. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
+Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
+
+> **If you are looking to learn how to build an app that integrates with Fairblock on a Stylus network, and already have the Decrypter modules and other setup complete, skip further into the [video!](https://www.youtube.com/watch?v=gIzPgSw11uU&t=1178s) Otherwise, keep going anon.**
 
 <iframe
   width="100%"
@@ -80,14 +82,14 @@ Run:
 ./stylusTutorial.sh
 ```
 
-That's it! At this point you have deployed the decrypter contracts enabled by Stylus and Fairblock Technologies, a sealed bid auction example, and finally tested against it with two bidders on Sepolia.
+That's it! At this point you have deployed the decrypter contracts enabled by Stylus and Fairblock, a sealed bid auction example, and finally tested against it with two bidders on Sepolia.
 
 When it comes to the Decryption contract deployments, what you will see within your terminal are detailed logs revolving around the deployment and initialization of the contract addresses on Sepolia.
 
 When it comes to the Sealed Bid Auction Example, you will see terminal logs showing that:
 
 - A Sealed Bid Auction Example contract was deployed,
-- Encrypted bids were made in the auction, where the encrypted aspect was the bid amount itself using Fairblock technologies.
+- Encrypted bids were made in the auction, where the encrypted aspect was the bid amount itself using Fairblock.
 - Two bids from different private wallets (as per the `.env`) are made, and then the auction ends.
 - The sealed bid auction was completed and a winner has been announced with a bid of 150.
 
@@ -148,7 +150,7 @@ The Sealed Bid Auction:
 
 - Simply stores bid amounts for an auction from bidders into the smart contract storage. The bids are kept encrypted using Fairblock encryption off-chain.
   - Fairblock repos such as `Encrypter` and `ShareGenerator` are used for this process for educational purposes.
-- Bids are then revealed using the Decryption process from Fairblock Technologies.
+- Bids are then revealed using the Decryption process from Fairblock.
 - The winning bid is announced.
 
 For the sake of the tutorial, typical smart contract aspects such as transference of ERC20s, ETH, or other tokens are not focused on within the smart contract. There are common patterns for the transference of funds. **The key thing to notice within these solidity files is that conditional encryption and decryption can be used easily within a solidity smart contract by leveraging Fairblock v1 technologies.**

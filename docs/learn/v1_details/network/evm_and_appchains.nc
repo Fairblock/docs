@@ -6,7 +6,7 @@ TODO: Finalize this section.
 # How Fairblock Works with EVMs and Appchains
 
 <!-- Details:
-- Fairblock works with EVMs and Appchains. The main difference is that Appchains integrate with a typical module provided by Fairblock technologies, whereas EVM apps rely on precompiles integrated into the EVM itself.
+- Fairblock works with EVMs and Appchains. The main difference is that Appchains integrate with a typical module provided by Fairblock, whereas EVM apps rely on precompiles integrated into the EVM itself.
 - Outline key steps with Appchains (where encrypted txs are stored, etc.)
 - Outline key steps with EVM Apps (communicating with immutable contract that exposes precompile functions) -->
 

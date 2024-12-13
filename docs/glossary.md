@@ -11,7 +11,7 @@ This page contains explanations of common terms used within Fairblock.
 ### Threshold IBE
 
 Identity-based encryption is a form of encryption based on some identifying conditions.
-Fairblock uses **threshold** IBE so that no single party controls the decryption keys. Instead of "Identity", Fairblock technologies uses "conditional ids" which are less about actual identity, and more about a range of different variables, often related to a chain's global state, such as block height.
+Fairblock uses **threshold** IBE so that no single party controls the decryption keys. Instead of "Identity", Fairblock uses "conditional ids" which are less about actual identity, and more about a range of different variables, often related to a chain's global state, such as block height.
 
 ### Threshold encryption
 
