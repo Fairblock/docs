@@ -4,10 +4,11 @@ sidebar_position: 0
 
 # Start Building
 
-This section acts as a growing repository for different confidentiality solutions. The idea is that once developers have gone through the quickstart, we invite other developers to build with this ecosystem. Simple and more advanced tutorials will be found in this section, aside from those dicsused within the quickstart.
+> This section is under progress and will be updated shortly.
 
-> This page is under progress and will be updated shortly.
+This section acts as a growing repository for different confidentiality solutions. The idea is that once developers have gone through a respective quickstart, they can find common implementation examples, patterns, and more integrating with Fairblock.
 
-<!-- TODO - Add an overview / intro to the build section here. Note that the quickstart is a great place to start for those new to the project. Otherwise we have a library of resources to choose from that could pertain to people's specific interests. -->
+<!-- TODO: make a repo where the patterns can live in a way that is easy to organize and point to.
+TODO: not sure if we will keep this section as a result, or simply have this one page and point to the repo -->
 
-<!-- Links to respective pages in this section of the docs will be outlined here too -->
+If you're interested in building out common patterns, please reach out to us! We always welcome new and interesting integration patterns to broaden the Fairblock ecosystem.

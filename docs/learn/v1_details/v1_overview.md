@@ -39,5 +39,3 @@ The later pages in this section covers the detailed fundamentals of Fairblock. T
 2. [How MPKs and Decryption Keys (keyshares) are generated using the `fairyring` and its validators in a decentralized manner.](./network/keyshares_and_aggregation.md)
 3. [How the keyshares are used to decrypt and enact automatic execution of an encrypted transaction at the beginning of a block.](./network/decrypt_and_execute.md)
 <!-- TODO: 4. [How Fairblock Works with EVMs and Appchains](./network/evm_and_appchains.md) -->
-
-<!-- Hmm. Where do we talk about the way EVM integration works? It will be part of the quickstart, sure, but it should be in a spot clearly in the LEARN section. -->

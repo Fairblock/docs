@@ -1,9 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# EVMs Modified with Pre-Compiles
+# EVMs Modified with Pre-Compiles (Orbit Chains)
 
 This page is under progress and will be updated shortly.
 
-<!-- TODO: make a note about fraud proofs being important but for the sake of this quickstart they are not incorporated. Add a link to where it is referenced and detailed within the Arbitrum docs. -->
+<!-- TODO: Update with repo (https://github.com/Fairblock/fairblock-docs/tree/feat/regular-orbit-example/devops) README & Video -->
+

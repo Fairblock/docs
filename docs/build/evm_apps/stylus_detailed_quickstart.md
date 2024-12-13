@@ -2,45 +2,27 @@
 sidebar_position: 0
 ---
 
-# Implementing Decryption Contracts on Stylus and Unlocking Fairblock v1 Tech Stack
+# Detailed Fairblock and Arbitrum Stylus Tutorial
 
-This section and page is constantly under progress and will be updated accordingly. Currently there is a detailed version of the Fairblock and Arbitrum Stylus Integration Tutorial as seen in the Welcome page of the docs, and in the quickstart repo [here](https://github.com/Fairblock/ArbitrumContracts). 
+Currently this is a detailed version of the Fairblock and Arbitrum Stylus Integration Tutorial as seen in the Quickstart section of the [docs](../../welcome/quickstart/app_dev_quickstart/stylus_apps.md). 
 
-Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This repo will be used for the DevCon 2024 Stylus tutorial featuring Fairblock Technologies.
+> Instead of only running the two scripts as seen in the Quickstart, the detailed steps for running the integration test that were encapsulated into the aforementioned scripts are outlined here. **This is still the same tutorial as found in the quickstart for Arbitrum Stylus Integrations.**
 
-Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
+The context for this tutorial can be found in the quickstart. Let's jump in.
 
-V1 is live on testnet with bespoke MPEC and threshold condition id-based encryption, which offer conditional confidentiality dependent on users’ needs. 
+## Video Walk Through
 
-This tutorial focuses on the deployment of decryption contracts, using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and smart contracts to integrate with Fairblock v1 testnet, thus unlocking the power of a dynamic fondientiality network.
+The video walk through of this tutorial, which includes context on Fairblock and Arbitrum is shared again here for easier reference.
 
-By the end of this tutorial, developers will have:
-
-- Part 1: Deploy their own Fairblock v1 tech stack into an Arbitrum Stylus integrated network, Sepolia. This will result in a deployed `Decrypter` contract on the Sepolia network.
-- Part 2: Deploy and test a Sealed Bid Auction smart contract, written in Solidity, with the Decrypter contract from Part 1.
-   - The underlying contracts and scripts will provide developers a sense of the integration process with the Stylus contracts and ultimately Fairblock's testnet, Fairyring. 
-
-<!-- Throughout the tutorial, there will be _Context Toggles_ with information that broadens a developer's knowledge of Fairblock technologies. These have been minimized, by default, to ensure that the developer actually jumps into the code as fast as possible. We believe in learning by building :). -->
-
-> If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our discord!
-
-## A Word on Auctions
-
-You may ask, why are we working with a Sealed Bid Auction as an example? Let's touch briefly on the importance of auctions, especially in a landscape that can integrate dynamic confidentiality networks. 
-
-Confidential decentralized auctions safeguard users against exploits like shilling, auctioneer/block proposer last looks, and bid censorship. This approach ensures credible, optimized outcomes for users in terms of execution quality and pricing.
-
-By aligning incentives and enhancing credibility, confidential auctions enable impactful applications across various areas, including intents’ solver auctions, MEV supply chains, single-round Dutch auctions, NFTs, real-world assets (such as real estate, ads, tradfi, or power dispatching systems), restricted access control to boost market efficiency, and innovative SocialFi applications like highest unique bid auctions.
-
-For more information on auctions, refer to:
-
- • [AFT 2024 Paper](https://drops.dagstuhl.de/storage/00lipics/lipics-vol316-aft2024/LIPIcs.AFT.2024.19/LIPIcs.AFT.2024.19.pdf)
- • [Paradigm Leaderless Auctions](https://www.paradigm.xyz/2024/02/leaderless-auctions)
- • [Arxiv Paper](https://arxiv.org/abs/2404.00475)
-
-Simplicity is the pinnacle of art. Fairblock’s tailored confidentiality schemes deliver robust economic and cryptographic security without adding delays or bandwidth overhead, avoiding the pitfalls of overly complex, general-purpose cryptographic methods.
-
-With all that, let's jump into the tutorial!
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/gIzPgSw11uU&ab_channel=FairblockNetwork"
+  title="Fairblock v1 Testnet and Arbitrum Stylus Integration Tutorial"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
 
 ## Installation Requirements
 

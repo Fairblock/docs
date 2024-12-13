@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Implementing Decryption Contracts on Stylus and Unlocking Fairblock v1 Tech Stack
+# Arbitrum Stylus Quickstart
 
 Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock Technologies. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
 
@@ -14,7 +14,7 @@ Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](h
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen
-></iframe>## Watch This Video
+></iframe>
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
