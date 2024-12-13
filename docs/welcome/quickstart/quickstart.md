@@ -4,9 +4,13 @@ sidebar_position: 1
 
 # Developer Quickstart: Build Confidential Apps or Chains with Fairyring
 
-A Confidential App, or cApps, unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized appchain, Fairyring. They can take the form as an App itself on a network like an EVM or an Appchain itself.
+A Confidential App, or cApp, unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized appchain, Fairyring. They can take the form as an App itself on a network like an EVM or an Appchain itself.
 
-When working with Fairyring, there are two main developer audiences that have been highlighted, and subsequent quickstarts will be provided to assist them.  
+This section contains quickstart integrations that will guide you through the steps to work with Fairblock regardless of what network you are working with.
+
+> If you are looking to integrate Fairblock modules into your own cosmos chain, jump to the [Module Integration Quickstart](./module_integration_quickstart). 
+
+When working with Fairyring, there are two main developer audiences that have been highlighted, and subsequent quickstarts will be provided to assist them.
 
 1. Blockchain Developers creating their own chains leveraging Fairblock Technologies, such as Roll-Ups and AppChains.
 2. App Developers creating apps on EVMs or appchains. 
