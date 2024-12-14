@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Build Farther with the Dynamic Confidentiality Network
 
-Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like credible and capital efficient DeFi protocols (e.g. intent matching in confidential auctions), AI inference (e.g. trading strategy optimization without leaking private inputs or models), frontrunning mitigation, or SocialFi/GameFi (e.g. play to decrypt، VRF, private voting, lotteries, predictions).
+Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like credible and capital efficient DeFi protocols (e.g. intent matching in confidential auctions), AI inference (e.g. trading strategy optimization without leaking private inputs or models), frontrunning mitigation, or SocialFi/GameFi (e.g. play to decrypt, VRF, private voting, lotteries, predictions).
 
 V1 is live on testnet with bespoke MPEC and threshold IBE, which offer conditional confidentiality dependent on each application and users' needs. Two core functions are possible today:
 
