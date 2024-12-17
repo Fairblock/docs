@@ -5,7 +5,7 @@ const darkCodeTheme = themes.dracula;
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Fairblock Docs',
-  tagline: 'The encryption coprocessor for an unlocked ecosystem of DeFi, Gaming, and AI applications.',
+  tagline: 'Unlocking Fair and Efficient Economies for Endusers, by Eliminating Exploitive Intermediaries through Multi-Party Encrypted Computation',
   favicon: 'img/favicon/favicon.ico',
 
   // Set the production url of your site here
