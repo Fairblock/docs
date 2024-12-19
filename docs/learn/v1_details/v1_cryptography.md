@@ -25,7 +25,6 @@ Fairblock employs threshold IBE, ensuring that no single party controls the decr
 
 Master Public Key (MPK):
 The MPK, combined with the “decryption condition,” can be used to encrypt a transaction (or a batch of transactions) that will be decrypted and executed once the specified “decryption condition” is met.
-encrypt(private data/tx, mpk, condition ID)
 
 Master Secret Key Shares:
 Each validator holds a share of the master secret key, preventing any single entity from reconstructing the full master secret key. Once the “decryption condition” is met, each validator uses its master secret key share to generate a private key share for all transactions encrypted under that condition. When a threshold (e.g., 2/3) of these private key shares is collected, they can be combined to form a private key that decrypts all transactions tied to that same condition. In the case of Private Shared State, the data is decrypted publicly; for access control, the data is decrypted only for those who meet the required attributes.
