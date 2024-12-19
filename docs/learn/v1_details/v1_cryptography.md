@@ -44,22 +44,22 @@ $$
 encrypt(m, master public key, condition id) = c
 $$
 
-### Decryption Key Extraction
+### Private Key Extraction
 
 - Done with a function, called `extract()`.
-- Uses `id` to derive a decryption key, `pk`, to decrypt the respective encrypted transaction.
+- Uses `id` to derive a private key for decryption, `pk`, to decrypt the respective encrypted transaction.
 
 $$
-extract(id) = pk
+extract(id) = private key for id
 $$
 
-### Decryption Using the Decryption Key
+### Decryption Using the Private Key
 
 - Done with a function, called `decrypt()`.
-- Uses encrypted transaction (ciphertext), `c`, and decryption key, `pk`, to obtain the original transaction details, `m`.
+- Uses encrypted transaction (ciphertext), `c`, and private key for id, `private key`, to obtain the original transaction details, `m`.
 
 $$
-decrypt(c,pk) = m
+decrypt(c, private key for id) = m
 $$
 
 > Altogether, one can see that the following property holds true when using IBE.
