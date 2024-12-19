@@ -18,7 +18,7 @@ The `x/keyshare` module keeps state of the following primary objects:
 2. Submitted keyshares
 3. Aggregated keyshares
 4. Active & queued public key
-5. Authorized addresss
+5. Authorized address
 6. Submit general keyshares
 7. Submit encrypted keyshares
 8. Keyshares encrypted with the validator's public key
