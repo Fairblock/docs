@@ -3,8 +3,6 @@ sidebar_position: 1
 ---
 # Vision Statement
 
-<img width="1200" alt="Fairblock_Updated" src="https://github.com/user-attachments/assets/7ed9ac05-d350-41d9-bc59-86f36cb1a757" />
-
 Fairblock is unlocking fair and efficient economies for end users, by eliminating exploitive intermediaries.
 Multi-party computation and confidentiality allow decentralizing economies and improve the execution quality for end users by ensuring that their onchain interactions or information is not exposed to centralized or privileged parties such as bots, competitors, exploitative relayers, auctioneers, searchers, or institutions. 
 
