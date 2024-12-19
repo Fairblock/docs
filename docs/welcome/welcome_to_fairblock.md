@@ -15,5 +15,5 @@ Our V2 will support more dynamicity for confidentiality solutions such as comput
 
 These docs will provide instructions for:
 
-1. Integrating threshold decryption and randomness from Fairblock in applications on FairyRing, Arbitrum and EVM chains, or Cosmos SDK-based chains.
+1. Integrating conditional encryption from Fairblock in applications on FairyRing, EVM or Cosmos SDK-based chains.
 2. Validators supporting the Fairblock chain, Fairyring.
