@@ -49,7 +49,7 @@ $$
 - Uses `id` to derive a private key for decryption, `pk`, to decrypt the respective encrypted transaction.
 
 $$
-extract(id) = private key for id
+extract(id) = private key
 $$
 
 ### Decryption Using the Private Key
@@ -58,7 +58,7 @@ $$
 - Uses encrypted transaction (ciphertext), `c`, and private key for id, `private key`, to obtain the original transaction details, `m`.
 
 $$
-decrypt(c, private key for id) = m
+decrypt(c, private key) = m
 $$
 
 > Altogether, one can see that the following property holds true when using IBE.
