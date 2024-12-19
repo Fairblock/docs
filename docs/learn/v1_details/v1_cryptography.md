@@ -74,13 +74,8 @@ The `fairyring` chain not only provides the capabilities to encrypt, decrypt, an
 
 At a high-level, this is done through Lagrange interpolation, where the private key can be mathematically derived.
 
-Let's say that `a_0` below is the private key, to derive it we will need a threshold amount of private key shares to properly interpolate what it is.
-
 <!-- TODO - better elaborate on the equation below's relevance. -->
 
-$$
-p(x) = a_0 + a_1 x + a_2 x^2 + \dots + a_(t+1) x^(t)
-$$
 
 <!-- TODO need to fix above equation but t import giving issues on build -->
 
