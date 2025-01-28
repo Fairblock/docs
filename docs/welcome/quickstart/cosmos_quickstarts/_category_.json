@@ -1,0 +1,10 @@
+{
+  "label": "Cosmos Quickstarts",
+  "position": 3, 
+  "link": {
+    "type": "doc",
+    "id": "cosmos_quickstarts" 
+  },
+  "collapsible": true, 
+  "collapsed": true
+}
