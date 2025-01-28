@@ -2,13 +2,13 @@
 sidebar_position: 2
 ---
 
-# Arbitrum Stylus Quickstart
+# RustVM Quickstart
 
-Welcome to the Fairblock and Arbitrum Stylus Integration Tutorial. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
+Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbitrum Stylus chain that allows Fairblock Rust contracts to be deployed onto the integrating chain. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
 
 > **If you are looking to learn how to build an app that integrates with Fairblock on a Stylus network, and already have the Decrypter modules and other setup complete, skip further into the [video!](https://www.youtube.com/watch?v=gIzPgSw11uU&t=1178s) Otherwise, keep going anon.**
 
-> **This tutorial focuses on the deployment of decryption contracts, using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and traditional EVM smart contracts to integrate with Fairblock v1 testnet, thus unlocking the power of a dynamic confidentiality network.**
+> **This tutorial focuses on the integration path for RustVMs looking to work with Fairblock. It revolves around the deployment of decryption contracts onto said RustVM. Specifically, the tutorial showcases this by using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and traditional EVM smart contracts to integrate with Fairblock by writing rust contracts onto an EVM, thus unlocking the power of a dynamic confidentiality network.**
 
 
 <iframe
