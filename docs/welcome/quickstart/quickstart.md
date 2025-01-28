@@ -1,10 +1,11 @@
 ---
 sidebar_position: 1
 ---
-
 # Developer Quickstart: Build Confidential Apps or Chains with Fairyring
 
 A Confidential App, or cApp, unlocks programmable encryption and paired conditional decryption and execution using Fairblock's decentralized blockchain, Fairyring. They can take the form as an App itself on a network like an EVM or other independent chain itself.
+
+> **Fairblock can already be integrated with EVMs, RollUps, Cosmos Chains, RustVMs, and other blockchains. Different FairyKits are used to integrate into different chains.**
 
 When working with Fairyring, there are two main developer audiences that have been highlighted, and subsequent quickstarts will be provided to assist them.
 
@@ -19,11 +20,8 @@ These quickstarts will guide you through the steps to spin up a local blockchain
 
 > **Within each quickstart, developers are invited to skip ahead if they have already integrated the Fairblock modules within the chain that they are working with. This is the recommended route app developers take if possible, and is clearly marked within the beginning of each quickstart.**
 
-The Fairblock can already be integrated with various EVM Rollups, and other blockchains. More tutorials are being actively worked on showcasing different integration setups, and will be published more over the coming months. If you would like help integrating with a different tech stack that our current tutorials do not cover, please reach out!
+More tutorials are being actively worked on showcasing different integration setups, and will be published more over the coming months. If you would like help integrating with a different tech stack that our current tutorials do not cover, please reach out!
 
-<!-- TODO: Links will be to their respective pages in the docs -->
-
-1. [Arbitrum Stylus Quickstart](./stylus_apps.md)
-2. [OP Stack Quickstart](./op_stack.md)
-3. [Cosmos Chains Quickstart](./cosmos_chain.md)
-4. [EVMs Modified with Pre-Compiles (Orbit Chains)](./orbit_chain.md)
+1. [EVMs Modified with Pre-Compiles](./evm_quickstarts/evms.md) 
+2. [Cosmos Chains Quickstart](./cosmos_quickstarts/cosmos_quickstarts.md)
+3. [RustVM Integration with Rust Contracts](./rustvm_quickstart.md)

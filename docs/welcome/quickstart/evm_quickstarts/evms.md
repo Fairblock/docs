@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 2
 ---
 
 # EVMs Modified with Pre-Compiles
@@ -12,7 +12,7 @@ A walk through of this tutorial, alongside context on Fairblock, EVM integration
 
 <div align="center">
 
-[![Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial](../../assets/EVM_Quickstart.png)](https://www.youtube.com/watch?v=79pSFHolMuI&ab_channel=FairblockNetwork)
+[![Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial](../../../assets/EVM_Quickstart.png)](https://www.youtube.com/watch?v=79pSFHolMuI&ab_channel=FairblockNetwork)
 
 </div>
 
