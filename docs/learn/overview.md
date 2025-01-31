@@ -44,7 +44,7 @@ Fairblock is the confidentiality station for an ecosystem of native applications
 
 Fairblock plugs into any chain via a confidentiality module that allow enables confidential execution inside smart contracts. There are a variety of developer and user needs for confidentiality — whether for encrypting the state of smart contracts or application logic, protecting trading strategies, or enforcing coercion resistance inside governance polls or prediction markets. Each of these use cases can be brought into any chain or application with a simple 15-minute FairyKit installation.
 
-FairyKit is available on testnet to all Cosmos and EVM chains, and will soon be available on Monad.
+FairyKit is available on testnet to all Cosmos and EVM chains.
 
 **Glue + Coprocessor Architectures**
 
