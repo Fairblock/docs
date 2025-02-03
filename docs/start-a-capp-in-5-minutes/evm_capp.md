@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Running a cApp on an EVM
+# EVM cApp
 
 What if you want to run a cApp on a different network? Well you're in luck anon. This tutorial is a bit longer than 5 minutes, but it's worth it 😉.
 

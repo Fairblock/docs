@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Running a cApp on FairyRing
+# FairyRing cApp
 
 It's time to run your first cApp with FairyRing! This demo is expanded on more in detail within the [fairyring tutorial inside of the build section](../build/fairyring/fairyring_encrypted_msg.md), and is especially useful for those interested in building their own unique apps using confidential computation on FairyRing.
 
