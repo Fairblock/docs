@@ -22,6 +22,7 @@ These quickstarts will guide you through the steps to spin up a local blockchain
 
 More tutorials are being actively worked on showcasing different integration setups, and will be published more over the coming months. If you would like help integrating with a different tech stack that our current tutorials do not cover, please reach out!
 
-1. [EVMs Modified with Pre-Compiles](./evm_quickstarts/evms.md) 
-2. [Cosmos Chains Quickstart](./cosmos_quickstarts/cosmos_quickstarts.md)
-3. [RustVM Integration with Rust Contracts](./rustvm_quickstart.md)
+1. [Apps Native to FairyRing](./fairyring_quickstarts/)
+2. [EVMs Modified with Pre-Compiles](./evm_quickstarts/evms.md) 
+3. [Cosmos Chains Quickstart](./cosmos_quickstarts/cosmos_quickstarts.md)
+4. [RustVM Integration with Rust Contracts](./rustvm_quickstart.md)

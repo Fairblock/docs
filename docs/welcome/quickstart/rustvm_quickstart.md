@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # RustVM Quickstart
@@ -11,15 +11,21 @@ Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbi
 > **This tutorial focuses on the integration path for RustVMs looking to work with Fairblock. It revolves around the deployment of decryption contracts onto said RustVM. Specifically, the tutorial showcases this by using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and traditional EVM smart contracts to integrate with Fairblock by writing rust contracts onto an EVM, thus unlocking the power of a dynamic confidentiality network.**
 
 
-<iframe
-  width="100%"
-  height="315"
-  src="https://www.youtube.com/embed/gIzPgSw11uU&ab_channel=FairblockNetwork"
-  title="Fairblock v1 Testnet and Arbitrum Stylus Integration Tutorial"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/gIzPgSw11uU?si=SL-UlKg6DDzT9Ntg"
+    title="RustVM Integration Tutorial (w/ Arbitrum Stylus Example)"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
+</div>
+
+
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 

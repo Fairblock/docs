@@ -1,9 +1,9 @@
 {
-  "label": "Cosmos Integration",
-  "position": 5, 
+  "label": "Building Apps on FairyRing",
+  "position": 3, 
   "link": {
     "type": "doc",
-    "id": "cosmos_quickstarts" 
+    "id": "fairyring" 
   },
   "collapsible": true, 
   "collapsed": true

@@ -14,12 +14,20 @@ Welcome to the Fairblock and Cosmos Integration Tutorial. Please note that the A
 
 A walk through of this tutorial, alongside context on Fairblock, EVMs, and Cosmos Chains is provided in the video below. If you prefer learning by reading on your own, feel free to skip it and continue onward in this README!
 
-<div align="center">
-
-
-[![Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial](../../../assets/Cosmos_Quickstart.png)](https://www.youtube.com/watch?v=nV5fipxzOhY&ab_channel=FairblockNetwork)
-
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/nV5fipxzOhY?si=hNsG2WoSx1R61ici"
+    title="Fairblock tIBE with Cosmos - privgov Integration Tutorial"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
 </div>
+
 
 As mentioned in the beginning of the [Cosmos Quickstarts subsection](./cosmos_quickstarts.md), FairyKits are used to integrate into different chains, and there are different methods or variations to select from for said chains. 
 

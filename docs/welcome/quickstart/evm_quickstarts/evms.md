@@ -10,11 +10,20 @@ Welcome to the Fairblock and EVM Integration Tutorial. Please note that the App 
 
 A walk through of this tutorial, alongside context on Fairblock, EVM integration, and Arbitrum Orbit is provided in the video below. If you prefer learning by reading on your own, feel free to skip it and continue onward in this README!
 
-<div align="center">
-
-[![Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial](../../../assets/EVM_Quickstart.png)](https://www.youtube.com/watch?v=79pSFHolMuI&ab_channel=FairblockNetwork)
-
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/79pSFHolMuI?si=dubh8pPQKypHThBp"
+    title="Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
 </div>
+
 
 > **This tutorial focuses on the deployment of pre-compiles logic into an EVM. This can be done for any EVM.** 
 
