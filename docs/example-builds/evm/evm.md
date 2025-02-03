@@ -14,7 +14,7 @@ This page is under progress and will be updated shortly.
 
 How to integrate:
 - custom precompile
-- fairyport relayer
+- FairyPort relayer
 
 - on EVM, pep module doesn't exist anymore
 - all we need on EVM is a way to decrypt transactions in a gas efficient manner.
@@ -40,7 +40,7 @@ Store c inside a smart contract.
 Smart contract verify(price) -> bool,
 when true, emit RequestKeyEvent(oracle_price)
 
-fairyport picks it up, tells fairyring to generate the decryption key, once generated sends back
+FairyPort picks it up, tells FairyRing to generate the decryption key, once generated sends back
 
 contract:
 

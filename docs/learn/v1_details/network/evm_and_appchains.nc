@@ -18,7 +18,7 @@ TODO: Finalize this section.
 
 How to integrate:
 - custom precompile
-- fairyport relayer
+- FairyPort relayer
 
 - on EVM, pep module doesn't exist anymore
 - all we need on EVM is a way to decrypt transactions in a gas efficient manner.
@@ -44,7 +44,7 @@ Store c inside a smart contract.
 Smart contract verify(price) -> bool,
 when true, emit RequestKeyEvent(oracle_price)
 
-fairyport picks it up, tells fairyring to generate the decryption key, once generated sends back
+FairyPort picks it up, tells FairyRing to generate the decryption key, once generated sends back
 
 contract:
 
@@ -69,7 +69,7 @@ How to integrate:
 1. pep module (required)
 2. private gov module (optional)
 3. wasm module (optional)
-4. fairyport relayer (chain selects some addresses which can be relayers)
+4. FairyPort relayer (chain selects some addresses which can be relayers)
 
 if 1 - 4 are present, then D chain can:
 1. submit encrypted transactions
@@ -77,8 +77,8 @@ if 1 - 4 are present, then D chain can:
 3. request custom IDs and decryption keys via IBC
 4. If private gov, private voting
 5. If wasm, conditional decryption
-6. fairyport will submit decryption keys per fairying block
-7. fairyport will submit master public key updates from fairyring
+6. FairyPort will submit decryption keys per fairying block
+7. FairyPort will submit master public key updates from FairyRing
 
 Developer side:
 

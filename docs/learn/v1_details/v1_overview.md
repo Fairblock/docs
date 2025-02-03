@@ -17,10 +17,10 @@ The following flow gives an idea of how `fairyring` v1 works.
 
 > **Apps refer to applications living on EVMs, and/or blockchains themselves, like those in the cosmos ecosystem.**
 
-Apps have active communication with the Fairyring chain. This communication mainly consists of the following steps:
+Apps have active communication with the FairyRing chain. This communication mainly consists of the following steps:
 
-1.  App listens to the Fairyring for new Master Public Keys (MPKs) to encrypt their respective transactions.
-2.  Fairyring listens for a condition, and corresponding ID, to trigger generating a decryption key (keyshare).
+1.  App listens to the FairyRing for new Master Public Keys (MPKs) to encrypt their respective transactions.
+2.  FairyRing listens for a condition, and corresponding ID, to trigger generating a decryption key (keyshare).
 3.  Once generated, keyshare is shared with the respective App. The App then executes the transaction at the beginning of the block to avoid risks arising from delayed execution.
 
 Apps can do this because their EVMs will have access to a immutable contract exposing necessary function for encryption, decryption and execution, due to a Fairblock precompile being integrated into said EVM. Blockchains that also serve as applications themselves, like in the cosmos ecosystem, add on the `x/pep` module to communicate with the `fairyring` chain, which is elaborated further in this section.

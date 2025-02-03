@@ -12,11 +12,9 @@ Chains integrating with Fairblock can often choose between the "FairyKit" or "Co
 
 ![Cosmos Decryption and Execution Layer Schematic](../../../assets/CosmosDecryptionAndExecutionSchematic.png)
 
-
-A key aspect to note is that all of these integration methods provide the functionality to interact with Fairyring, and there can be underlying application logic working with these integrations. 
+A key aspect to note is that all of these integration methods provide the functionality to interact with FairyRing, and there can be underlying application logic working with these integrations.
 
 At a more granular level, Cosmos FairyKit integrates using the following one or more of the following methods:
-
 
 1. Module Integration
 2. Smart Contract Integration

@@ -6,7 +6,7 @@ sidebar_position: 0
 
 This page is under progress and will be updated shortly.
 
-<!-- 
+<!--
 Cosmos Chains:
 
 How to integrate:
@@ -14,7 +14,7 @@ How to integrate:
 1. pep module (required)
 2. private gov module (optional)
 3. wasm module (optional)
-4. fairyport relayer (chain selects some addresses which can be relayers)
+4. FairyPort relayer (chain selects some addresses which can be relayers)
 
 if 1 - 4 are present, then D chain can:
 1. submit encrypted transactions
@@ -22,8 +22,8 @@ if 1 - 4 are present, then D chain can:
 3. request custom IDs and decryption keys via IBC
 4. If private gov, private voting
 5. If wasm, conditional decryption
-6. fairyport will submit decryption keys per fairying block
-7. fairyport will submit master public key updates from fairyring
+6. FairyPort will submit decryption keys per fairying block
+7. FairyPort will submit master public key updates from FairyRing
 
 Developer side:
 
