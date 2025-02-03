@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# RustVM Quickstart
+# Arbitrum Stylus (RustVM)
 
 Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbitrum Stylus chain that allows Fairblock Rust contracts to be deployed onto the integrating chain. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
 

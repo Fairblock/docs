@@ -55,7 +55,7 @@ Firstly, clone both of these repos onto your machine, and make sure you use the 
 
 The `nitro` repo will have the pre-compiles within its code and be running a node within a local docker container. The `orbit-setup-script` repo is a fork from Arbitrum Orbit that has pre-deployed chain contract config files within it. These two repos were made for the sake of time for this Quickstart. If you would like to learn more and go through the steps underlying the quickstart today, please see our docs.
 
-What needs to be done now includes:
+At a high-level, what needs to be done now includes the following (don't worry we'll expand on everything step by step):
 
 1. Run the docker container for the modified nitro node so it running persistently on your local machine.
 2. Running your orbit-chain locally where it ties into the local node instead of the typical nitro node setup from Arbitrum.

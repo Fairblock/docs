@@ -175,7 +175,7 @@ Once the proposal is created, query the proposal to assess its details. You can 
 privgovd q gov proposals
 ```
 
-![Proposal Example](../../../assets/NewProposal.png)
+![Proposal Example](../../assets/NewProposal.png)
 
 You can then use the `encrypt-vote` functionality to encrypt your vote. Use the bash command and details from querying the proposal, such as the `identity`, and `pubkey` to submit the tx:
 
@@ -210,7 +210,7 @@ privgovd q gov proposals
 
 Once the voting period has ended, the proposal final status will be hit. It will either be FAIL or SUCCESS. If you voted 'yes', then the proposal should have passed.
 
-![Successful Proposal Example](../../../assets/ProposalPassed.png)
+![Successful Proposal Example](../../assets/ProposalPassed.png)
 
 ## Congratulations
 

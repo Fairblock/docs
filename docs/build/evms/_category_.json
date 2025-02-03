@@ -1,9 +1,9 @@
 {
-  "label": "Cosmos Integration",
-  "position": 5, 
+  "label": "EVMs",
+  "position": 4, 
   "link": {
     "type": "doc",
-    "id": "cosmos_quickstarts" 
+    "id": "evms" 
   },
   "collapsible": true, 
   "collapsed": true

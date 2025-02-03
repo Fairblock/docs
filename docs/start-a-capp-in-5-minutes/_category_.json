@@ -1,9 +1,9 @@
 {
-  "label": "Quickstart",
+  "label": "Start a cApp in 5 Minutes",
   "position": 2, 
   "link": {
     "type": "doc",
-    "id": "quickstart" 
+    "id": "start-a-capp-in-5-minutes" 
   },
   "collapsible": true, 
   "collapsed": true
