@@ -7,10 +7,10 @@ sidebar_position: 5
 The `ShareGenerationClient` is currently responsible for performing verifiable secret sharing for keyshares.
 Keyshares will be rotated every `N` blocks meaning that the master public key (used for encrypting transactions),
 keyshares and keyshare commitments (used for submitting to `fairyring`) will be different every round.
-The keyshares submitted to fairyring are encrypted with the public key of registered validators.
+The keyshares submitted to FairyRing are encrypted with the public key of registered validators.
 The master public key will also be submitted to `fairyring` (along with keyshare commitments and number of validators) at the beginning of every round.
 
-This tutorial explains how to interact with fairyring to get the encrypted key shares.
+This tutorial explains how to interact with FairyRing to get the encrypted key shares.
 
 ## Getting Encrypted Key Share & Public Key
 

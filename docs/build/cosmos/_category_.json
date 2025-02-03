@@ -1,6 +1,6 @@
 {
-  "label": "Cosmos Integration",
-  "position": 3, 
+  "label": "Cosmos",
+  "position": 5, 
   "link": {
     "type": "doc",
     "id": "cosmos_quickstarts" 

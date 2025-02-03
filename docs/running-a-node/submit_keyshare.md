@@ -12,10 +12,10 @@ Make sure you have installed [`fairyring`](./installation.md) prior to following
 In order to be able to submit keyshare to `fairyring`, there are few requirements:
 
 1. You are a [validator](./validating_on_testnet.md) in the staking module with a minimum `10000000000ufairy` staked.
-Check if you are currently a validator as well as how many tokens you have staked with the following command:
+   Check if you are currently a validator as well as how many tokens you have staked with the following command:
 
 ```bash
-fairyringd q staking validators 
+fairyringd q staking validators
 ```
 
 2. You registered as a validator in the `fairyring` `keyshare` module. Check if you are in the validator set with following command:
@@ -34,10 +34,7 @@ fairyringd tx keyshare register-validator --from YOUR_WALLET_NAME
 
 ## `fairyringclient`
 
-`fairyringclient` is a tool which:
-    1. Fetches your master keyshare from our [`ShareGenerationClient`](./share_generation_client.md)
-    2. Computes the derived keyshare every block
-    3. Automatically submits the derived keyshare to `fairyring` every block.
+`fairyringclient` is a tool which: 1. Fetches your master keyshare from our [`ShareGenerationClient`](./share_generation_client.md) 2. Computes the derived keyshare every block 3. Automatically submits the derived keyshare to `fairyring` every block.
 
 This is the recommended way to submit keyshares.
 Make sure you have completed the steps in the [prerequisites](./prerequisites.md) prior to following the instructions below.
@@ -99,21 +96,21 @@ Here are the flags for updating different field of the config:
 fairyringclient keys set "private key in hex"
 ```
 
-**The private key should be the validator address that is staking on fairyring chain**  
-  
+**The private key should be the validator address that is staking on FairyRing chain**
+
 Example:
-  
-```bash  
+
+```bash
 > fairyringclient keys set f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04
 Using config file: /Users/fairblock/.fairyringclient/config.ymlSuccessfully added cosmos private key to config!
-```  
-  
+```
+
 6. Check the key is added to the client correctly:
-  
-```bash  
-> fairyringclient keys show  
+
+```bash
+> fairyringclient keys show
 Using config file: /Users/fairblock/.fairyringclient/config.yml
-Private Key: f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04  
+Private Key: f5c691d4b53ec8c3a3ad35e88525f9b8f33d307b3414c93f1b856265409a3a04
 ```
 
 **The `[0]` at the beginning of the key is the index of your key, which is used to delete the key**
@@ -127,8 +124,8 @@ fairyringclient start
 The log will look something like this when it started submitting keyshare:
 
 ```bash
-2023/01/01 00:00:00 Latest Block Height: 12345 | Deriving Share for Height: 12346                
-2023/01/01 00:00:00 Current Share Expires at: 20000 | {01 5a3cc54cb8fc2cae480a58d2922d84d69376726ed859615c6bd869154cb4ccc2}                
+2023/01/01 00:00:00 Latest Block Height: 12345 | Deriving Share for Height: 12346
+2023/01/01 00:00:00 Current Share Expires at: 20000 | {01 5a3cc54cb8fc2cae480a58d2922d84d69376726ed859615c6bd869154cb4ccc2}
 2023/01/01 00:00:00 [0] Submit KeyShare for Height 12345 Confirmed
 ```
 

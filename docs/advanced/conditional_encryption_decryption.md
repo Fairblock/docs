@@ -16,7 +16,7 @@ Using `fairyring` as a mechanism for encrypting the bids, a developer wanting to
 2. Provide users with some functionality to encrypt their bids. This can be done using our [`encrypter` tool](/docs/advanced/encrypt_tx.md).
 3. Accept and store the encrypted bids within the applcation. This logic will primarily be the responsibility of the application developer.
 4. Have a way to notify `fairyring` that the auction has concluded. This can be built into the application itself (meaning the chain initiates the request for decryption to `fairyring`) or can be a simple keeper that notifies `fairyring` when a certain condition has been met (end of auction).
-5. Relay the decryption key from `fairyring` to the application. This can be done using our [`fairyport` tool](/docs/advanced/fairyport.md).
+5. Relay the decryption key from `fairyring` to the application. This can be done using our [`FairyPort` tool](/docs/advanced/fairyport.md).
 
 # Requesting a new condition id
 
@@ -25,6 +25,7 @@ Any user can request a new condition id by running the command
 ```bash
 fairyringd tx pep request-general-identity 30s testing123 --from wallet1 --chain-id fairyring_devnet --home ./devnet_data/fairyring_devnet --keyring-backend test --gas-prices 1ufairy -y 2>&1
 ```
+
 - `testing123` is the custom identity, it can be anything you want, but it can only be used once per address
 
 # Querying identities

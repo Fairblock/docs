@@ -1,9 +1,9 @@
 {
-  "label": "EVM Apps",
-  "position": 2, 
+  "label": "Building Apps on FairyRing",
+  "position": 3, 
   "link": {
     "type": "doc",
-    "id": "evm" 
+    "id": "fairyring" 
   },
   "collapsible": true, 
   "collapsed": true

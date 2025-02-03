@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Error getting share:Get Share Resp is empty
 
-When starting Fairyringclient, if you see the following error:
+When starting FairyRingClient, if you see the following error:
 
 ```json
 Error getting share:Get Share Resp is empty, body: {"pk":"","encShare":"","index":""}
@@ -20,7 +20,7 @@ This might happens when the client is submitting keyshare and you restart it. Wa
 
 ## Validator authorized another address
 
-If you see this error when starting Fairyringclient:
+If you see this error when starting FairyRingClient:
 
 ```json
 rpc error: code = Unknown desc = failed to execute message; message index: 0: validator authorized another address to submit key share is not allow to submit key share
@@ -30,7 +30,7 @@ That means your validator address already authorized another address to submit k
 
 ## Validator not registered error
 
-If you see this error when starting Fairyringclient:
+If you see this error when starting FairyringClient:
 
 ```json
 ERROR: rpc error: code = Unknown desc = failed to execute message; message index: 0: 'your address': validator not registered

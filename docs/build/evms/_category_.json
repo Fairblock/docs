@@ -1,6 +1,6 @@
 {
-  "label": "EVM Integration",
-  "position": 2, 
+  "label": "EVMs",
+  "position": 4, 
   "link": {
     "type": "doc",
     "id": "evms" 

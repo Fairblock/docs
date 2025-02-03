@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6 
+sidebar_position: 6
 ---
 
 # Glossary
@@ -43,7 +43,7 @@ The derived private key is obtained by aggregating a threshold number of derived
 
 ### Frontrunning
 
-Frontrunning is an example of bad-MEV ([`maximal extractable value`](https://ethereum.org/developers/docs/mev#mev-extraction-generalized-frontrunners)) where MEV searchers can observe a user's unexecuted profitable trade in a mempool and manipulate the ordering of transactions within a block. The most common type of frontrunning is *sandwich attacks*.
+Frontrunning is an example of bad-MEV ([`maximal extractable value`](https://ethereum.org/developers/docs/mev#mev-extraction-generalized-frontrunners)) where MEV searchers can observe a user's unexecuted profitable trade in a mempool and manipulate the ordering of transactions within a block. The most common type of frontrunning is _sandwich attacks_.
 
 ## Public keys
 
@@ -85,6 +85,7 @@ Proof of authority (POA) is a consensus mechanism that gives a vetted, designate
 ## FairyPort - TODO
 
 The `FairyPort` is a messaging bridge, often referred to as an off-chain relayer. It reads state of the destination chain and FairyRing and is used to communicate between the two networks for passing of keys for decryption.
-   - Each tx has a respective ID. That corresponds to a respective keyshare. That keyshare is used to decrypt on the destination chain, and thus enact execution of some sort for the respective tx.
+
+- Each tx has a respective ID. That corresponds to a respective keyshare. That keyshare is used to decrypt on the destination chain, and thus enact execution of some sort for the respective tx.
 
 <!-- ## Fairblock Encryption SDK - TODO -->

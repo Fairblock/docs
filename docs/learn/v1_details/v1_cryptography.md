@@ -36,7 +36,7 @@ The above can be described in three equations.
 - Done with a function, called `encrypt()`.
 - A user wants to encrypt their transaction, `m`, to later be decrypted and executed once the condition is met.
 - The encrypted output will be represented by `c`.
-- A unique ` condition id` will be obtained from Fairyring.
+- A unique ` condition id` will be obtained from FairyRing.
 <!-- TODO - confirm where id comes from -->
 
 $$
@@ -74,7 +74,6 @@ The `fairyring` chain not only provides the capabilities to encrypt, decrypt, an
 At a high-level, this is done through Lagrange interpolation, where the private key can be mathematically derived.
 
 <!-- TODO - better elaborate on the equation below's relevance. -->
-
 
 <!-- TODO need to fix above equation but t import giving issues on build -->
 

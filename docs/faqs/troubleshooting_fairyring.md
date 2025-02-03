@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Troubleshooting `fairyring`
 
-<!-- TODO - Talk to p0p3yee with recent update for Fairyport. Perhaps add a more general FAQ to start, then get into the nitty gritty of fairyring and fairyclient -->
+<!-- TODO - Talk to p0p3yee with recent update for FairyPort. Perhaps add a more general FAQ to start, then get into the nitty gritty of FairyRing and fairyclient -->
 
 ## Sequence mismatch or Invalid Signature
 

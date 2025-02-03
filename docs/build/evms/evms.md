@@ -10,17 +10,25 @@ Welcome to the Fairblock and EVM Integration Tutorial. Please note that the App 
 
 A walk through of this tutorial, alongside context on Fairblock, EVM integration, and Arbitrum Orbit is provided in the video below. If you prefer learning by reading on your own, feel free to skip it and continue onward in this README!
 
-<div align="center">
-
-[![Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial](../../../assets/EVM_Quickstart.png)](https://www.youtube.com/watch?v=79pSFHolMuI&ab_channel=FairblockNetwork)
-
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/79pSFHolMuI?si=dubh8pPQKypHThBp"
+    title="Fairblock tIBE with EVMs - Orbit Chain Integration Tutorial"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
 </div>
 
-> **This tutorial focuses on the deployment of pre-compiles logic into an EVM. This can be done for any EVM.** 
+> **This tutorial focuses on the deployment of pre-compiles logic into an EVM. This can be done for any EVM.**
 
-Today's tutorial focuses on showcasing this using an Arbitrum Orbit chain (L3). The pre-compiles allow developers and traditional EVM smart contracts to integrate with Fairblock Fairyring network, thus unlocking the power of a dynamic confidentiality network.
+Today's tutorial focuses on showcasing this using an Arbitrum Orbit chain (L3). The pre-compiles allow developers and traditional EVM smart contracts to integrate with Fairblock FairyRing network, thus unlocking the power of a dynamic confidentiality network.
 
-Typical integration steps, including the use of software such as the `Encrypter` and `Fairyport`, for transaction encryption and communication between the Fairyring and Destination chains, respectively, is not focused on or omitted from this tutorial. Please see the advanced sections for further detail pertaining to these two and other more detailed integration steps.
+Typical integration steps, including the use of software such as the `Encrypter` and `FairyPort`, for transaction encryption and communication between the FairyRing and Destination chains, respectively, is not focused on or omitted from this tutorial. Please see the advanced sections for further detail pertaining to these two and other more detailed integration steps.
 
 This tutorial has multiple steps, but to get developers building as fast as possible we have developed a quickstart consisting of running only a few bash commands and scripts.
 
@@ -30,7 +38,7 @@ By the end of this tutorial, developers will have:
 
 - Part 1: Deploy their own EVM with Fairblock pre-compiles into an Arbitrum Orbit chain that communicates with the Arbitrum Sepolia test network. This will result in accessible Fairblock functionality at address 0x94 on the Orbit Chain, hosted by a Docker Container locally within this tutorial.
 - Part 2: Deploy and test a Sealed Bid Auction smart contract, written in Solidity, working with the pre-compiles logic from Part 1.
-  - The underlying contracts and scripts will provide developers a sense of the integration process with the Orbit chain pre-compile logic and ultimately Fairblock's testnet, Fairyring.
+  - The underlying contracts and scripts will provide developers a sense of the integration process with the Orbit chain pre-compile logic and ultimately Fairblock's testnet, FairyRing.
 
 As always, please feel free to skip to the respective part you are interested in. Smart Contract Developers who want to work within an EVM that has Fairblock precompiles can do so by using the [example smart contracts within this repo as a reference](./test-simple-auction-solidity/SealedBidAuctionExample.sol). For chain developers, the details on the precompiles will be of most interest. There are details on the precompiles [near the end of this README](#the-pre-compiles-deployed-into-an-evm).
 
@@ -47,7 +55,7 @@ Firstly, clone both of these repos onto your machine, and make sure you use the 
 
 The `nitro` repo will have the pre-compiles within its code and be running a node within a local docker container. The `orbit-setup-script` repo is a fork from Arbitrum Orbit that has pre-deployed chain contract config files within it. These two repos were made for the sake of time for this Quickstart. If you would like to learn more and go through the steps underlying the quickstart today, please see our docs.
 
-What needs to be done now includes:
+At a high-level, what needs to be done now includes the following (don't worry we'll expand on everything step by step):
 
 1. Run the docker container for the modified nitro node so it running persistently on your local machine.
 2. Running your orbit-chain locally where it ties into the local node instead of the typical nitro node setup from Arbitrum.
@@ -140,12 +148,12 @@ When it comes to the Sealed Bid Auction Example, you will see terminal logs show
 
 Your local Orbit chain is now running. Let's recap what you've accomplished through this quickstart:
 
-- Modified an EVM such that it works with precompiled functionality specific to Fairyring confidentiality technology.
+- Modified an EVM such that it works with precompiled functionality specific to FairyRing confidentiality technology.
 - Deployed an Arbitrum Orbit chain, `Fairyring Orbit Chain Demo`, that has base contracts registered to the Arbitrum Orbit ecosystem on the Arbitrum Sepolia Testnet.
 - Connected the `Fairyring Orbit Chain Demo` to an EVM with encryption and decryption functionality, via a modified nitro node, all in a local docker container.
 - Deployed, and ran a sealed bid auction using the functionality of the Fairblock precompiles on the new EVM Orbit Chain
 
-The key checkpoints highlighted have now provided the key steps to include when modifying your own custom EVM chain to use the Fairyring functionalities. For more specific questions, please reach out either on [Discord](https://discord.gg/jhNBCCAMPK) or our [open issues repo](TODO-GET-LINK).
+The key checkpoints highlighted have now provided the key steps to include when modifying your own custom EVM chain to use the FairyRing functionalities. For more specific questions, please reach out either on [Discord](https://discord.gg/jhNBCCAMPK) or our [open issues repo](TODO-GET-LINK).
 
 **Now that you have gone through the quickstart, feel free to dig into other tutorials or build with fellow Fairblock devs! If you would like a bit of detail on pre-compiles and the Sealed Bid Auction example, read onward. Otherwise, consider this the end of the quickstart tutorial!**
 
@@ -154,13 +162,15 @@ The key checkpoints highlighted have now provided the key steps to include when 
 The functionality enabled by the Fairblock pre-compiles is highlighted below.
 
 The `nitros` repo is the base EVM code that includes the precompiles, contracts and main functionality of the chain.
+
 - When it comes to the dependencies, here are some notes:
-  - The IBE encryption, kyber bls dependencies are needed for encryption and the types specifically from the latter library. Some of the sub-modules are not in there, so we need to update the submodules within the nitro repo as well. 
+  - The IBE encryption, kyber bls dependencies are needed for encryption and the types specifically from the latter library. Some of the sub-modules are not in there, so we need to update the submodules within the nitro repo as well.
 - When it comes to the actual Pre-Compile implementation logic:
-    - They’re all in one part: contracts.go
-        - Inside contracts.go you’ll see all the details.
+  - They’re all in one part: contracts.go
+    - Inside contracts.go you’ll see all the details.
 
 The actual code modifications added to the `contracts.go` file within the nitros repo mainly revolve around:
+
 - The `decrypt()`function
   - for all of the pre-compiles, there’s an entry point, the RUN function at the bottom.
   - This function calls the actual function we want, in this case it is decrypt().
@@ -187,4 +197,3 @@ For the sake of the tutorial, typical smart contract aspects such as transferenc
 All a developer really needs to do to start developing an auction contract that actually transfers values is follow typical smart contract patterns and take the decrypted bid amounts once the auction is over to carry out respective transactions.
 
 If you are interested in going through setting up a new orbit chain, and integrating the pre-compiles into it, see the [README_detailed.md](./README_detailed.md) file.
-

@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
-# RustVM Quickstart
+# Arbitrum Stylus (RustVM)
 
 Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbitrum Stylus chain that allows Fairblock Rust contracts to be deployed onto the integrating chain. This [repo](https://github.com/Fairblock/ArbitrumContracts) was used for the DevCon 2024 Stylus tutorial featuring Fairblock. Feel free to follow the `README` in the Fairblock ArbitrumContracts [repo](https://github.com/Fairblock/ArbitrumContracts), or follow this walk through (which is exactly the same and placed here for convenience).
 
@@ -10,22 +10,25 @@ Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbi
 
 > **This tutorial focuses on the integration path for RustVMs looking to work with Fairblock. It revolves around the deployment of decryption contracts onto said RustVM. Specifically, the tutorial showcases this by using Arbitrum Stylus, onto an EVM, specifically Sepolia. The decryption contracts allow developers and traditional EVM smart contracts to integrate with Fairblock by writing rust contracts onto an EVM, thus unlocking the power of a dynamic confidentiality network.**
 
-
-<iframe
-  width="100%"
-  height="315"
-  src="https://www.youtube.com/embed/gIzPgSw11uU&ab_channel=FairblockNetwork"
-  title="Fairblock v1 Testnet and Arbitrum Stylus Integration Tutorial"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/gIzPgSw11uU?si=SL-UlKg6DDzT9Ntg"
+    title="RustVM Integration Tutorial (w/ Arbitrum Stylus Example)"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
+</div>
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
 V1 is live on testnet with bespoke MPEC and threshold condition id-based encryption, which offer conditional confidentiality dependent on users’ needs.
 
-> Typical integration steps, including the use of software such as the `Encrypter` and `Fairyport`, for transaction encryption and communication between the Fairyring and Destination chains, respectively, is not focused on or omitted from this tutorial. Please see the advanced sections for further detail pertaining to these two and other more detailed integration steps.
+> Typical integration steps, including the use of software such as the `Encrypter` and `FairyPort`, for transaction encryption and communication between the FairyRing and Destination chains, respectively, is not focused on or omitted from this tutorial. Please see the advanced sections for further detail pertaining to these two and other more detailed integration steps.
 
 This tutorial has multiple steps, but to get developers building as fast as possible we have developed a quickstart consisting of running two bash scripts.
 
@@ -35,7 +38,7 @@ By the end of this tutorial, developers will have:
 
 - Part 1: Deploy their own Fairblock v1 tech stack into an Arbitrum Stylus integrated network, Sepolia. This will result in a deployed `Decrypter` contract on the Sepolia network.
 - Part 2: Deploy and test a Sealed Bid Auction smart contract, written in Solidity, with the Decrypter contract from Part 1.
-  - The underlying contracts and scripts will provide developers a sense of the integration process with the Stylus contracts and ultimately Fairblock's testnet, Fairyring.
+  - The underlying contracts and scripts will provide developers a sense of the integration process with the Stylus contracts and ultimately Fairblock's testnet, FairyRing.
 
 > If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our discord!
 
@@ -160,6 +163,6 @@ All a developer really needs to do to start developing an auction contract that 
 
 The world unlocked with the dynamic confidentiality network provided by Fairblock is vast. As the ecosystem onboards more partners, we will write more tutorials and additional content building off of simple examples such as this. This quickstart simply shows an example of a sealed bid auction that can exist on a Arbitrum Stylust Integrated network. Thus there are far more possibilities to build.
 
-Congratulations! You have now completed the quick start version of the Arbitrum Stylus and Fairblock Fairyring v1 quickstart tutorial.
+Congratulations! You have now completed the quick start version of the Arbitrum Stylus and Fairblock FairyRing v1 quickstart tutorial.
 
 If you are interested in going through the repo, step-by-step, versus using the two scripts, `build.sh`, `stylusTutorial.sh`, check out the detailed version of this tutorial within the [docs](../../../build/evm_apps/stylus_detailed_quickstart.md).
