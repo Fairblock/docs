@@ -6,7 +6,7 @@ sidebar_position: 2
 
 Welcome to the Fairblock and Cosmos Integration Tutorial. Please note that the App Quickstart within these docs is the exact same content as the repo README (aside from Fairblock context in the repo). They are placed in different locations for convenience to the reader.
 
-> ‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.
+_**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 
 A walk through of this tutorial, alongside context on Fairblock, EVMs, and Cosmos Chains is provided in the video below. If you prefer learning by reading on your own, feel free to skip it and continue onward in this README!
 

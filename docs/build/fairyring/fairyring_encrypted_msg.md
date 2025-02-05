@@ -4,15 +4,13 @@ sidebar_position: 3
 
 # 🍄 Fairblock: Building Basic Apps Using Simple Encrypted Transactions
 
-> ‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.
+_**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 
-Fairblock offers various MPC schemes for fun and novel dynamic confidential computation. One MPC scheme it offers is tIBE, where the FairyRing network is used to generate public keys for encryption and their respective decryption keys, based on a specific id, otherwise referred to as a "condition."
+Fairblock offers various MPC schemes for fun and novel dynamic confidential computation. One MPC scheme it offers is tIBE, where the FairyRing network is used to generate public keys for encryption and their respective decryption keys, based on a specific id, otherwise referred to as a "condition." This tutorial will guide you through using a simple Bash script to encrypt and send transactions in Fairblock with execution conditions based on a specific block height. The repo can be found [here](https://github.com/Fairblock/fairyring/tree/feat-auction).
 
-This tutorial will guide you through using a simple Bash script to encrypt and send transactions in Fairblock with execution conditions based on a specific block height. The repo can be found [here](https://github.com/Fairblock/fairyring/tree/feat-auction).
+> **Conditions can take the shape of anything, be it price of an asset, interest rates, etc.** 
 
-> Conditions can take the shape of anything, be it price of an asset, interest rates, etc. By default, apps developed on FairyRing can use FairyRing block height as the specific condition at which the respective decryption key will be generated to decrypt and trigger execution for a encrypted transaction.
-
-The encrypted messages are referred to, for lack of better term, as a "bank msg" where one sends tokens and a memo, all of which are encrypted.
+By default, apps developed on FairyRing can use FairyRing block height as the specific condition at which the respective decryption key will be generated to decrypt and trigger execution for a encrypted transaction. The encrypted messages within this tutorial are referred to, for lack of better term, as a "bank msg" where one sends tokens and a memo, all of which are encrypted.
 
 By the end, you'll understand how to:
 
@@ -20,7 +18,7 @@ By the end, you'll understand how to:
    - Create and sign transactions on Fairblock
    - Encrypt transactions for deferred execution
    - Retrieve transaction status and results
-2. Extract specific information from basic "building block" of sending and decrypting encrypted messages within FairyRing. This information can be useful for creating your own specific apps leveraging this small sample of confidential computation possibiliities.
+2. Extract specific information from the decrypted messages using FairyRing. This information can be useful for creating your own specific apps leveraging this small sample of confidential computation possibiliities.
 
 ## Demo Quick Start
 
@@ -69,38 +67,16 @@ make devnet-up
 
 The provided bash script, `bankMsgWithMemoAndDecryption.sh`, does the following:
 
-1. Takes User Input
-
-   - Asks for a FairyRing recipient address, the amount of uFairy to transfer, the wallet account name sending funds and the message, and a note for the transaction that acts as the message to be encrypted.
-
-2. Gets Required Info
-
-   - Fetches your public key, account address, account number, and sequence number from the list of devwallets available for the demo dev net.
-
-3. Creates a Transaction
-
-   - Generates an unsigned transaction with the specified details details.
-
-4. Signs the Transaction
-
-   - Uses the specified account's dev net credentials to sign it securely.
-
-5. Uses `x/pep` Module to Encrypt the Transaction
-
-   - Uses the standard convention of encrypting a message.
-
-6. Submits the Encrypted Transaction
-
-   - Sends it to the local devnet.
-
-7. Waits for Confirmation
-
-   - Watches the local FairyRing devnet blockchain height and checks when your transaction is included.
-
-8. Lists Decrypted Transactions
-   - Once confirmed, it retrieves and displays the decrypted transaction.
-
-> Developers are encouraged to parse the encrypted message for whatever data they may need for their own app design. This is where the true creative freedom comes into play!
+| Step | Description |
+|------|------------|
+| **Takes User Input** | Asks for a FairyRing recipient address, the amount of uFairy to transfer, the wallet account name sending funds, and a note for the transaction that acts as the message to be encrypted. |
+| **Gets Required Info** | Fetches your public key, account address, account number, and sequence number from the list of devwallets available for the demo dev net. |
+| **Creates a Transaction** | Generates an unsigned transaction with the specified details. |
+| **Signs the Transaction** | Uses the specified account's dev net credentials to sign it securely. |
+| **Uses `x/pep` Module to Encrypt the Transaction** | Uses the standard convention of encrypting a message. |
+| **Submits the Encrypted Transaction** | Sends it to the local devnet. |
+| **Waits for Confirmation** | Watches the local FairyRing devnet blockchain height and checks when your transaction is included. |
+| **Lists Decrypted Transactions** | Once confirmed, it retrieves and displays the decrypted transaction. |
 
 Through using the FairyRing network, the following perks for said transaction are achieved:
 
@@ -110,7 +86,11 @@ Through using the FairyRing network, the following perks for said transaction ar
 
 ## Frequently Used CLI Commands
 
-The following are CLI commands one can use within their own scripts to work with encrypted transactions at a rudiemental level. Expand the toggle to see its details.
+The output decrypted data is in JSON format. **Developers are encouraged to parse the encrypted message for whatever data they may need for their own app design. This is where the true creative freedom comes into play!**
+
+The following are CLI commands one can use within their own scripts to work with encrypted transactions at a rudimental level, including extracting information as needed. Expand the toggle to see its details.
+
+There are numerous ways to work with JSON files, we simply use `jq` within the following CLI commands shown and our demo script within this repo. See the official `jq` download docs [here](https://jqlang.org/download/).
 
 <details>
 <summary>Commonly Used CLI Commands Shown in This Tutorial</summary>

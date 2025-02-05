@@ -6,7 +6,7 @@ sidebar_position: 2
 
 Welcome to the Fairblock and EVM Integration Tutorial. Please note that the App Quickstart within these docs is the exact same content as the repo README (aside from Fairblock context in the repo). They are placed in different locations for convenience to the reader.
 
-> ‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.
+_**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 
 A walk through of this tutorial, alongside context on Fairblock, EVM integration, and Arbitrum Orbit is provided in the video below. If you prefer learning by reading on your own, feel free to skip it and continue onward in this README!
 
@@ -50,8 +50,8 @@ As always, please feel free to skip to the respective part you are interested in
 
 Firstly, clone both of these repos onto your machine, and make sure you use the correct branch:
 
-1. This repo - **make sure to use the branch `feat/fairblock-demo-orbit-chain`**: (Orbit Chain Setup Repo)[https://github.com/hashedtitan/orbit-setup-script]
-2. This repo - **make sure to use the branch `feat/fairblock-precompile`**: (nitro Repo with Precompiles)[https://github.com/hashedtitan/nitro]
+1. This repo - **make sure to use the branch `feat/fairblock-demo-orbit-chain`**: [Orbit Chain Setup Repo](https://github.com/hashedtitan/orbit-setup-script)
+2. This repo - **make sure to use the branch `feat/fairblock-precompile`**: [Nitro Repo with Precompiles](https://github.com/hashedtitan/nitro)
 
 The `nitro` repo will have the pre-compiles within its code and be running a node within a local docker container. The `orbit-setup-script` repo is a fork from Arbitrum Orbit that has pre-deployed chain contract config files within it. These two repos were made for the sake of time for this Quickstart. If you would like to learn more and go through the steps underlying the quickstart today, please see our docs.
 

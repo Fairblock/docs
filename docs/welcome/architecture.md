@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Fairblock High-Level Architecture
+# High-Level Architecture
 
 > **Apps refer to applications living on EVMs, and/or blockchains themselves, like those in the cosmos ecosystem.**
 

@@ -16,8 +16,8 @@ So let's start simple, and run your first cApp with an EVM leveraging FairyRing 
 
 Firstly, clone both of these repos onto your machine, and make sure you use the correct branch:
 
-1. This repo - **make sure to use the branch `feat/fairblock-demo-orbit-chain`**: (Orbit Chain Setup Repo)[https://github.com/hashedtitan/orbit-setup-script]
-2. This repo - **make sure to use the branch `feat/fairblock-precompile`**: (nitro Repo with Precompiles)[https://github.com/hashedtitan/nitro]
+1. This repo - **make sure to use the branch `feat/fairblock-demo-orbit-chain`**: [Orbit Chain Setup Repo](https://github.com/hashedtitan/orbit-setup-script)
+2. This repo - **make sure to use the branch `feat/fairblock-precompile`**: [Nitro Repo with Precompiles](https://github.com/hashedtitan/nitro)
 
 Within the `nitro` repo, at the root, run the following command to install the dependencies.
 

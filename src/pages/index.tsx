@@ -16,7 +16,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/welcome/welcome_to_fairblock"
+            to="/docs/welcome/vision"
           >
             Fairblock Docs
           </Link>
