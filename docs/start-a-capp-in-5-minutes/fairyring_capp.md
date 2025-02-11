@@ -11,6 +11,22 @@ By the end, you'll understand how to send encrypted messages and token transfers
    - Encrypt transactions for deferred execution
    - Retrieve transaction status and results
 
+<!-- A walk through of this quick demo is show in the video below. Feel free to watch it and follow along with the rest of this page.
+
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/79pSFHolMuI?si=dubh8pPQKypHThBp"
+    title="FairyRing Demo #1 - Encrypted Transactions"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
+</div> -->
+
 To run this demo, simply download this repo, and switch to this specific feature branch, `feat-auction`.
 
 ```bash
