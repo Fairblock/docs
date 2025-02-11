@@ -19,9 +19,9 @@ Among the multiple MPC schemes, the FairyRing testnet currently uses tIBE for de
 
 ## C
 
-### cApp (Confidential Application)
+### Confidential Application (cApp)
 
-A cApp is a confidential application built using Fairblock's infrastructure. Developers can create cApps to leverage Fairblock's encryption capabilities, ensuring that sensitive data within the application upholds confidentiality and security as per a developers design. cApps can be built on FairyRing, an EVM, or any other independent chain itself. External chains, AKA not FairyRing, integrate with FairyRing for dynamic confidential computing.
+A confidential application, or cApp for short, is built using Fairblock's infrastructure. Developers can create cApps to leverage Fairblock's encryption capabilities, ensuring that sensitive data within the application upholds confidentiality and security as per a developers design. cApps can be built on FairyRing, an EVM, or any other independent chain itself. External chains, AKA not FairyRing, integrate with FairyRing for dynamic confidential computing.
 
 ### Confidential AI
 
@@ -73,7 +73,7 @@ Fairblock consists of a blockchain purpose-built for hosting cApps leveraging th
 
 ### FairyPort
 
-Acting as a Relayer option, FairyPort is an off-chain service that acts as a messaging bridge, reading the state of the destination chain and FairyRing. It is used to communicate between the two networks for the passing of keys for decryption. Each transaction has a respective ID that corresponds to a keyshare used to decrypt on the destination chain, enabling the execution of the respective transaction.
+Acting as a relayer option, FairyPort is an off-chain service that acts as a messaging bridge, reading the state of the destination chain and FairyRing. It is used to communicate between the two networks for the passing of keys for decryption. Each transaction has a respective ID that corresponds to a keyshare used to decrypt on the destination chain, enabling the execution of the respective transaction.
 
 <!-- TODO: add link to FairyPort repo -->
 
@@ -144,7 +144,7 @@ Proof of Authority is a consensus mechanism that gives a vetted, designated numb
 
 ## P
 
-### Pre-Compiles
+### Precompiles
 
 Precompiles are predefined smart contracts that have special addresses and provide specific functionality which is executed not at the EVM bytecode level, but natively by the respective client itself, such as Arbitrum. Precompiles are primarily used to introduce specific functions that would be computationally expensive if executed in EVM bytecode, and functions that facilitate the interaction between the parent chain and the child chain. By having them natively in the client, they can be optimized for performance. Fairblock uses precompiles to integrate confidential compute functionality, in communication with FairyRing, to any EVM.
 
