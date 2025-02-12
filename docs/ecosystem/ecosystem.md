@@ -95,8 +95,8 @@ Fairblock’s confidential computing fixes this by bringing MPC-powered encrypti
 
 - **Sealed-bid auctions with a twist** (bid games where a prize pool is given to the highest unique bid, where if two bids match, they cancel out)  
 - **Verifiable randomness for fair gameplay** (provably fair onchain randomness with customizable delivery options, unlocking new game features, flexible infrastructure setup to accommodate different chain costs, and more)  
-- **Confidential trading and betting mechanisms**  
 - **Secret moves and hidden cards** (poker, strategy games)  
+- **Prediction games mechanisms** (Parimutuel prediction)
 
 Building with Fairblock enables new blockchain game types where known fun aspects of traditional gaming meet decentralized ownership and financial innovation.  
 
