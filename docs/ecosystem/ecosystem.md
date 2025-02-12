@@ -7,7 +7,7 @@ Fairblock’s Dynamic Confidential Computing unlocks a new wave of blockchain ap
 
 Check out our showcase projects, explore the ideas that need builders like you, and connect with the community pushing the boundaries of what's possible.  
 
-See below for showcase projects. Check out the [ideas page](TODO-GetLink) for even more projects that are being built today or waiting for the right contributors.  
+See below for showcase projects. Check out the [ideas page](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) for even more projects that are being built today or waiting for the right contributors.  
 
 ---
 
@@ -112,4 +112,4 @@ Fairblock’s Dynamic Confidential Computing is helping reshape Web3, making it 
 - Get involved in building the next big thing  
 - Join the community and collaborate with top minds in Web3  
 
-Ready to build? Check out our [ideas page](TODO-GetLink) and start making an impact today.  
+Ready to build? Check out our [ideas page](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) and start making an impact today.  
