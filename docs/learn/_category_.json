@@ -1,5 +1,6 @@
 {
   "label": "Learn",
-  "position": 4, 
-  "collapsible": false
+  "position": 5, 
+  "collapsible": true, 
+  "collapsed": true
 }
