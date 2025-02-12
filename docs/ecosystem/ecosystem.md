@@ -3,46 +3,113 @@ sidebar_position: 0
 ---
 # Ecosystem
 
-The new types of applications that are unlocked using Fairblock's Dynamic Confidential Computing is vast. It takes a thriving community to grab this opportunity to build a safer, more performant and innovative web3. Check out our showcase projects, explore the ideas that need people like you to build it, and get to know the community.
+Fairblock’s Dynamic Confidential Computing unlocks a new wave of blockchain applications by bringing confidentiality, efficiency, and credibility to Web3. It takes a thriving community to seize these opportunities and build a safer, more performant, and groundbreaking decentralized future.  
 
-> See below for showcase projects. See the ideas page [here](TODO-GetLink) for even more projects that could be built or are currently being built today.
+Check out our showcase projects, explore the ideas that need builders like you, and connect with the community pushing the boundaries of what's possible.  
 
-## Showcase Projects
+See below for showcase projects. Check out the [ideas page](TODO-GetLink) for even more projects that are being built today or waiting for the right contributors.  
 
-The Fairblock ecosystem is actively growing. Blockchain application categories and projects that are being focused on are listed. Summaries are provided below, and more details can be found in the respective links for each project.
+---
 
-### Fair DeFi and Credible Auctions
+## Showcase Projects  
 
-Fairblock unlocks credible and confidential DeFi mechanisms. Leaderless, sealed-bid auctions and different use cases for them are of particular interest, especially with the recent Arbitrum grant awarded to the Fairblock project.
+The Fairblock ecosystem is rapidly expanding, with active development across DeFi, AI, gaming, and cross-chain infrastructure. Below are key areas where confidential computing is making a real impact, with links to deeper dives on each initiative.  
 
-#### [DeBid Arbitrum Grant for Ecosystem Auctions](https://questbook.app/dashboard/?grantId=671a105a2047c84bb8a73770&chainId=10&isRenderingProposalBody=true&proposalId=6775ba29faef5017a8fafd6c)
+---
 
-Fairblock will build fully onchain confidential auction infrastructure on Arbitrum, serving DeFi, NFT, RWA, and tokenization apps. Fairblock will leverage Stylus to bring sealed-bid auctions fully onchain to produce better pricing for apps that use auctions to settle swaps, cross-chain token routing, perps and options, liquidations, and sales for memecoins, ICOs, NFTs, and RWAs. Stylus allows us to deploy our Rust decryption contracts to make onchain sealed-bid auctions possible onchain and empower users and apps with more capital-efficient and credible auction mechanisms.
+## Fair DeFi and Credible Auctions  
 
-#### Anoma Sealed-Bid Auctions for General Intents
+Fairblock is unlocking credible, confidential, and trustless financial mechanisms in DeFi. Leaderless, sealed-bid auctions are a core focus, enabling fair price discovery and reducing manipulation in everything from token sales to liquidation markets.  
 
-<!-- TODO: Write description -->
+### [DeBid Arbitrum Grant for Ecosystem Auctions](https://questbook.app/dashboard/?grantId=671a105a2047c84bb8a73770&chainId=10&isRenderingProposalBody=true&proposalId=6775ba29faef5017a8fafd6c)  
 
-Systems based on intents are more performant than historic DeFi applications, but are a nascent space today still. An exciting area of intent-based application development is the usage of sealed-bid auctions to innovate on current fully-public intent based systems. Current systems, on-chain, are fully public, but they typically rely on off-chain solvers, that can become monopolistic. Pairing the general intent based systems from Anoma, new application development is being explored initially with a DEX application that allows users to specify intents and customize the auction mechanisms for winning solvers. Iteratively, the entire intent setup can further improve using dynamic confidential computing, including dynamic and fair price discovery.
+Fairblock has secured a large Arbitrum grant to build fully onchain confidential auction infrastructure for DeFi, NFTs, RWAs, and tokenized assets. By leveraging Stylus, Fairblock is bringing sealed-bid auctions onchain to enable more capital-efficient and credible auction mechanisms.  
 
-#### Squid Sealed-Bid Auctions for Crosschain Intents
+This benefits a range of use cases, including:  
 
-<!-- TODO: Write description -->
+- Swaps and cross-chain routing  
+- Perps and options settlement  
+- Liquidations and fair token launches  
 
-We propose a decentralised sealed bid auction model for pricing intents across any chain. Powered by IBE, we believe this is the best design as far as price discovery, decentralization, and efficiency.
+Stylus allows us to deploy Rust-based decryption contracts, making onchain sealed-bid auctions a reality within more chains and empowering users and protocols.  
 
-#### Fair Token Launch System Using a Threshold-Encrypted Onchain Sealed-Bid Auction
+### Anoma Sealed-Bid Auctions for General Intents  
 
-<!-- TODO: Write description -->
+Intent-based DeFi is a game-changer for performance but is still an emerging space with off-chain solvers becoming bottlenecks or monopolies. By integrating sealed-bid auctions into Anoma's intent-based system, Fairblock is creating a decentralized, confidential, and fair auction mechanism for matching liquidity.  
 
-#### [Encrypted Programmable Orders with CoWSwap](https://swap.fairycow.fi/#/11155111/limit/WETH?tab=open&page=1)
+The first step is a DEX built on Anoma, where users can:  
 
-### Confidential AI
+- Specify intents and customize auction logic  
+- Benefit from confidential, dynamic price discovery  
+- Ensure fair and competitive solver selection  
 
-<!-- TODO: combine the below into a nice paragraph describing the power of Fairblock and confidential computation in these arenas, and then point them to the blog post. -->
+Further innovations with Anoma and Fairblock will be announced soon.  
 
-<!-- TODO: Write description -->
+### Squid Sealed-Bid Auctions for Cross-Chain Intents  
 
-### Hidden Information GameFi
+Squid Router (powered by Axelar) enables cross-chain swaps, and Fairblock is working with Squid to bring confidential cross-chain intents to life.  
 
-(GameFi is an important focus, using encryption for hidden-information games: pay-to-decrypt, mysteries, on-chain randomness, PvP gaming, betting, highest unique bid auctions.)
+With FairyRing and Threshold IBE, Fairblock is enabling:  
+
+- Fair and decentralized solver competition using sealed-bid auctions  
+- Better price discovery and execution for users  
+- Confidentiality in cross-chain swaps  
+
+This is just the tip of the iceberg—cross-chain intents are still in their early days, and Fairblock is helping lead the charge in bringing confidential applications and decentralization to the space.  
+
+### Fair Token Launches with Threshold-Encrypted Sealed-Bid Auctions  
+
+Token launches have a history of being complex and unpredictable. Methods including dutch auctions, bonding curves, and AMM-based launches all introduce gameable mechanics that confuse participants and ultimately distort pricing.  
+
+Fairblock brings confidential computing to token launches, making them simple, fair, and efficient:  
+
+- Users submit sealed bids for tokens  
+- Smart contracts determine the fair clearing price  
+- Tokens are distributed, and refunds are processed automatically  
+
+No confusion, just fair market pricing for everyone. Fairblock is working with token launchpad projects like Rova to bring this sealed-bid token launch mechanism and more to fruition.  
+
+---
+
+## Confidential AI  
+
+### [Confidential AI Inference](https://medium.com/@0xfairblock/confidential-rituals-trustless-and-unstoppable-ai-with-dynamic-confidentiality-95ecaee66e4c)  
+
+Fairblock and Ritual are building the future of confidential AI where onchain AI models can operate  without exposing sensitive data, inference logic, or outputs.  
+
+With MPC-powered confidential inference, Fairblock is exploring the potential unlocks with:  
+
+- Secure AI-powered decision-making in DeFi (e.g., optimal borrowing/lending parameters)  
+- Private data marketplaces, where users can sell encrypted datasets for model fine-tuning  
+- Trustless agent execution, ensuring AI agents don’t require direct wallet permissions  
+
+By decentralizing AI execution and access control, Fairblock and Ritual are making AI-driven Web3 applications secure, confidential, and unstoppable.  
+
+---
+
+## Hidden Information GameFi  
+
+One of the biggest challenges in blockchain gaming is the lack of hidden information, as blockchains are inherently transparent. This makes it difficult to implement even basic games like poker, where secrecy is essential.  
+
+Fairblock’s confidential computing fixes this by bringing MPC-powered encryption to blockchain games. Some ideas within this realm, among many, include:  
+
+- **Sealed-bid auctions with a twist** (bid games where a prize pool is given to the highest unique bid, where if two bids match, they cancel out)  
+- **Verifiable randomness for fair gameplay** (provably fair onchain randomness with customizable delivery options, unlocking new game features, flexible infrastructure setup to accommodate different chain costs, and more)  
+- **Confidential trading and betting mechanisms**  
+- **Secret moves and hidden cards** (poker, strategy games)  
+
+Building with Fairblock enables new blockchain game types where known fun aspects of traditional gaming meet decentralized ownership and financial innovation.  
+
+Fairblock is already working with XAI to integrate confidential computing into GameFi, with developers using Fairblock Decrypter contracts on XAI’s testnet (via Arbitrum Stylus) to build the next generation of hidden-information blockchain games.  
+
+---
+
+## Join the Builders Pushing the Limits of Web3  
+
+Fairblock’s Dynamic Confidential Computing is helping reshape Web3, making it safer and more efficient across DeFi, AI, cross-chain platforms, gaming, and more. Whether you’re a developer, researcher, or a general user, we’re happy to have you along for the ride.  
+
+- Explore our showcase projects  
+- Get involved in building the next big thing  
+- Join the community and collaborate with top minds in Web3  
+
+Ready to build? Check out our [ideas page](TODO-GetLink) and start making an impact today.  
