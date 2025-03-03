@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 🍄 Fairblock: Building Basic Apps Using Simple Encrypted Transactions
+# 🍄 Simple Encrypted Transactions
 
 _**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 
@@ -19,6 +19,22 @@ By the end, you'll understand how to:
    - Encrypt transactions for deferred execution
    - Retrieve transaction status and results
 2. Extract specific information from the decrypted messages using FairyRing. This information can be useful for creating your own specific apps leveraging this small sample of confidential computation possibiliities.
+
+A quick walk through of this demo is show in the video below. Feel free to watch it and follow along with the rest of this page. Please note that this page goes through the details of the demo, check out the ["Start a cApp in 5 Minutes"](../../start-a-capp-in-5-minutes/fairyring_capp.md) section if you want a shorter version.
+
+<div style={{ textAlign: "center" }}>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/G0Pz-iW_Fdk?si=UA_7d-ae1IORqDcH"
+    title="FairyRing Demo #1 - Encrypted Transactions"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{ maxWidth: "560px" }}
+  ></iframe>
+</div>
 
 ## Demo Quick Start
 
