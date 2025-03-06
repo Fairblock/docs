@@ -9,6 +9,8 @@ Check out our showcase projects, explore the ideas that need builders like you, 
 
 See below for showcase projects. Check out the [ideas page](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) for even more projects that are being built today or waiting for the right contributors.  
 
+> Fill out this [type form](https://form.typeform.com/to/MtEp1IZ1) if you would like to discuss building any of these ideas with our Developer Relations team! 
+
 ---
 
 ## Showcase Projects  
