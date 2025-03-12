@@ -7,7 +7,7 @@ Fairblock’s Dynamic Confidential Computing unlocks a new wave of blockchain ap
 
 Check out our showcase projects, explore the ideas that need builders like you, and connect with the community pushing the boundaries of what's possible.  
 
-See below for showcase projects. Check out the [ideas page](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) for even more projects that are being built today or waiting for the right contributors.  
+See below for how the key features of Fairblock are used, showcase projects. Check out the [ideas page](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) for even more projects that are being built today or waiting for the right contributors.  
 
 > Fill out this [type form](https://form.typeform.com/to/MtEp1IZ1) if you would like to discuss building any of these ideas with our Developer Relations team! 
 
@@ -15,9 +15,11 @@ See below for showcase projects. Check out the [ideas page](https://fairblock.no
 
 ## Showcase Projects  
 
-The Fairblock ecosystem is rapidly expanding, with active development across DeFi, AI, gaming, and cross-chain infrastructure. Below are key areas where confidential computing is making a real impact, with links to deeper dives on each initiative.  
+The Fairblock ecosystem is rapidly expanding, with active development across DeFi, AI, gaming, and cross-chain infrastructure. Below are key areas where confidential computing is making a real impact, with links to deeper dives on each initiative. Further details are shared for each as well.
 
----
+<!-- TODO: add table for key functions and different use cases
+
+Project names -->
 
 ## Fair DeFi and Credible Auctions  
 
