@@ -12,14 +12,23 @@ See below for how the key features of Fairblock are used, showcase projects. Che
 > Fill out this [type form](https://form.typeform.com/to/MtEp1IZ1) if you would like to discuss building any of these ideas with our Developer Relations team! 
 
 ---
+## Examples Leveraging Confidential Computing
+
+Fairblock has a vision of endless unique functions leveraging confidential computing. Some present-day functions that are actively explored in applications are outlined in the table below.
+
+| Functions       | Example Use Cases       | Projects      |
+|---------------|---------------|---------------|
+| Encrypted Transactions | <ul><li>"Bank Messages" transferring tokens with a memo</li></ul> | <ul><li>Institutional, Compliant Transactions, and Private order-books with several partners</li></ul> |
+| General Conditions with Public Decryption | <ul><li>Encrypted Data DEXes</li><li>Gaming Loot Boxes</li></ul> | <ul><li>Gaming innovative features with XAI</li><li>Other gaming ecosystems</li></ul> |
+| General Conditions with Private Decryption | <ul><li>Private Data Marketplaces for AI Models</li><li>Content Behind Conditions and/or Paywalls</li><li>Trusted Solvers for Intent Systems</li></ul> | <ul><li>Anoma Intents Builder Program</li><li>Exploring Auctions within Intent protocols</li></ul> |
+| Leaderless Timed, or Auctioneer-Led Sealed-Bid Auctions | <ul><li>Fair NFT Auctions</li><li>RWA auctions with regulatory processes</li><li>Fair token launch mechanisms</li></ul> | <ul><li>Arbitrum Grant to Build Sealed-Bid Auction Infrastructure for Arbitrum Chains</li><li>DeFi w/ Corn</li><li>RWAs with Plume</li></ul> |
+| Advanced Auctions with Smart Contracts | <ul><li>Fair and dynamic price discovery for intents</li><li>Fixed-Rate lending markets</li></ul> | <ul><li>Arbitrum Grant to Build Sealed-Bid Auction Infrastructure for Arbitrum Chains</li></ul> |
+| Private Governance | <ul><li>Democratic governance systems where voting is truly confidential</li></ul> | <ul><li>`x/privgov` module available for use to all Cosmos ecosystems as a public good</li></ul> |
+| FHE & Other Confidential Computing in Development | <ul><li>Confidential Inference with AI</li></ul> | <ul><li>Confidential onchain inference with Ritual</li></ul> |
 
 ## Showcase Projects  
 
 The Fairblock ecosystem is rapidly expanding, with active development across DeFi, AI, gaming, and cross-chain infrastructure. Below are key areas where confidential computing is making a real impact, with links to deeper dives on each initiative. Further details are shared for each as well.
-
-<!-- TODO: add table for key functions and different use cases
-
-Project names -->
 
 ## Fair DeFi and Credible Auctions  
 

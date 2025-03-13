@@ -27,10 +27,8 @@ Welcome to Fairblock Protocol's Community Resources! We've outlined the resource
 
 ## Get Involved
 
-<!-- TODO: make a typeform or something that makes sense here.
-[**Contact Us:**](TODO:GetLink) Interested in building with us or have general inquiries? Contact Fairblock directly. -->
+[**Contact Us:**](https://form.typeform.com/to/MtEp1IZ1) Interested in building with us or have general inquiries? Contact Fairblock directly.
 
-<!-- TODO: make notion page with RFPs - write it out as a list first, but then make a duplicate of it as a spreadsheet like Balancer Grants and get feedback -->
 [**Ecosystem RFP Notion Page:**](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) Explore and contribute to Fairblock's Ecosystem RFPs on GitHub. 
 
 [**Stay Updated**](https://x.com/0xfairblock) 
