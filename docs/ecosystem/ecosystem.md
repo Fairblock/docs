@@ -14,17 +14,30 @@ See below for how the key features of Fairblock are used, showcase projects. Che
 ---
 ## Examples Leveraging Confidential Computing
 
-Fairblock has a vision of endless unique functions leveraging confidential computing. Some present-day functions that are actively explored in applications are outlined in the table below.
+Fairblock has a vision of endless unique functions leveraging confidential computing. The FairyRing testnet has been live for over a year, and we're excited to explore new application ideas with various partners and the Fairblock ecosystem. Some present-day developments that are actively explored in applications are outlined in the table below.
 
-| Functions       | Example Use Cases       | Projects      |
-|---------------|---------------|---------------|
-| Encrypted Transactions | <ul><li>"Bank Messages" transferring tokens with a memo</li></ul> | <ul><li>Institutional, Compliant Transactions, and Private order-books with several partners</li></ul> |
-| General Conditions with Public Decryption | <ul><li>Encrypted Data DEXes</li><li>Gaming Loot Boxes</li></ul> | <ul><li>Gaming innovative features with XAI</li><li>Other gaming ecosystems</li></ul> |
-| General Conditions with Private Decryption | <ul><li>Private Data Marketplaces for AI Models</li><li>Content Behind Conditions and/or Paywalls</li><li>Trusted Solvers for Intent Systems</li></ul> | <ul><li>Anoma Intents Builder Program</li><li>Exploring Auctions within Intent protocols</li></ul> |
-| Leaderless Timed, or Auctioneer-Led Sealed-Bid Auctions | <ul><li>Fair NFT Auctions</li><li>RWA auctions with regulatory processes</li><li>Fair token launch mechanisms</li></ul> | <ul><li>Arbitrum Grant to Build Sealed-Bid Auction Infrastructure for Arbitrum Chains</li><li>DeFi w/ Corn</li><li>RWAs with Plume</li></ul> |
-| Advanced Auctions with Smart Contracts | <ul><li>Fair and dynamic price discovery for intents</li><li>Fixed-Rate lending markets</li></ul> | <ul><li>Arbitrum Grant to Build Sealed-Bid Auction Infrastructure for Arbitrum Chains</li></ul> |
-| Private Governance | <ul><li>Democratic governance systems where voting is truly confidential</li></ul> | <ul><li>`x/privgov` module available for use to all Cosmos ecosystems as a public good</li></ul> |
-| FHE & Other Confidential Computing in Development | <ul><li>Confidential Inference with AI</li></ul> | <ul><li>Confidential onchain inference with Ritual</li></ul> |
+
+| App Ideas | Selling Points | Partners / In Queue Exploration | *Tech Stack |
+|-----------|---------------|----------------------------------|------------|
+| **"Bank Messages" transferring tokens with a memo** | - Private, compliant messaging with tokens  <br> - Secure memo fields for institutional transactions | - Institutional partners working on compliant private transactions  <br> - Private order-books with several blockchain partners | A, F |
+| **Encrypted Data DEXes** <br> **Gaming Loot Boxes** | - Loot boxes bring more attractive elements to onboard users from gaming to adjacent web3 gaming products | - XAI and other gaming ecosystems exploring hidden mechanics | B, C |
+| **Private Data Marketplaces for AI Models** <br> **Content Behind Conditions and/or Paywalls** | - Self-managed data sold to AI agents or other actors in DEXes <br> - Confidential content access via smart contracts (ex. Twitter Content Gated Apps) | - New protocols similar to Vana  <br> - Exploration of apps where content is gated (e.g., Premium Twitter, FairyFans, etc.) | B, C |
+| **Fair NFT Auctions** <br> **RWA auctions with regulatory processes** <br> **Fair token launch mechanisms** | - Prevents frontrunning, auction-leader maliciousness, and more in NFT and RWA auctions <br> - Confidential price discovery | - Arbitrum grant for sealed-bid auction infrastructure <br> - Plume for RWA auctions <br> - DeFi protocols utilizing fair token launches | D, E |
+| **Fair and dynamic price discovery for intents** <br> **Fixed-Rate lending markets** | - Solvers bidding for intents using sealed-bid auctions to pursue truly fair intent pricing <br> - Lending and borrow rates both encrypted, such that a clearing price is found for both in a fair manner | - Arbitrum ecosystem DeFi projects <br> - Anoma <br> - SettleX | D, E |
+| **Democratic governance systems where voting is truly confidential** | - Truly confidential on-chain voting <br> - Prevents governance manipulation | - Available as `x/privgov` module for Cosmos ecosystems | G |
+| **Confidential Inference with AI** | - Confidential AI inference and on-chain machine learning <br> - Secure execution with privacy-preserving MPC and TEEs | - Ritual <br> - Quartz | H, I |
+
+_*Technological Features from FairyRing to be Used_
+
+_A. Encrypted Messages
+B. Smart Contracts using General Conditions with Public Decryption
+C. Smart Contracts using General Conditions with Private Decryption
+D. Sealed-Bid Auctions
+E. Smart Contracts using General Conditions with Sealed-Bid Auctions
+F. Encrypted Messages with Compliant Settings
+G. Private Governance
+H. FHE (zkks)
+I. MPC w/ TEEs_
 
 ## Showcase Projects  
 
