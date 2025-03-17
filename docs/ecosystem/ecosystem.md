@@ -9,23 +9,23 @@ Check out our showcase projects, explore the ideas that need builders like you, 
 
 See below for how the key features of Fairblock are used, showcase projects. Check out the [ideas page](https://fairblock.notion.site/Fairblock-Builders-Program-RFP-List-69cd0c7747904e89bd27257a359a80f1?pvs=74) for even more projects that are being built today or waiting for the right contributors.  
 
-> Fill out this [type form](https://form.typeform.com/to/MtEp1IZ1) if you would like to discuss building any of these ideas with our Developer Relations team! 
+> Fill out this [type form](https://form.typeform.com/to/MtEp1IZ1) if you would like to discuss building any of these ideas with our Developer Relations team!
 
 ---
+
 ## Examples Leveraging Confidential Computing
 
 Fairblock has a vision of endless unique functions leveraging confidential computing. The FairyRing testnet has been live for over a year, and we're excited to explore new application ideas with various partners and the Fairblock ecosystem. Some present-day developments that are actively explored in applications are outlined in the table below.
 
-
 | App Ideas | Selling Points | Partners / In Queue Exploration | *Tech Stack |
 |-----------|---------------|----------------------------------|------------|
-| **"Bank Messages" transferring tokens with a memo** | - Private, compliant messaging with tokens  <br> - Secure memo fields for institutional transactions | - Institutional partners working on compliant private transactions  <br> - Private order-books with several blockchain partners | A, F |
-| **Encrypted Data DEXes** <br> **Gaming Loot Boxes** | - Loot boxes bring more attractive elements to onboard users from gaming to adjacent web3 gaming products | - XAI and other gaming ecosystems exploring hidden mechanics | B, C |
-| **Private Data Marketplaces for AI Models** <br> **Content Behind Conditions and/or Paywalls** | - Self-managed data sold to AI agents or other actors in DEXes <br> - Confidential content access via smart contracts (ex. Twitter Content Gated Apps) | - New protocols similar to Vana  <br> - Exploration of apps where content is gated (e.g., Premium Twitter, FairyFans, etc.) | B, C |
-| **Fair NFT Auctions** <br> **RWA auctions with regulatory processes** <br> **Fair token launch mechanisms** | - Prevents frontrunning, auction-leader maliciousness, and more in NFT and RWA auctions <br> - Confidential price discovery | - Arbitrum grant for sealed-bid auction infrastructure <br> - Plume for RWA auctions <br> - DeFi protocols utilizing fair token launches | D, E |
-| **Fair and dynamic price discovery for intents** <br> **Fixed-Rate lending markets** | - Solvers bidding for intents using sealed-bid auctions to pursue truly fair intent pricing <br> - Lending and borrow rates both encrypted, such that a clearing price is found for both in a fair manner | - Arbitrum ecosystem DeFi projects <br> - Anoma <br> - SettleX | D, E |
-| **Democratic governance systems where voting is truly confidential** | - Truly confidential on-chain voting <br> - Prevents governance manipulation | - Available as `x/privgov` module for Cosmos ecosystems | G |
-| **Confidential Inference with AI** | - Confidential AI inference and on-chain machine learning <br> - Secure execution with privacy-preserving MPC and TEEs | - Ritual <br> - Quartz | H, I |
+| **"Bank Messages" transferring tokens with a memo** | - Private, compliant messaging with tokens  <br /> - Secure memo fields for institutional transactions | - Institutional partners working on compliant private transactions  <br /> - Private order-books with several blockchain partners | A, F |
+| **Encrypted Data DEXes** <br /> **Gaming Loot Boxes** | - Loot boxes bring more attractive elements to onboard users from gaming to adjacent web3 gaming products | - XAI and other gaming ecosystems exploring hidden mechanics | B, C |
+| **Private Data Marketplaces for AI Models** <br /> **Content Behind Conditions and/or Paywalls** | - Self-managed data sold to AI agents or other actors in DEXes <br /> - Confidential content access via smart contracts (ex. Twitter Content Gated Apps) | - New protocols similar to Vana  <br /> - Exploration of apps where content is gated (e.g., Premium Twitter, FairyFans, etc.) | B, C |
+| **Fair NFT Auctions** <br /> **RWA auctions with regulatory processes** <br /> **Fair token launch mechanisms** | - Prevents frontrunning, auction-leader maliciousness, and more in NFT and RWA auctions <br /> - Confidential price discovery | - Arbitrum grant for sealed-bid auction infrastructure <br /> - Plume for RWA auctions <br /> - DeFi protocols utilizing fair token launches | D, E |
+| **Fair and dynamic price discovery for intents** <br /> **Fixed-Rate lending markets** | - Solvers bidding for intents using sealed-bid auctions to pursue truly fair intent pricing <br /> - Lending and borrow rates both encrypted, such that a clearing price is found for both in a fair manner | - Arbitrum ecosystem DeFi projects <br /> - Anoma <br /> - SettleX | D, E |
+| **Democratic governance systems where voting is truly confidential** | - Truly confidential on-chain voting <br /> - Prevents governance manipulation | - Available as `x/privgov` module for Cosmos ecosystems | G |
+| **Confidential Inference with AI** | - Confidential AI inference and on-chain machine learning <br /> - Secure execution with privacy-preserving MPC and TEEs | - Ritual <br /> - Quartz | H, I |
 
 _*Technological Features from FairyRing to be Used_
 
