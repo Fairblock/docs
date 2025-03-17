@@ -20,5 +20,6 @@ Instead of relying on slow or centralized, one-size-fits-all solutions, Fairbloc
 
 [![Fairblock Macro Schematic](../assets/FairyRingMacroSchematic.png)](../assets/FairyRingMacroSchematic.png)
 
-
 Fairblock has been live on the public testnet since ETHDenver 2024, fostering a native ecosystem of 20+ fast and efficient applications. We collaborate with teams such as Anoma, CoWSwap, Ritual, and Squid in our performant and efficient native ecosystem while also delivering seamless confidential computing to EVM chains—including Arbitrum, OP Stack, Ethereum, and Monad—as well as all Cosmos SDK chains and Solana. This ensures an interconnected environment for users and developers, high liquidity, and strong native activity within our network.
+
+> Explore more of the exciting projects in our [Ecosystem Pages](../ecosystem/ecosystem.md).
