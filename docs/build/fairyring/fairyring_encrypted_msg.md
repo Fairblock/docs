@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 🍄 Simple Encrypted Transactions
+# Simple Encrypted Transactions
 
 _**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 

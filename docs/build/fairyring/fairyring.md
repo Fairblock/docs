@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 🍄 Fairblock: Building Apps within FairyRing
+# Fairblock: Building Apps within FairyRing
 
 Building cApps within FairyRing continues to becomer more simpler than ever. cApps currently can leverage the following chain features built atop of FairyRing's confidential computing. The chain is continuously adding native features, so make sure to keep up to date with the project updates. 
 
