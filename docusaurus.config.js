@@ -5,7 +5,7 @@ const darkCodeTheme = themes.dracula;
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Fairblock Network',
-  tagline: 'Unlocking Fair and Efficient Economies for End Users, by Eliminating Exploitative Intermediaries through Multi-Party Computation',
+  tagline: 'Powering incorruptible markets and machines through encrypting sensitive onchain amounts and data.',
   favicon: 'img/favicon/favicon.ico',
 
   // Set the production url of your site here
