@@ -3,16 +3,20 @@ sidebar_position: 0
 ---
 # Vision
 
-## An Inflection Point
+### Unlocking Incorruptible Markets and Machines
 
-Blockchain technology gives us tools to eliminate bad behavior. Let’s build toward a future where manipulation is impossible by design. 
+Circle, Paypal, and Solana are all converging on confidential stablecoin transfers. But fully transparent chains expose every stablecoin balance, trading intent, auction bid, liquidation trigger, and AI input data to bots and manipulators that extract value. Meanwhile, centralized components in the tech stack add new trust assumptions, security risks, and attack surfaces. Onchain information leakage and manipulation are the biggest bottleneck to scaling blockchains and institutional adoption.
 
-The next 16 years should result in more than our legendary memecoin infra and plain transfers.
+Fairblock protects users and funds across stablecoins, lending, and intent protocols. Our dynamic confidential computing accelerates institutional adoption by protecting sensitive onchain information, securing better prices, and mitigating security risks by removing reliance on fully trusted servers. 
 
-Businesses and end users will avoid any system that publicly leaks valuable onchain activities and data.
+### **Why Fairblock: Product first, not research, not marketing**
 
-**Onchain confidentiality is the greatest unsolved crisis in crypto.**
-
-## The Opportunity: Decentralized but Manipulation-Free
-
-Fairblock leverages confidential computing to mitigate centralized risks and prevent information leakage and manipulation in decentralized applications. We’ll unlock credible economies and pave the path for the next 16 years, just like internet adoption after it went 80% encrypted.
+- **20+** partnerships: Launched apps and integrations (Arbitrum, Hyperliquid, Uniswap, CowSwap, Squid, Anoma, Axelar, etc) with a focus on:
+    1. Confidential and compliant stablecoin transfers
+    2. Protected orders
+- **Multimodal cryptography:** Dynamic toolkit with tailored, lightweight cryptographic schemes (MPC, threshold IBE, FHE, ZK, TEE) for each app and use case. No need for excessively heavy/expensive computation.
+- **Meet devs where they are**: Flexible, plug-in composability means devs don’t need to migrate their stack or learn new languages.
+- **Architected for compliance** through post-execution selective disclosure ([OFAC](https://www.govinfo.gov/app/details/CFR-2010-title31-vol3/CFR-2010-title31-vol3-sec500-314), [FinCEN](https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1010/subpart-A/section-1010.100#p-1010.100), [MiCA](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1114#d1e4979-86) friendly)
+- **Performant**: Fast and cheap client-side encryption: no delays, extra installs, or bridges for end users.
+- **Competitive edge:** Modular and chain‑agnostic (vs isolated privacy chains), faster than TFHE‑only plays, no fully trsuted coprocessor/relays/hardware, and native DeFi integration.
+- **Proven execution:** Live on public testnet since EthDenver 2024. 63M+ cumulative transactions.
