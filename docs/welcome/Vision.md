@@ -1,7 +1,7 @@
 ---
 sidebar_position: 0
 ---
-# Vision
+# Fairblock
 
 ### Unlocking Incorruptible Markets and Machines
 
@@ -20,3 +20,5 @@ Fairblock protects users and funds across stablecoins, lending, and intent proto
 - **Performant**: Fast and cheap client-side encryption: no delays, extra installs, or bridges for end users.
 - **Competitive edge:** Modular and chain‑agnostic (vs isolated privacy chains), faster than TFHE‑only plays, no fully trusted centralized coprocessor/relays/hardware, and suitable for native DeFi integration.
 - **Proven execution:** Live on public testnet since EthDenver 2024. 63M+ cumulative transactions.
+
+[![Fairblock Macro Schematic](../assets/FairyRingMacroSchematic.png)](../assets/FairyRingMacroSchematic.png)
