@@ -420,9 +420,11 @@ cast send --rpc-url $SEPOLIA_RPC_URL --private-key $AUCTIONEER_PRIVATE_KEY \
 ## 10. Full end-to-end deployment script
 
 We provide a single script that handles **every** step from cloning the
-repositories to finalising several test auctions. To perform this end-to-end test, run the below command:
-The script will ask you to add the environment variables in the `.env` file as needed.
+repositories to finalising several test auctions. To perform this end-to-end test, clone the `DeBid` repository and run the script:
+(The script will ask you to add the environment variables in the `.env` file as needed.)
 ```bash
+git clone https://github.com/Fairblock/DeBid.git 
+cd DeBid
 ./FullDeployScript.sh
 ```
 ---
