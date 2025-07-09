@@ -5,15 +5,14 @@
 Auctions are a core primitive for token launchpads, NFT primary sales, debt-
 liquidations, and the emerging class of intent-based DeFi protocols.  
 Today most on-chain auctions are transparent Dutch or English formats: easy to
-build, but vulnerable to bid shading, sniping, and other MEV strategies that
-distort price discovery.  Sealed-bid auctions solve those issues but existing
+build, but can be gamed and often fail to produce optimal price discovery. Sealed-bid auctions solve those issues but existing
 implementations are typically off-chain and centralised, re-introducing trust
 assumptions and single points of failure.
 
 This section explains how to run a **fully on-chain, trust-minimised sealed-bid
 auction system** native to Arbitrum.  We combine:
 
-* **FairyRing threshold key management** to issue per-auction IDs a corresponding decryption once the bidding window closes.  
+* **FairyRing threshold key management** to issue per-auction IDs a corresponding decryption key once the bidding window closes.  
 * **Stylus decrypter contracts** that perform on-chain decryption.  
 * **Gateway Contract + FairyPort relayer** for seamless message passing
   between FairyRing and Arbitrum.  
