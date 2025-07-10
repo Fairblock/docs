@@ -1,21 +1,15 @@
 # Sealed-Bid Leaderless Auctions
 
 ## 1. Why sealed-bid auctions?
+Auctions are a core primitive for fixed-rate lending markets, intents price discovery, token launchpads, NFT and RWA sales, and perp liquidations.
+Today most onchain auctions are transparent Dutch or English formats that can be manipulated and often fail to produce optimal price discovery. Sealed-bid auctions solve those issues but existing implementations are typically off-chain with centralised and exposed to securiy risks and manipulation.
+This section explains how to run a fully on-chain and leaderless sealed-bid auction system native to Arbitrum One and Orbit. We combine:
 
-Auctions are a core primitive for token launchpads, NFT primary sales, debt-
-liquidations, and the emerging class of intent-based DeFi protocols.  
-Today most on-chain auctions are transparent Dutch or English formats: easy to
-build, but can be gamed and often fail to produce optimal price discovery. Sealed-bid auctions solve those issues but existing
-implementations are typically off-chain and centralised, re-introducing trust
-assumptions and single points of failure.
+- **FairyRing threshold key management + identity-based encryption** to issue per-auction IDs a corresponding decryption key once the bidding window closes.
 
-This section explains how to run a **fully on-chain, trust-minimised sealed-bid
-auction system** native to Arbitrum.  We combine:
+- **Stylus native decryption contracts** that perform onchain verification and decryption.
 
-* **FairyRing threshold key management** to issue per-auction IDs a corresponding decryption key once the bidding window closes.  
-* **Stylus decrypter contracts** that perform on-chain decryption.  
-* **Gateway Contract + FairyPort relayer** for seamless message passing
-  between FairyRing and Arbitrum.  
+- **Gateway Contract + FairyPort relayer** for seamless message passing between FairyRing and Arbitrum.
 
 The result is **DeBid**: Bidders submit encrypted bids that stay private until the reveal time. When the bidding window closes, the decryption key is generated and used to decrypt and process all bids directly on chain.
 
