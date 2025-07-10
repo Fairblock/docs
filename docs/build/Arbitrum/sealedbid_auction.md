@@ -1,6 +1,6 @@
 # Sealed-Bid Auction Infrastructure on Arbitrum
 
-## 1. Why sealed-bid auctions on Arbitrum?
+## 1. Why sealed-bid auctions?
 
 Auctions are a core primitive for token launchpads, NFT primary sales, debt-
 liquidations, and the emerging class of intent-based DeFi protocols.  
