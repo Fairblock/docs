@@ -1,4 +1,4 @@
-# Sealed-Bid Auction Infrastructure on Arbitrum
+# Sealed-Bid Leaderless Auctions
 
 ## 1. Why sealed-bid auctions?
 
