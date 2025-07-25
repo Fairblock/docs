@@ -73,38 +73,6 @@ This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctio
 
 ---
 
-## Go‑to‑Market Strategy
-
-**Objective**: Make “Confidential Fixed‑Rate” a default button next to every major lending UI and every yield trading venue.
-
-### Where we launch & who we serve first
-
-- Chains: Testnet live on Arbitrum. Next up Hyperliquid L1 (where speed and native orderbook UX matters and confidentiality is a selling point). Arbitrum already [supports](https://questbook.app/dashboard/?isRenderingProposalBody=true&proposalId=6775ba29faef5017a8fafd6c&grantId=671a105a2047c84bb8a73770&chainId=10) Fairblock’s sealed‑bid infrastructure and we capitalize on that momentum.
-- First users:
-    - Whales/yield farmers holding USDC and ETH looking earn yield with rate certainty
-    - DAO and protocol treasuries that budget quarterly and hate showing their hand
-    - Funds and market makers that need block liquidity without slippage
-
-### **Distribution via Morpho (coopetition)**
-
-Morpho V2 is launching a fixed‑rate/fixed‑term product, validating market demand. The strategy is to slot in as the confidentiality and price discovery layer for users who (a) move above a set amount and (b) want rate certainty without leaking intent.
-
-- “Confidential Fixed‑Rate” tab inside Morpho’s interface: identical UX, but bids are sealed and cleared at a single uniform price. Morpho already proved it will surface non‑native flows e.g. [Coinbase](https://morpho.org/blog/coinbase-launches-crypto-backed-loans-powered-by-morpho/) loans is powered by Morpho. We are exploring the inverse: Morpho surfaces Fairates auctions for its users.
-- Morpho routes bids above a certain size to Fairates’ sealed-bid auction to avoid AMM slippage and MEV leakage, then settles the result back to the user.
-
-Value for Morpho:
-
-- They get institutional‑grade orderflow that currently won’t touch open mempools.
-- They keep the user relationship and settlement. We increase the total fixed‑rate pie instead of fighting over it.
-
-### **Secondary liquidity via Pendle**
-
-- Tokenize Fairates’ fixed‑rate notes (principal and coupon): Pendle traders can price, hedge, or lever them without ever seeing the original auction sizes.
-- Pendle benefits from new, clean, encrypted amount fixed‑rate supply while Fairates benefits from deep secondary market liquidity and discoverability.
-- We pitch Pendle a joint “Fixed‑Rate Income Hub”: Fairates mints primary fixed‑rate, Pendle trades it.
-
----
-
 ## Sources
 
 - DeFi lending TVL ($67.2B) & protocol stats — [DefiLlama](https://defillama.com/protocols/lending), July 25, 2025
