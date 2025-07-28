@@ -1,7 +1,7 @@
-
 ---
 sidebar_position: 3
 ---
+
 # Confidential Stablecoins
 
 Public blockchains leak sensitive information like payroll, vendor terms, treasury moves, and trading operations, compromising competitive intelligence and increasing attack surface. Enterprises can’t scale on public rails without confidentiality.
