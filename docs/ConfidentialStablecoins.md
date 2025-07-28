@@ -75,7 +75,7 @@ For developers:
 
 # Compliance and Risks: Selective visibility without backdoors
 
-Fairblock offers the compliance-first path for institutions: maintain confidentiality by default and disclose is scoped to who needs to know and when with cryptographic assurance.
+Fairblock offers the compliance-first path for institutions: maintain confidentiality by default and disclosure is scoped to who needs to know and when with cryptographic assurance.
 
 - **Per‑transaction, per‑auditor keys**: Decryption keys are generated with specific parameters (transaction, account, period) accessible by the select auditor. No “view‑all” master key.
 - **Post‑execution model:** Disclosure happens after settlement and only what is needed is revealed policy requires. No full financial history.
