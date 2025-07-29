@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # EVM cApp
 
-What if you want to run a cApp on a different network? Well you're in luck anon. This tutorial is a bit longer than 5 minutes, but it's worth it 😉.
+What if you want to run a cApp on an EVM network?
 
 As mentioned throughout the docs, FairyRing and its power of confidential computation can be used within many other networks, not limited to but including: EVMs, Cosmos chains, and RustVM chains.
 

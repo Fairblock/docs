@@ -3,7 +3,7 @@ sidebar_position: 0
 ---
 # Fairblock
 
-### Unlocking Incorruptible Markets and Machines
+### Confidential Stablecoins and Protected Trading
 
 Circle, Paypal, and Solana are all converging on confidential stablecoin transfers. But fully exposed blockchains aren’t the solution either: they leak sensitive information like stablecoin transfers, trading intents, liquidation triggers, auction bids, and private AI inputs. This information leakage invites exploitation, skews price discovery, and prevents the next wave of high-impact financial applications. Onchain information leakage and manipulation are the biggest bottleneck to trustworthy financial rails and institutional adoption.
 
