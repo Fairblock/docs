@@ -13,6 +13,8 @@ Public blockchains leak sensitive information like payroll, vendor terms, treasu
 **Tech:** Twisted ElGamal (fast additive HE) + light ZK proofs + MPC/IBE for selective disclosure compliance. It’s performant, auditable, and composable.
 
 Explore our [demo]( https://confidential-usdc-demo.vercel.app/) for confidential USDC.
+![alt text](<demo.png>)
+
 
 # Confidentiality is a requirement, not a nice-to-have
 
