@@ -2,6 +2,8 @@
 sidebar_position: 0
 ---
 # Fairblock
+Fairblock is a dynamic, decentralized cryptographic computer enabling fast, secure execution of cryptographic logic. It hosts low-cost, high-performance native cApps and seamlessly delivers these capabilities into ecosystems such as Arbitrum, Hyperliquid, Solana, Base, and Cosmos.
+
 
 ### Confidential Stablecoins and Protected Trading
 
