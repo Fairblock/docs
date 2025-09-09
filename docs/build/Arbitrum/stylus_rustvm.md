@@ -26,7 +26,7 @@ Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbi
 
 Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
-V1 is live on testnet with bespoke MPEC and threshold condition id-based encryption, which offer conditional confidentiality dependent on users’ needs.
+V1 is live on testnet with bespoke MPC-IBE which offer conditional confidentiality (for pre-execution confidentiality, sealed-bid auctions, selective disclosure, encypted limit orders etc) and HE for confidential stablecoin transfers.
 
 > Typical integration steps, including the use of software such as the `Encrypter` and `FairyPort`, for transaction encryption and communication between the FairyRing and Destination chains, respectively, is not focused on or omitted from this tutorial. Please see the advanced sections for further detail pertaining to these two and other more detailed integration steps.
 

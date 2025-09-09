@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # v1 Cryptography
 
-Fairblock v1 mainly focuses on using HE and Threshold Identity-Based Encryption (tIBE) (aka MPC-IBE, conditional decryption or witness encryption) for its services as a chain. The reason behind choosing HE and tIBE is high TPS, minimal bandwidth overhead, and high security. In this section we'll focus on tIBE:
+Fairblock v1 mainly focuses on using HE and Threshold Identity-Based Encryption (tIBE) (aka MPC-IBE, conditional decryption or witness encryption) for its services as a chain. The reason behind choosing HE and tIBE is high TPS, minimal bandwidth overhead, and high security. In this section we'll focus on tIBE (for pre-execution confidentiality, selective disclosure, sealed-bid auctions, and **not confidential HE transfers**):
 
 1. What is IBE and tIBE
 2. What basic functions are exposed to chains and Apps integrating with Fairblock
