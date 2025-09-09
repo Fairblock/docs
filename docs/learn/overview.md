@@ -15,4 +15,4 @@ Fairblock's V1 is live with two main schemes:
 1. Lighweight HE for confidential transfers
 2. MPC-IBE for pre-execution confidentiality and conditional decryption (Frontrunning protection, protected limit orders, sealed-bid auctions, selective disclosure for transfers, predictions)
 
-![Multimodal Cryptography](../../assets/MultiModal.png)
+![Multimodal Cryptography](../assets/MultiModal.png)
