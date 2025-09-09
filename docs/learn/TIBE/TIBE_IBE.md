@@ -8,10 +8,10 @@ sidebar_position: 0
 1. Overview of how Fairblock works again (schematic); use the schematic and walk through key points. Make sure to point out how other chains and EVMs differ in how they work under the hood, but not in practice.
 2. Introduce the next pages: cryptography and the network. -->
 
-For v1, Fairblock's blockchain, the `fairyring` chain uses Threhsold IBE (Condition ID Based Encryption) to allow users to encrypt transactions using a public key,
-which then decrypts and executes automatically at the target height.
+For v1, Fairblock's blockchain, the `fairyring` chain uses light weight HE and Threhsold IBE (Condition ID Based Encryption to allow users to encrypt transactions using a public key,
+which then decrypts and executes automatically at conditions such as the target height.)
 
-The following flow gives an idea of how `fairyring` v1 works.
+The following flow gives an idea of how `fairyring` v1 works for tIBE:
 
 ![General flow for `fairyring` v1](../../assets/fairyring-overview.png)
 
