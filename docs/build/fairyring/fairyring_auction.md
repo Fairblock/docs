@@ -13,7 +13,7 @@ Sealed-Bid Auctions are a powerful tool, and with Fairblock, they are carried ou
 1. Dynamic Pricing for Intent Mechanimsms: a decentralized protocol in which no single actor controls price discovery. Bids are encrypted and revealed only after the bidding period ends, preventing frontrunning, shilling, and censorship. All used within multiple facets of an intents protocol.
 2. Fixed-Rate Lending with Leaderless-Auctions: Innovating lending markets using sealed-bid auctions.
 
-For more detailed examples and use cases, check out our [Ecosystem Page](https://docs.fairblock.network/docs/ecosystem/) in our docs!
+For more detailed examples and use cases, check out our [Ecosystem Page](https://docs.fairblock.network/docs/ecosystem/community_resources) in our docs!
 
 > **The auction functionality covered here revolves around working with the `x/auction` module. If you are looking to make more advanced auction-based cApps, check out the [`fairblock-design-patterns` repo](https://github.com/hashedtitan/fairblock-design-patterns) that will soon be updated with boiler plate smart contract ideas.** 
 

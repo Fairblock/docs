@@ -30,7 +30,7 @@ To run this demo, simply download this repo, and switch to this specific feature
 
 ## What is the Difference Between Public and Private Decryption?
 
-A core concept within Fairblock is "Public, and Private, Decryption." Assuming that you have gone through the foundational parts of the [docs](TODO), you know that the FairyRing validators generate keyshares that are ultimately aggregated to create the Master Decryption Key for a respective encrypted transaction. The default methodology has the Master Decryption Key fully public to anyone watching the FairyRing network, which is fine in certain applications. Some applications may want the Master Decryption Key to be encrypted for one specific user. When this is the case, the keyshares that are ultimately aggregated and used to create the Master Decryption Key, are actually encrypted by the calling user's wallet public key. The user then can decrypt the keyshares, aggregate them to get the Master Decryption Key, without anyone else onchain knowing. This step can be handled by the front-end so the user doesn't have to go through extra steps.
+A core concept within Fairblock is "Public, and Private, Decryption." Assuming that you have gone through the foundational parts of the docs, you know that the FairyRing validators generate keyshares that are ultimately aggregated to create the Master Decryption Key for a respective encrypted transaction. The default methodology has the Master Decryption Key fully public to anyone watching the FairyRing network, which is fine in certain applications. Some applications may want the Master Decryption Key to be encrypted for one specific user. When this is the case, the keyshares that are ultimately aggregated and used to create the Master Decryption Key, are actually encrypted by the calling user's wallet public key. The user then can decrypt the keyshares, aggregate them to get the Master Decryption Key, without anyone else onchain knowing. This step can be handled by the front-end so the user doesn't have to go through extra steps.
 
 Thus we have the following definitions:
 
@@ -45,7 +45,7 @@ There really is an endless design space for cApps using Private Decription and G
 2. **Content Behind Conditions and/or Paywalls - Example Idea: FairyFans:** cApps where subscribers can pay and/or carry out certain conditions in order to decrypt access to content or the content itself. Imagine all your favorite crypto twitter content creators providing end to end encrypted access to their content, all using decentralized, onchain, tech.
 3. **Trusted Solvers for Intent Systems** - cApps that leverage intent systems but require that the solvers used follow specific conditions based on the prepared intent-based transaction. We already see intent apps provide the option to specify to use certain solvers, but that is all anchored in centralized systems. Private decryption and general conditions with fairblock unlocks this feature in a decentralized way.
 
-For more cApp ideas make sure to check out our [Ecosystem page](https://docs.fairblock.network/docs/ecosystem/).
+For more cApp ideas make sure to check out our [Ecosystem page](https://docs.fairblock.network/docs/ecosystem/community_resources).
 
 ## Key Lessons from this Demo
 
@@ -300,5 +300,5 @@ Congratulations! You have now seen an example of using a smart contract to encry
 
 There are several next steps you can take now.
 
-1. Check out our other quick starts to see how to build with other networks integrating into FairyRing in our [docs](https://docs.fairblock.network/docs/welcome/quickstart/).
+1. Check out our other quick starts to see how to build with other networks integrating into FairyRing in our [docs](https://docs.fairblock.network/docs/start-a-capp-in-5-minutes).
 2. Join our [discord](https://discord.gg/jhNBCCAMPK) and discuss new build ideas! We host frequent developer hours to encourage more novel ideas with confidential computation.

@@ -21,4 +21,4 @@ More tutorials are being actively worked on showcasing different integration set
 1. [Apps Native to FairyRing](./fairyring/)
 2. [EVMs Modified with Pre-Compiles](./evms/evms.md)
 3. [Cosmos Chains Quickstart](./cosmos/cosmos_quickstarts.md)
-4. [RustVM Integration with Rust Contracts](./stylus_rustvm.md)
+4. [RustVM Integration with Rust Contracts](./Arbitrum/stylus_rustvm.md)

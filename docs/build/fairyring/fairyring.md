@@ -23,7 +23,7 @@ As an even bigger unlock within the Fairblock confidential computation, the `x/p
 
 A tutorial showcasing general conditions is shown [here](../../build/fairyring/fairyring_private_decryption.md), and more tutorials are under development.
 
-More information on the `x/pep` module can be found [here](../../../advanced/pep_module.md) in the meantime.
+More information on the `x/pep` module can be found [here](../../advanced/pep_module.md) in the meantime.
 
 ## Using Private Decryption vs Public Decryption for Access Control
 
@@ -41,4 +41,4 @@ Further examples (not exhaustive) of both public decryption and private decrypti
 
 ## Building with `x/auction` module
 
-A flagship feature of the FairyRing chain, sealed bid auctions are a economic asset the chain brings to cosmos and other chains. Natively, cApps can be deployed using the `x/auction` module within FairyRing where a few commands can start decentralized, sealed bid auctions. As a new innovative space, some builds and examples currently being explored are outlined in the [ecosystem pages](../../ecosystem/ecosystem.md).
+A flagship feature of the FairyRing chain, sealed bid auctions are a economic asset the chain brings to cosmos and other chains. Natively, cApps can be deployed using the `x/auction` module within FairyRing where a few commands can start decentralized, sealed bid auctions. As a new innovative space, some builds and examples currently being explored are outlined in the [ecosystem pages](../../ecosystem/community_resources.md).

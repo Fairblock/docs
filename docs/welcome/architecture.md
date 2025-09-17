@@ -32,11 +32,11 @@ The high level architecture and components involved in most integrations are lis
 
 1. FairyRing - Fairblock's native chain and ecosystem, that abstracts away intensive cryptographic operations for applications built within its chain as well as those built on alternative blockchains. For example, some functionality in today's FairyRing testnet includes the tIBE-based generation and distribution of decentralized keys to other chains.
 2. FairyKit - Integration packages that plug into any protocol and application to bring one-click confidentiality to any app or user requiring it.
-3. [Encryption SDK](../../advanced/encrypt_tx.md) - An off-chain software used to encrypt transactions to be submitted to the Destination Chain. Once the encrypter is integrated with applications (front-end or wallets), users will seamlessly encrypt their transactions. Encryption happens, end-to-end, locally within the browser and is not relying on any third parties.
+3. [Encryption SDK](../advanced/encrypt_tx.md) - An off-chain software used to encrypt transactions to be submitted to the Destination Chain. Once the encrypter is integrated with applications (front-end or wallets), users will seamlessly encrypt their transactions. Encryption happens, end-to-end, locally within the browser and is not relying on any third parties.
 4. Destination Chain - The chain storing encrypted transactions, receiving public keys, and secret keys from FairyRing, and where the transactions are executed. This can be FairyRing itself with native applications to its chain, or it can be an external chain working with FairyRing.
-5. [Relayers](../../advanced/fairyport.md) - The communication method that listens and coordinates between the FairyRing and destination chains for transaction decryption and execution. An example of this includes FairyPort and IBC.
+5. [Relayers](../advanced/fairyport.md) - The communication method that listens and coordinates between the FairyRing and destination chains for transaction decryption and execution. An example of this includes FairyPort and IBC.
 
-_To learn more about the concepts above, read more in the [learn](../learn/overview.md) and respective [advanced](../category/advanced/) sections._
+_To learn more about the concepts above, read more in the [learn](../learn/v1/v1.md) and respective [advanced](../advanced/) sections._
 
 ## FairyKits and Co-Processing
 

@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Conditional Encryption/Decryption
 
-In the [overview](/docs/basics/overview.md), we saw a general flow for how to interact with `fairyring`.
+In the [overview](/docs/learn/v1/v1.md), we saw a general flow for how to interact with `fairyring`.
 In particular, the chain provides functionality on requesting specific encryption keys corresponding to conditions set by the developer.
 
 We provide a more detailed explanation in this section via an example.

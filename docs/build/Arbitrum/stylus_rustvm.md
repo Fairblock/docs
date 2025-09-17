@@ -32,7 +32,7 @@ V1 is live on testnet with bespoke MPC-IBE which offer conditional confidentiali
 
 This tutorial has multiple steps, but to get developers building as fast as possible we have developed a quickstart consisting of running two bash scripts.
 
-> If you would like to learn more about the steps involved underneath these bash scripts, and thus making up this repo, jump to the section after the Quickstart, [Detailed Tutorial](../../../build/evm_apps/stylus_detailed_quickstart.md)
+<!-- > If you would like to learn more about the steps involved underneath these bash scripts, and thus making up this repo, jump to the section after the Quickstart, [Detailed Tutorial](../../../build/evm_apps/stylus_detailed_quickstart.md) -->
 
 By the end of this tutorial, developers will have:
 
@@ -165,4 +165,4 @@ The world unlocked with the dynamic confidentiality network provided by Fairbloc
 
 Congratulations! You have now completed the quick start version of the Arbitrum Stylus and Fairblock FairyRing v1 quickstart tutorial.
 
-If you are interested in going through the repo, step-by-step, versus using the two scripts, `build.sh`, `stylusTutorial.sh`, check out the detailed version of this tutorial within the [docs](../../../build/evm_apps/stylus_detailed_quickstart.md).
+<!-- If you are interested in going through the repo, step-by-step, versus using the two scripts, `build.sh`, `stylusTutorial.sh`, check out the detailed version of this tutorial within the [docs](../../../build/evm_apps/stylus_detailed_quickstart.md). -->

@@ -23,7 +23,7 @@ Welcome to Fairblock Protocol's Community Resources! We've outlined the resource
 
 3. **[Building cApps within Cosmos Chains](../build/cosmos/cosmos_privgov.md)**
 
-4. **[Building cApps within Stylus Chains (RustVMs)](../build/stylus_rustvm.md)**
+4. **[Building cApps within Stylus Chains (RustVMs)](../build/Arbitrum/stylus_rustvm.md)**
 
 ## Get Involved
 

@@ -21,7 +21,7 @@ Once the destination chain has access to the derived private key, it decrypts th
 
 Note the following two things:
 
-- encrypted transactions are stored in the [`x/pep`](../advanced/pep_module.md) of their corresponding chains. They are not transferred over IBC to `fairyring`.
+- encrypted transactions are stored in the [`x/pep`](../../../advanced/pep_module.md) of their corresponding chains. They are not transferred over IBC to `fairyring`.
 - encrypted transactions are executed in their corresponding chains (not `fairyring`).
 - the target height for executing an encrypted transaction corresponds to the height on `fairyring`. Decryption triggered by another chain's conditions is live for private governance, while alternative conditions for decryption on destination chains will soon be implemented.
 - interactions between `fairyring` and Cosmos chains will work differently than non-Cosmos chains. We will share information regarding non-Cosmos chains soon.

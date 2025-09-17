@@ -32,7 +32,7 @@ Typical integration steps, including the use of software such as the `Encrypter`
 
 This tutorial has multiple steps, but to get developers building as fast as possible we have developed a quickstart consisting of running only a few bash commands and scripts.
 
-> If you would like to learn more about the steps involved underneath these bash scripts, and thus making up this repo, jump to the section after the Quickstart, [Detailed Tutorial](./README_detailed.md)
+<!-- > If you would like to learn more about the steps involved underneath these bash scripts, and thus making up this repo, jump to the section after the Quickstart, [Detailed Tutorial](./README_detailed.md) -->
 
 By the end of this tutorial, developers will have:
 
@@ -40,7 +40,7 @@ By the end of this tutorial, developers will have:
 - Part 2: Deploy and test a Sealed Bid Auction smart contract, written in Solidity, working with the pre-compiles logic from Part 1.
   - The underlying contracts and scripts will provide developers a sense of the integration process with the Orbit chain pre-compile logic and ultimately Fairblock's testnet, FairyRing.
 
-As always, please feel free to skip to the respective part you are interested in. Smart Contract Developers who want to work within an EVM that has Fairblock precompiles can do so by using the [example smart contracts within this repo as a reference](./test-simple-auction-solidity/SealedBidAuctionExample.sol). For chain developers, the details on the precompiles will be of most interest. There are details on the precompiles [near the end of this README](#the-pre-compiles-deployed-into-an-evm).
+As always, please feel free to skip to the respective part you are interested in. Smart Contract Developers who want to work within an EVM that has Fairblock precompiles can do so by using the [example smart contracts within this repo as a reference](https://github.com/Fairblock/ArbitrumContracts/blob/master/test-simple-auction-solidity/SealedBidAuctionExample.sol). For chain developers, the details on the precompiles will be of most interest. There are details on the precompiles [near the end of this README](#the-pre-compiles-deployed-into-an-evm).
 
 > If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our [discord](https://discord.gg/jhNBCCAMPK)!
 
@@ -153,7 +153,7 @@ Your local Orbit chain is now running. Let's recap what you've accomplished thro
 - Connected the `Fairyring Orbit Chain Demo` to an EVM with encryption and decryption functionality, via a modified nitro node, all in a local docker container.
 - Deployed, and ran a sealed bid auction using the functionality of the Fairblock precompiles on the new EVM Orbit Chain
 
-The key checkpoints highlighted have now provided the key steps to include when modifying your own custom EVM chain to use the FairyRing functionalities. For more specific questions, please reach out either on [Discord](https://discord.gg/jhNBCCAMPK) or our [open issues repo](TODO-GET-LINK).
+The key checkpoints highlighted have now provided the key steps to include when modifying your own custom EVM chain to use the FairyRing functionalities. For more specific questions, please reach out either on [Discord](https://discord.gg/jhNBCCAMPK).
 
 **Now that you have gone through the quickstart, feel free to dig into other tutorials or build with fellow Fairblock devs! If you would like a bit of detail on pre-compiles and the Sealed Bid Auction example, read onward. Otherwise, consider this the end of the quickstart tutorial!**
 
@@ -196,4 +196,4 @@ For the sake of the tutorial, typical smart contract aspects such as transferenc
 
 All a developer really needs to do to start developing an auction contract that actually transfers values is follow typical smart contract patterns and take the decrypted bid amounts once the auction is over to carry out respective transactions.
 
-If you are interested in going through setting up a new orbit chain, and integrating the pre-compiles into it, see the [README_detailed.md](./README_detailed.md) file.
+<!-- If you are interested in going through setting up a new orbit chain, and integrating the pre-compiles into it, see the [README_detailed.md](./README_detailed.md) file. -->

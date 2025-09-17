@@ -189,8 +189,8 @@ Congratulations! You have now seen an example of encrypting a transaction with a
 
 There are several next steps you can take now anon.
 
-1. Check out the actual time capsule demo app on the FairyRing testnet [here](https://capsule.fairblock.network/).
-2. Check out our other quick starts to see how to build with other networks integrating into FairyRing in our [docs](https://docs.fairblock.network/docs/welcome/quickstart/).
+1. Check out the actual time bomb demo app on the FairyRing testnet [here](https://bomb.fairblock.network/).
+2. Check out our other quick starts to see how to build with other networks integrating into FairyRing in our [docs](https://docs.fairblock.network/docs/start-a-capp-in-5-minutes).
 3. Join our [discord](https://discord.gg/jhNBCCAMPK) and discuss new build ideas! We host frequent developer hours to encourage more novel ideas with confidential computation.
 <!-- 2. Look at an implementation for a local front end and simple app for a time capsule [here](https://github.com/Fairblock/time-capsule). TODO: make this repo public-->
 
