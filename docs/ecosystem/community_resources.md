@@ -7,7 +7,7 @@ Welcome to Fairblock Protocol's Community Resources! We've outlined the resource
 
 ## Join Our Developer Community
 
-[**Discord:**](https://discord.gg/jhNBCCAMPK): Join our #developers discord channel and chat with fellow developers, ask questions, and stay updated. We're always down to get to know our community, and on the look out for ways to improve.
+[**Discord:**](https://discord.gg/fairblock): Join our #developers discord channel and chat with fellow developers, ask questions, and stay updated. We're always down to get to know our community, and on the look out for ways to improve.
 
 ## Explore Examples and Educational Content
 
