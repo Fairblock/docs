@@ -301,4 +301,4 @@ Congratulations! You have now seen an example of using a smart contract to encry
 There are several next steps you can take now.
 
 1. Check out our other quick starts to see how to build with other networks integrating into FairyRing in our [docs](https://docs.fairblock.network/docs/start-a-capp-in-5-minutes).
-2. Join our [discord](https://discord.gg/jhNBCCAMPK) and discuss new build ideas! We host frequent developer hours to encourage more novel ideas with confidential computation.
+2. Join our [Discord](https://discord.gg/fairblock) and discuss new build ideas! We host frequent developer hours to encourage more novel ideas with confidential computation.
