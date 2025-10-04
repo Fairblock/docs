@@ -79,5 +79,5 @@ When it comes to the Sealed Bid Auction Example, you will see terminal logs show
 - Two bids from different private wallets (as per the `.env`) are made, and then the auction ends.
 - The sealed bid auction was completed and a winner has been announced with a bid of 200.
 
-Using this example, many interesting apps can be built within EVMs. Make sure to join our [discord](https://discord.gg/jhNBCCAMPK) to discuss new ideas. A list of interesting ideas, currently worked on and to be worked on, will be available soon.
+Using this example, many interesting apps can be built within EVMs. Make sure to join our [discord](https://discord.gg/fairblock) to discuss new ideas. A list of interesting ideas, currently worked on and to be worked on, will be available soon.
 
