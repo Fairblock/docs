@@ -108,7 +108,7 @@ const config = {
               },
               {
                 label: 'Discord',
-                href: 'https://discord.gg/jhNBCCAMPK',
+                href: 'https://discord.gg/fairblock',
               },
             ],
           },
