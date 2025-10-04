@@ -40,7 +40,7 @@ By the end of this tutorial, developers will have:
 - Part 2: Deploy and test a Sealed Bid Auction smart contract, written in Solidity, with the Decrypter contract from Part 1.
   - The underlying contracts and scripts will provide developers a sense of the integration process with the Stylus contracts and ultimately Fairblock's testnet, FairyRing.
 
-> If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our discord!
+> If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our [Discord](https://discord.gg/fairblock)!
 
 ---
 
