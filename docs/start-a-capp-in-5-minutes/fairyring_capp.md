@@ -50,4 +50,4 @@ Upon running the `./bankMsgWithMemoAndDecryption.sh` script, you will be prompte
 
 Once you have gone through the prompts, you will have successfully ran your first cApp where you've sent a simple message, encrypted it, and awaited the condition (block height in this case) for it be decrypted!
 
-Using this simple concept, many interesting apps can be built. Make sure to join our [discord](https://discord.gg/jhNBCCAMPK) to discuss new ideas. A list of interesting ideas, currently worked on and to be worked on, will be available soon.
+Using this simple concept, many interesting apps can be built. Make sure to join our [discord](https://discord.gg/fairblock) to discuss new ideas. A list of interesting ideas, currently worked on and to be worked on, will be available soon.
