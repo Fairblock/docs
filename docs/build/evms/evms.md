@@ -42,7 +42,7 @@ By the end of this tutorial, developers will have:
 
 As always, please feel free to skip to the respective part you are interested in. Smart Contract Developers who want to work within an EVM that has Fairblock precompiles can do so by using the [example smart contracts within this repo as a reference](https://github.com/Fairblock/ArbitrumContracts/blob/master/test-simple-auction-solidity/SealedBidAuctionExample.sol). For chain developers, the details on the precompiles will be of most interest. There are details on the precompiles [near the end of this README](#the-pre-compiles-deployed-into-an-evm).
 
-> If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our [discord](https://discord.gg/jhNBCCAMPK)!
+> If there are any questions, or if you would like to build with the Fairblock ecosystem, please join our [discord](https://discord.gg/fairblock)!
 
 ---
 
@@ -153,7 +153,7 @@ Your local Orbit chain is now running. Let's recap what you've accomplished thro
 - Connected the `Fairyring Orbit Chain Demo` to an EVM with encryption and decryption functionality, via a modified nitro node, all in a local docker container.
 - Deployed, and ran a sealed bid auction using the functionality of the Fairblock precompiles on the new EVM Orbit Chain
 
-The key checkpoints highlighted have now provided the key steps to include when modifying your own custom EVM chain to use the FairyRing functionalities. For more specific questions, please reach out either on [Discord](https://discord.gg/jhNBCCAMPK).
+The key checkpoints highlighted have now provided the key steps to include when modifying your own custom EVM chain to use the FairyRing functionalities. For more specific questions, please reach out either on [Discord](https://discord.gg/fairblock).
 
 **Now that you have gone through the quickstart, feel free to dig into other tutorials or build with fellow Fairblock devs! If you would like a bit of detail on pre-compiles and the Sealed Bid Auction example, read onward. Otherwise, consider this the end of the quickstart tutorial!**
 
