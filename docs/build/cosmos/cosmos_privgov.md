@@ -224,4 +224,4 @@ Let's recap what you've accomplished through this quickstart:
 
 Now that you have gone through the quickstart, feel free to dig into other tutorials or build with fellow Fairblock devs!
 
-For more specific questions, please reach out either on [Discord](https://discord.gg/jhNBCCAMPK).
+For more specific questions, please reach out either on [Discord](https://discord.gg/fairblock).
