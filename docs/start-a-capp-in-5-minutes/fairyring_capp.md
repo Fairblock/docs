@@ -11,7 +11,7 @@ By the end, you'll understand how to send encrypted messages and token transfers
    - Encrypt transactions for deferred execution
    - Retrieve transaction status and results
 
-A walk through of this quick demo is show in the video below. Feel free to watch it and follow along with the rest of this page.
+A walkthrough of this quick demo is show in the video below. Feel free to watch it and follow along with the rest of this page.
 
 <div style={{ textAlign: "center" }}>
   <iframe
