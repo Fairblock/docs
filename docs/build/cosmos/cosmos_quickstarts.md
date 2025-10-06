@@ -8,7 +8,7 @@ A key thing to understand is that there are various FairyKits to select from whe
 
 A key design decision for which FairyKit method to choose revolves around the Decryption and Execution Layer.
 
-Chains integrating with Fairblock can often choose between the "FairyKit" or "Co-Processing" route, as shown in the below schematic, where the two high-level integration categories, FairyKit and Coprocessing, are described. Depending on the design scenario, one method will prove to be better suited than the other.
+Chains integrating with Fairblock can often choose between the "FairyKit" or "Co-Processing" route, as shown in the below schematic, where the two high-level integration categories, FairyKit and Co-Processing, are described. Depending on the design scenario, one method will prove to be better suited than the other.
 
 ![Cosmos Decryption and Execution Layer Schematic](../../assets/CosmosDecryptionAndExecutionSchematic.png)
 

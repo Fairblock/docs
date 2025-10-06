@@ -18,7 +18,7 @@ By the end, you'll understand how to:
    - Create and sign transactions on Fairblock
    - Encrypt transactions for deferred execution
    - Retrieve transaction status and results
-2. Extract specific information from the decrypted messages using FairyRing. This information can be useful for creating your own specific apps leveraging this small sample of confidential computation possibiliities.
+2. Extract specific information from the decrypted messages using FairyRing. This information can be useful for creating your own specific apps leveraging this small sample of confidential computation possibilities.
 
 A quick walk through of this demo is show in the video below. Feel free to watch it and follow along with the rest of this page. Please note that this page goes through the details of the demo, check out the ["Start a cApp in 5 Minutes"](../../start-a-capp-in-5-minutes/fairyring_capp.md) section if you want a shorter version.
 

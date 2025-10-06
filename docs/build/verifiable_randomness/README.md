@@ -4,11 +4,11 @@ sidebar_position: 5
 
 # Using Fairyring’s Verifiable Randomness
 
-This section outlines three possible approaches to integrate the Verifiable Randomness Function (VRF) from Fairyring with other chains, which include both Cosmos SDK and EVM-compatible execution environments.
+This section outlines three possible approaches to integrate the Verifiable Randomness Function (VRF) from FairyRing with other chains, which include both Cosmos SDK and EVM-compatible execution environments.
 
-## Verifiable Randomness on Fairyring
+## Verifiable Randomness on FairyRing
 
-Fairyring can provide a Verifiable Random String via a functionality in its KEYSHARE module.
+FairyRing can provide a Verifiable Random String via a functionality in its KEYSHARE module.
 
 ```proto
 rpc VerifiableRandomness(QueryVerifiableRandomnessRequest) returns (QueryVerifiableRandomnessResponse) {
@@ -25,12 +25,12 @@ message QueryVerifiableRandomnessResponse {
 
 ## Approach 1: IBC Query
 
-Use IBC to make a query on the Fairyring chain. This is the simplest way for other Cosmos chains to fetch Randomness from fairyring, since IBC is a core part of the Cosmos-SDK. However, it can work with other EVM chains as well if they have an IBC implementation.
+Use IBC to make a query on the FairyRing chain. This is the simplest way for other Cosmos chains to fetch Randomness from fairyRing, since IBC is a core part of the Cosmos-SDK. However, it can work with other EVM chains as well if they have an IBC implementation.
 
 ### Requirements
 
-- A working IBC channel between the Native chain and Fairyring.
-- IBC Relayer for **Native Chain-Fairyring** communication
+- A working IBC channel between the Native chain and FairyRing.
+- IBC Relayer for **Native Chain-FairyRing** communication
 - Implementation of an IBC query logic in the native chain
 
 ### Code Sketch
@@ -50,16 +50,16 @@ func (k Keeper) RequestRandomnessFromFairyring(ctx sdk.Context) error {
 ### Advantages
 
 - Fully on-chain and decentralized process of transmission
-- Default Merkel-Proof verification of date across chains
+- Default Merkle proof verification of date across chains
 
 ### Disadvantages
 
 - Requires Native Chain to have IBC capabilities
 - There may be some delay in the Request-Response cycle due to strict verifications enforced by IBC
 
-## Approach 2: Use Fairyring Gateway Smart Contract
+## Approach 2: Use FairyRing Gateway Smart Contract
 
-For EVM chains, the simplest way to fetch Randomness from Fairyring is to deploy the standard Fairyring Gateway Contract on the native chain. Then, Fairyport, a specialized cross-chain relayer for Fairyring, can be used to relay the VRF from Fairyring to this contract.
+For EVM chains, the simplest way to fetch Randomness from FairyRing is to deploy the standard FairyRing Gateway Contract on the native chain. Then, Fairyport, a specialized cross-chain relayer for FairyRing, can be used to relay the VRF from FairyRing to this contract.
 
 > NOTE: Fairyport is a relayer, custom-made for relaying information between Fairyring and other chains. (Currently supports EVM and Cosmos chains), However, the randomness can be locally verified on the Native chain through cryptography; the relayer doesn’t need to be blindly trusted.
 

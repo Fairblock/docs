@@ -14,7 +14,7 @@ Using `fairyring` as a mechanism for encrypting the bids, a developer wanting to
 
 1. For each auction, request a new condition id from `fairyring`. This condition id will be crucial for encrypting the bids.
 2. Provide users with some functionality to encrypt their bids. This can be done using our [`encrypter` tool](/docs/advanced/encrypt_tx.md).
-3. Accept and store the encrypted bids within the applcation. This logic will primarily be the responsibility of the application developer.
+3. Accept and store the encrypted bids within the application. This logic will primarily be the responsibility of the application developer.
 4. Have a way to notify `fairyring` that the auction has concluded. This can be built into the application itself (meaning the chain initiates the request for decryption to `fairyring`) or can be a simple keeper that notifies `fairyring` when a certain condition has been met (end of auction).
 5. Relay the decryption key from `fairyring` to the application. This can be done using our [`FairyPort` tool](/docs/advanced/fairyport.md).
 

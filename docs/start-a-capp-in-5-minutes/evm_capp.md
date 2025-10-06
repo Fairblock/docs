@@ -46,7 +46,7 @@ Run the following command within the terminal inside of your local nitro repo:
 docker run --rm -it -v $(pwd)/config:/home/user/.arbitrum -p 8449:8449 nitro-node-dev --conf.file /home/user/.arbitrum/nodeConfig.json
 ```
 
-Within this orbit-setup-script repo, you will find a folder called `quickstart` where there are two config JSON files. These JSON files correspond to a pre-initialized orbit chain and susbsequent smart contracts related to the Arbitrum Sepolia Orbit Chain Factory smart contract and process.
+Within this orbit-setup-script repo, you will find a folder called `quickstart` where there are two config JSON files. These JSON files correspond to a pre-initialized orbit chain and subsequent smart contracts related to the Arbitrum Sepolia Orbit Chain Factory smart contract and process.
 
 Simply move these files to the `config/` directory. Now this repo will work with the config details for the pre-existing orbit chain.
 
@@ -58,13 +58,13 @@ Inside of the orbit-setup-script repo, with the config files are where they need
 ./build.sh
 ```
 
-This should take about 1-2 minutes but may vary based on your internet connetion speeds.
+This should take about 1-2 minutes but may vary based on your internet connection speeds.
 
 Next, make sure to update your .env.
 
 > a `.env` file is provided with ready-to-go wallets with a pre-deployed Orbit Chain for your convenience. Please do not go and drain the ETH from these wallets, there's no point anon, it's a test Orbit chain. 💁🏻‍♂️
 
-Finally, we can deploy the the Sealed Bid Auction test contract and run tests against it. This showcases the use of the precompiles within the nitro node on your local docker container. Run the test script by running:
+Finally, we can deploy the Sealed Bid Auction test contract and run tests against it. This showcases the use of the precompiles within the nitro node on your local docker container. Run the test script by running:
 
 ```bash
 ./sealedBidAuction.sh

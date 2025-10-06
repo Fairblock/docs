@@ -39,9 +39,9 @@ Thus we have the following definitions:
 
 ## What cApps can be Made With Private Decryption and General Conditions?
 
-There really is an endless design space for cApps using Private Decription and General Conditions with FairyRing. Some prime examples could include:
+There really is an endless design space for cApps using Private Decryption and General Conditions with FairyRing. Some prime examples could include:
 
-1. **Private Data Marketplaces for AI Models (user-owned data for AI models)** - AI models need data, insitutions and users do not want to give data without certain conditions (payment, ethtical integrity of the AI model or company, etc.). Private decryption and general conditions provides the tools to create market places where data sets can be encrypted and given conditions before it can be decrypted and used within an AI model.
+1. **Private Data Marketplaces for AI Models (user-owned data for AI models)** - AI models need data, institutions and users do not want to give data without certain conditions (payment, ethical integrity of the AI model or company, etc.). Private decryption and general conditions provides the tools to create market places where data sets can be encrypted and given conditions before it can be decrypted and used within an AI model.
 2. **Content Behind Conditions and/or Paywalls - Example Idea: FairyFans:** cApps where subscribers can pay and/or carry out certain conditions in order to decrypt access to content or the content itself. Imagine all your favorite crypto twitter content creators providing end to end encrypted access to their content, all using decentralized, onchain, tech.
 3. **Trusted Solvers for Intent Systems** - cApps that leverage intent systems but require that the solvers used follow specific conditions based on the prepared intent-based transaction. We already see intent apps provide the option to specify to use certain solvers, but that is all anchored in centralized systems. Private decryption and general conditions with fairblock unlocks this feature in a decentralized way.
 

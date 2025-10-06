@@ -7,7 +7,7 @@ Fairblock is a dynamic, decentralized cryptographic computer enabling fast, secu
 
 ### Confidential Stablecoins and Protected Trading
 
-Circle, Paypal, and Solana are all converging on confidential stablecoin transfers. But fully exposed blockchains aren’t the solution either: they leak sensitive information like stablecoin transfers, trading intents, liquidation triggers, auction bids, and private AI inputs. This information leakage invites exploitation, skews price discovery, and prevents the next wave of high-impact financial applications. Onchain information leakage and manipulation are the biggest bottleneck to trustworthy financial rails and institutional adoption.
+Circle, PayPal, and Solana are all converging on confidential stablecoin transfers. But fully exposed blockchains aren’t the solution either: they leak sensitive information like stablecoin transfers, trading intents, liquidation triggers, auction bids, and private AI inputs. This information leakage invites exploitation, skews price discovery, and prevents the next wave of high-impact financial applications. Onchain information leakage and manipulation are the biggest bottleneck to trustworthy financial rails and institutional adoption.
 
 Fairblock protects users and funds across stablecoin transfers, orderbooks, and lending protocols. Our dynamic confidential computing accelerates institutional adoption and new applications by protecting sensitive onchain information, securing better prices, and mitigating security risks by removing reliance on fully trusted servers. 
 

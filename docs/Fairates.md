@@ -34,7 +34,7 @@ In contrast, DeFi lending today:
 
 ## Why auctions beat AMMs for fixed‑rate credit
 
-Single‑price sealed‑bid acutions provide:
+Single‑price sealed‑bid auctions provide:
 
 1. One price for everyone: no AMM curve to climb.
 2. Encrypted bidding until the end: no copy trading, no frontrunning.

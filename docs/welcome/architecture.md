@@ -24,7 +24,7 @@ With that basic understanding of how apps can be hosted within FairyRing, and it
 
 ## Typical Components with Chains Integrating with FairyRing
 
-The high level architecture and components involved in most integrations are listed below and correspond to the FairyRing schematic shared too. Links to more information on each are provided for easier reference as well:
+The high-level architecture and components involved in most integrations are listed below and correspond to the FairyRing schematic shared too. Links to more information on each are provided for easier reference as well:
 
 <!-- TODO: get links to all of the below except Destination Chain -->
 

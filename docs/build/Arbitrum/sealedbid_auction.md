@@ -2,7 +2,7 @@
 
 ## 1. Why sealed-bid auctions?
 Auctions are a core primitive for fixed-rate lending markets, intents price discovery, token launchpads, NFT and RWA sales, and perp liquidations.
-Today most onchain auctions are transparent Dutch or English formats that can be manipulated and often fail to produce optimal price discovery. Sealed-bid auctions solve those issues but existing implementations are typically off-chain with centralised and exposed to securiy risks and manipulation.
+Today most onchain auctions are transparent Dutch or English formats that can be manipulated and often fail to produce optimal price discovery. Sealed-bid auctions solve those issues but existing implementations are typically off-chain with centralised and exposed to security risks and manipulation.
 This section explains how to run a fully on-chain and leaderless sealed-bid auction system native to Arbitrum One and Orbit. We combine:
 
 - **FairyRing threshold key management + identity-based encryption** to issue per-auction IDs a corresponding decryption key once the bidding window closes.

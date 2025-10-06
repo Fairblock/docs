@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Direct PEP Integration
 
-The `x/pep` module can be directly incorporated into any Cosmos SDK-based application chain to enable seamless privacy integration with Fairblock's Fairyring network.
+The `x/pep` module can be directly incorporated into any Cosmos SDK-based application chain to enable seamless privacy integration with Fairblock's FairyRing network.
 
 This approach provides a minimal-overhead method for allowing encrypted transactions and automatic decryption/execution flows.
 
@@ -15,8 +15,8 @@ This approach provides a minimal-overhead method for allowing encrypted transact
 
 By integrating the `x/pep` module into your chain:
 
-- Your chain can **connect to the Fairyring chain**, constantly updating its Master Public Key (MPK) and automatically retrieving decryption keys as they are generated.
-- **Users can submit encrypted transactions** on your chain, which will be **automatically decrypted and executed** once the appropriate decryption keys are available from Fairyring.
+- Your chain can **connect to the FairyRing chain**, constantly updating its Master Public Key (MPK) and automatically retrieving decryption keys as they are generated.
+- **Users can submit encrypted transactions** on your chain, which will be **automatically decrypted and executed** once the appropriate decryption keys are available from FairyRing.
 
 This enables Cosmos chains to easily unlock confidential compute flows without having to build custom encryption/decryption pipelines.
 
@@ -125,9 +125,9 @@ pep:
     is_source_chain: false
 ```
 
-Setting `is_source_chain: false` tells the `x/pep` module that this chain is a consumer of decryption keys from Fairyring, rather than producing its own.
+Setting `is_source_chain: false` tells the `x/pep` module that this chain is a consumer of decryption keys from FairyRing, rather than producing its own.
 
-If you leave this value `true` by mistake, your PEP module will not properly connect to Fairyring and decryption flows will fail.
+If you leave this value `true` by mistake, your PEP module will not properly connect to FairyRing and decryption flows will fail.
 
 ---
 
@@ -135,7 +135,7 @@ If you leave this value `true` by mistake, your PEP module will not properly con
 
 After completing these changes:
 
-- Your appchain will automatically monitor Fairyring for new decryption keys.
+- Your appchain will automatically monitor FairyRing for new decryption keys.
 - Encrypted transactions submitted by users will be automatically processed once decryption material is available.
 - You have enabled native confidential compute workflows inside your chain with minimal custom effort.
 

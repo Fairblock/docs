@@ -10,7 +10,7 @@ Fairblock offers various MPC schemes for fun and novel dynamic confidential comp
 
 Sealed-Bid Auctions are a powerful tool, and with Fairblock, they are carried out in a decentralized, highly-performant manner new to the blockchain space. Many application types can be built using this feature including, but not limited to:
 
-1. Dynamic Pricing for Intent Mechanimsms: a decentralized protocol in which no single actor controls price discovery. Bids are encrypted and revealed only after the bidding period ends, preventing frontrunning, shilling, and censorship. All used within multiple facets of an intents protocol.
+1. Dynamic Pricing for Intent Mechanisms: a decentralized protocol in which no single actor controls price discovery. Bids are encrypted and revealed only after the bidding period ends, preventing frontrunning, shilling, and censorship. All used within multiple facets of an intents protocol.
 2. Fixed-Rate Lending with Leaderless-Auctions: Innovating lending markets using sealed-bid auctions.
 
 For more detailed examples and use cases, check out our [Ecosystem Page](https://docs.fairblock.network/docs/ecosystem/community_resources) in our docs!

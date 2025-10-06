@@ -9,7 +9,7 @@ _We recommend checking out the "[Start a cApp in 5 minutes](../start-a-capp-in-5
 
 These tutorials will guide you through the steps to spin up a local blockchain quickly and deploy your own cApps using FairyRing functionality. When working with FairyRing, there are two main developer audiences that have been highlighted. Each tutorial has elements for both audiences to assist them. These audiences are:
 
-1. Blockchain Developers working on their own chains leveraging Fairblock, including, but not limited to, Roll-Ups and Cosmos Chains.
+1. Blockchain Developers working on their own chains leveraging Fairblock, including, but not limited to, RollUps and Cosmos Chains.
 2. App Developers creating apps on EVMs or other blockchains.
 
 > **App Developers do not need to know how to setup the blockchain integration, and Blockchain Developers do not need to know how to setup apps.**

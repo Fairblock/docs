@@ -19,7 +19,7 @@ Once the destination chain has access to the derived private key, it decrypts th
 
 ![Begin Block Logic](../../../assets/BeginBlockLogic.png)
 
-Note the following two things:
+Note the following things:
 
 - encrypted transactions are stored in the [`x/pep`](../../../advanced/pep_module.md) of their corresponding chains. They are not transferred over IBC to `fairyring`.
 - encrypted transactions are executed in their corresponding chains (not `fairyring`).

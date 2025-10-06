@@ -161,7 +161,7 @@ For the sake of the tutorial, typical smart contract aspects such as transferenc
 
 All a developer really needs to do to start developing an auction contract that actually transfers values is follow typical smart contract patterns and take the decrypted bid amounts once the auction is over to carry out respective transactions.
 
-The world unlocked with the dynamic confidentiality network provided by Fairblock is vast. As the ecosystem onboards more partners, we will write more tutorials and additional content building off of simple examples such as this. This quickstart simply shows an example of a sealed bid auction that can exist on a Arbitrum Stylust Integrated network. Thus there are far more possibilities to build.
+The world unlocked with the dynamic confidentiality network provided by Fairblock is vast. As the ecosystem onboards more partners, we will write more tutorials and additional content building off of simple examples such as this. This quickstart simply shows an example of a sealed bid auction that can exist on a Arbitrum Stylus Integrated network. Thus there are far more possibilities to build.
 
 Congratulations! You have now completed the quick start version of the Arbitrum Stylus and Fairblock FairyRing v1 quickstart tutorial.
 
