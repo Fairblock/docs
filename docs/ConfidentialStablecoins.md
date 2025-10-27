@@ -60,13 +60,13 @@ Fairblock is fundamentally different from other solutions. Mixers and shielded p
 
 # Technology Overview
 
-Most of our integration guides and tutorials focus on applications built using **MPC** and **IBE**, such as **frontrunning protection**, **auctions**, **prediction markets**, **limit orders**, **decentralized selective disclosure**, and **access control**.
+Most of our integration guides and tutorials focus on applications built using MPC and IBE, such as frontrunning protection, auctions, prediction markets, limit orders, and access control.
 
-For **confidential stablecoin transfers**, we use **Homomorphic Encryption (HE)**. This application **does not require special integrations or developer setup**. It works seamlessly across **all Fairblock-integrated chains**, including **EVM chains, Solana, Cosmos chains, and FairyRing itself**. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is **handled automatically by Fairblock’s own contracts and partner deployments** on each supported chain.
+For confidential stablecoin transfers, we use Homomorphic Encryption (HE). This application does not require special integrations or developer setup. It works seamlessly across all Fairblock-integrated chains, including EVM chains, Solana, Cosmos chains, and FairyRing itself. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is handled automatically by Fairblock’s simple smart contracts on each supported chain, and the cryptographic computation is abstracted away in FairyRing, without bridging user's funds.
 
 High level:
 
-1. Homomorphic Encryption (HE) (Twisted ElGamal): amounts and balances are encrypted so we can update balances without learning the value. We chose a simple scheme to optimize for performance, which is far lighter than fully homomorphic encryption (FHE) like TFHE/CKKS for transfer‑like operations. FHE schemes are general and orders of magnitude heavier–overkill–for this workload.
+1. Homomorphic Encryption (HE): amounts and balances are encrypted so we can update balances without learning the value. We chose a simple scheme to optimize for performance, which is far lighter than fully homomorphic encryption (FHE) like TFHE/CKKS for transfer‑like operations. FHE schemes are general and orders of magnitude heavier–overkill–for this workload.
 2. Lightweight ZK proofs: users prove “I’m allowed to transfer X” and “the math checks out” without revealing X. This prevents malformed inputs and preserves account integrity.
 3. Selective Disclosure via multiparty computation (MPC) + identity-based encryption (IBE): after settlement, authorized auditor (i.e. regulator) can decrypt exactly what policy allows (e.g. “amount of transaction #123” or “balances over a period”) with keys via distributed keys generation (DKG) per‑account and per‑auditor. Outcome: auditor rotation and no persistent backdoor access.
 4. No fully trusted centralized coprocessor or relayer.
