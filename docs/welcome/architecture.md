@@ -43,7 +43,7 @@ _To learn more about the concepts above, read more in the [learn](../learn/v1/v1
 There are two main routes for chains integrating with Fairblock.
 
 1. The use of "FairyKits" specific to the blockchain that is integrating with Fairblock. This allows for custom setups where the partnering network could carry out some or all of the Decryption and Execution.
-2. The "Co-Processing" route where FairyRing carries out the decryption, execution, and simply sends the end state to the integrating network.
+2. The "Co-Processing" route where FairyRing carries out the decryption, execution, and simply sends the end state to the integrating network. Note that coprocessing doesn't mean a centralzied offchain server in Fairblock's design, as it leverages onchain and verifiable computations.
 
 Depending on the design scenario, one method will prove to be better suited than the other.
 

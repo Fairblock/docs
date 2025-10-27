@@ -14,6 +14,10 @@ These tutorials will guide you through the steps to spin up a local blockchain q
 
 > **App Developers do not need to know how to setup the blockchain integration, and Blockchain Developers do not need to know how to setup apps.**
 
+Most of our integration guides and tutorials focus on applications built using MPC and IBE, such as frontrunning protection, auctions, prediction markets, limit orders, and access control.
+
+For confidential stablecoin transfers, we use Homomorphic Encryption (HE). This application does not require special integrations or developer setup. It works seamlessly across all Fairblock-integrated chains, including EVM chains, Solana, Cosmos chains, and FairyRing itself. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is handled automatically by Fairblock’s simple smart contracts on each supported chain, and the cryptographic computation is abstracted away in FairyRing, without bridging user's funds.
+
 Within each tutorial, developers are invited to skip ahead if they have already integrated the Fairblock modules within the chain that they are working with. This is the recommended route app developers take if possible, and is clearly marked within the beginning of each tutorial.
 
 More tutorials are being actively worked on showcasing different integration setups, and will be published more over the coming months. If you would like help integrating with a different tech stack that our current tutorials do not cover, please reach out!

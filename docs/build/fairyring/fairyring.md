@@ -4,12 +4,15 @@ sidebar_position: 2
 
 # Fairblock: Building Apps within FairyRing
 
+
 Building cApps within FairyRing continues to becomer more simpler than ever. cApps currently can leverage the following chain features built atop of FairyRing's confidential computing. The chain is continuously adding native features, so make sure to keep up to date with the project updates. 
 
 1. Leveraging Simple Encrypted Transactions and Block Height Condition IDs
 2. Building cApps with General Condition IDs
 3. Using private decryption for encrypted transaction access control 
 4. Using the `auction` module to carry out sealed-bid auctions
+
+For confidential stablecoin transfers, we use Homomorphic Encryption (HE). This application does not require special integrations or developer setup. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**.
 
 ## Building with Simple Encrypted Transactions
 

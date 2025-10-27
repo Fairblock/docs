@@ -6,10 +6,9 @@ sidebar_position: 2
 
 Welcome to the Fairblock and EVM Integration Tutorial. Please note that the App Quickstart within these docs is the exact same content as the repo README (aside from Fairblock context in the repo). They are placed in different locations for convenience to the reader.
 
-** Most of our integration guides and tutorials focus on applications built using **MPC** and **IBE**, such as **frontrunning protection**, **auctions**, **prediction markets**, **limit orders**, **decentralized selective disclosure**, and **access control**.
+Most of our integration guides and tutorials focus on applications built using MPC and IBE, such as frontrunning protection, auctions, prediction markets, limit orders, and access control.
 
-For **confidential stablecoin transfers**, we use **Homomorphic Encryption (HE)**. This application **does not require special integrations or developer setup**. It works seamlessly across **all Fairblock-integrated chains**, including **EVM chains, Solana, Cosmos chains, and FairyRing itself**. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is **handled automatically by Fairblock’s own contracts and partner deployments** on each supported chain.**
-
+For confidential stablecoin transfers, we use Homomorphic Encryption (HE). This application does not require special integrations or developer setup. It works seamlessly across all Fairblock-integrated chains, including EVM chains, Solana, Cosmos chains, and FairyRing itself. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is handled automatically by Fairblock’s simple smart contracts on each supported chain, and the cryptographic computation is abstracted away in FairyRing, without bridging user's funds.
 
 _**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 
