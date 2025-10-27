@@ -8,7 +8,9 @@ What if you want to run a cApp on an EVM network?
 
 As mentioned throughout the docs, FairyRing and its power of confidential computation can be used within many other networks, not limited to but including: EVMs, Cosmos chains, and RustVM chains.
 
-So let's start simple, and run your first cApp with an EVM leveraging FairyRing and its dynamic confidential computation. In this tutorial, you will run a Simple Sealed Bid Auction where encrypted bids are made, and once the auction is complete, are decrypted and assessed for the winning bid. The tutorial is ran using an testnet Arbitrum Orbit L3 Chain that has already been deployed for purely educational purposes. 
+So let's start simple, and run your first cApp with an EVM leveraging FairyRing and its dynamic confidential computation. In this tutorial, you will run a Simple Sealed Bid Auction where encrypted bids are made, and once the auction is complete, are decrypted and assessed for the winning bid. The tutorial is ran using an testnet Arbitrum Orbit L3 Chain that has already been deployed for purely educational purposes.
+
+For **confidential stablecoin transfers**, we use **Homomorphic Encryption (HE)**. This application **does not require special integrations or developer setup**. It works seamlessly across **all Fairblock-integrated chains**, including **EVM chains, Solana, Cosmos chains, and FairyRing itself**. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is **handled automatically by Fairblock’s own contracts and partner deployments** on each supported chain.**
 
 > This demo is expanded on more in detail within this [EVM tutorial inside of the build section](../build/evms/evms.md). The scripts alongside the tutorial README within the tutorial repo can be assessed further to help understand the workflow of integrating into an EVM.
 

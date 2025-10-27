@@ -6,7 +6,9 @@ sidebar_position: 3
 
 _**‼️ All code within this tutorial is purely educational, and it is up to the readers discretion to build their applications following industry standards, practices, and applicable regulations.**_
 
-Fairblock offers various MPC schemes for fun and novel dynamic confidential computation. One MPC scheme it offers is tIBE, where the FairyRing network is used to generate public keys for encryption and their respective decryption keys, based on a specific id, otherwise referred to as a "condition." This tutorial will guide you through using a simple Bash script to encrypt and send transactions in Fairblock with execution conditions based on a specific block height. The repo can be found [here](https://github.com/Fairblock/fairyring/tree/feat-auction).
+For **confidential stablecoin transfers**, we use **Homomorphic Encryption (HE)**. This application **does not require special integrations or developer setup**. This tutorial is focused on Simple IBE-MPC encrypted transactions with Target Blobck Height as the condition for automatic decryption and execution**
+
+Fairblock offers various MPC schemes for fun and novel dynamic confidential computation. Our main MPC scheme it offers is threshold IBE, where the FairyRing network is used to generate public keys for encryption and their respective decryption keys, based on a specific id, otherwise referred to as a "condition." This tutorial will guide you through using a simple Bash script to encrypt and send transactions in Fairblock with execution conditions based on a specific block height. The repo can be found [here](https://github.com/Fairblock/fairyring/tree/feat-auction).
 
 > **Conditions can take the shape of anything, be it price of an asset, interest rates, etc.** 
 
