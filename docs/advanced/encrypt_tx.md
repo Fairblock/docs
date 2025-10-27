@@ -7,6 +7,8 @@ sidebar_position: 2
 This tutorial explains how to encrypt your transaction for `x/pep` module using `encrypter` that built-in `fairyringd`.
 Ensure you installed the [`fairyring` binary](../running-a-node/installation.md) prior to following the instructions below.
 
+For **confidential stablecoin transfers**, we use **Homomorphic Encryption (HE)**. This application **does not require special integrations or developer setup**. This tutorial is focused on Simple IBE-MPC encrypted transactions with Target Blobck Height as the condition for automatic decryption and execution**_
+
 ## Encrypt your transaction
 
 1. Getting the public key for encryption
