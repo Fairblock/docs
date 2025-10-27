@@ -10,7 +10,7 @@ The two quick examples cover:
 
 Most of our integration guides and tutorials focus on applications built using **MPC** and **IBE**, such as frontrunning protection, auctions, prediction markets, limit orders, decentralized selective disclosure, and access control.
 
-For **confidential stablecoin transfers**, we use **Homomorphic Encryption (HE)**. This application **does not require special integrations or developer setup**. It works seamlessly across all Fairblock-integrated chains, including EVM chains, Solana, Cosmos chains, and FairyRing itself. Developers **do not need to deploy or install any precompiles, modules, or smart contracts**; everything is handled automatically by Fairblock’s own contracts and partner deployments on each supported chain.
+For **confidential stablecoin transfers**, we use Homomorphic Encryption (HE). This application **does not require special integrations or developer setup**. It works seamlessly across all Fairblock-integrated chains, including EVM chains, Solana, Cosmos chains, and FairyRing itself. Developers do not need to deploy or install any precompiles, modules, or smart contracts; everything is handled automatically by Fairblock’s own contracts and partner deployments on each supported chain.
 
 1. [Starting a cApp on FairyRing](./fairyring_capp.md)
 2. [Starting a cApp on an EVM](./evm_capp.md)
