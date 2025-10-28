@@ -26,15 +26,6 @@ The risks aren’t theoretical. Attackers and competitors mine public transactio
 
 **Our thesis**: Confidential by default is the only sustainable model for onchain payments and finance. Fairblock delivers confidentiality without sacrificing composability or compliance.
 
-# Stablecoins are already massive. Just 10 basis points on flow is a thriving business.
-
-Institutional capital is racing onchain. RWAs on public chains are [$24B+](https://www.chain-brain.xyz/p/the-great-onchain-migration), up 3x since 2023. Stablecoins processed [$27.6T](https://www.weforum.org/stories/2025/03/stablecoins-cryptocurrency-on-rise-financial-systems/) in transfer volume in 2024, more than Visa and Mastercard volume combined. This is not a future bet. It’s here. As the stablecoin market matures, both market cap and utility will continue to explode.
-
-Even a small penetration of current stablecoin flows support outsized revenue. If stablecoin capitalization grows toward the multi-hundreds of billions and beyond over the next cycle, confidential rails capture disproportionate value because enterprises will not move serious money without confidentiality.
-
-- 0.1% share of $27.6T = $27.6B in annual flow -> $27.6M revenue
-- 1% share of $27.6T = $276B in annual flow -> $276M revenue
-
 # Confidential Stablecoins powered by Fairblock
 
 Institutions aren’t stalling on stablecoins because of scalability or volatility. Confidentiality is the blocker per SWIFT’s Chief Innovation Officer, Tom Zschach. Fairblock turns stablecoin payments and balances confidential by default. Amounts and account activities are encrypted while addresses can remain transparent to preserve composability and allow optional, policy-driven selective disclosure on a per-transaction level. This is not a mixer and not an anonymity pool. Instead, it’s a compliant, programmable confidentiality layer for real businesses and real finance.
