@@ -64,7 +64,7 @@ Onchain corporate actions that expose you to frontrunners. It also creates legal
 Regulators increasingly expect two things: don’t expose everything to everyone and do let authorized parties verify under lawful authority. Stabletrust follows this exact model. You can disclose a specific transaction – and only that transaction – to a tax authority, regulator, or auditor without revealing your entire financial history. This maps to how financial supervisors describe acceptable digital asset systems and how TradFi already handles sensitive trade and payments data.
 
 
-**Infrastructure & Advanced Use**
+**Infrastructure & Advanced Applications**
 - Privacy-preserving credit, lending, and agentic payments
 - Selective-disclosure rails for payment networks, issuers, and banks
 
