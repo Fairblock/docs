@@ -14,7 +14,7 @@ When financial data leaks, it creates problems:
 
 [Researchers](https://www.researchgate.net/publication/387041111_Decoding_blockchain_data_for_research_in_marketing_New_insights_through_an_analysis_of_share_of_wallet) have shown that block explorers can be abused as a surveillance tool. Onchain data can be used to decode transaction patterns, customer behavior, peak sales times, and share-of-wallet. That is not how finance or commerce operates today, and it’s why enterprises and institutions still hesitate to run their businesses fully onchain.
 
-Our **thesis** is simple: Confidential by default is the only sustainable model for open finance.
+Our **thesis**: Confidential by default is the only sustainable model for open finance.
 
 
 # Stabletrust: Confidential stablecoins powered by Fairblock
@@ -70,14 +70,17 @@ You can’t run credit or agent-to-agent payments if every invoice, fee, and set
 # Why Stabletrust
 
 **Confidentiality where the liquidity already lives**
+
 One-click confidentially on the chains and apps you already use. No extra cost or added security risks from forcing you to bridge your assets or loss of privacy when moving funds in/out of privacy chains. That means lower cost, lower risk, and you stay close to existing liquidity.
 
 **Lower fees**
+
 We don’t charge a fee on every sender just because you want privacy. Fees are capped and designed to be practical for invoices, payroll, and treasury ops. Our monetization is split across integrations, partners, and float, to minimize fees on transactions.
 
 Since the cryptography is lightweight, the gas required to verify and update confidential balances is significantly lower than systems that rely on heavy zero-knowledge (ZK) proofs or fully homomorphic encryption (FHE), which most payment use cases simply don’t need. 
 
 **No black-box trust**
+
 Users are not exposed to unnecessary security risks from single hardware setups (e.g. single-TEE), outsourced ZK provers, or centralized offchain coprocessors. 
 
 With Stabletrust:
@@ -87,6 +90,7 @@ With Stabletrust:
 - Computation is verifiable – no blind trust
 
 **Fast enough for real usage**
+
 Other privacy systems fall apart because proofs take minutes on a phone or they require heavyweight off-chain computation. Stabletrust’s proofs are light enough to run in normal payment flow.
 
 Throughput also scales: we can already handle significantly higher TPS than typical TFHE-style systems before hardware acceleration. We also work with specialized hardware teams (FPGA/GPU acceleration) for even more headroom, which keeps this system future-proof for high-volume partners like payment processors and trading venues.
@@ -97,6 +101,7 @@ Throughput also scales: we can already handle significantly higher TPS than typi
 # Compliance Posture and Regulatory Alignment
 
 **Confidential amounts, transparent addresses**
+
 Stabletrust encrypts amounts and balances by default, but keeps sender and receiver addresses transparent. Why this matters: 
 - This is not a mixer. Traceability done right means auditability, not surveillance. 
 - Regulators, auditors, and banks can still see who interacted with who.
@@ -106,6 +111,7 @@ Stabletrust encrypts amounts and balances by default, but keeps sender and recei
 This posture aligns with how TradFi and big-tech manage sensitive financial data. Apple Pay doesn’t broadcast your transactions to the world, and banks don’t leak order size in real-time. However, both can produce records for auditors and regulators when required. It’s the same principle.
 
 **Selective disclosure**
+
 Instead of giving one centralized auditor silent, persistent access to everyone’s transaction history, Stabletrust uses identity-based encryption and multiparty computation (IBE-MPC) to enable per-transaction disclosures. 
 
 What this means:
@@ -114,9 +120,11 @@ What this means:
 - You stay compliant without handing permanent visibility to any single third party
 
 **AML and sanctions controls**
+
 We work with services like Chainalysis and Range Security to flag and block high-risk or sanctioned addresses. These are the same types of services institutions and regulators already recognize as credible for AML and OFAC filtering. Legitimate businesses, merchants, and financial institutions get confidentiality and bad actors get filtered out. 
 
 **Confidentiality vs Anonymity**
+
 Stabletrust is composable with DeFi and usable today by banks, issuers, payment networks, and trading desks because addresses stay transparent. 
 
 For users that need obfuscated addresses, we support fully address privacy in controlled conditions: 
