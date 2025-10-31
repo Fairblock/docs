@@ -76,7 +76,8 @@ You can’t run credit or agent-to-agent payments if every invoice, fee, and set
 
 **1. Confidentiality where the liquidity already lives**: One-click confidentially on the chains and apps you already use. No extra cost or added security risks from forcing you to bridge your assets or loss of privacy when moving funds in/out of privacy chains. That means lower cost, lower risk, and you stay close to existing liquidity.
 
-**2. Lower fees**: We don’t charge a fee on every sender just because you want privacy. Fees are capped and designed to be practical for invoices, payroll, and treasury ops. Our monetization is split across integrations, partners, and float, to minimize fees on transactions. Since the cryptography is lightweight, the gas required to verify and update confidential balances is significantly lower than systems that rely on heavy zero-knowledge (ZK) proofs or fully homomorphic encryption (FHE), which most payment use cases simply don’t need. 
+**2. Lower fees**: We don’t charge a fee on every sender just because you want privacy. Fees are capped and designed to be practical for invoices, payroll, and treasury ops. Our monetization is split across integrations, partners, and float, to minimize fees on transactions. 
+Since the cryptography is lightweight, the gas required to verify and update confidential balances is significantly lower than systems that rely on heavy zero-knowledge (ZK) proofs or fully homomorphic encryption (FHE), which most payment use cases simply don’t need. 
 
 **3. No black-box trust**: Users are not exposed to unnecessary security risks from single hardware setups (e.g. single-TEE), outsourced ZK provers, or centralized offchain coprocessors. 
 
@@ -93,7 +94,7 @@ Throughput also scales: we can already handle significantly higher TPS than typi
 ![alt text](<Confidential Stablecoins.png>)
 
 
-# Compliance Posture and Regulatory Alignment
+# Compliance and Regulatory Alignment
 
 **Confidential amounts, transparent addresses**
 
@@ -146,6 +147,7 @@ Key design choices:
 4. No fully trusted centralized coprocessor or relayer: the work is verifiable onchain so you don’t have to trust a single offchain black-box.
 5. Efficient message complexity: IBE is kept linear, avoiding the quadratic complexities in some other multi-party schemes.
 
+
 For developers:
 1. Confidential account setup: user opts into confidentiality and links a wallet. Initial funding into the confidential pool is visible. Subsequent balances are encrypted.
 2. Transfer: client encrypts the amount and generates the ZK proof. Fairyring verifies and updates encrypted balances. The recipient gets a decryptable receipt.
@@ -153,4 +155,4 @@ For developers:
 4. Compliance window: authorized parties can request targeted decryption keys through MPC/IBE service for post‑trade or post-payment audits on a per-transaction basis.
 
 
-Explore [Stabletrust]( [https://confidential-usdc-demo.vercel.app/](https://stabletrust.fairblock.network/)).
+Explore [Stabletrust]( [https://confidential-usdc-demo.vercel.app/](https://stabletrust.fairblock.network/)) today.
