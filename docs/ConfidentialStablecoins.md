@@ -28,43 +28,44 @@ It is not a mixer and not an anonymity pool. It is programmable confidentiality 
 
 What this technology enables:
 
-1. Payments & Payroll
+**Payments & Payroll**
 - Confidential salaries for employees, contractors, and KOLs
 - Private peer-to-peer, cross-border, and merchant payments
 - Integration with payment networks for compliant, confidential settlements
 
 No one wants comp, vendor rates, or partner payouts scraped and indexed. That’s HR liability, competitive intelligence leakage, and reputational risk.
 
-2. DeFi & Trading
+**DeFi & Trading**
 - Encrypted orderflow and resistant to manipulation (e.g. frontrunning)
 - Confidential liquidity, collateral, and position management
 
 If the market can see size and timing, you’re handing a competitive edge to competitors and bots. Confidential amounts stop your orders from working against you.
 
-3. Treasury & Institutional
+**Treasury & Institutional**
 - Managing onchain VC liquid funds, corporate, DAO, and fund treasury operations
 - Confidential inter-subsidiary and OTC settlements
 
 Treasury activity is strategy. Get the benefits of moving funds onchain without broadcasting your strategy tothe entire market.
 
-4. M&A and Strategic Deals
+**M&A and Strategic Deals**
 - Private acquisitions and token buyouts without market leaks
 - Pre-announcement confidentiality and selective auditability
 
 Onchain corporate actions that expose you to frontrunners. It also creates legal and regulatory questions if markets react before disclosure windows. 
 
-5. Compliance & Regulation
+**Compliance & Regulation**
 - Selective disclosure and bad actor filtering
 - Anti-money laundering (AML)-safe stablecoins and regulatory auditability
 - Protection against GDPR/MiCA/CCPA/Clarity related data exposure risk for institutions
 
 Regulators increasingly expect two things: don’t expose everything to everyone and do let authorized parties verify under lawful authority. Stabletrust follows this exact model. You can disclose a specific transaction – and only that transaction – to a tax authority, regulator, or auditor without revealing your entire financial history. This maps to how financial supervisors describe acceptable digital asset systems and how TradFi already handles sensitive trade and payments data.
 
-6. Infrastructure & Advanced Use
+**Infrastructure & Advanced Use**
 - Privacy-preserving credit, lending, and agentic payments
 - Selective-disclosure rails for payment networks, issuers, and banks
 
 You can’t run credit or agent-to-agent payments if every invoice, fee, and settlement is globally visible. Confidential rails are the prerequisite. With selective disclosures, regulated parties settle onchain and can still produce per-transaction details for compliance.
+
 
 # Why Stabletrust
 
@@ -91,6 +92,7 @@ Other privacy systems fall apart because proofs take minutes on a phone or they 
 Throughput also scales: we can already handle significantly higher TPS than typical TFHE-style systems before hardware acceleration. We also work with specialized hardware teams (FPGA/GPU acceleration) for even more headroom, which keeps this system future-proof for high-volume partners like payment processors and trading venues.
 
 ![alt text](<Confidential Stablecoins.png>)
+
 
 # Compliance Posture and Regulatory Alignment
 
@@ -123,6 +125,7 @@ For users that need obfuscated addresses, we support fully address privacy in co
 - With selective disclosure still available
 
 Stabletrust is designed to go beyond confidential amounts. It’s done responsibly to ensure users are not at risk of triggering regulatory flags.
+
 
 # Technology Overview
 
