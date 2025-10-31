@@ -25,9 +25,7 @@ Stabletrust turns stablecoin payments and transfers confidential by default. Amo
 - Stay traceable for audits
 - Reveal only what’s needed on a transaction-level, only when it is required 
 
-It is not a mixer and not an anonymity pool. It is programmable confidentiality built for real businesses and real finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems: private to the public and verifiable on demand.
-
-What this technology enables:
+It is not a mixer and not an anonymity pool. It is programmable confidentiality built for real businesses and real finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems: private to the public and verifiable on demand. What this technology enables:
 
 **Payments & Payroll**
 - Confidential salaries for employees, contractors, and KOLs
