@@ -3,7 +3,7 @@ sidebar_position: 4
 ---
 # Confidential Stablecoins
 
-**Moving money onchain leaks sensitive financial data**
+**Moving money onchain leaks sensitive financial data.**
 
 Your financial activity is private by default in the real world. You don’t broadcast what you pay a merchant or supplier. Employers don't publish salaries. Traders don’t reveal position size in the middle of a trade. Treasuries don’t expose how much cash is left. On public blockchains, all of that is transparent by design: payment amounts, wallet balances, timing, and even trading strategies are public for anyone to see. That’s exactly the kind of exposure banks, SWIFT, and policy bodies have been sounding alarm about. 
 
