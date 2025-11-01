@@ -154,4 +154,4 @@ For developers:
 4. Compliance window: authorized parties can request targeted decryption keys through MPC/IBE service for post‑trade or post-payment audits on a per-transaction basis.
 
 
-Explore [Stabletrust]( [https://confidential-usdc-demo.vercel.app/](https://stabletrust.fairblock.network/)) today.
+Explore [Stabletrust](https://stabletrust.fairblock.network/) today.
