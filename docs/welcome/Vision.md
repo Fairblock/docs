@@ -35,7 +35,7 @@ Eliminate information leakage around size and timing while keeping settlement on
 
 Fairblock cApps run on FairyRing and are accessible from ecosystems where liquidity lives. This allows users keep their wallets and workflows while gaining confidentiality.
 
-- EVM: Ethereum, Arbitrum, Hyperliquid, Base, Noble/M0, and more
+- Ethereum/EVM: Arbitrum, Hyperliquid, Base, Noble/M0, and more
 - Solana
 - Payment networks and stablecoin issuers
 - Additional trading platforms
