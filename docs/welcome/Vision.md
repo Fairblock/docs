@@ -37,7 +37,7 @@ Fairblock cApps run on FairyRing and are accessible from ecosystems where liquid
 
 - Ethereum/EVM: Arbitrum, Hyperliquid, Base, Noble/M0, and more
 - Solana
-- Payment networks and stablecoin issuers
+- Payment networks
 - Additional trading platforms
 
 Distribution is user-led. Ecosystems integrate into Fairblock cApps. 
