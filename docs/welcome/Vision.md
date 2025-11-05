@@ -6,7 +6,7 @@ Open finance cannot scale if every payment, trade, and treasury move is exposed.
 
 Fairblock is a dynamic, decentralized cryptographic computer for fast, secure execution of cryptographic logic. It hosts low-cost, high-performance native confidential apps (cApps) and brings these capabilities to ecosystems where liquidity lives, including Arbitrum, Hyperliquid, Solana, Base, and Cosmos.
 
-## What We Build and Why
+## Why Fairblock
 
 - **Multimodal cryptography:** Dynamic confidentiality selects the right cryptographic schemes per use case to maximize performance and security without unnecessary overhead. 
 
@@ -19,19 +19,20 @@ Fairblock is a dynamic, decentralized cryptographic computer for fast, secure ex
 - **Performance for everyday payments and DeFi:** Lightest and least complex schemes are chosen to meet requirements and avoid overkill approaches. This results in no multi-minute proof wait time and low computation fees. Costs are incurred when confidentiality adds execution value, not for ordinary peer-to-peer transfers.
 
 
-## Core Products
+## What We Ship
 
-1. ### Stabletrust: Confidential Stablecoins
+#### **Stabletrust: Confidential Stablecoins**
+
 Send and receive stablecoins with encrypted amounts and balances on public chains. Addresses remain transparent for DeFi composability and traceability. A specific transaction, and only that transaction, can be disclosed when required. It’s not a mixer or an isolated privacy chain. 
-
 **Core applications:** payroll & payouts, cross-border commerce, trading, treasury operations, OTC, M&A, and strategic buybacks.
 
-2. ### Protected Trading: Confidential Execution
+
+#### **Protected Trading: Confidential Execution**
+
 Eliminate information leakage around size and timing while keeping settlement on public chains. Encrypted orders, intents, and bids with conditional decryption enable better price discovery and manipulation-resistant trading, lending, intents, and token launches, all without reliance on centralized intermediaries.
 
 
-## Where Fairblock Ships
-Built alongside leading networks and venues, confidentiality works smoothly in existing workflows. Select ecosystem partners include: Arbitrum, Noble/M0, Hyperliquid, Solana, Base, Cosmos, payment networks, stablecoin issuers, and CowSwap. 
+Fairblock's cApps work natively on FairyRing. By collaborating with leading networks and venues, confidentiality also works smoothly in existing ecosystems and workflows. Select ecosystem partners include: Arbitrum, Noble/M0, Hyperliquid, Solana, Base, Cosmos, payment networks, stablecoin issuers, and CowSwap. 
 
 
 [![Fairblock Macro Schematic](../assets/FairyRingMacroSchematic.png)](../assets/FairyRingMacroSchematic.png)
