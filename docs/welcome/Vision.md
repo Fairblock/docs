@@ -21,17 +21,17 @@ Fairblock is a dynamic, decentralized cryptographic computer for fast, secure ex
 
 ## Core Products
 
-### Stabletrust: Confidential Stablecoins
+1. ### Stabletrust: Confidential Stablecoins
 Send and receive stablecoins with encrypted amounts and balances on public chains. Addresses remain transparent for DeFi composability and traceability. A specific transaction, and only that transaction, can be disclosed when required. It’s not a mixer or an isolated privacy chain. 
 
 **Core applications:** payroll & payouts, cross-border commerce, trading, treasury operations, OTC, M&A, and strategic buybacks.
 
-### Protected Trading: Confidential Execution
+2. ### Protected Trading: Confidential Execution
 Eliminate information leakage around size and timing while keeping settlement on public chains. Encrypted orders, intents, and bids with conditional decryption enable better price discovery and manipulation-resistant trading, lending, intents, and token launches, all without reliance on centralized intermediaries.
 
 
 ## Where Fairblock Ships
-Built alongside leading networks and venues so confidentiality works smoothly in existing workflows. Select ecosystem partners include: Arbitrum, Noble/M0, Hyperliquid, Solana, Base, Cosmos, payment networks, and stablecoin issuers. 
+Built alongside leading networks and venues, confidentiality works smoothly in existing workflows. Select ecosystem partners include: Arbitrum, Noble/M0, Hyperliquid, Solana, Base, Cosmos, payment networks, stablecoin issuers, and CowSwap. 
 
 
 [![Fairblock Macro Schematic](../assets/FairyRingMacroSchematic.png)](../assets/FairyRingMacroSchematic.png)
