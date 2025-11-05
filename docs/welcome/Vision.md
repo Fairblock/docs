@@ -14,7 +14,7 @@ Fairblock is a dynamic, decentralized cryptographic computer with its own execut
 
 - **Private by default. Verifiable on demand:** Sensitive values are encrypted by default. Authorized parties can receive selective, per-transaction access when required (audit, AML, disputes). No blanket surveillance of the entire transaction history. Designed for regulated flow and compatible with post-execution selective disclosure ([OFAC](https://www.govinfo.gov/app/details/CFR-2010-title31-vol3/CFR-2010-title31-vol3-sec500-314), [FinCEN](https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1010/subpart-A/section-1010.100#p-1010.100), [MiCA](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1114#d1e4979-86) friendly)
 
-- **Onchain verification, not black boxes:** Correctness and validity is verified onchain. Single-TEE or opaque off-chain coprocessor/relayer designs are intentionally avoided to minimize trust assumptions and security risks.
+- **Onchain verification, not black boxes:** Correctness and validity are verified onchain. Single-TEE or opaque off-chain coprocessor/relayer designs are intentionally avoided to minimize trust assumptions and security risks.
 
 - **Performance for everyday payments and DeFi:** The lightest scheme that meets requirements is chosen to avoid overkill approaches. This results in no multi-minute proof wait times and low computation fees. Costs are incurred when confidentiality adds execution value, not for ordinary peer-to-peer transfers.
 
