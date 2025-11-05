@@ -46,7 +46,7 @@ If the market can see size and timing, you’re handing a competitive edge to co
 - Managing onchain VC liquid funds, corporate, DAO, and fund treasury operations
 - Confidential inter-subsidiary and OTC settlements
 
-Treasury activity is strategy. Get the benefits of moving funds onchain without broadcasting your strategy tothe entire market.
+Treasury activity is strategy. Get the benefits of moving funds onchain without broadcasting your strategy to the entire market.
 
 
 **M&A and Strategic Deals**
