@@ -32,7 +32,7 @@ Send and receive stablecoins with encrypted amounts and balances on public chain
 Eliminate information leakage around size and timing while keeping settlement on public chains. Encrypted orders, intents, and bids with conditional decryption enable better price discovery and manipulation-resistant trading, lending, intents, and token launches, all without reliance on centralized intermediaries.
 
 
-Fairblock's cApps work natively on FairyRing. By collaborating with leading networks and venues, confidentiality also works smoothly in existing ecosystems and workflows. Select ecosystem partners include: Arbitrum, Noble/M0, Hyperliquid, Solana, Base, Cosmos, payment networks, stablecoin issuers, and CowSwap. 
+Fairblock's cApps work natively on FairyRing and are designed to work seamlessly for users across EVM (Ethereum, Arbitrum, Hyperliquid, Noble/M0, Based, etc), Solana, payment networks, and beyond to access the benefits of cApps where they are.
 
 
 [![Fairblock Macro Schematic](../assets/FairyRingMacroSchematic.png)](../assets/FairyRingMacroSchematic.png)
