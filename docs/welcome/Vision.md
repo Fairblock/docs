@@ -40,7 +40,7 @@ Fairblock cApps run on FairyRing and are accessible from ecosystems where liquid
 - Payment networks and stablecoin issuers
 - Additional trading platforms
 
-Distribution is user-led. Ecosystems integrate into Fairblock apps. 
+Distribution is user-led. Ecosystems integrate into Fairblock cApps. 
 
 
 [![Fairblock Macro Schematic](../assets/FairyRingMacroSchematic.png)](../assets/FairyRingMacroSchematic.png)
