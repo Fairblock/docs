@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 # Overview of Fairblock
-Open finance cannot scale if every payment, trade, and treasury move is exposed. Fairblock provides applications and infrastructure that eliminate information leakage, reduce manipulation risk, and unlock outcomes for users, institutions, and businesses. 
+Open finance cannot scale if every payment, trade, and treasury move is exposed. Fairblock ships end-to-end products and infrastructure that eliminate information leakage, reduce manipulation risk, and unlock outcomes for users, institutions, and businesses. 
 
 Fairblock is a dynamic, decentralized cryptographic computer for fast, secure execution of cryptographic logic. It hosts low-cost, high-performance native confidential apps (cApps) and brings these capabilities to ecosystems where liquidity lives, including Arbitrum, Hyperliquid, Solana, Base, and Cosmos.
 
