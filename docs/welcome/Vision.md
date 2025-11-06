@@ -33,7 +33,7 @@ Eliminate information leakage and manipulation while interacting with other user
 
 ## Where Users Access Fairblock cApps
 
-Fairblock cApps run on FairyRing and are accessible from ecosystems where liquidity lives. This allows users keep their wallets and workflows while gaining confidentiality.
+Fairblock cApps run on FairyRing and are accessible from ecosystems where liquidity lives. This allows users to keep their wallets and workflows while gaining confidentiality.
 
 - EVM: Ethereum, Arbitrum, Hyperliquid, Base, Noble AppLayer, and more
 - Solana
