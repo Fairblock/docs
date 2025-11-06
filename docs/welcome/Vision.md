@@ -4,7 +4,7 @@ sidebar_position: 0
 # Overview of Fairblock
 Open finance cannot scale if every payment, trade, and treasury move is exposed onchain. Fairblock ships end-to-end applications that eliminate information leakage, enable fair price discovery, and unlock new use cases for retail, institutions, and businesses. 
 
-Fairblock is a dynamic, decentralized cryptographic computer with its own execution layer purpose-built for confidential computing. Confidentinal apps (cApps) run on Fairblock's native chain, FairyRing, and are accessible from major ecosystems so users can seamlessly use them without bridging any funds or switching wallets.
+Fairblock is a dynamic, decentralized cryptographic computer with its own execution layer purpose-built for confidential computing. Confidential apps (cApps) run on Fairblock's native chain, FairyRing, and are accessible from major ecosystems so users can seamlessly use them without bridging any funds or switching wallets.
 
 ## Why Fairblock
 
