@@ -101,7 +101,7 @@ Stabletrust encrypts amounts and balances by default, but keeps sender and recei
 - This is not a mixer. Traceability done right means auditability, not surveillance. 
 - Regulators, auditors, and banks can still see who interacted with who.
 - You get confidentiality of sensitive financial data for business and commerce.
-- Alignment with the limited transparency with selective access model central banks and supervisors are proposing for digital payments ([OFAC](https://www.govinfo.gov/app/details/CFR-2010-title31-vol3/CFR-2010-title31-vol3-sec500-314),[FinCEN](https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1010/subpart-A/section-1010.100#p-1010.100), [MiCA](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1114#d1e4979-86) friendly).
+- Alignment with the model (limited transparency with selective access) central banks and supervisors are proposing for digital payments ([OFAC](https://www.govinfo.gov/app/details/CFR-2010-title31-vol3/CFR-2010-title31-vol3-sec500-314),[FinCEN](https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1010/subpart-A/section-1010.100#p-1010.100), [MiCA](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1114#d1e4979-86) friendly).
 
 This posture aligns with how TradFi and big-tech manage sensitive financial data. Apple Pay doesn’t broadcast your transactions to the world, and banks don’t leak order size in real-time. However, both can produce records for auditors and regulators when required. It’s the same principle.
 
