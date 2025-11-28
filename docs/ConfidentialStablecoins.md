@@ -18,9 +18,9 @@ When financial data leaks, it creates problems:
 **Our thesis**: Confidential by default is the only sustainable model for open finance.
 
 
-# Stabletrust: Confidential stablecoins powered by Fairblock
+# Confidential stablecoins powered by Fairblock
 
-Stabletrust turns stablecoin payments and transfers confidential by default. Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
+Fairblock turns stablecoin payments and transfers confidential by default. Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
 - Preserve DeFi composability 
 - Stay traceable for audits
 - Reveal only what’s needed on a transaction-level, only when it is required 
@@ -61,7 +61,7 @@ Onchain corporate actions that expose you to frontrunners. It also creates legal
 - Anti-money laundering (AML)-safe stablecoins and regulatory auditability
 - Protection against GDPR/MiCA/CCPA/Clarity related data exposure risk for institutions
 
-Regulators increasingly expect two things: don’t expose everything to everyone and do let authorized parties verify under lawful authority. Stabletrust follows this exact model. You can disclose a specific transaction – and only that transaction – to a tax authority, regulator, or auditor without revealing your entire financial history. This maps to how financial supervisors describe acceptable digital asset systems and how TradFi already handles sensitive trade and payments data.
+Regulators increasingly expect two things: don’t expose everything to everyone and do let authorized parties verify under lawful authority. Fairblock follows this exact model. You can disclose a specific transaction – and only that transaction – to a tax authority, regulator, or auditor without revealing your entire financial history. This maps to how financial supervisors describe acceptable digital asset systems and how TradFi already handles sensitive trade and payments data.
 
 
 **Infrastructure & Advanced Applications**
@@ -71,7 +71,7 @@ Regulators increasingly expect two things: don’t expose everything to everyone
 You can’t run credit or agent-to-agent payments if every invoice, fee, and settlement is globally visible. Confidential rails are the prerequisite. With selective disclosures, regulated parties settle onchain and can still produce per-transaction details for compliance.
 
 
-# Why Stabletrust
+# Why Fairblock
 
 **1. Confidentiality where the liquidity already lives**: One-click confidentially on the chains and apps you already use. No extra cost or added security risks from forcing you to bridge your assets or loss of privacy when moving funds in/out of privacy chains. That means lower cost, lower risk, and you stay close to existing liquidity.
 
@@ -80,13 +80,13 @@ Since the cryptography is lightweight, the gas required to verify and update con
 
 **3. No black-box trust**: Users are not exposed to unnecessary security risks from single hardware setups (e.g. single-TEE), outsourced ZK provers, or centralized offchain coprocessors. 
 
-With Stabletrust:
+With Fairblock:
 - Proofs are quickly generated client-side
 - Verification happens onchain
 - Key management is decentralized and secure
 - Computation is verifiable – no blind trust
 
-**4. Fast enough for real usage**: Other privacy systems fall apart because proofs take minutes on a phone or they require heavyweight off-chain computation. Stabletrust’s proofs are light enough to run in normal payment flow.
+**4. Fast enough for real usage**: ZK proofs are light enough to run in normal payment flow. Other privacy systems fall apart because proofs take minutes on a phone or they require heavyweight off-chain computation.
 
 Throughput also scales: we can already handle significantly higher TPS than typical TFHE-style systems before hardware acceleration. We also work with specialized hardware teams (FPGA/GPU acceleration) for even more headroom, which keeps this system future-proof for high-volume partners like payment processors and trading venues.
 
@@ -97,7 +97,7 @@ Throughput also scales: we can already handle significantly higher TPS than typi
 
 **Confidential amounts, transparent addresses**
 
-Stabletrust encrypts amounts and balances by default, but keeps sender and receiver addresses transparent. Why this matters: 
+Fairblock encrypts amounts and balances by default, but keeps sender and receiver addresses transparent. Why this matters: 
 - This is not a mixer. Traceability done right means auditability, not surveillance. 
 - Regulators, auditors, and banks can still see who interacted with who.
 - You get confidentiality of sensitive financial data for business and commerce.
@@ -108,7 +108,7 @@ This posture aligns with how TradFi and big-tech manage sensitive financial data
 
 **Selective disclosure**
 
-Instead of giving one centralized auditor silent, persistent access to everyone’s transaction history, Stabletrust uses identity-based encryption and multiparty computation (IBE-MPC) to enable per-transaction disclosures. 
+Instead of giving one centralized auditor silent, persistent access to everyone’s transaction history, Fairblock uses identity-based encryption and multiparty computation (IBE-MPC) to enable per-transaction disclosures. 
 
 What this means:
 - Nothing is automatically exposed
@@ -123,14 +123,14 @@ We work with services like Chainalysis and Range Security to flag and block high
 
 **Confidentiality vs Anonymity**
 
-Stabletrust is composable with DeFi and usable today by banks, issuers, payment networks, and trading desks because addresses stay transparent. 
+Confidential stablecoins are composable with DeFi and usable today by banks, issuers, payment networks, and trading desks because addresses stay transparent. 
 
 For users that need obfuscated addresses, we support fully address privacy in controlled conditions: 
 - Opt-in, KYB/KYC-scoped environments (merchants, trading desks, banks, etc.)
 - With sanctions screening and risk controls
 - With selective disclosure still available
 
-Stabletrust is designed to go beyond confidential amounts. It’s done responsibly to ensure users are not at risk of triggering regulatory flags.
+Fairblock is designed to go beyond confidential amounts. It’s done responsibly to ensure users are not at risk of triggering regulatory flags.
 
 
 # Technology Overview
