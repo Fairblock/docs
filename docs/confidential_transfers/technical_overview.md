@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
 ---
-# Cross-Chain Confidential Transfers with FairyRing
+# Technical Overview
 
-## Introduction
+## Cross-Chain Confidentinal Transfers with FairyRing
 Fairblock is a dynamic and decentralized network that hosts app-specific, secure, and performant confidential computing. This document describes the high-level architecture of a cross-chain confidential transfer system that connects existing EVM-based blockchains to FairyRing, Fairblock’s native chain that provides confidentiality to any system.
 
 The objective is to enable confidential balances and transfers for tokens (e.g., stablecoins) issued or circulating on EVM chains, without requiring changes to the underlying token contracts or to user wallet behavior. Confidentiality is achieved by offloading privacy-sensitive logic to FairyRing, while settlement and liquidity remain on the originating EVM chain.

@@ -25,4 +25,4 @@ Stabletrust can be used directly by FairRing users or by users on other chains w
 - Assets: USDC, USDT to start. More assets (e.g. ETH, RWAs) can be added based on issuer and partner demand
 ## Getting started
 1. Open [Stabletrust](https://stabletrust.fairblock.network/)
-2. Read the [Technical Overview](https://docs.fairblock.network/docs/confidential_transfers/cross-chain_confidential_transfers_with_FairyRing)
+2. Read the [Technical Overview](https://docs.fairblock.network/docs/confidential_transfers/technical_overview)
