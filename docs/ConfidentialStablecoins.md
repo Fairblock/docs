@@ -75,7 +75,7 @@ You can’t run credit or agent-to-agent payments if every invoice, fee, and set
 
 **1. Confidentiality where the liquidity already lives**: One-click confidentially on the chains and apps you already use. No extra cost or added security risks from forcing you to bridge your assets or loss of privacy when moving funds in/out of privacy chains. That means lower cost, lower risk, and you stay close to existing liquidity.
 
-**2. Lower fees**: We don’t charge a fee on every sender just because you want privacy. Fees are capped and designed to be practical for invoices, payroll, and treasury ops. Our monetization is split across integrations, partners, and float, to minimize fees on transactions. 
+**2. Low fees**: We don’t charge a fee on every sender just because you want privacy. Fees are capped and designed to be practical for invoices, payroll, and treasury ops. Our monetization is split across integrations, partners, and float, to minimize fees on transactions. 
 Since the cryptography is lightweight, the gas required to verify and update confidential balances is significantly lower than systems that rely on heavy zero-knowledge (ZK) proofs or fully homomorphic encryption (FHE), which most payment use cases simply don’t need. 
 
 **3. No black-box trust**: Users are not exposed to unnecessary security risks from single hardware setups (e.g. single-TEE), outsourced ZK provers, or centralized offchain coprocessors. 
