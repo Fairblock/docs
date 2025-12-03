@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 ---
-# Confidential Stablecoins
+# Confidential Transfers
 
 **Moving money onchain leaks sensitive financial data.**
 
