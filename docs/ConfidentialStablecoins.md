@@ -18,14 +18,17 @@ When financial data leaks, it creates problems:
 **Our thesis**: Confidential by default is the only sustainable model for open finance.
 
 
-# Confidential stablecoins powered by Fairblock
+# Defining Confidential Transfers
 
-Fairblock turns stablecoin payments and transfers confidential by default. Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
+Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
 - Preserve DeFi composability 
 - Stay traceable for audits
-- Reveal only what’s needed on a transaction-level, only when it is required 
+- Selectively disclose only what’s needed on a transaction-level, only when it is required. 
 
-It is not a mixer and not an anonymity pool. It is programmable confidentiality built for real businesses and real finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems: private to the public and verifiable on demand. What this technology enables:
+It is not a mixer and not an anonymity pool. It is programmable confidentiality built for legitimate businesses and finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems.
+
+
+# Core Applications
 
 **Payments & Payroll**
 - Confidential salaries for employees, contractors, and KOLs
@@ -80,12 +83,6 @@ Since the cryptography is lightweight, the gas required to verify and update con
 
 **3. No black-box trust**: Users are not exposed to unnecessary security risks from single hardware setups (e.g. single-TEE), outsourced ZK provers, or centralized offchain coprocessors. 
 
-With Fairblock:
-- Proofs are quickly generated client-side
-- Verification happens onchain
-- Key management is decentralized and secure
-- Computation is verifiable – no blind trust
-
 **4. Fast enough for real usage**: ZK proofs are light enough to run in normal payment flow. Other privacy systems fall apart because proofs take minutes on a phone or they require heavyweight off-chain computation.
 
 Throughput also scales: we can already handle significantly higher TPS than typical TFHE-style systems before hardware acceleration. We also work with specialized hardware teams (FPGA/GPU acceleration) for even more headroom, which keeps this system future-proof for high-volume partners like payment processors and trading venues.
@@ -131,27 +128,3 @@ For users that need obfuscated addresses, we support fully address privacy in co
 - With selective disclosure still available
 
 Fairblock is designed to go beyond confidential amounts. It’s done responsibly to ensure users are not at risk of triggering regulatory flags.
-
-
-# Technology Overview
-
-Most of our guides and tutorials focus on applications built using MPC and IBE, such as frontrunning protection, auctions, prediction markets, limit orders, and access control. 
-
-For confidential stablecoin payments and transfers, we use a purpose-built path that stays light, secure, and performant. Developers **do not need to deploy or install extra precompiles, modules, or smart contracts**. Everything is managed by Fairblock’s smart contracts on each supported chain, and FairyRing abstracts the cryptographic computation, all without bridging user funds.
-
-Key design choices:
-1. Homomorphic Encryption (HE): amounts and balances are encrypted so we can update balances without learning the value. We intentionally use a simple scheme that is orders of magnitude lighter and cheaper than general FHE (TFHE/CKKS), which is overkill and expensive for payment-like workloads. 
-2. Lightweight ZK proofs: the user proves “I’m allowed to transfer X” and “the math is valid” without revealing X. This prevents malformed inputs and preserves account integrity.
-3. Selective disclosure via MPC and IBE: after settlement, an authorized party can decrypt exactly what policy allows (e.g. “amount of transaction #123” or “balances over this period”) with keys from distributed keys generation (DKG), per‑account and per‑auditor. Result: auditor rotation and no persistent backdoor access.
-4. No fully trusted centralized coprocessor or relayer: the work is verifiable onchain so you don’t have to trust a single offchain black-box.
-5. Efficient message complexity: IBE is kept linear, avoiding the quadratic complexities in some other multi-party schemes.
-
-
-For developers:
-1. Confidential account setup: user opts into confidentiality and links a wallet. Initial funding into the confidential pool is visible. Subsequent balances are encrypted.
-2. Transfer: client encrypts the amount and generates the ZK proof. Fairyring verifies and updates encrypted balances. The recipient gets a decryptable receipt.
-3. Settlement: underlying tokens remain fully reserved in a locking contract (escrow). Redemptions are 1:1.
-4. Compliance window: authorized parties can request targeted decryption keys through MPC/IBE service for post‑trade or post-payment audits on a per-transaction basis.
-
-
-Explore [Stabletrust](https://stabletrust.fairblock.network/) today.
