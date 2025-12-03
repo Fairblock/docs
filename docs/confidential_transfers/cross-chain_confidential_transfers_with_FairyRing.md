@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 # Cross-Chain Confidential Transfers with FairyRing
 
