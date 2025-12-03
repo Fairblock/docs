@@ -17,6 +17,7 @@ When financial data leaks, it creates problems:
 
 **Our thesis**: Confidential by default is the only sustainable model for open finance.
 
+<br><br>
 
 # Defining Confidential Transfers
 
@@ -27,7 +28,7 @@ Amounts and balances are encrypted while addresses stay transparent. This combin
 
 It is not a mixer and not an anonymity pool. It is programmable confidentiality built for legitimate businesses and finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems.
 
-
+<br><br>
 # Core Applications
 
 **Payments & Payroll**
@@ -73,6 +74,7 @@ Regulators increasingly expect two things: don’t expose everything to everyone
 
 You can’t run credit or agent-to-agent payments if every invoice, fee, and settlement is globally visible. Confidential rails are the prerequisite. With selective disclosures, regulated parties settle onchain and can still produce per-transaction details for compliance.
 
+<br><br>
 
 # Why Fairblock
 
@@ -89,6 +91,7 @@ Throughput also scales: we can already handle significantly higher TPS than typi
 
 ![alt text](<Confidential Stablecoins.png>)
 
+<br><br>
 
 # Compliance and Regulatory Alignment
 
