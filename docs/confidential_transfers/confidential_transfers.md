@@ -19,10 +19,10 @@ When financial data leaks, it creates problems:
 
 
 
-## Defining Confidential Transfers
+## Defining Confidential Transactions
 
 Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
-- Preserve DeFi composability 
+- Support DeFi composability and integrations
 - Stay traceable for audits
 - Selectively disclose only what’s needed on a transaction-level, only when it is required. 
 
