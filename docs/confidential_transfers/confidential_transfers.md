@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 ---
-# Confidential Transfers
+# Confidential Transactions
 
 **Moving money onchain leaks sensitive financial data.**
 
