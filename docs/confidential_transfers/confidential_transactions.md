@@ -61,7 +61,7 @@ Onchain corporate actions that expose you to frontrunners. It also creates legal
 
 
 **Real-World Assets (RWA)**
-- Tokenized securities trading (equiies, bonds, funds)
+- Tokenized securities trading (equities, bonds, funds)
 - Institutional settlement workflows (custody, issuance, venues)
 
 Enable confidential trading and settlement of tokenized securities without exposing portfolio composition or execution terms on public chains. Designed to fit the operational needs of custodians, issuers, and market venues.
