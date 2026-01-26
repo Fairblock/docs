@@ -60,6 +60,13 @@ Treasury activity is strategy. Get the benefits of moving funds onchain without 
 Onchain corporate actions that expose you to frontrunners. It also creates legal and regulatory questions if markets react before disclosure windows. 
 
 
+**Real-World Assets (RWA)**
+- Tokenized securities trading (equiies, bonds, funds)
+- Institutional settlement workflows (custody, issuance, venues)
+
+Enable confidential trading and settlement of tokenized securities without exposing portfolio composition or execution terms on public chains. Designed to fit the operational needs of custodians, issuers, and market venues.
+
+
 **Compliance & Regulation**
 - Selective disclosure and bad actor filtering
 - Anti-money laundering (AML)-safe stablecoins and regulatory auditability
