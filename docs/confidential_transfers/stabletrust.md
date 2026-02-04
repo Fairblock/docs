@@ -4,13 +4,13 @@ sidebar_position: 1
 # Stabletrust
 
 ## Confidential stablecoins and transfers powered by Fairblock
-Stabletrust is the unified browser-based interface for users, traders, businesses, and institutions on all major EVM chains, Solana, and payments networks. It includes:
+Stabletrust is the unified browser-based interface for users, traders, businesses, and institutions on major networks. It includes:
 - Wallet integrations
 - Local, browser-based, lightweight Homomorphic Encryption and ZK proof generation 
 - Balance decryption for users
 - Confidential transfers for major stablecoins
 
-Stabletrust can be used seamlessly by users without typical UX burdens including volatile privacy coins, interacting bridging funds, encryption delays, or changing wallets. It’s an all-in-one interface to start sending confidential transfers immediately without any prior setup or specialized knowledge.
+Stabletrust can be used seamlessly by users without the typical UX frictions, including volatile privacy coins, bridging funds, encryption delays, or changing wallets. It’s an all-in-one interface to start sending confidential transfers immediately without any prior setup or specialized knowledge.
 ## What you can do
 - Send and receive stablecoins with amounts and balances kept confidential
 - Preserve composability and compliance
