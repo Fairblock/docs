@@ -4,26 +4,27 @@ sidebar_position: 1
 # Stabletrust
 
 ## Confidential stablecoins and transfers powered by Fairblock
-Stabletrust is the unified browser-based interface for users, traders, businesses, and institutions on major networks. It includes:
+Stabletrust is the unified browser-based interface for users, traders, businesses, and institutions. It works across major EVM chains, payment networks, with additional ecosystems expanding over time. 
+Stabletrust includes:
 - Wallet integrations
-- Local, browser-based, lightweight Homomorphic Encryption and ZK proof generation 
+- Local, browser-based, lightweight homomorphic encryption and ZK proof generation 
 - Balance decryption for users
 - Confidential transfers for major stablecoins
 
-Stabletrust can be used seamlessly by users without the typical UX frictions, including volatile privacy coins, bridging funds, encryption delays, or changing wallets. It’s an all-in-one interface to start sending confidential transfers immediately without any prior setup or specialized knowledge.
+Stabletrust can be used without the typical UX burdens of privacy systems: no volatile privacy coins, no bridging to isolated privacy chains, no long encryption/proof delays, and no need to switch wallets. It’s an all-in-one interface to start sending confidential transfers immediately without prior setup or cryptography knowledge.
 ## What you can do
-- Send and receive stablecoins with amounts and balances kept confidential
+- Send and receive stablecoins without leaking amounts and balances
 - Preserve composability and compliance
 - Disclose per-transaction details to finance, auditors, banks, or regulators only when needed (no single decrytion key for all transactions)
-- Access from major chains without wrapping or bridging funds
+- Access confidentiality from major chains without wrapping or bridging funds
 ## Who it’s for
 - Individuals: everyday spending and transfers without leaking amounts or relationships
-- Businesses and institutions: confidential payroll, commercial terms, and treasury moves with on-demand selective disclosure for auditors, regulators, and banks
 - Traders: reduce information leakage (order size, timing) while settling on public chains
+- Businesses and institutions: confidential payroll, commercial terms, and treasury moves with selective disclosure when required
 
 ## Supported networks
-- Chains: Major EVM chains and payment networks (Ethereum, Arbitrum, Base, Arc, Tempo, Noble AppLayer, Stable), FairyRing, and soon: Solana, Stellar, and others.
-- Deposit Assets: USDC, USDT, USDG, Fairblock's yield-bearing Confidential USD to start. More assets (e.g. Encrypted BTC, ETH, RWAs) can be added based on issuer and partner demand
+- Chains: Major EVM chains and payment networks (Ethereum, Arbitrum, Base, Tempo, Arc, Noble AppLayer, Stable), FairyRing, and soon: Solana, Stellar, and others.
+- Deposit Assets: USDC, USDT, USDG, Fairblock's yield-bearing Confidential USD to start. More assets (e.g. RWAs, encrypted BTC, ETH) can be added based on issuer and partner demand
 ## Getting started
 1. Open [Stabletrust](https://stabletrust.fairblock.network/)
 2. Read the [Technical Overview](https://docs.fairblock.network/docs/confidential_transfers/technical_overview)
