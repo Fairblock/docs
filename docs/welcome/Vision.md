@@ -39,8 +39,8 @@ Eliminate information leakage and manipulation while interacting with other user
 Fairblock cApps run on FairyRing and are accessible from ecosystems where liquidity lives. This allows users to keep their wallets and workflows while gaining confidentiality.
 
 - EVM: Ethereum, Arbitrum, Hyperliquid, Base, Noble AppLayer, and more
-- Solana
 - Payment networks (e.g. Tempo, Arc, Stable, Plasma, Noble, etc.)
+- Solana, Stellar
 - Trading platforms (e.g. CowSwap, Uniswap, etc.)
 
 Distribution is user-led. Ecosystems integrate into Fairblock cApps. 
