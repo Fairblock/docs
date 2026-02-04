@@ -90,7 +90,7 @@ Since the cryptography is lightweight, the gas required to verify and update con
 
 **3. No black-box trust**: Users are not exposed to unnecessary security risks from single hardware setups (e.g. single-TEE), outsourced ZK provers, or centralized offchain coprocessors. 
 
-**4. Fast enough for real usage**: ZK proofs are light enough to run in normal payment flow. Other privacy systems fall apart because proofs take minutes on a phone or they require heavyweight off-chain computation.
+**4. Fast enough for real usage**: ZK proofs are light enough to run in normal payment flow. User experience on other privacy systems remain poor because proofs take minutes on a phone or they require heavyweight off-chain computation.
 
 Throughput also scales: we can already handle significantly higher TPS than typical TFHE-style systems before hardware acceleration. We also work with specialized hardware teams (FPGA/GPU acceleration) for even more headroom, which keeps this system future-proof for high-volume partners like payment processors and trading venues.
 
