@@ -36,6 +36,11 @@ npm install @fairblock/stabletrust
 yarn add @fairblock/stabletrust
 ```
 
+## Join Confidential Builders Program
+
+Apply to build on Fairblock’s StableTrust SDK and pioneer the next generation of confidential transfers.
+[https://build.fairblock.network/](https://build.fairblock.network/)
+
 ## Links
 
 - **NPM Package**: [@fairblock/stabletrust](https://www.npmjs.com/package/@fairblock/stabletrust)
