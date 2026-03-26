@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Fairates
+# Fairrates
 
 ***Leaderless sealed‑bid fixed‑rate lending: the way TradFi already does it, finally onchain.***
 
@@ -10,12 +10,12 @@ sidebar_position: 3
 
 ## TL;DR
 
-Traditional Finance (TradFi) has been relying on sealed-bid, single-price auctions to sell trillions of dollars of fixed-rate debt (US Treasury bills and repo) because they hide order flow and clear at a single, fair price. By contrast, onchain lending is dominated by variable-rate even as appetite for fixed income soars. The fixed-rate auction designs in the market today still leak bids by keepers. Fairates brings TradFi’s auction model onchain with *leaderless* sealed-bid auctions: one fixed rate for everyone who wins and no one can censor or frontrun your order. 
+Traditional Finance (TradFi) has been relying on sealed-bid, single-price auctions to sell trillions of dollars of fixed-rate debt (US Treasury bills and repo) because they hide order flow and clear at a single, fair price. By contrast, onchain lending is dominated by variable-rate even as appetite for fixed income soars. The fixed-rate auction designs in the market today still leak bids by keepers. Fairrates brings TradFi’s auction model onchain with *leaderless* sealed-bid auctions: one fixed rate for everyone who wins and no one can censor or frontrun your order. 
 
 - TradFi solved fixed‑rate lending [decades ago](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) with sealed‑bid, single price auctions so nobody can copy‑trade you, everyone clears at one fair rate, and price discovery is fast. The [U.S. Treasury](https://www.treasurydirect.gov/auctions/how-auctions-work/) still finances itself this way.
 - DeFi lending is massive ([$65B+ TVL](https://defillama.com/protocols/lending)) but still mostly floating‑rate. Fixed‑rate income is clearly in demand, but fixed‑rate lending itself is still tiny and leaks information.
-- Morpho V2 [announced](https://morpho.org/blog/morpho-v2-liberating-the-potential-of-onchain-loans/) fixed‑rate, fixed‑term direction, but bids are remain fully exposed onchain. Fairates runs the auction itself confidentially and leaderlessly, then settles onchain at a single clearing rate.
-- Fairates: leaderless, sealed‑bid auctions (no privileged decryptor, no manipulation, no slippage tax) that clear one fixed rate for all winners, replicating how the world’s largest debt markets already operate.
+- Morpho V2 [announced](https://morpho.org/blog/morpho-v2-liberating-the-potential-of-onchain-loans/) fixed‑rate, fixed‑term direction, but bids are remain fully exposed onchain. Fairrates runs the auction itself confidentially and leaderlessly, then settles onchain at a single clearing rate.
+- Fairrates: leaderless, sealed‑bid auctions (no privileged decryptor, no manipulation, no slippage tax) that clear one fixed rate for all winners, replicating how the world’s largest debt markets already operate.
 
 ---
 
@@ -40,21 +40,21 @@ Single‑price sealed‑bid auctions provide:
 2. Encrypted bidding until the end: no copy trading, no frontrunning.
 3. Deterministic price discovery at a fixed time, not a constantly shifting curve.
 
-This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctions-work/) standardized on single‑price auctions. Fairates is bringing that muscle memory onchain.
+This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctions-work/) standardized on single‑price auctions. Fairrates is bringing that muscle memory onchain.
 
 ---
 
 ## Why now
 
-- The market is asking for fixed‑rate, fixed‑term rails (Morpho V2), and fixed‑income trading is booming (Pendle). Tom Zschach, Swift’s Chief Innovation Officer, is raising [concerns](https://www.linkedin.com/feed/update/urn:li:activity:7354149262349271040/) about information leakage and the need for “selective confidentiality.” Fairates is arriving exactly as the market realizes fixed‑rate price discovery and confidentiality are the missing pieces.
+- The market is asking for fixed‑rate, fixed‑term rails (Morpho V2), and fixed‑income trading is booming (Pendle). Tom Zschach, Swift’s Chief Innovation Officer, is raising [concerns](https://www.linkedin.com/feed/update/urn:li:activity:7354149262349271040/) about information leakage and the need for “selective confidentiality.” Fairrates is arriving exactly as the market realizes fixed‑rate price discovery and confidentiality are the missing pieces.
 - Institutions are here: [Coinbase](https://www.coinbase.com/en-ca/blog/now-get-a-USDC-loan-without-selling-your-bitcoin) baked Morpho loans directly into the app. Those same institutions will not leak size or intent if they can avoid it. Confidential auctions are the obvious bridge.
-- TradFi’s [playbook](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) says auctions are superior to AMMs for fixed‑rate credit. Fairates has the cryptography (MPC, DKG, IBE) to deliver it in DeFi *without* a trusted auctioneer.
+- TradFi’s [playbook](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) says auctions are superior to AMMs for fixed‑rate credit. Fairrates has the cryptography (MPC, DKG, IBE) to deliver it in DeFi *without* a trusted auctioneer.
 
 ---
 
-## Introducing Fairates
+## Introducing Fairrates
 
-**Fairates**: a fixed‑rate lending market that clears via a *leaderless*, sealed‑bid, single‑price auction.
+**Fairrates**: a fixed‑rate lending market that clears via a *leaderless*, sealed‑bid, single‑price auction.
 
 - **Leaderless**: there is no trusted auctioneer who can decrypt, censor, or peek. Decryption keys are split among a decentralized validator set via MPC and DKG (multi‑party computation + distributed key generation).
 - **Sealed‑bid**: your size, rate, and timing stay confidential until the auction closes.
@@ -63,10 +63,10 @@ This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctio
 
 ---
 
-## How Fairates works
+## How Fairrates works
 
 1. Pick your term (e.g., 4 weeks) and the rate you want.
-2. Submit an encrypted bid. Nobody (not even Fairates) can see it.
+2. Submit an encrypted bid. Nobody (not even Fairrates) can see it.
 3. Auction closes: decentralized decryption (no leader, no privileged key).
 4. One fixed clearing rate is determined.
 5. Winners settle onchain: borrowers get their loan; lenders receive a fixed‑income note they can hold to maturity.
