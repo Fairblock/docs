@@ -16,7 +16,7 @@ Stabletrust includes:
 
 Stabletrust can be used without the typical UX burdens of privacy systems: no volatile privacy coins, no bridging to isolated privacy chains, no long encryption/proof delays, and no need to switch wallets. It’s an all-in-one interface to start sending confidential transfers immediately without prior setup or cryptography knowledge.
 
-**First-time onboarding is one-time**: Like linking a bank account in a neobank or completing a KYC process, Stabletrust setup is a one-time step. First-time users connect a wallet (creating a confidential account) and make an initial deposit to fund it. After that, sending and receiving confidential transfers works like normal -- no repeated setup. Deposits are only needed when you want to add funds. Redemptions are optional when you want to redeeem it back to the underlying token.
+**First-time onboarding is one-time**: Like linking a bank account in a neobank or completing a KYC process, Stabletrust setup is a one-time step. First-time users connect a wallet (creating a confidential account) and make an initial deposit to fund it. After that, sending and receiving confidential transfers works like normal without repeated setup. Deposits are only needed when you want to add funds. Redemptions are optional when you want to redeeem it back to the underlying token.
 
 ## What you can do
 
