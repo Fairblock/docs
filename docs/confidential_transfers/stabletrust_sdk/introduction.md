@@ -80,7 +80,7 @@ const client = new ConfidentialTransferClient(
 
 ### 2. Ensure Account is Setup
 
-Before doing confidential operations, make sure the user account is initialized on-chain.
+Before doing confidential operations, make sure the user account is initialized on-chain. This initialization is a one-time step per user per chain.
 
 ```javascript
 // signer is a standard ethers.js Signer
