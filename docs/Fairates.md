@@ -10,11 +10,7 @@ sidebar_position: 3
 
 ## TL;DR
 
-<<<<<<< HEAD:docs/Fairates.md
-Traditional Finance (TradFi) has been relying on sealed-bid, single-price auctions to sell trillions of dollars of fixed-rate debt (US Treasury bills and repo) because they hide order flow and clear at a single, fair price. By contrast, onchain lending is dominated by variable-rate even as appetite for fixed income soars. The fixed-rate auction designs in the market today still leak bids by keepers. Fairates brings TradFi’s auction model onchain with _leaderless_ sealed-bid auctions: one fixed rate for everyone who wins and no one can censor or frontrun your order. 
-=======
-Traditional Finance (TradFi) has been relying on sealed-bid, single-price auctions to sell trillions of dollars of fixed-rate debt (US Treasury bills and repo) because they hide order flow and clear at a single, fair price. By contrast, onchain lending is dominated by variable-rate even as appetite for fixed income soars. The fixed-rate auction designs in the market today still leak bids by keepers. Fairrates brings TradFi’s auction model onchain with *leaderless* sealed-bid auctions: one fixed rate for everyone who wins and no one can censor or frontrun your order. 
->>>>>>> 315121698bc581a7e1b22de77689397127eb9b06:docs/Fairrates.md
+Traditional Finance (TradFi) has been relying on sealed-bid, single-price auctions to sell trillions of dollars of fixed-rate debt (US Treasury bills and repo) because they hide order flow and clear at a single, fair price. By contrast, onchain lending is dominated by variable-rate even as appetite for fixed income soars. The fixed-rate auction designs in the market today still leak bids by keepers. Fairrates brings TradFi’s auction model onchain with _leaderless_ sealed-bid auctions: one fixed rate for everyone who wins and no one can censor or frontrun your order. 
 
 - TradFi solved fixed‑rate lending [decades ago](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) with sealed‑bid, single price auctions so nobody can copy‑trade you, everyone clears at one fair rate, and price discovery is fast. The [U.S. Treasury](https://www.treasurydirect.gov/auctions/how-auctions-work/) still finances itself this way.
 - DeFi lending is massive ([$65B+ TVL](https://defillama.com/protocols/lending)) but still mostly floating‑rate. Fixed‑rate income is clearly in demand, but fixed‑rate lending itself is still tiny and leaks information.
@@ -31,7 +27,7 @@ In contrast, DeFi lending today:
 
 - $65+B of lending TVL is still predominantly floating‑rate (Aave, Compound, Morpho Blue, Spark, JustLend, etc.)
 - Fixed‑income demand is exploding (Pendle alone has [$6B](https://defillama.com/protocol/pendle)+ TVL) but the _lending_ side of fixed‑rate is still underserved and often leaks information.
-- Early fixed‑rate lenders like [Term Finance](https://www.blocmates.com/articles/term-finance-introducing-collateralized-fixed-rate-auctions-onchain) run auctions, but keepers still reveal bids, which re‑introduces leakage and coordination risk.
+- Early fixed‑rate lenders like [Term Finance](https://www.blocmates.com/articles/term-finance-introducing-collateralized-fixed-rate-auctions-on-chain) run auctions, but keepers still reveal bids, which re‑introduces leakage and coordination risk.
 - AMMs impose an implicit tax (slippage and price impact). Notional highlighted 10 bps [slippage](https://gov.angle.money/t/new-yield-strategy-fixed-rate-lending-on-notional-finance/285) on a $1M stablecoin trade. Auctions clear one rate for everyone.
 
 ---
@@ -52,21 +48,13 @@ This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctio
 
 - The market is asking for fixed‑rate, fixed‑term rails (Morpho V2), and fixed‑income trading is booming (Pendle). Tom Zschach, Swift’s Chief Innovation Officer, is raising [concerns](https://www.linkedin.com/feed/update/urn:li:activity:7354149262349271040/) about information leakage and the need for “selective confidentiality.” Fairrates is arriving exactly as the market realizes fixed‑rate price discovery and confidentiality are the missing pieces.
 - Institutions are here: [Coinbase](https://www.coinbase.com/en-ca/blog/now-get-a-USDC-loan-without-selling-your-bitcoin) baked Morpho loans directly into the app. Those same institutions will not leak size or intent if they can avoid it. Confidential auctions are the obvious bridge.
-<<<<<<< HEAD:docs/Fairates.md
-- TradFi’s [playbook](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) says auctions are superior to AMMs for fixed‑rate credit. Fairates has the cryptography (MPC, DKG, IBE) to deliver it in DeFi _without_ a trusted auctioneer.
-=======
-- TradFi’s [playbook](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) says auctions are superior to AMMs for fixed‑rate credit. Fairrates has the cryptography (MPC, DKG, IBE) to deliver it in DeFi *without* a trusted auctioneer.
->>>>>>> 315121698bc581a7e1b22de77689397127eb9b06:docs/Fairrates.md
+- TradFi’s [playbook](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf) says auctions are superior to AMMs for fixed‑rate credit. Fairrates has the cryptography (MPC, DKG, IBE) to deliver it in DeFi _without_ a trusted auctioneer.
 
 ---
 
 ## Introducing Fairrates
 
-<<<<<<< HEAD:docs/Fairates.md
-**Fairates**: a fixed‑rate lending market that clears via a _leaderless_, sealed‑bid, single‑price auction.
-=======
-**Fairrates**: a fixed‑rate lending market that clears via a *leaderless*, sealed‑bid, single‑price auction.
->>>>>>> 315121698bc581a7e1b22de77689397127eb9b06:docs/Fairrates.md
+**Fairrates**: a fixed‑rate lending market that clears via a _leaderless_, sealed‑bid, single‑price auction.
 
 - **Leaderless**: there is no trusted auctioneer who can decrypt, censor, or peek. Decryption keys are split among a decentralized validator set via MPC and DKG (multi‑party computation + distributed key generation).
 - **Sealed‑bid**: your size, rate, and timing stay confidential until the auction closes.
@@ -93,6 +81,6 @@ This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctio
 - Coinbase Loans powered by Morpho — [Coinbase](https://www.coinbase.com/en-ca/blog/now-get-a-USDC-loan-without-selling-your-bitcoin) and [Morpho](https://morpho.org/blog/coinbase-launches-crypto-backed-loans-powered-by-morpho/) announcements (Jan 2025).
 - Treasury uniform‑price (single‑price) auction mechanics — [TreasuryDirect](https://www.treasurydirect.gov/auctions/how-auctions-work/), [FAQ](https://www.treasurydirect.gov/help-center/faqs/auction-faqs/), [U.S. Treasury studies](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf), and [Kellogg School of Management](https://www.kellogg.northwestern.edu/faculty/weber/decs-452/Treasury_Report.pdf?utm_source=chatgpt.com)
 - Repo market is multi‑trillion — [BIS repo statistics](https://www.bis.org/publ/cgfs59.pdf)
-- Term Finance keepers reveal — [Blocmates](https://www.blocmates.com/articles/term-finance-introducing-collateralized-fixed-rate-auctions-onchain?utm_source=chatgpt.com) explainer
+- Term Finance keepers reveal — [Blocmates](https://www.blocmates.com/articles/term-finance-introducing-collateralized-fixed-rate-auctions-on-chain?utm_source=chatgpt.com) explainer
 - Notional large‑trade slippage example (~10 bps on $1M) — [Angle Governance Forum](https://gov.angle.money/t/new-yield-strategy-fixed-rate-lending-on-notional-finance/285?utm_source=chatgpt.com)
 - Fairblock’s leaderless sealed‑bid auctions & MPC/DKG stack — [Shoal Research](https://www.shoal.gg/p/fairblock-incorruptible-markets-and), [GitHub](https://github.com/Fairblock/fairyring), and architecture [posts](https://medium.com/%400xfairblock/fast-fairy-series-fairyring-architecture-i-d5293e0ce665)
