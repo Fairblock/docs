@@ -29,7 +29,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Private',
     Svg: FeatureShieldSvg,
-    description: <>Storing encrypted limit orders and on-chain intents</>,
+    description: <>Storing encrypted limit orders and onchain intents</>,
   },
 ];
 

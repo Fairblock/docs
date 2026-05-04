@@ -11,7 +11,7 @@ Fairblock v1 mainly focuses on using HE and Threshold Identity-Based Encryption 
 
 ## Conditional Encryption (IBE)
 
-Identity-based Encryption (also known as witness encryption or conditional decryption) enables the encryption of messages or transactions so that they can only be decrypted once a specific decryption condition—or witness—has been provided. This decryption condition or witness is often referred to as an identity or ID in the cryptographic literature.
+Identity-based Encryption (also known as witness encryption or conditional decryption) enables the encryption of messages or transactions so that they can only be decrypted once a specific decryption condition or witness has been provided. This decryption condition or witness is often referred to as an identity or ID in the cryptographic literature.
 
 In general, there are two modes of use:
 

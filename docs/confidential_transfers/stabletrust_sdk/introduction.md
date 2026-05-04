@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Confidential transfers within your application powered by Fairblock
 
-The Stabletrust SDK provides a simple, robust interface for executing confidential transfers using homomorphic encryption and zero-knowledge proofs. It enables developers to integrate confidentiality features directly into their apps—securing token deposits, private transfers, and withdrawals—without requiring deep cryptographic expertise.
+The Stabletrust SDK provides a simple, robust interface for executing confidential transfers using homomorphic encryption and zero-knowledge proofs. It enables developers to integrate confidentiality features directly into their apps securing token deposits, private transfers, and withdrawals without requiring deep cryptographic expertise.
 
 ## What it does
 
@@ -23,6 +23,22 @@ Privacy by default unlocks new use cases for open finance that institutions and 
 - **Web wallets with confidential transfers built in**: Give everyday users privacy by default for their transactions and asset balances.
 - **x402 payments with confidential transfers**: Perform fast, confidential micro-payments for subscriptions, APIs, or AI agents.
 - **Treasury management**: Applications for DAOs and funds to move capital without broadcasting their strategy to the market.
+
+## Anonymous Transfers
+
+For applications requiring the highest level of privacy, StableTrust supports fully anonymous transfers through the Fairycloak relay system.
+
+Standard confidential transfers encrypt transaction amounts while keeping sender and recipient addresses visible onchain. Anonymous transfers go further both the **amount and the wallet address** are shielded. Transactions are routed through a relay using numeric account IDs entirely decoupled from any public EVM address, making it impossible to link onchain activity back to a specific wallet.
+
+Key properties of anonymous transfers:
+
+- **Amount privacy**: Transaction values are encrypted and hidden from public observers.
+- **Address privacy**: No public EVM address is associated with the transfer accounts are identified by numeric IDs only.
+- **Gasless operations**: Transfers and withdrawals are relayed by Fairycloak, so users pay no gas for those operations.
+
+Access to anonymous transfers is available to teams building privacy-critical applications. To learn more or request access, reach out to the Fairblock team at [hello@fairblock.network](mailto:hello@fairblock.network).
+
+---
 
 ## Installation
 
@@ -80,7 +96,7 @@ const client = new ConfidentialTransferClient(
 
 ### 2. Ensure Account is Setup
 
-Before doing confidential operations, make sure the user account is initialized on-chain.
+Before doing confidential operations, make sure the user account is initialized onchain.
 
 ```javascript
 // signer is a standard ethers.js Signer

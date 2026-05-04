@@ -22,7 +22,7 @@ The quickstart demo showcasing simple encrypted transactions can be found [here]
 
 ## Building Apps with General Condition IDs
 
-As an even bigger unlock within the Fairblock confidential computation, the `x/pep` module also has the feature of using confidential computation with general conditions, not just FairyRing block height. These conditions can take the form of anything on-chain, be it asset prices, interest rates, or any other metric including those not in DeFi. These conditions are defined within a smart contract, and given unique IDs that are mapped within FairyRing via the `x/pep` module.
+As an even bigger unlock within the Fairblock confidential computation, the `x/pep` module also has the feature of using confidential computation with general conditions, not just FairyRing block height. These conditions can take the form of anything onchain, be it asset prices, interest rates, or any other metric including those not in DeFi. These conditions are defined within a smart contract, and given unique IDs that are mapped within FairyRing via the `x/pep` module.
 
 A tutorial showcasing general conditions is shown [here](../../build/fairyring/fairyring_private_decryption.md), and more tutorials are under development.
 

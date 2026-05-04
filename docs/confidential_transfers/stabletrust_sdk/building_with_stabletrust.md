@@ -7,13 +7,13 @@ sidebar_position: 2
 **Live Demo:** [https://Stabletrust-sdk-demo.vercel.app/](https://Stabletrust-sdk-demo.vercel.app/)<br/>
 **GitHub Repository:** [https://github.com/Fairblock/Stabletrust-sdk-demo](https://github.com/Fairblock/Stabletrust-sdk-demo)
 
-This guide walks you through building a complete confidential decentralized application using the Stabletrust SDK and Privy for wallet authentication. By the end, you will have a working Next.js application where users can deposit tokens into an encrypted balance, transfer them privately on-chain, and withdraw back to a public balance.
+This guide walks you through building a complete confidential decentralized application using the Stabletrust SDK and Privy for wallet authentication. By the end, you will have a working Next.js application where users can deposit tokens into an encrypted balance, transfer them privately onchain, and withdraw back to a public balance.
 
 ---
 
 ## What You Are Building
 
-Stabletrust uses Fully Homomorphic Encryption (FHE) to give each user a confidential token balance alongside their normal public balance. Once tokens enter the confidential layer, their amounta are encrypted on-chain — opaque to block explorers and other observers.
+Stabletrust uses Fully Homomorphic Encryption (FHE) to give each user a confidential token balance alongside their normal public balance. Once tokens enter the confidential layer, their amounta are encrypted onchain opaque to block explorers and other observers.
 
 The user flow:
 
@@ -34,7 +34,7 @@ The user flow:
 ## Prerequisites
 
 - Node.js 18 or higher
-- A Privy App ID — created at [dashboard.privy.io](https://dashboard.privy.io)
+- A Privy App ID created at [dashboard.privy.io](https://dashboard.privy.io)
 - A wallet funded with test ETH on Base Sepolia for gas
 
 ---
@@ -76,10 +76,10 @@ NEXT_PUBLIC_TOKEN_ADDRESS=0x036CbD53842c5426634e7929541eC2318f3dCF7e
 NEXT_PUBLIC_CHAIN_ID=84532
 ```
 
-- `NEXT_PUBLIC_PRIVY_APP_ID` — from your Privy dashboard
-- `NEXT_PUBLIC_RPC_URL` — the JSON-RPC endpoint for Base Sepolia
-- `NEXT_PUBLIC_TOKEN_ADDRESS` — the ERC20 token for this demo (test USDC on Base Sepolia)
-- `NEXT_PUBLIC_CHAIN_ID` — `84532` is Base Sepolia
+- `NEXT_PUBLIC_PRIVY_APP_ID`: from your Privy dashboard
+- `NEXT_PUBLIC_RPC_URL`: the JSON-RPC endpoint for Base Sepolia
+- `NEXT_PUBLIC_TOKEN_ADDRESS`: the ERC20 token for this demo (test USDC on Base Sepolia)
+- `NEXT_PUBLIC_CHAIN_ID`: `84532` is Base Sepolia
 
 ---
 
@@ -144,7 +144,7 @@ You can see the complete `Providers.tsx` used in the demo here: [app/Providers.t
 
 ---
 
-## Step 5: Building the Hook — Step by Step
+## Step 5: Building the Hook, Step by Step
 
 Everything from this point forward lives inside a single React hook: `app/hooks/useConfidentialClient.ts`. This section builds it piece by piece so each operation is clear before the next one is added.
 
@@ -214,7 +214,7 @@ useEffect(() => {
 | Parameter | Type     | Description                                                                |
 | :-------- | :------- | :------------------------------------------------------------------------- |
 | `rpcUrl`  | `string` | The HTTP JSON-RPC endpoint of the network                                  |
-| `chainId` | `number` | The chain ID — the SDK resolves the Stabletrust contract address from this |
+| `chainId` | `number` | The chain ID. The SDK resolves the Stabletrust contract address from this. |
 
 You only need one client instance for the lifetime of the app. Creating it once on mount is sufficient.
 
@@ -224,7 +224,7 @@ You only need one client instance for the lifetime of the app. Creating it once 
 
 The Stabletrust SDK expects a standard `ethers.Signer`. Privy provides its own wallet abstraction, so you need to extract the raw EIP-1193 provider from it and wrap it with ethers.
 
-Add this `useEffect` to your hook — it runs whenever authentication state or the wallet list changes:
+Add this `useEffect` to your hook it runs whenever authentication state or the wallet list changes:
 
 ```typescript
 useEffect(() => {
@@ -241,7 +241,7 @@ useEffect(() => {
       // 3. Wrap it in ethers.BrowserProvider
       const ethersProvider = new ethers.BrowserProvider(provider);
 
-      // 4. Derive the Signer — this is what the SDK expects
+      // 4. Derive the Signer this is what the SDK expects
       const s = await ethersProvider.getSigner();
       setSigner(s);
     } else {
@@ -254,10 +254,10 @@ useEffect(() => {
 
 **What each step does:**
 
-- `switchChain` — forces the wallet onto the correct network before any transaction is signed. Without this, the user could accidentally sign on the wrong chain.
-- `getEthereumProvider()` — returns the raw EIP-1193 provider Privy uses internally.
-- `BrowserProvider` — the ethers.js v6 wrapper for browser-injected providers.
-- `getSigner()` — returns a `JsonRpcSigner` capable of signing transactions and messages.
+- `switchChain`: forces the wallet onto the correct network before any transaction is signed. Without this, the user could accidentally sign on the wrong chain.
+- `getEthereumProvider()`: returns the raw EIP-1193 provider Privy uses internally.
+- `BrowserProvider`: the ethers.js v6 wrapper for browser-injected providers.
+- `getSigner()`: returns a `JsonRpcSigner` capable of signing transactions and messages.
 
 The `signer` produced here is passed into every SDK operation below.
 
@@ -265,7 +265,7 @@ The `signer` produced here is passed into every SDK operation below.
 
 ### 5.3 Initialize the Confidential Account
 
-Before any confidential operation can happen, the user must have a confidential account registered on-chain with their FHE public key. `ensureAccount` handles the full flow in one call: it prompts a wallet signature, derives the FHE keypair from that signature, and registers the public key on-chain if it does not yet exist.
+Before any confidential operation can happen, the user must have a confidential account registered onchain with their FHE public key. `ensureAccount` handles the full flow in one call: it prompts a wallet signature, derives the FHE keypair from that signature, and registers the public key onchain if it does not yet exist.
 
 Add this function to your hook:
 
@@ -276,7 +276,7 @@ const ensureAccount = async () => {
   setError(null);
   try {
     const keys = await client.ensureAccount(
-      signer // ethers.Signer — the user's signer derived from the Privy wallet
+      signer // ethers.Signer the user's signer derived from the Privy wallet
     );
     setUserKeys(keys);
   } catch (e: any) {
@@ -295,15 +295,15 @@ const ensureAccount = async () => {
 
 **Returns:** `{ publicKey: string, privateKey: string }`
 
-The `privateKey` returned here is a derived FHE key — not the user's wallet private key. It never leaves the browser and is re-derived on each session from the wallet signature. Store it in React state and pass it to `getConfidentialBalance` later.
+The `privateKey` returned here is a derived FHE key not the user's wallet private key. It never leaves the browser and is re-derived on each session from the wallet signature. Store it in React state and pass it to `getConfidentialBalance` later.
 
-Account initialization includes an on-chain finalization step. Expect this to take approximately 45 seconds on the first call. The method waits for finalization before returning, so `loading` will be true for the duration.
+Account initialization includes an onchain finalization step. Expect this to take approximately 45 seconds on the first call. The method waits for finalization before returning, so `loading` will be true for the duration.
 
 ---
 
-### 5.4 Deposit — Move Tokens into the Confidential Layer
+### 5.4 Deposit: Move Tokens into the Confidential Layer
 
-Deposit converts public ERC20 tokens into an encrypted confidential balance. The SDK handles the ERC20 approval and the deposit transaction in a single call — you do not need to send a separate `approve` transaction.
+Deposit converts public ERC20 tokens into an encrypted confidential balance. The SDK handles the ERC20 approval and the deposit transaction in a single call you do not need to send a separate `approve` transaction.
 
 Add this function to your hook:
 
@@ -318,9 +318,9 @@ const confidentialDeposit = async (humanAmount: string) => {
     // e.g. "10" with 6 decimals → 10_000_000n
 
     await client.confidentialDeposit(
-      signer, // ethers.Signer — the user's wallet signer
-      config.tokenAddress, // string — the ERC20 contract address to deposit
-      amount // BigInt — amount in token base units
+      signer, // ethers.Signer the user's wallet signer
+      config.tokenAddress, // string the ERC20 contract address to deposit
+      amount // BigInt amount in token base units
     );
 
     // Wait briefly for the chain state to settle, then refresh balances
@@ -335,21 +335,21 @@ const confidentialDeposit = async (humanAmount: string) => {
 
 **Parameters for `client.confidentialDeposit`:**
 
-| Parameter      | Type            | Description                                                                 |
-| :------------- | :-------------- | :-------------------------------------------------------------------------- |
-| `signer`       | `ethers.Signer` | The user's wallet signer                                                    |
-| `tokenAddress` | `string`        | The ERC20 token contract address                                            |
-| `amount`       | `BigInt`        | Amount in the token's base unit — always use `ethers.parseUnits` to convert |
+| Parameter      | Type            | Description                                                               |
+| :------------- | :-------------- | :------------------------------------------------------------------------ |
+| `signer`       | `ethers.Signer` | The user's wallet signer                                                  |
+| `tokenAddress` | `string`        | The ERC20 token contract address                                          |
+| `amount`       | `BigInt`        | Amount in the token's base unit always use `ethers.parseUnits` to convert |
 
-**Returns:** A transaction receipt once the deposit is confirmed and finalized on-chain.
+**Returns:** A transaction receipt once the deposit is confirmed and finalized onchain.
 
-Always use `ethers.parseUnits(humanAmount, decimals)` to convert. Never pass a raw decimal number directly — the SDK expects base units as a `BigInt`.
+Always use `ethers.parseUnits(humanAmount, decimals)` to convert. Never pass a raw decimal number directly the SDK expects base units as a `BigInt`.
 
 ---
 
-### 5.5 Withdraw — Move Tokens Back to Public
+### 5.5 Withdraw: Move Tokens Back to Public
 
-Withdraw removes tokens from the encrypted confidential balance and returns them to the user's standard ERC20 balance. After withdrawal, the amount is visible on-chain again.
+Withdraw removes tokens from the encrypted confidential balance and returns them to the user's standard ERC20 balance. After withdrawal, the amount is visible onchain again.
 
 Add this function to your hook:
 
@@ -363,9 +363,9 @@ const withdraw = async (humanAmount: string) => {
     const amount = ethers.parseUnits(humanAmount, tokenDecimals);
 
     await client.withdraw(
-      signer, // ethers.Signer — the user's wallet signer
-      config.tokenAddress, // string — the ERC20 token contract address
-      Number(amount) // number — amount in base units, cast to Number
+      signer, // ethers.Signer the user's wallet signer
+      config.tokenAddress, // string the ERC20 token contract address
+      Number(amount) // number amount in base units, cast to Number
     );
 
     setTimeout(() => fetchBalances(), 2000);
@@ -379,21 +379,21 @@ const withdraw = async (humanAmount: string) => {
 
 **Parameters for `client.withdraw`:**
 
-| Parameter      | Type            | Description                                                           |
-| :------------- | :-------------- | :-------------------------------------------------------------------- |
-| `signer`       | `ethers.Signer` | The user's wallet signer                                              |
-| `tokenAddress` | `string`        | The ERC20 token contract address                                      |
-| `amount`       | `number`        | Amount in token base units — pass as `Number(ethers.parseUnits(...))` |
+| Parameter      | Type            | Description                                                         |
+| :------------- | :-------------- | :------------------------------------------------------------------ |
+| `signer`       | `ethers.Signer` | The user's wallet signer                                            |
+| `tokenAddress` | `string`        | The ERC20 token contract address                                    |
+| `amount`       | `number`        | Amount in token base units pass as `Number(ethers.parseUnits(...))` |
 
 **Returns:** A transaction receipt.
 
-Note that `withdraw` takes a `number`, not a `BigInt` — unlike deposit. Always cast with `Number(ethers.parseUnits(...))`.
+Note that `withdraw` takes a `number`, not a `BigInt` unlike deposit. Always cast with `Number(ethers.parseUnits(...))`.
 
 ---
 
-### 5.6 Transfer — Send Tokens Privately
+### 5.6 Transfer Send Tokens Privately
 
-Confidential transfer sends tokens from the caller's encrypted balance to another address's encrypted balance. The amount and destination are both encrypted on-chain. Block explorers show the transaction as occurring, but reveal neither the value nor the true destination.
+Confidential transfer sends tokens from the caller's encrypted balance to another address's encrypted balance. The amount and destination are both encrypted onchain. Block explorers show the transaction as occurring, but reveal neither the value nor the true destination.
 
 Add this function to your hook:
 
@@ -409,10 +409,10 @@ const confidentialTransfer = async (
     const amount = ethers.parseUnits(humanAmount, tokenDecimals);
 
     await client.confidentialTransfer(
-      signer, // ethers.Signer — the sender's wallet signer
-      recipientAddress, // string — the recipient's public Ethereum address (0x...)
-      config.tokenAddress, // string — the ERC20 token contract address
-      Number(amount) // number — amount in base units, cast to Number
+      signer, // ethers.Signer the sender's wallet signer
+      recipientAddress, // string the recipient's public Ethereum address (0x...)
+      config.tokenAddress, // string the ERC20 token contract address
+      Number(amount) // number amount in base units, cast to Number
     );
 
     setTimeout(() => fetchBalances(), 2000);
@@ -426,22 +426,22 @@ const confidentialTransfer = async (
 
 **Parameters for `client.confidentialTransfer`:**
 
-| Parameter          | Type            | Description                                                           |
-| :----------------- | :-------------- | :-------------------------------------------------------------------- |
-| `signer`           | `ethers.Signer` | The sender's wallet signer                                            |
-| `recipientAddress` | `string`        | The recipient's public Ethereum address (`0x...`)                     |
-| `tokenAddress`     | `string`        | The ERC20 token contract address                                      |
-| `amount`           | `number`        | Amount in token base units — pass as `Number(ethers.parseUnits(...))` |
+| Parameter          | Type            | Description                                                         |
+| :----------------- | :-------------- | :------------------------------------------------------------------ |
+| `signer`           | `ethers.Signer` | The sender's wallet signer                                          |
+| `recipientAddress` | `string`        | The recipient's public Ethereum address (`0x...`)                   |
+| `tokenAddress`     | `string`        | The ERC20 token contract address                                    |
+| `amount`           | `number`        | Amount in token base units pass as `Number(ethers.parseUnits(...))` |
 
 **Returns:** A transaction receipt.
 
-**Important:** The recipient must have already called `ensureAccount` and have a registered confidential account before you can transfer to them. If their account does not exist on-chain, the transaction will fail with `"Account does not exist"`.
+**Important:** The recipient must have already called `ensureAccount` and have a registered confidential account before you can transfer to them. If their account does not exist onchain, the transaction will fail with `"Account does not exist"`.
 
 ---
 
 ### 5.7 Fetch the Confidential Balance
 
-The confidential balance is stored encrypted on-chain. The SDK decrypts it client-side using the user's `privateKey` from `ensureAccount`. Call this after every operation to reflect the latest state.
+The confidential balance is stored encrypted onchain. The SDK decrypts it client-side using the user's `privateKey` from `ensureAccount`. Call this after every operation to reflect the latest state.
 
 Add this function to your hook:
 
@@ -453,14 +453,14 @@ const fetchBalances = async () => {
 
     // Decrypt the confidential balance using the user's FHE private key
     const confidentialBalance = await client.getConfidentialBalance(
-      address, // string — the user's wallet address
-      userKeys.privateKey, // string — the FHE private key from ensureAccount
-      config.tokenAddress // string — the ERC20 token contract address
+      address, // string the user's wallet address
+      userKeys.privateKey, // string the FHE private key from ensureAccount
+      config.tokenAddress // string the ERC20 token contract address
     );
 
-    // confidentialBalance.amount     — BigInt: total of available + pending
-    // confidentialBalance.available  — { amount: BigInt, ciphertext: string }
-    // confidentialBalance.pending    — { amount: BigInt, ciphertext: string }
+    // confidentialBalance.amount      BigInt: total of available + pending
+    // confidentialBalance.available  { amount: BigInt, ciphertext: string }
+    // confidentialBalance.pending    { amount: BigInt, ciphertext: string }
 
     // Also fetch the public ERC20 balance
     const publicBalance = await client.getPublicBalance(
@@ -477,7 +477,7 @@ const fetchBalances = async () => {
       native: '0', // fetch native ETH separately if needed
     });
   } catch (e: any) {
-    // Balance fetch errors are non-blocking — don't surface them as UI errors
+    // Balance fetch errors are non-blocking don't surface them as UI errors
     console.error('Balance fetch failed:', e.message);
   }
 };
@@ -495,11 +495,11 @@ const fetchBalances = async () => {
 
 | Field       | Type                                     | Description                                  |
 | :---------- | :--------------------------------------- | :------------------------------------------- |
-| `amount`    | `BigInt`                                 | Total balance — available + pending combined |
+| `amount`    | `BigInt`                                 | Total balance = available + pending combined |
 | `available` | `{ amount: BigInt, ciphertext: string }` | Settled, spendable balance                   |
 | `pending`   | `{ amount: BigInt, ciphertext: string }` | Incoming balance not yet settled             |
 
-`available` is what can be transferred or withdrawn immediately. `pending` represents amounts that have been deposited but are still finalizing on-chain — after finalization, pending becomes available. For most display purposes, show `amount` (the total) and optionally break it down into available and pending.
+`available` is what can be transferred or withdrawn immediately. `pending` represents amounts that have been deposited but are still finalizing onchain after finalization, pending becomes available. For most display purposes, show `amount` (the total) and optionally break it down into available and pending.
 
 ---
 
@@ -553,9 +553,9 @@ You can see the complete implementation of this hook here: [app/hooks/useConfide
 
 ---
 
-## Step 6: Building the UI — Step by Step
+## Step 6: Building the UI Step by Step
 
-The UI is a single page component at `app/page.tsx`. This section builds it piece by piece in the same order as the hook — connect, initialize, deposit, withdraw, transfer.
+The UI is a single page component at `app/page.tsx`. This section builds it piece by piece in the same order as the hook connect, initialize, deposit, withdraw, transfer.
 
 Start with the skeleton:
 
@@ -581,7 +581,7 @@ export default function Home() {
     withdraw,
   } = useConfidentialClient();
 
-  // Local form state — added in the sections below
+  // Local form state added in the sections below
 
   return (
     <main className="min-h-screen bg-gray-50 p-8">
@@ -631,7 +631,7 @@ Add this block inside `<main>`:
 </div>;
 ```
 
-Privy's `login()` opens its built-in modal. `user?.wallet?.address` is the connected address — it only exists after authentication, so the optional chain prevents errors during the pre-auth render.
+Privy's `login()` opens its built-in modal. `user?.wallet?.address` is the connected address it only exists after authentication, so the optional chain prevents errors during the pre-auth render.
 
 ---
 
@@ -650,7 +650,7 @@ Add this block after the connect section:
     <div className="bg-white rounded-xl p-6 shadow-sm">
       <h2 className="font-semibold mb-2">Initialize Confidential Account</h2>
       <p className="text-sm text-gray-500 mb-4">
-        This creates your encrypted account on-chain. It takes about 45 seconds
+        This creates your encrypted account onchain. It takes about 45 seconds
         and requires one wallet signature.
       </p>
       <button
@@ -705,7 +705,7 @@ Add this block after the initialize section:
 }
 ```
 
-`balances.public` and `balances.confidential` are already formatted as human-readable strings by the hook (via `ethers.formatUnits`) — no conversion needed here.
+`balances.public` and `balances.confidential` are already formatted as human-readable strings by the hook (via `ethers.formatUnits`) no conversion needed here.
 
 ---
 
@@ -895,12 +895,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 **Expected flow:**
 
-1. Click **Connect Wallet** — Privy opens a modal.
-2. Click **Initialize Confidential Account** — the wallet prompts a signature. Wait approximately 45 seconds for on-chain finalization.
+1. Click **Connect Wallet**: Privy opens a modal.
+2. Click **Initialize Confidential Account**: the wallet prompts a signature. Wait approximately 45 seconds for onchain finalization.
 3. The balance display and action forms appear once the account is active.
-4. **Deposit** — moves tokens from your public balance into the encrypted layer.
-5. **Withdraw** — moves tokens from the encrypted layer back to your public ERC20 balance.
-6. **Transfer** — sends tokens privately to another address (recipient must have an initialized account).
+4. **Deposit**: moves tokens from your public balance into the encrypted layer.
+5. **Withdraw**: moves tokens from the encrypted layer back to your public ERC20 balance.
+6. **Transfer**: sends tokens privately to another address (recipient must have an initialized account).
 
 Ensure your wallet has test ETH on Base Sepolia for gas. You can get test ETH from the [Base Sepolia faucet](https://www.alchemy.com/faucets/base-sepolia).
 
@@ -914,7 +914,7 @@ Initializes the client. The SDK resolves the Stabletrust contract from the chain
 
 ### `client.ensureAccount(signer)`
 
-Derives the user's FHE keypair from a wallet signature and registers the public key on-chain if not yet present. Required before any other operation.
+Derives the user's FHE keypair from a wallet signature and registers the public key onchain if not yet present. Required before any other operation.
 
 ### `client.confidentialDeposit(signer, tokenAddress, amount)`
 
@@ -956,7 +956,7 @@ Returns the user's standard ERC20 token balance as a `BigInt`.
 | :----------------------------- | :--------------------------------------- | :------------------------------------------------- |
 | "Account does not exist"       | Recipient has not called `ensureAccount` | Recipient must initialize their account first      |
 | "Insufficient balance"         | Amount exceeds confidential balance      | Deposit more or reduce the amount                  |
-| "Account finalization timeout" | Account is still processing on-chain     | Wait and retry after a few minutes                 |
+| "Account finalization timeout" | Account is still processing onchain      | Wait and retry after a few minutes                 |
 | "Proof generation failed"      | Invalid inputs or FHE operation error    | Verify parameters and check available balance      |
 | "Not initialized"              | `client` or `signer` is null             | Ensure wallet is connected and SDK client is ready |
 

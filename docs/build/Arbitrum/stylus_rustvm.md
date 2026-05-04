@@ -24,7 +24,7 @@ Welcome to the Fairblock and RustVM Integration Tutorial, showcased with an Arbi
   ></iframe>
 </div>
 
-Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy — onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
+Fairblock is a dynamic confidentiality network that delivers high performance, low overhead, and custom confidential execution to blockchain applications. Dynamic confidentiality unlocks the encrypted economy onchain applications designed for real-world use cases, like optimizable financial markets, competitive PVP markets like auctions, predictions, and gaming, and privacy-preserving inference.
 
 V1 is live on testnet with bespoke MPC-IBE which offer conditional confidentiality (for pre-execution confidentiality, sealed-bid auctions, selective disclosure, encypted limit orders etc) and HE for confidential stablecoin transfers.
 

@@ -8,8 +8,8 @@ sidebar_position: 0
 In this section, we briefly go over the different ways to integrate with Fairyring.  
 You have two main options:
 
-- [Direct PEP Integration](./direct_pep_integration.md) — Integrate the `x/pep` module directly into your app-chain for minimal implementation effort.
-- [Custom Integration](./custom_integration.md) — Build a custom communication logic and interact with Fairyring via IBC.
+- [Direct PEP Integration](./direct_pep_integration.md): Integrate the `x/pep` module directly into your app-chain for minimal implementation effort.
+- [Custom Integration](./custom_integration.md): Build a custom communication logic and interact with Fairyring via IBC.
 
 Each approach has its advantages depending on the degree of control and flexibility you want.
 

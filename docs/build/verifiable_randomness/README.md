@@ -49,7 +49,7 @@ func (k Keeper) RequestRandomnessFromFairyring(ctx sdk.Context) error {
 
 ### Advantages
 
-- Fully on-chain and decentralized process of transmission
+- Fully onchain and decentralized process of transmission
 - Default Merkle proof verification of date across chains
 
 ### Disadvantages

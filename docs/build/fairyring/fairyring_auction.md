@@ -116,7 +116,7 @@ out=$(fairyringd tx auction create-auction $target_height true ufairy --from wal
   - **What happens:**
     - The transaction is submitted with auction details.
     - `MsgServer` processes `MsgCreateAuction` and calls `CreateAuction`.
-    - The auction details are validated and stored on-chain.
+    - The auction details are validated and stored onchain.
     - An event is emitted to notify the auction was created.
 
 </details>
