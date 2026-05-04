@@ -13,12 +13,12 @@ This guide walks you through building a complete confidential decentralized appl
 
 ## What You Are Building
 
-Stabletrust uses Fully Homomorphic Encryption (FHE) to give each user a confidential token balance alongside their normal public balance. Once tokens enter the confidential layer, their amounta are encrypted onchain opaque to block explorers and other observers.
+Stabletrust uses Homomorphic Encryption (HE) to give each user a confidential token balance alongside their normal public balance. Once tokens enter the confidential layer, their amounta are encrypted on-chain — opaque to block explorers and other observers.
 
 The user flow:
 
 1. Connect wallet via Privy.
-2. Initialize a confidential account, which generates the user's FHE keypair through a wallet signature.
+2. Initialize a confidential account, which generates the user's HE keypair through a wallet signature.
 3. Deposit public tokens into the encrypted layer, transfer privately to another address, and withdraw back to a public balance when needed.
 
 **Stack used in this guide:**
@@ -265,7 +265,7 @@ The `signer` produced here is passed into every SDK operation below.
 
 ### 5.3 Initialize the Confidential Account
 
-Before any confidential operation can happen, the user must have a confidential account registered onchain with their FHE public key. `ensureAccount` handles the full flow in one call: it prompts a wallet signature, derives the FHE keypair from that signature, and registers the public key onchain if it does not yet exist.
+Before any confidential operation can happen, the user must have a confidential account registered on-chain with their HE public key. `ensureAccount` handles the full flow in one call: it prompts a wallet signature, derives the HE keypair from that signature, and registers the public key on-chain if it does not yet exist.
 
 Add this function to your hook:
 
@@ -295,7 +295,7 @@ const ensureAccount = async () => {
 
 **Returns:** `{ publicKey: string, privateKey: string }`
 
-The `privateKey` returned here is a derived FHE key not the user's wallet private key. It never leaves the browser and is re-derived on each session from the wallet signature. Store it in React state and pass it to `getConfidentialBalance` later.
+The `privateKey` returned here is a derived HE key — not the user's wallet private key. It never leaves the browser and is re-derived on each session from the wallet signature. Store it in React state and pass it to `getConfidentialBalance` later.
 
 Account initialization includes an onchain finalization step. Expect this to take approximately 45 seconds on the first call. The method waits for finalization before returning, so `loading` will be true for the duration.
 
@@ -451,11 +451,11 @@ const fetchBalances = async () => {
   try {
     const address = await signer.getAddress();
 
-    // Decrypt the confidential balance using the user's FHE private key
+    // Decrypt the confidential balance using the user's HE private key
     const confidentialBalance = await client.getConfidentialBalance(
-      address, // string the user's wallet address
-      userKeys.privateKey, // string the FHE private key from ensureAccount
-      config.tokenAddress // string the ERC20 token contract address
+      address, // string — the user's wallet address
+      userKeys.privateKey, // string — the HE private key from ensureAccount
+      config.tokenAddress // string — the ERC20 token contract address
     );
 
     // confidentialBalance.amount      BigInt: total of available + pending
@@ -485,11 +485,11 @@ const fetchBalances = async () => {
 
 **Parameters for `client.getConfidentialBalance`:**
 
-| Parameter      | Type     | Description                                     |
-| :------------- | :------- | :---------------------------------------------- |
-| `address`      | `string` | The user's wallet address                       |
-| `privateKey`   | `string` | The FHE private key returned by `ensureAccount` |
-| `tokenAddress` | `string` | The ERC20 token contract address                |
+| Parameter      | Type     | Description                                    |
+| :------------- | :------- | :--------------------------------------------- |
+| `address`      | `string` | The user's wallet address                      |
+| `privateKey`   | `string` | The HE private key returned by `ensureAccount` |
+| `tokenAddress` | `string` | The ERC20 token contract address               |
 
 **Return fields:**
 
@@ -914,7 +914,7 @@ Initializes the client. The SDK resolves the Stabletrust contract from the chain
 
 ### `client.ensureAccount(signer)`
 
-Derives the user's FHE keypair from a wallet signature and registers the public key onchain if not yet present. Required before any other operation.
+Derives the user's HE keypair from a wallet signature and registers the public key on-chain if not yet present. Required before any other operation.
 
 ### `client.confidentialDeposit(signer, tokenAddress, amount)`
 
@@ -956,8 +956,8 @@ Returns the user's standard ERC20 token balance as a `BigInt`.
 | :----------------------------- | :--------------------------------------- | :------------------------------------------------- |
 | "Account does not exist"       | Recipient has not called `ensureAccount` | Recipient must initialize their account first      |
 | "Insufficient balance"         | Amount exceeds confidential balance      | Deposit more or reduce the amount                  |
-| "Account finalization timeout" | Account is still processing onchain      | Wait and retry after a few minutes                 |
-| "Proof generation failed"      | Invalid inputs or FHE operation error    | Verify parameters and check available balance      |
+| "Account finalization timeout" | Account is still processing on-chain     | Wait and retry after a few minutes                 |
+| "Proof generation failed"      | Invalid inputs or HE operation error     | Verify parameters and check available balance      |
 | "Not initialized"              | `client` or `signer` is null             | Ensure wallet is connected and SDK client is ready |
 
 ---
