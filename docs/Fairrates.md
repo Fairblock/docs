@@ -75,10 +75,10 @@ This is why the [US Treasury](https://www.treasurydirect.gov/auctions/how-auctio
 
 ## Sources
 
-- DeFi lending TVL ($67.2B) & protocol stats — [DefiLlama](https://defillama.com/protocols/lending), July 25, 2025
-- Pendle TVL (~$6.3B) — [DefiLlama](https://defillama.com/protocol/pendle), July 25, 2025
-- Morpho V2 = fixed‑rate, fixed‑term — [Morpho blog](https://morpho.org/blog/morpho-v2-liberating-the-potential-of-onchain-loans/) (June 12, 2025)
-- Coinbase Loans powered by Morpho — [Coinbase](https://www.coinbase.com/en-ca/blog/now-get-a-USDC-loan-without-selling-your-bitcoin) and [Morpho](https://morpho.org/blog/coinbase-launches-crypto-backed-loans-powered-by-morpho/) announcements (Jan 2025).
+- DeFi lending TVL ($67.2B) & protocol stats: [DefiLlama](https://defillama.com/protocols/lending), July 25, 2025
+- Pendle TVL (~$6.3B): [DefiLlama](https://defillama.com/protocol/pendle), July 25, 2025
+- Morpho V2 = fixed‑rate, fixed‑term: [Morpho blog](https://morpho.org/blog/morpho-v2-liberating-the-potential-of-onchain-loans/) (June 12, 2025)
+- Coinbase Loans powered by Morpho: [Coinbase](https://www.coinbase.com/en-ca/blog/now-get-a-USDC-loan-without-selling-your-bitcoin) and [Morpho](https://morpho.org/blog/coinbase-launches-crypto-backed-loans-powered-by-morpho/) announcements (Jan 2025).
 - Treasury uniform‑price (single‑price) auction mechanics — [TreasuryDirect](https://www.treasurydirect.gov/auctions/how-auctions-work/), [FAQ](https://www.treasurydirect.gov/help-center/faqs/auction-faqs/), [U.S. Treasury studies](https://home.treasury.gov/system/files/136/archive-documents/upas.pdf), and [Kellogg School of Management](https://www.kellogg.northwestern.edu/faculty/weber/decs-452/Treasury_Report.pdf?utm_source=chatgpt.com)
 - Repo market is multi‑trillion — [BIS repo statistics](https://www.bis.org/publ/cgfs59.pdf)
 - Term Finance keepers reveal — [Blocmates](https://www.blocmates.com/articles/term-finance-introducing-collateralized-fixed-rate-auctions-on-chain?utm_source=chatgpt.com) explainer

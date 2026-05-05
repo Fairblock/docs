@@ -138,5 +138,5 @@ Fairblock is designed to go beyond confidential amounts. It’s done responsibly
 
 ## Join Confidential Builders Program
 
-Apply to build on Fairblock’s StableTrust SDK and pioneer the next generation of confidential transfers.
+Apply to build on Fairblock’s Stabletrust SDK and pioneer the next generation of confidential transfers.
 [https://build.fairblock.network/](https://build.fairblock.network/)

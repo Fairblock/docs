@@ -26,7 +26,7 @@ Privacy by default unlocks new use cases for open finance that institutions and 
 
 ## Anonymous Transfers
 
-For applications requiring the highest level of privacy, StableTrust supports fully anonymous transfers through the Fairycloak relay system.
+For applications requiring the highest level of privacy, Stabletrust supports fully anonymous transfers through the Fairycloak relay system.
 
 Standard confidential transfers encrypt transaction amounts while keeping sender and recipient addresses visible onchain. Anonymous transfers go further both the **amount and the wallet address** are shielded. Transactions are routed through a relay using numeric account IDs entirely decoupled from any public EVM address, making it impossible to link onchain activity back to a specific wallet.
 
@@ -54,7 +54,7 @@ yarn add @fairblock/stabletrust
 
 ## Join Confidential Builders Program
 
-Apply to build on Fairblock’s StableTrust SDK and pioneer the next generation of confidential transfers.
+Apply to build on Fairblock’s Stabletrust SDK and pioneer the next generation of confidential transfers.
 [https://build.fairblock.network/](https://build.fairblock.network/)
 
 ## Links
@@ -96,7 +96,7 @@ const client = new ConfidentialTransferClient(
 
 ### 2. Ensure Account is Setup
 
-Before doing confidential operations, make sure the user account is initialized on-chain. This initialization is a one-time step per user per chain.
+Before doing confidential operations, make sure the user account is initialized onchain. This initialization is a one-time step per user per chain.
 
 ```javascript
 // signer is a standard ethers.js Signer
