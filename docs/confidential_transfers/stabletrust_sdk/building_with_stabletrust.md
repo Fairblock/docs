@@ -4,7 +4,6 @@ sidebar_position: 2
 
 # Building with Stabletrust
 
-**Live Demo:** [https://Stabletrust-sdk-demo.vercel.app/](https://Stabletrust-sdk-demo.vercel.app/)<br/>
 **GitHub Repository:** [https://github.com/Fairblock/Stabletrust-sdk-demo](https://github.com/Fairblock/Stabletrust-sdk-demo)
 
 This guide walks you through building a complete confidential decentralized application using the Stabletrust SDK and Privy for wallet authentication. By the end, you will have a working Next.js application where users can deposit tokens into an encrypted balance, transfer them privately onchain, and withdraw back to a public balance.
