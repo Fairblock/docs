@@ -66,6 +66,56 @@ FairyRing performs the confidential execution. It verifies the proof attached to
 
 After FairyRing processes the request, a response is returned to the EVM side through Fairyport. The EVM contract updates the state of the anonymous transfer request accordingly. From the user's perspective, the result is a private transfer between anonymous accounts. Public observers can see that protocol activity happened, but they do not see the transferred amount or a direct sender and receiver wallet pair for the anonymous transfer.
 
+### Simplified Flow Diagrams
+The diagrams below show the three main user flows at a high level. They are intentionally simplified and focus on what happens from the user's point of view, rather than on low-level relayer behavior or implementation details.
+
+#### Anonymous Deposit
+A deposit moves tokens from a public EVM wallet into an anonymous confidential account. The public tokens are locked on the EVM side, and the anonymous account receives a corresponding encrypted balance inside the confidential system.
+
+```mermaid
+flowchart TD
+    A["User opens the app and selects an anonymous account"] --> B["User deposits supported tokens from an EVM wallet"]
+    B --> C["EVM contract locks the public tokens"]
+    C --> D["Fairyport carries the deposit request to FairyRing"]
+    D --> E["FairyRing credits encrypted balance to the anonymous account"]
+    E --> F["Fairyport returns the confirmation"]
+    F --> G["EVM contract records the deposit as complete"]
+    G --> H["User now has private balance inside the anonymous system"]
+```
+
+#### Anonymous Transfer
+An anonymous transfer moves value between two anonymous accounts. The amount is encrypted, the proof shows that the transfer is valid, and Fairycloak helps submit the request without linking routine transfer activity directly to the user's public wallet transactions.
+
+```mermaid
+flowchart TD
+    A["Sender chooses recipient anonymous account ID"] --> B["App encrypts the amount and prepares proof"]
+    B --> C["Fairycloak relays the authorized transfer request"]
+    C --> D["EVM contract receives anonymous transfer request"]
+    D --> E["Fairyport carries the request to FairyRing"]
+    E --> F["FairyRing verifies the proof"]
+    F --> G{"Valid transfer?"}
+    G -- "Yes" --> H["Encrypted sender balance decreases"]
+    H --> I["Encrypted recipient balance increases"]
+    I --> J["Fairyport returns confirmation to the EVM contract"]
+    J --> K["Transfer is finalized between anonymous accounts"]
+    G -- "No" --> L["Request is rejected"]
+```
+
+#### Anonymous Withdrawal
+A withdrawal exits the anonymous layer. The anonymous account balance is debited privately, then the EVM contract releases the corresponding public tokens to the selected destination address.
+
+```mermaid
+flowchart TD
+    A["User selects amount and destination EVM address"] --> B["App prepares withdrawal proof"]
+    B --> C["Fairycloak relays the authorized withdrawal request"]
+    C --> D["EVM contract receives withdrawal request"]
+    D --> E["Fairyport carries the request to FairyRing"]
+    E --> F["FairyRing verifies the proof and debits encrypted balance"]
+    F --> G["Fairyport returns confirmation"]
+    G --> H["EVM contract releases public tokens"]
+    H --> I["Destination EVM address receives tokens"]
+```
+
 ### Withdrawals from Anonymous Accounts
 Users can also withdraw from an anonymous account back to a public EVM address. A withdrawal intentionally converts part of the private balance back into public tokens. The user prepares a withdrawal request and a proof showing that the anonymous account has enough balance. Fairycloak relays the request, FairyRing verifies the proof and debits the encrypted balance, and the EVM contract releases the corresponding tokens to the chosen destination address.
 
