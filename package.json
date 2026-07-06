@@ -1,0 +1,16 @@
+{
+  "name": "fairblock-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "mintlify dev",
+    "build": "mintlify export --output export.zip && mkdir -p out && unzip -o export.zip -d out",
+    "validate": "mintlify validate"
+  },
+  "devDependencies": {
+    "mintlify": "^4.2.667"
+  },
+  "engines": {
+    "node": ">=20.17.0"
+  }
+}

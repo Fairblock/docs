@@ -3,6 +3,8 @@
 
 # Production
 /build
+/out
+export.zip
 
 # Generated files
 .docusaurus
