@@ -1,0 +1,91 @@
+---
+title: "Agentic API"
+description: "Confidential payments for AI agents and agent-to-agent transactions"
+---
+
+Agents that pay each other onchain expose every invoice, fee, and settlement to the public. Confidential transfers let an agent hold a balance and pay other agents without revealing amounts, while addresses stay transparent so regulated parties can still produce per-transaction details through selective disclosure.
+
+<Note>
+  Agents use the same [`@fairblock/stabletrust`](/ct/guides/build/building-with-sdk) SDK as any other integration, driven from a server or agent runtime. See [Building an App with the SDK](/ct/guides/build/building-with-sdk) for the full walkthrough and the [Method Reference](/ct/sdk-reference/methods) for every method signature.
+</Note>
+
+## What you can build
+
+- **Agent-to-agent payments** where amounts and balances stay encrypted between the two agents
+- **x402 payments with confidential transfers**: fast, confidential micro-payments for subscriptions, APIs, or AI agents
+
+## Using the SDK
+
+An agent transacts with the `ConfidentialTransferClient` using an `ethers.Wallet`. The end-to-end confidential flow is:
+
+```javascript
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+import { ethers } from "ethers";
+
+const client = new ConfidentialTransferClient(
+  "https://sepolia.base.org",
+  84532,
+);
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
+const tokenAddress = "0xYourTokenAddress";
+const tokenDecimals = 6;
+
+// 1. Ensure account exists and get encryption keys
+const keys = await client.ensureAccount(wallet);
+
+// 2. Deposit
+const depositAmount = ethers.parseUnits("10", tokenDecimals);
+await client.confidentialDeposit(wallet, tokenAddress, depositAmount);
+
+// 3. Check balance
+const balance = await client.getConfidentialBalance(
+  wallet.address,
+  keys.privateKey,
+  tokenAddress,
+);
+console.log(
+  "Available:",
+  ethers.formatUnits(balance.available.amount, tokenDecimals),
+);
+
+// 4. Transfer (recipient must have called ensureAccount)
+const transferAmount = ethers.parseUnits("5", tokenDecimals);
+await client.confidentialTransfer(
+  wallet,
+  recipientAddress,
+  tokenAddress,
+  transferAmount,
+);
+
+// 5. Withdraw
+const withdrawAmount = ethers.parseUnits("2", tokenDecimals);
+await client.withdraw(wallet, tokenAddress, withdrawAmount);
+```
+
+## Hiding the agent's address
+
+A standard confidential transfer keeps amounts and balances encrypted, but the sender's wallet address remains visible onchain. To hide the agent's address as well, use the `AnonymousTransferClient`, which routes transfers through the Fairycloak relay so only a numeric account ID appears onchain. See [Anonymous Transfers](/ct/guides/build/anonymous-transfers).
+
+## Security considerations
+
+- **Private key management**: never expose or log private keys; store them securely (e.g. hardware wallets, encrypted vaults). Derived account `privateKey` values are equally sensitive.
+- **Account initialization**: always call `ensureAccount()` before any operation, and verify that recipient accounts exist before transferring funds.
+- **Balance verification**: check available balance before initiating transfers.
+- **Error handling**: implement retry logic for transient network failures.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Build an App with the SDK" icon="code" href="/ct/guides/build/building-with-sdk">
+    The full SDK walkthrough this guide builds on.
+  </Card>
+  <Card title="Method Reference" icon="list" href="/ct/sdk-reference/methods">
+    Every client method, parameter, and return type.
+  </Card>
+  <Card title="Anonymous Transfers" icon="user-secret" href="/ct/guides/build/anonymous-transfers">
+    Hide the agent's address as well as the amount.
+  </Card>
+  <Card title="Common Errors" icon="triangle-exclamation" href="/ct/sdk-reference/common-errors">
+    Failure modes and how to handle them.
+  </Card>
+</CardGroup>

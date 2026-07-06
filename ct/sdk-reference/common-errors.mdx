@@ -1,0 +1,24 @@
+---
+title: "Common Errors"
+description: "Troubleshooting common SDK errors"
+---
+
+## ConfidentialTransferClient
+
+| Error                          | Cause                                    | Resolution                                         |
+| :----------------------------- | :--------------------------------------- | :------------------------------------------------- |
+| "Account does not exist"       | Recipient has not called `ensureAccount` | Recipient must initialize their account first      |
+| "Insufficient balance"         | Amount exceeds confidential balance      | Deposit more or reduce the amount                  |
+| "Account finalization timeout" | Account is still processing onchain      | Wait and retry after a few minutes                 |
+| "Proof generation failed"      | Invalid inputs or HE operation error     | Verify parameters and check available balance      |
+| "Not initialized"              | `client` or `signer` is null             | Ensure wallet is connected and SDK client is ready |
+
+## AnonymousTransferClient
+
+| Error | Cause | Resolution |
+| :--- | :--- | :--- |
+| "Insufficient prepaid fee balance" | Prepaid fee reserve is below the per-transfer fee | Call `depositFees(wallet, accountId, amount)` to top up; check with `getFeeToken()`/`getFeeAmount()` |
+| Fairycloak HTTP error | Relay unreachable or request rejected | Check the relay URL, API key, and account authorization |
+| "Account finalization timeout" | Account creation is still processing | Wait a few minutes and retry |
+| "Insufficient balance" | Transfer amount exceeds available balance | Deposit more tokens or reduce the amount |
+| "Amount too small" | Amount rounds to 0 in contract scale | Use a larger amount (minimum depends on token decimals) |

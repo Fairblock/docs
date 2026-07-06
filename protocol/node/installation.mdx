@@ -1,0 +1,49 @@
+---
+title: "Installation"
+description: "Install and configure a FairyRing node"
+---
+
+## Build from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/Fairblock/fairyring.git
+cd fairyring
+
+# Build and install
+make install
+
+# Verify installation
+fairyringd version
+```
+
+## Initialize the Node
+
+```bash
+# Initialize with a moniker
+fairyringd init my-node --chain-id fairyring-testnet-1
+
+# Download genesis file
+curl -s https://rpc.testnet.fairblock.network/genesis | jq '.result.genesis' > ~/.fairyringd/config/genesis.json
+
+# Set persistent peers
+fairyringd config set p2p.persistent_peers "PEER_ID@IP:26656"
+
+# Set minimum gas price
+fairyringd config set app.minimum-gas-prices "0stake"
+```
+
+## Start the Node
+
+```bash
+fairyringd start
+```
+
+The node will begin syncing with the network. Initial sync may take several hours depending on chain height and network conditions.
+
+## Verify Sync Status
+
+```bash
+fairyringd status | jq '.sync_info.catching_up'
+# Returns "false" when fully synced
+```

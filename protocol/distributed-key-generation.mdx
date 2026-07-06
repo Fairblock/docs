@@ -1,0 +1,38 @@
+---
+title: "Distributed Key Generation"
+description: "How FairyRing validators jointly generate encryption keys"
+---
+
+Distributed Key Generation (DKG) is the process by which FairyRing validators jointly produce encryption key pairs without any single party having access to the full secret key.
+
+## How DKG Works
+
+<Steps>
+  <Step title="Initialization">
+    At the start of each epoch, the DKG protocol is initiated across all active validators.
+  </Step>
+  <Step title="Share Distribution">
+    Each validator generates secret shares and distributes them to other validators using verifiable secret sharing.
+  </Step>
+  <Step title="Verification">
+    Validators verify received shares against public commitments. Invalid shares are reported and the offending validator is slashed.
+  </Step>
+  <Step title="Key Aggregation">
+    Valid shares are aggregated to produce the Master Public Key (MPK), which is published onchain. Each validator retains their keyshare of the master secret key.
+  </Step>
+</Steps>
+
+## Outputs
+
+| Output | Visibility | Purpose |
+| --- | --- | --- |
+| **Master Public Key (MPK)** | Public (onchain) | Used by anyone to encrypt data |
+| **Validator keyshares** | Private (per validator) | Used to derive condition-specific decryption keys |
+| **Threshold parameter** | Public | Minimum keyshares needed for decryption |
+
+## Security Properties
+
+- **No single point of failure**: no validator ever holds the full master secret key
+- **Forward secrecy**: fresh DKG each epoch means past keys cannot decrypt future data
+- **Byzantine fault tolerance**: the system tolerates up to 1/3 malicious validators
+- **Verifiable**: all DKG steps produce publicly verifiable proofs

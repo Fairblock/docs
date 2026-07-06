@@ -1,0 +1,57 @@
+---
+title: "Homomorphic Encryption"
+description: "Twisted ElGamal and lightweight HE for confidential transfers"
+---
+
+Fairblock uses **Twisted ElGamal**: a fast additive homomorphic encryption scheme: to power confidential stablecoin transfers.
+
+## Why Twisted ElGamal
+
+| Property | Benefit |
+| --- | --- |
+| **Additive homomorphism** | Balances can be updated (add/subtract) without decryption |
+| **Lightweight** | Fast enough for real-time mobile transactions |
+| **Low gas cost** | Significantly cheaper than FHE or general-purpose ZK circuits |
+| **Verifiable** | Combined with range proofs to ensure correctness |
+
+## How It Works
+
+### Encryption
+
+A balance `b` is encrypted as a Twisted ElGamal ciphertext:
+
+```
+C = (r·G, b·G + r·PK)
+```
+
+Where `r` is a random blinding factor, `G` is the generator point, and `PK` is the account's public key.
+
+### Homomorphic Addition
+
+To add a transfer amount `t` to an encrypted balance:
+
+```
+C_new = C_old + Encrypt(t)
+```
+
+The blockchain performs this addition on ciphertexts: it never sees the plaintext values.
+
+### Decryption
+
+Only the account owner (with the secret key `SK`) can decrypt:
+
+```
+b·G = C₂ - SK·C₁
+```
+
+The discrete log is recovered via a precomputed lookup table for practical balance ranges.
+
+## Combined with ZK Proofs
+
+Each confidential transfer includes lightweight zero-knowledge proofs:
+
+- **Range proof**: the transfer amount is non-negative and within bounds
+- **Balance proof**: the sender has sufficient encrypted balance
+- **Well-formedness proof**: the ciphertext is correctly constructed
+
+These proofs are verified onchain by FairyRing without revealing any values.

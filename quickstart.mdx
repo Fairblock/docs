@@ -1,0 +1,72 @@
+---
+title: "Quickstart"
+description: "Get started with Fairblock in under 5 minutes"
+---
+
+<CardGroup cols={2}>
+  <Card title="Integrate Confidential Transfers" icon="lock" href="/confidential-transfers/stabletrust-sdk">
+    Add encrypted stablecoin transfers to your app using the Stabletrust SDK.
+  </Card>
+  <Card title="Build a cApp" icon="bolt" href="/build/start-a-capp">
+    Create a confidential application on FairyRing or EVM.
+  </Card>
+  <Card title="EVM Integration" icon="ethereum" href="/build/evm-precompiles">
+    Use precompiled contracts and FairyKit in your smart contracts.
+  </Card>
+  <Card title="Protocol Deep Dive" icon="book" href="/protocol/overview">
+    Explore FairyRing's architecture, modules, and cryptographic primitives.
+  </Card>
+</CardGroup>
+
+## Install the SDK
+
+<CodeGroup>
+```bash npm
+npm install @fairblock/stabletrust
+```
+
+```bash yarn
+yarn add @fairblock/stabletrust
+```
+
+```bash pnpm
+pnpm add @fairblock/stabletrust
+```
+</CodeGroup>
+
+## Send a Confidential Transfer
+
+```typescript
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+
+const client = new ConfidentialTransferClient({
+  network: "ethereum-sepolia",
+  signer: walletSigner,
+});
+
+await client.setupAccount();
+
+await client.deposit({
+  token: "USDC",
+  amount: "1000",
+});
+
+await client.transfer({
+  to: "0xRecipientAddress",
+  amount: "250",
+});
+
+const balance = await client.getBalance("USDC");
+console.log("Balance:", balance.decrypted);
+```
+
+## Supported Networks
+
+| Network | Status |
+| --- | --- |
+| Ethereum Sepolia | Live |
+| Arbitrum Sepolia | Live |
+| Base Sepolia | Live |
+| Stable Testnet | Live |
+| Arc | Live |
+| Tempo | Live |

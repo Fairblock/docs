@@ -1,0 +1,136 @@
+---
+title: "Glossary"
+description: "Key terms and definitions for the Fairblock ecosystem"
+---
+
+### Arbitrum Stylus
+
+An environment that allows developers to write smart contracts in programming languages that compile to WASM, enabling integration with FairyRing for confidential computing.
+
+### Block Height Decryption
+
+Uses threshold IBE for confidential computing with decryption triggered by FairyRing block height conditions.
+
+### cApp (Confidential Application)
+
+An application leveraging Fairblock's encryption for data confidentiality. cApps can run on FairyRing, EVM chains, or Cosmos chains.
+
+### Confidential AI
+
+Integration of privacy protections with AI models, enabling private inference and data marketplaces.
+
+### Co-Processing
+
+Integration model where FairyRing handles decryption, execution, and delivers end state to the integrating chain.
+
+### DeFi (Decentralized Finance)
+
+Blockchain-based financial systems. Fairblock adds confidential features like encrypted trades and private balance management.
+
+### Derived Private Key
+
+A condition-specific decryption key aggregated from validator keyshares when the condition is met.
+
+### DKG (Distributed Key Generation)
+
+Process for joint key pair generation without any single party having control of the full secret key.
+
+### Dynamic Confidential Computing
+
+Fairblock's core engine that allows adjustable confidentiality levels per application.
+
+### Encryption SDK
+
+Offchain software used to encrypt transactions before submitting them to the destination chain.
+
+### Fair Price Discovery
+
+Transparent, manipulation-resistant pricing mechanisms enabled by sealed-bid auctions and encrypted order flow.
+
+### Fairblock
+
+Network leveraging dynamic confidential computing to mitigate centralized risks in open finance.
+
+### FairyKit
+
+Integration module enabling confidential computing across ecosystems. Available for EVM, Cosmos, and RustVM chains.
+
+### FairyPort
+
+Offchain messaging bridge for key distribution and cross-chain communication.
+
+### FairyRing
+
+A dynamic and decentralized network that hosts app-specific secure confidential computing. Built with Cosmos SDK.
+
+### fairyringclient
+
+Validator software that participates in DKG, updates MSK shares, and derives condition-specific private keyshares.
+
+### Fairycloak
+
+Relay layer for anonymous confidential operations, submitting transactions without linking to user wallets.
+
+### FHE (Fully Homomorphic Encryption)
+
+Technology enabling arbitrary computation on encrypted data. Fairblock uses lightweight HE instead for performance.
+
+### General Condition Decryption
+
+Any condition (not just block height) can trigger decryption via the x/pep module.
+
+### HE (Homomorphic Encryption)
+
+Encryption that allows computation on ciphertexts. Fairblock uses Twisted ElGamal for additive HE.
+
+### IBE (Identity-Based Encryption)
+
+Encryption scheme where any string (like a block height or auction ID) serves as the public key.
+
+### IBC (Inter-Blockchain Communication)
+
+Cosmos protocol for trust-minimized cross-chain communication, used by FairyRing for external integrations.
+
+### Malicious Validators
+
+Validators that send incorrect keyshares or skip blocks. Subject to slashing and removal from the active set.
+
+### Master Public Key (MPK)
+
+Public encryption key generated each epoch via DKG. Anyone can use it to encrypt data for FairyRing.
+
+### MEV (Maximal Extractable Value)
+
+Fairblock's approach preserves good MEV while preventing bad MEV through pre-execution transaction encryption.
+
+### MPC (Multi-Party Computation)
+
+Protocol enabling multiple parties to jointly compute functions without revealing their individual inputs.
+
+### Precompiles
+
+Native smart contract functions optimized for performance, used in EVM FairyKit integration.
+
+### Threshold Encryption
+
+Encryption where the private key is derivable only when a threshold of participants aggregate their keyshares.
+
+### MPC-IBE
+
+Conditional identity-based encryption without single-party key control. Foundation of FairyRing's pre-execution confidentiality.
+
+### Twisted ElGamal
+
+Fast additive homomorphic encryption scheme used by Fairblock for confidential transfers.
+
+### x/pep Module
+
+FairyRing module handling submission, decryption, and processing of encrypted transactions.
+
+### x/keyshare Module
+
+FairyRing module managing distributed key generation and validator keyshare submissions.
+
+### ZKP (Zero-Knowledge Proof)
+
+Cryptographic proof that verifies a statement without revealing the underlying data.

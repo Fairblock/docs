@@ -1,0 +1,30 @@
+---
+title: "Threshold Encryption"
+description: "Condition-based decryption requiring validator quorum"
+---
+
+Threshold encryption ensures that encrypted data can only be decrypted when a sufficient number of validators collaborate: no single validator can decrypt alone.
+
+## Mechanism
+
+1. **Encrypt**: data is encrypted with the Master Public Key and a condition (e.g., block height, auction ID)
+2. **Condition triggers**: when the condition is met, each validator derives their keyshare for that specific condition
+3. **Threshold reached**: once enough keyshares are submitted onchain, the decryption key is aggregated
+4. **Decrypt**: the data is decrypted and the result is executed or made available
+
+## Condition Types
+
+| Condition | Example | Use Case |
+| --- | --- | --- |
+| Block height | "Decrypt at block 1000" | Protected trading, MEV prevention |
+| Time-based | "Decrypt after timestamp T" | Sealed-bid auctions |
+| Event-based | "Decrypt when auction #42 closes" | Custom application logic |
+| Identity-based | "Decrypt for auditor X" | Selective disclosure, compliance |
+
+## Threshold Parameters
+
+The threshold `t` is configured such that:
+
+- At least `t` of `n` validators must contribute keyshares
+- The system tolerates up to `n - t` absent or malicious validators
+- Typical configuration: `t = 2n/3 + 1`

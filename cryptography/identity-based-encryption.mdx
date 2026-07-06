@@ -1,0 +1,48 @@
+---
+title: "Identity-Based Encryption"
+description: "MPC-IBE for pre-execution confidentiality and conditional decryption"
+---
+
+Multi-Party Computation Identity-Based Encryption (MPC-IBE) is the foundation of Fairblock's pre-execution confidentiality: enabling sealed-bid auctions, protected trading, and conditional access control.
+
+## Concept
+
+In IBE, any string can serve as a public key. Fairblock uses **conditions** as identities:
+
+- A block height ("decrypt at block 1000")
+- An auction ID ("decrypt when auction #42 closes")
+- A custom condition ("decrypt when event X occurs")
+
+The corresponding private key is derived by FairyRing validators through distributed key generation: no single party holds the full decryption key.
+
+## Threshold Mechanism
+
+<Steps>
+  <Step title="Key Generation">
+    FairyRing validators run DKG to produce a **Master Public Key (MPK)** and distribute secret keyshares. The MPK is regenerated each epoch.
+  </Step>
+  <Step title="Encryption">
+    Users encrypt data using the MPK and a condition string (e.g., block height, auction ID). Anyone can encrypt: only the condition being met triggers decryption.
+  </Step>
+  <Step title="Condition Met">
+    When the condition is satisfied, validators each submit their keyshare for that specific condition.
+  </Step>
+  <Step title="Key Derivation">
+    Once a threshold of keyshares is collected, the condition-specific private key is derived and the data is decrypted.
+  </Step>
+</Steps>
+
+## Applications
+
+| Application | Condition Type |
+| --- | --- |
+| Protected trading | Block height: orders decrypt after inclusion |
+| Sealed-bid auctions | Auction close time: bids decrypt simultaneously |
+| Selective disclosure | Auditor identity: only authorized parties can decrypt |
+| Private governance | Vote tally time: votes decrypt after voting period |
+
+## Security Properties
+
+- **No single point of failure**: requires a threshold of validators to decrypt
+- **Forward secrecy**: keys are regenerated each epoch via fresh DKG rounds
+- **Malicious validator tolerance**: incorrect keyshares are detected and slashed

@@ -1,0 +1,56 @@
+---
+title: "Confidential Transactions"
+description: "Encrypted amounts and balances on public blockchains"
+---
+
+Fairblock implements confidential-by-default finance. Amounts and balances are encrypted while addresses stay transparent.
+
+## The Problem
+
+Public blockchains expose payment amounts, wallet balances, transaction timing, and trading strategies. This creates front-running vulnerabilities, competitive intelligence leaks, whale targeting, and compliance friction.
+
+## How It Works
+
+<Steps>
+  <Step title="Deposit">
+    Lock tokens on any supported chain. Encrypted balances appear on FairyRing.
+  </Step>
+  <Step title="Transfer">
+    Send encrypted amounts using homomorphic operations and ZK proofs. Neither the amount nor the balance is revealed onchain.
+  </Step>
+  <Step title="Withdraw">
+    Redeem confidential balances back to native tokens on your chosen chain.
+  </Step>
+</Steps>
+
+## Use Cases
+
+<CardGroup cols={3}>
+  <Card title="Payments & Treasury" icon="building-columns">
+    Confidential salaries, P2P transfers, and fund management.
+  </Card>
+  <Card title="DeFi & Trading" icon="chart-line">
+    Encrypted order flow prevents manipulation and protects position sizes.
+  </Card>
+  <Card title="Institutional" icon="briefcase">
+    VC funds, corporate operations, and M&A with confidential settlement.
+  </Card>
+</CardGroup>
+
+## Comparison
+
+| Feature | Fairblock | Traditional Privacy |
+| --- | --- | --- |
+| **Interoperability** | Works across existing chains | Requires dedicated privacy chains |
+| **Gas Efficiency** | Lower costs than ZK or FHE | High computational overhead |
+| **Speed** | Real-time mobile transactions | Limited by proof generation |
+| **Compliance** | Selective disclosure for auditors | All-or-nothing privacy |
+
+<CardGroup cols={2}>
+  <Card title="Technical Deep Dive" icon="microchip" href="/confidential-transfers/technical-overview">
+    Cryptographic primitives powering confidential transfers.
+  </Card>
+  <Card title="Stabletrust SDK" icon="code" href="/confidential-transfers/stabletrust-sdk">
+    Start integrating confidential transfers into your application.
+  </Card>
+</CardGroup>

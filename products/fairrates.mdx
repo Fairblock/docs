@@ -1,0 +1,36 @@
+---
+title: "Fairrates"
+description: "Fixed-rate lending via sealed-bid auctions"
+---
+
+Fairrates is a fixed-rate lending market that clears via a leaderless, sealed-bid, single-price auction.
+
+## Properties
+
+| Property | Description |
+| --- | --- |
+| **No trusted auctioneer** | No single party can decrypt, censor, or peek at bids |
+| **Decentralized keys** | Decryption keys split among validators via MPC and DKG |
+| **Sealed bids** | Bids stay confidential until the auction closes |
+| **Uniform pricing** | Every winner gets the same fixed rate |
+
+## Auction Flow
+
+<Steps>
+  <Step title="Bid Submission">
+    Lenders and borrowers submit encrypted bids using the Master Public Key (MPK).
+  </Step>
+  <Step title="Auction Close">
+    Validators collaborate to derive the decryption key. No single validator can decrypt alone.
+  </Step>
+  <Step title="Price Discovery">
+    All bids decrypt simultaneously. The clearing rate is a single uniform price.
+  </Step>
+  <Step title="Settlement">
+    Matched participants settle onchain at the clearing rate.
+  </Step>
+</Steps>
+
+## Cryptographic Foundation
+
+Fairrates uses **threshold Identity-Based Encryption (IBE)** with FairyRing's MPC-DKG infrastructure. Bids are encrypted with IBE using the auction ID as the identity. Validators generate keyshares, and the decryption key is derived when a threshold contributes.

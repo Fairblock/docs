@@ -1,0 +1,42 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about Fairblock"
+---
+
+<AccordionGroup>
+  <Accordion title="What is Fairblock?">
+    Fairblock is a decentralized confidential computing network that provides end-to-end applications for eliminating information leakage in open finance. It uses multimodal cryptography (HE, IBE, MPC, ZK) to enable confidential transactions, sealed-bid auctions, and protected trading across multiple blockchain ecosystems.
+  </Accordion>
+
+  <Accordion title="What is FairyRing?">
+    FairyRing is Fairblock's native blockchain, built with the Cosmos SDK. It serves as the cryptographic execution layer: handling distributed key generation, threshold encryption, and confidential computation for applications across all integrated chains.
+  </Accordion>
+
+  <Accordion title="How is Fairblock different from other privacy solutions?">
+    Fairblock takes a **confidential by default** approach rather than full anonymity:
+    - **Addresses stay transparent** for compliance (AML, sanctions screening)
+    - **Amounts and balances are encrypted** for financial privacy
+    - **Selective disclosure** allows authorized auditors to verify specific transactions
+    - **Multimodal cryptography** uses the right scheme for each use case instead of one-size-fits-all
+  </Accordion>
+
+  <Accordion title="Which chains does Fairblock support?">
+    Fairblock integrates with EVM chains (Ethereum, Arbitrum, Base), Cosmos chains via IBC, payment networks (Tempo, Arc, Stable), Solana (in development), and trading platforms (CowSwap, Uniswap).
+  </Accordion>
+
+  <Accordion title="Is Fairblock compliant with regulations?">
+    Yes. Fairblock's design mirrors traditional finance: amounts are confidential while identities remain transparent. The system supports selective disclosure for regulatory audits and is compatible with OFAC, FinCEN, and MiCA requirements.
+  </Accordion>
+
+  <Accordion title="What is a cApp?">
+    A cApp (Confidential Application) is any application that leverages Fairblock's encryption for data confidentiality. cApps can include sealed-bid auctions, prediction markets, protected trading, confidential transfers, and more.
+  </Accordion>
+
+  <Accordion title="Do I need to run a FairyRing node to use Fairblock?">
+    No. Application developers can use the Stabletrust SDK or FairyKit libraries to integrate confidential features without running any infrastructure. Only validators need to run FairyRing nodes.
+  </Accordion>
+
+  <Accordion title="How fast are confidential transfers?">
+    Fairblock uses lightweight cryptography (Twisted ElGamal) that enables real-time transactions, including on mobile devices. Proof generation happens in-browser via WebAssembly in milliseconds.
+  </Accordion>
+</AccordionGroup>

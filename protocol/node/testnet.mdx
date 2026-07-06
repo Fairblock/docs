@@ -1,0 +1,33 @@
+---
+title: "Testnet"
+description: "Connect to the FairyRing testnet"
+---
+
+## Network Details
+
+| Property | Value |
+| --- | --- |
+| Chain ID | `fairyring-testnet-1` |
+| RPC | `https://rpc.testnet.fairblock.network:443` |
+| REST API | `https://api.testnet.fairblock.network` |
+| gRPC | `grpc.testnet.fairblock.network:9090` |
+| Explorer | `https://explorer.testnet.fairblock.network` |
+
+## Get Testnet Tokens
+
+Request testnet tokens from the faucet:
+
+```bash
+curl -X POST https://faucet.testnet.fairblock.network/api/faucet \
+  -H "Content-Type: application/json" \
+  -d '{"address": "fairblock1youraddress..."}'
+```
+
+Or request in the [Discord #faucet channel](https://discord.gg/fairblock).
+
+## Configuration
+
+```bash
+fairyringd config chain-id fairyring-testnet-1
+fairyringd config node https://rpc.testnet.fairblock.network:443
+```

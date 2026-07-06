@@ -1,0 +1,135 @@
+---
+title: "Methods"
+description: "SDK method reference for confidential transfers"
+---
+
+
+The `@fairblock/stabletrust` SDK exposes two clients:
+
+- **`ConfidentialTransferClient`**: direct onchain transfers with encrypted amounts (sender address visible). Covered below.
+- **`AnonymousTransferClient`**: relay-routed transfers that also hide the sender's address. Signatures are listed below; see the [Anonymous Transfers guide](/ct/guides/build/anonymous-transfers) for usage.
+
+<Note>
+  **Amount types.** `confidentialDeposit` takes a `BigInt` (base units, from `ethers.parseUnits`). `confidentialTransfer` and `withdraw` take a `number` (cast with `Number(ethers.parseUnits(...))`).
+</Note>
+
+## ConfidentialTransferClient
+
+Manages direct onchain interactions with the confidential transfer contract. Amounts and balances are encrypted with homomorphic encryption; the sender's wallet address remains visible onchain.
+
+### Constructor
+
+```javascript
+new ConfidentialTransferClient(rpcUrl, chainId)
+new ConfidentialTransferClient(rpcUrl, contractAddress, chainId) // custom deployment
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `rpcUrl` | `string` | HTTP JSON-RPC endpoint of the network |
+| `contractAddress` | `string` | *(optional)* Explicit Stabletrust contract address for a custom deployment |
+| `chainId` | `number` | Chain ID. The SDK resolves the contract address from this when not passed explicitly |
+
+### `ensureAccount(wallet, options?)`
+
+Creates a confidential account onchain (if one doesn't exist) and waits for finalization. **Must be called before any confidential operation.**
+
+- **Returns:** `{ publicKey, privateKey }`: derived ElGamal keypair for this wallet.
+- `options.waitForFinalization` (default `true`): wait for the account to be finalized.
+- `options.maxAttempts` (default `225`): maximum polling attempts.
+
+### `getAccountInfo(address)`
+
+Fetches onchain account state: `exists`, `finalized`, `elgamalPubkey`, `txId`, etc.
+
+### `getConfidentialBalance(address, privateKey, tokenAddress)`
+
+Decrypts and returns the available and pending balances.
+
+- **Returns:** `{ amount, available: { amount, ciphertext }, pending: { amount, ciphertext } }`
+
+### `confidentialDeposit(wallet, tokenAddress, amount, options?)`
+
+Deposits ERC-20 tokens into the confidential contract. Handles ERC-20 approval automatically. `amount` is a `BigInt` in token base units.
+
+- **Returns:** Transaction receipt.
+
+### `confidentialTransfer(senderWallet, recipientAddress, tokenAddress, amount, options?)`
+
+Transfers a confidential amount to a recipient. The recipient must have an existing confidential account. `amount` is a `number` in token base units.
+
+- **Returns:** Transaction receipt.
+
+### `withdraw(wallet, tokenAddress, amount, options?)`
+
+Withdraws from the confidential available balance back to public ERC-20. `amount` is a `number` in token base units.
+
+- **Returns:** Transaction receipt.
+
+### `getFeeAmount()`
+
+Returns the native fee (in wei) required for confidential transfers on the current chain.
+
+### `getPublicBalance(address, tokenAddress)`
+
+Returns the public ERC-20 balance for an address as a `BigInt`.
+
+## AnonymousTransferClient
+
+Routes all operations through the Fairycloak relay, which pays gas (except deposits) and keeps the sender's wallet address offchain. See the [Anonymous Transfers guide](/ct/guides/build/anonymous-transfers) for setup, account-ID rules, and end-to-end examples.
+
+### Constructor
+
+```javascript
+new AnonymousTransferClient({ fairycloakUrl, chainId, rpcUrl })
+```
+
+### Accounts & keys
+
+| Method | Description |
+| :--- | :--- |
+| `deriveAnonymousKeys(authWallet, accountId)` | Derives the per-account ElGamal keypair `{ publicKey, privateKey }` |
+| `createAccount(authWallet, accountId, elgamalPublicKey, options?)` | Creates a new anonymous account via the relay |
+| `ensureAnonymousAccount(authWallet, accountId, elgamalPublicKey, options?)` | Idempotent create-if-absent; returns `{ accountId, accountInfo, created }` |
+| `updateAuthKeys(authWallet, accountId, { add, remove }, options?)` | Adds/removes authorised signers |
+| `getAnonymousAccountInfo(accountId)` | Onchain state: `exists`, `finalized`, `hasPendingAction`, `txId`, `elgamalPubkey`, `authNonce` |
+| `isAuthorizedSigner(accountId, signerAddress)` | Whether an address is an authorised signer |
+
+### Balances
+
+| Method | Description |
+| :--- | :--- |
+| `getBalance(accountId, tokenAddress, elGamalPrivateKey)` | Decrypted totals `{ amount, available, pending }` |
+| `getAnonymousBalance(accountId, tokenAddress, elGamalPrivateKey)` | Decrypted balances including raw ciphertexts |
+
+### Moving funds
+
+| Method | Gas paid by | Description |
+| :--- | :--- | :--- |
+| `deposit(authWallet, accountId, tokenAddress, amount, options?)` | User | Deposits tokens into an anonymous account |
+| `transferToPublic(authWallet, accountId, params, options?)` | Relay | Transfers to a public EVM address |
+| `transferToAnonymous(authWallet, senderAccountId, params, options?)` | Relay | Transfers between two anonymous accounts |
+| `applyPending(authWallet, accountId, options?)` | Relay | Moves pending incoming balance into available (call after receiving) |
+| `withdraw(authWallet, accountId, params, options?)` | Relay | Withdraws to a public EVM address |
+| `generateTransferProof(privateKey, params)` | N/A | Generates a transfer proof for manual-proof mode |
+
+### Prepaid fees
+
+| Method | Description |
+| :--- | :--- |
+| `getFeeToken()` | Currently configured ERC-20 fee token address |
+| `getFeeAmount()` | Per-transfer protocol fee (raw units), or `0n` if none |
+| `getPrepaidFeeBalance(accountId, token)` | Prepaid fee balance for an account and fee token |
+| `depositFees(authWallet, accountId, amount, options?)` | Tops up the prepaid fee reserve (user pays gas) |
+| `withdrawFees(authWallet, accountId, { token, destination, amount }, options?)` | Withdraws a specific fee-token amount |
+| `withdrawAllFees(authWallet, accountId, { destination }, options?)` | Withdraws all prepaid fee balances across all fee tokens |
+
+### Request tracking
+
+All relay operations return `{ request_id, tx_hash, status }`.
+
+| Method | Description |
+| :--- | :--- |
+| `waitForRequest(request_id)` | Polls until a terminal state (completed / confirmed / failed) |
+| `getRequestStatus(request_id)` | Current status of a request |
+| `getRequestEvents(request_id)` | Full event history (useful for reconnect/recovery) |

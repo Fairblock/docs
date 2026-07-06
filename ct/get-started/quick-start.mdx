@@ -1,0 +1,157 @@
+---
+title: "Quick Start"
+description: "Get started with confidential transfers in under 5 minutes"
+---
+
+The Stabletrust SDK provides a simple, robust interface for executing confidential transfers using homomorphic encryption and zero-knowledge proofs. It lets developers integrate confidentiality directly into their apps - securing token deposits, private transfers, and withdrawals - without requiring deep cryptographic expertise.
+
+## What it does
+
+<CardGroup cols={3}>
+  <Card title="Deposit" icon="arrow-right-to-bracket">
+    Convert public ERC20 tokens into a confidential encrypted balance.
+  </Card>
+  <Card title="Transfer" icon="shuffle">
+    Send tokens privately without leaking amounts or balances to the public.
+  </Card>
+  <Card title="Withdraw" icon="arrow-right-from-bracket">
+    Move funds from the confidential layer back to public ERC20 tokens.
+  </Card>
+</CardGroup>
+
+## What you can build
+
+Privacy by default unlocks new use cases for open finance that institutions and enterprises require:
+
+- **Confidential payroll apps** - stream salaries to employees and contractors without publishing compensation onchain.
+- **Confidential token launchpads** - let participants contribute privately, hiding contribution sizing from competitors or bots.
+- **Web wallets with confidential transfers built in** - give everyday users privacy by default for their transactions and balances.
+- **x402 payments with confidential transfers** - fast, confidential micro-payments for subscriptions, APIs, or AI agents.
+- **Treasury management** - let DAOs and funds move capital without broadcasting strategy to the market.
+
+<Note>
+  Need to shield wallet addresses too, not just amounts? **Anonymous transfers** route through the Fairycloak relay using numeric account IDs, fully decoupled from any public EVM address - with gasless transfers and withdrawals. See [Anonymous Transfers](/ct/how-it-works/anonymous-transfers) or reach out at [hello@fairblock.network](mailto:hello@fairblock.network) to request access.
+</Note>
+
+## Installation
+
+Install the Stabletrust SDK into your project:
+
+<CodeGroup>
+
+```bash npm
+npm install @fairblock/stabletrust
+```
+
+```bash yarn
+yarn add @fairblock/stabletrust
+```
+
+</CodeGroup>
+
+## Supported Networks
+
+The SDK currently supports confidential transfers on the following testnets:
+
+| Network | Chain ID | Notes |
+| :--- | :--- | :--- |
+| Ethereum Sepolia | 11155111 | |
+| Arbitrum Sepolia | 421614 | |
+| Base Sepolia | 84532 | |
+| Stable Testnet | 2201 | |
+| Arc | 5042002 | |
+| Tempo | 42431 | Uses token-based fees like PathUSD |
+
+## Quick Start: Code Snippets
+
+The SDK revolves around the `ConfidentialTransferClient`, which handles the cryptographic heavy lifting.
+
+<Tip>
+  For a complete walkthrough, see [Building an App with the SDK](/ct/guides/build/building-with-sdk) - a step-by-step tutorial for a Next.js app. The snippets below are for quick reference.
+</Tip>
+
+<Steps>
+  <Step title="Initialize the client">
+    Set up the client with your RPC URL and chain ID.
+
+    ```javascript
+    import { ConfidentialTransferClient } from '@fairblock/stabletrust';
+    import { ethers } from 'ethers';
+
+    // Example: Base Sepolia setup
+    const client = new ConfidentialTransferClient(
+      'https://sepolia.base.org',
+      84532
+    );
+    ```
+  </Step>
+
+  <Step title="Ensure the account is set up">
+    Before any confidential operation, make sure the user account is initialized onchain. This is a one-time step per user per chain.
+
+    ```javascript
+    // signer is a standard ethers.js Signer
+    const { privateKey, publicKey } = await client.ensureAccount(signer);
+    ```
+  </Step>
+
+  <Step title="Deposit tokens">
+    Deposit tokens to make the balance confidential. Always parse amounts using the token's decimals (e.g. 6 for USDC).
+
+    ```javascript
+    const tokenDecimals = 6;
+    const depositAmount = ethers.parseUnits('1.0', tokenDecimals);
+
+    await client.confidentialDeposit(signer, tokenAddress, depositAmount);
+    ```
+  </Step>
+
+  <Step title="Transfer confidentially">
+    Send tokens to any recipient. The transferred amount is encrypted and hidden from the public ledger.
+
+    ```javascript
+    const transferAmount = ethers.parseUnits('0.5', tokenDecimals);
+
+    await client.confidentialTransfer(
+      signer,
+      recipientAddress,
+      tokenAddress,
+      transferAmount
+    );
+    ```
+  </Step>
+
+  <Step title="Check the confidential balance">
+    Fetch the user's decrypted available and pending balance. Use the token's decimals to format for display.
+
+    ```javascript
+    const balance = await client.getConfidentialBalance(
+      signer.address,
+      privateKey,
+      tokenAddress
+    );
+
+    console.log(
+      'Total Confidential Balance:',
+      ethers.formatUnits(balance.amount, tokenDecimals)
+    );
+    ```
+  </Step>
+</Steps>
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card title="NPM Package" icon="npm" href="https://www.npmjs.com/package/@fairblock/stabletrust">
+    @fairblock/stabletrust
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com/Fairblock/stabletrust-sdk">
+    stabletrust-sdk source code
+  </Card>
+  <Card title="Build a full app" icon="code" href="/ct/guides/build/building-with-sdk">
+    Step-by-step Next.js tutorial.
+  </Card>
+  <Card title="Confidential Builders Program" icon="rocket" href="https://build.fairblock.network/">
+    Apply to build on the Stabletrust SDK.
+  </Card>
+</CardGroup>

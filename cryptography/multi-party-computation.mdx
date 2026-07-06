@@ -1,0 +1,43 @@
+---
+title: "Multi-Party Computation"
+description: "Distributed computation across FairyRing validators"
+---
+
+Multi-Party Computation (MPC) enables FairyRing validators to jointly compute functions over secret inputs without any single validator learning the inputs.
+
+## Role in Fairblock
+
+MPC powers several critical functions:
+
+| Function | Protocol |
+| --- | --- |
+| **Distributed Key Generation** | Joint generation of encryption keys without single-party control |
+| **Threshold decryption** | Collaborative decryption requiring a quorum of validators |
+| **Confidential computation** | SPDZ protocol for computation over encrypted data |
+
+## DKG Protocol
+
+FairyRing validators run a Distributed Key Generation protocol to produce:
+
+- **Master Public Key (MPK)**: published onchain, used by anyone to encrypt data
+- **Keyshares**: each validator holds a share of the master secret key
+- **Threshold parameter**: minimum number of keyshares needed for decryption
+
+The DKG is re-run each epoch to rotate keys and maintain forward secrecy.
+
+## Validator Responsibilities
+
+Validators in FairyRing run the `fairyringclient` software which:
+
+1. Participates in DKG rounds to generate and update keyshares
+2. Derives condition-specific private keyshares when conditions are met
+3. Submits keyshares onchain for aggregation
+4. Monitors for and reports malicious behavior
+
+## Malicious Validator Handling
+
+| Behavior | Consequence |
+| --- | --- |
+| Submitting incorrect keyshares | Detected via verification, validator slashed |
+| Withholding keyshares | Timeout triggers, validator penalized |
+| Skipping DKG rounds | Excluded from validator set |

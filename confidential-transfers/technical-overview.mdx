@@ -1,0 +1,53 @@
+---
+title: "Technical Overview"
+description: "Architecture and cryptographic design of confidential transfers"
+---
+
+## Architecture
+
+| Layer | Role | Technology |
+| --- | --- | --- |
+| **FairyRing** | Confidentiality execution | CosmWasm contracts, homomorphic calculations, ZK verification |
+| **EVM Escrow** | Bridge endpoints | Minimal contracts that lock tokens and interface cross-chain |
+| **IBC Relaying** | Cross-chain transport | Trust-minimized light-client verification |
+
+## Cryptographic Primitives
+
+Fairblock uses **Twisted ElGamal**, a fast additive homomorphic encryption scheme, combined with lightweight ZK proofs.
+
+Users prove two things without revealing underlying values:
+
+1. **Authorization**: the sender is allowed to transfer the specified amount
+2. **Correctness**: the math checks out (range proof and balance proof)
+
+<Note>
+  Fairblock uses lightweight HE instead of fully homomorphic encryption, enabling real-time transactions on mobile devices.
+</Note>
+
+## User Flows
+
+### Deposit
+
+Tokens lock in escrow contracts on the source chain. An encrypted balance is created on FairyRing, visible only to the account owner.
+
+### Confidential Transfer
+
+FairyRing performs homomorphic operations on encrypted balances. The ZK proof ensures the transfer is valid without revealing amounts.
+
+### Withdrawal
+
+Users prove balance ownership, FairyRing burns the encrypted balance, and tokens unlock on the destination chain via IBC.
+
+## Anonymous Transfers
+
+For enhanced privacy, anonymous transfers separate confidential accounts from public wallet addresses.
+
+| Component | Role |
+| --- | --- |
+| **Fairycloak** | Relay layer that submits transactions without linking to user wallets |
+| **Fairyport** | Cross-chain message delivery |
+| **Numeric Account IDs** | Replace EVM addresses to break identity-activity links |
+
+<Warning>
+  Anonymous transfers are in early access. [Apply for access](https://build.fairblock.network) through the Confidential Builders Program.
+</Warning>

@@ -1,0 +1,64 @@
+---
+title: "Protocol Overview"
+sidebarTitle: "Overview"
+description: "FairyRing protocol architecture and design"
+---
+
+
+FairyRing is a dynamic, decentralized network that hosts app-specific secure confidential computing. Built with the Cosmos SDK, it provides cryptographic primitives as native chain functions.
+
+## Core Design Principles
+
+| Principle | Implementation |
+| --- | --- |
+| **Decentralized trust** | No single party holds decryption keys: threshold cryptography across validators |
+| **Dynamic confidentiality** | Adjustable confidentiality levels per application |
+| **Cross-chain native** | IBC-first design for seamless multi-chain integration |
+| **Verifiable computation** | All cryptographic operations are verifiable onchain |
+
+## Key Modules
+
+<CardGroup cols={3}>
+  <Card title="x/pep" icon="lock" href="/protocol/modules/pep">
+    Handles encrypted transaction submission, decryption, and execution.
+  </Card>
+  <Card title="x/keyshare" icon="key" href="/protocol/modules/keyshare">
+    Manages distributed key generation and keyshare submission by validators.
+  </Card>
+  <Card title="Confidential Transfers" icon="arrow-right-arrow-left" href="/protocol/modules/confidential-transfers">
+    Homomorphic encryption-based confidential balance management.
+  </Card>
+</CardGroup>
+
+## Architecture
+
+```
+┌─────────────────────────────────────────┐
+│              FairyRing                  │
+│  ┌───────────┐ ┌───────────┐ ┌───────┐ │
+│  │   x/pep   │ │x/keyshare │ │  CT   │ │
+│  │ Encrypted │ │   DKG &   │ │Module │ │
+│  │    Txs    │ │ Keyshares │ │       │ │
+│  └───────────┘ └───────────┘ └───────┘ │
+│  ┌─────────────────────────────────────┐│
+│  │         CosmWasm Runtime            ││
+│  └─────────────────────────────────────┘│
+│  ┌─────────────────────────────────────┐│
+│  │           IBC Layer                 ││
+│  └─────────────────────────────────────┘│
+└─────────────────────────────────────────┘
+         │           │           │
+    ┌────┴───┐  ┌────┴───┐  ┌───┴────┐
+    │  EVM   │  │ Cosmos │  │ Solana │
+    │ Chains │  │ Chains │  │        │
+    └────────┘  └────────┘  └────────┘
+```
+
+<CardGroup cols={2}>
+  <Card title="FairyRing Deep Dive" icon="circle-nodes" href="/protocol/fairyring">
+    Detailed architecture of the FairyRing chain.
+  </Card>
+  <Card title="Run a Node" icon="server" href="/protocol/node/requirements">
+    Set up and operate a FairyRing validator or RPC node.
+  </Card>
+</CardGroup>

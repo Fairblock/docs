@@ -1,0 +1,40 @@
+---
+title: "Confidential Transfers Module"
+description: "Homomorphic encryption-based balance management"
+---
+
+The Confidential Transfers module manages encrypted balances and transfer operations using Twisted ElGamal homomorphic encryption.
+
+## Operations
+
+| Operation | Description |
+| --- | --- |
+| `Deposit` | Lock tokens on source chain, create encrypted balance |
+| `Transfer` | Update encrypted balances using homomorphic operations |
+| `Withdraw` | Prove balance ownership, unlock tokens on destination |
+
+## Onchain State
+
+The module maintains encrypted balance state on FairyRing:
+
+```
+Account → Token → EncryptedBalance (ElGamal ciphertext)
+```
+
+Balances are stored as Twisted ElGamal ciphertexts. Only the account owner can decrypt them using their secret key.
+
+## Verification
+
+Each transfer includes ZK proofs verified by the module:
+
+- **Range proof**: transfer amount is non-negative
+- **Balance proof**: sender has sufficient balance
+- **Well-formedness proof**: ciphertexts are correctly constructed
+
+## Cross-Chain Integration
+
+The module communicates with source chains via IBC:
+
+- **Deposit packets**: source chain locks tokens, FairyRing credits encrypted balance
+- **Withdrawal packets**: FairyRing burns encrypted balance, source chain unlocks tokens
+- **Transfer packets**: internal to FairyRing, no cross-chain communication needed

@@ -1,0 +1,51 @@
+---
+title: "Running a Validator"
+description: "Set up and operate a FairyRing validator node"
+---
+
+Validators on FairyRing have additional responsibilities beyond standard Cosmos validators: they participate in distributed key generation and submit keyshares for decryption.
+
+## Prerequisites
+
+- A fully synced FairyRing node
+- Sufficient stake tokens
+- The `fairyringclient` software installed
+
+## Create a Validator
+
+```bash
+fairyringd tx staking create-validator \
+  --amount 1000000stake \
+  --pubkey $(fairyringd tendermint show-validator) \
+  --moniker "my-validator" \
+  --commission-rate 0.10 \
+  --commission-max-rate 0.20 \
+  --commission-max-change-rate 0.01 \
+  --min-self-delegation 1 \
+  --from my-wallet
+```
+
+## Install fairyringclient
+
+The `fairyringclient` is required for DKG participation:
+
+```bash
+cd fairyring
+make install-client
+
+# Start the client alongside your node
+fairyringclient start --config ~/.fairyringd/config/client.toml
+```
+
+## Validator Duties
+
+<Warning>
+  Failing to participate in DKG or submit keyshares will result in penalties and potential removal from the active set.
+</Warning>
+
+| Duty | Frequency |
+| --- | --- |
+| DKG participation | Each epoch |
+| Keyshare submission | On each decryption trigger |
+| Node uptime | Continuous |
+| Software updates | As released |

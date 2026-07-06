@@ -1,0 +1,40 @@
+---
+title: "Co-Processing"
+description: "FairyRing handles decryption and execution, sends results to integrating chains"
+---
+
+Co-processing is an integration model where FairyRing handles the full confidential computation lifecycle: decryption, execution, and state delivery: so integrating chains don't need to implement any cryptographic logic.
+
+## How It Works
+
+```
+Integrating Chain → Encrypted data → FairyRing → Decrypt → Execute → End state → Integrating Chain
+```
+
+<Steps>
+  <Step title="Submit">
+    The integrating chain sends encrypted data to FairyRing via IBC.
+  </Step>
+  <Step title="Process">
+    FairyRing decrypts the data when conditions are met and executes the application logic in CosmWasm.
+  </Step>
+  <Step title="Deliver">
+    The final state or result is sent back to the integrating chain via IBC.
+  </Step>
+</Steps>
+
+## When to Use Co-Processing
+
+| Scenario | Recommended Approach |
+| --- | --- |
+| Minimal changes to existing chain | Co-Processing |
+| Full control over decryption/execution | FairyKit |
+| Maximum performance | FairyRing Native |
+| Quick integration | Co-Processing |
+
+## Advantages
+
+- **Zero cryptographic overhead** on the integrating chain
+- **Minimal code changes**: just send and receive IBC packets
+- **Automatic key rotation**: FairyRing handles all DKG and key management
+- **Battle-tested security**: FairyRing's validator set handles all sensitive operations

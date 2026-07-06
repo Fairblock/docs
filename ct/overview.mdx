@@ -1,0 +1,109 @@
+---
+title: "Confidential Transfers"
+---
+
+Fairblock enables confidential transfers on public blockchains where transaction amounts and balances are encrypted by default, while preserving performance, usability, and compliance requirements.
+
+The system is designed to support financial institutions, neobanks, payroll providers, and trading firms that require privacy without introducing operational complexity or new trust assumptions.
+
+The design separates confidentiality from anonymity. Confidentiality is always enabled and ensures that transaction amounts and balances remain encrypted. Anonymity is optional and can be enabled for partners or flows that require it in KYB/KYC-scoped environments. This mirrors how encryption is universally used on the internet, while stronger privacy tools are applied selectively.
+
+## Defining Confidential Transactions
+
+Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
+
+- Support DeFi composability and integrations
+- Stay traceable for audits
+- Selectively disclose only what’s needed on a transaction-level, only when it is required.
+
+It is not a mixer and not an anonymity pool. It is programmable confidentiality built for legitimate businesses and finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems.
+
+## Core Applications
+
+<AccordionGroup>
+  <Accordion title="Payments & Payroll" icon="money-bill-transfer">
+    - Confidential salaries for employees, contractors, and KOLs
+    - Private peer-to-peer, cross-border, and merchant payments
+    - Integration with payment networks for compliant, confidential settlements
+
+    No one wants comp, vendor rates, or partner payouts scraped and indexed. That’s HR liability, competitive intelligence leakage, and reputational risk.
+  </Accordion>
+
+  <Accordion title="DeFi & Trading" icon="chart-line">
+    - Encrypted orderflow and resistant to manipulation (e.g. frontrunning)
+    - Confidential liquidity, collateral, and position management
+
+    If the market can see size and timing, you’re handing a competitive edge to competitors and bots. Confidential amounts stop your orders from working against you.
+  </Accordion>
+
+  <Accordion title="Treasury & Institutional" icon="building-columns">
+    - Managing onchain VC liquid funds, corporate, DAO, and fund treasury operations
+    - Confidential inter-subsidiary and OTC settlements
+
+    Treasury activity is strategy. Get the benefits of moving funds onchain without broadcasting your strategy to the entire market.
+  </Accordion>
+
+  <Accordion title="M&A and Strategic Deals" icon="handshake">
+    - Private acquisitions and token buyouts without market leaks
+    - Pre-announcement confidentiality and selective auditability
+
+    Onchain corporate actions expose you to frontrunners. They also create legal and regulatory questions if markets react before disclosure windows.
+  </Accordion>
+
+  <Accordion title="Real-World Assets (RWA)" icon="landmark">
+    - Tokenized securities trading (equities, bonds, funds)
+    - Institutional settlement workflows (custody, issuance, venues)
+
+    Enable confidential trading and settlement of tokenized securities without exposing portfolio composition or execution terms on public chains. Designed to fit the operational needs of custodians, issuers, and market venues.
+  </Accordion>
+
+  <Accordion title="Compliance & Regulation" icon="scale-balanced">
+    - Selective disclosure and bad actor filtering
+    - Anti-money laundering (AML)-safe stablecoins and regulatory auditability
+    - Protection against GDPR/MiCA/CCPA/Clarity related data exposure risk for institutions
+
+    Regulators increasingly expect two things: don’t expose everything to everyone, and do let authorized parties verify under lawful authority. Fairblock follows this exact model. You can disclose a specific transaction, and only that transaction, to a tax authority, regulator, or auditor without revealing your entire financial history. This maps to how financial supervisors describe acceptable digital asset systems and how TradFi already handles sensitive trade and payments data.
+  </Accordion>
+
+  <Accordion title="Infrastructure & Advanced Applications" icon="network-wired">
+    - Privacy-preserving credit, lending, and agentic payments
+    - Selective-disclosure rails for payment networks, issuers, and banks
+
+    You can’t run credit or agent-to-agent payments if every invoice, fee, and settlement is globally visible. Confidential rails are the prerequisite. With selective disclosures, regulated parties settle onchain and can still produce per-transaction details for compliance.
+  </Accordion>
+</AccordionGroup>
+
+## Why Fairblock
+
+<CardGroup cols={2}>
+  <Card title="Performance" icon="gauge-high">
+    **Sub-second client-side.** Lightweight cryptography runs on the user side without introducing latency or external proving infrastructure.
+  </Card>
+  <Card title="Decentralization" icon="circle-nodes">
+    **No trusted hardware.** The system does not rely on TEEs, trusted coprocessors, or centralized proving services.
+  </Card>
+  <Card title="Usability" icon="hand-pointer">
+    **No new wallets or keys.** End users interact with their existing wallets. Keys are derived on demand, never stored.
+  </Card>
+  <Card title="Compliance" icon="file-shield">
+    **Selective disclosure.** Confidentiality-by-default with controlled, post-execution access for authorized parties.
+  </Card>
+</CardGroup>
+
+![Confidential stablecoins overview](/assets/ConfidentialStablecoins.png)
+
+## Join Confidential Builders Program
+
+Apply to build on Fairblock’s Stabletrust SDK and pioneer the next generation of confidential transfers.
+[https://build.fairblock.network/](https://build.fairblock.network/)
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Architecture" icon="sitemap" href="/ct/get-started/architecture">
+    Understand the cryptographic design powering confidential transfers.
+  </Card>
+  <Card title="Quick Start" icon="bolt" href="/ct/get-started/quick-start">
+    Start building with the Stabletrust SDK.
+  </Card>
+</CardGroup>

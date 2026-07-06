@@ -1,0 +1,37 @@
+---
+title: "Protected Trading"
+description: "Encrypted orders for MEV-free execution"
+---
+
+Encrypted orders, intents, and bids for better price discovery without centralized intermediaries.
+
+## The Problem
+
+On public DEXs, order flow is fully visible. Sandwich attacks drain value, large orders signal intent before execution, and market makers widen spreads to compensate for toxic flow.
+
+## How It Works
+
+<Steps>
+  <Step title="Encrypt Order">
+    Encrypt the order (type, amount, price) using FairyRing's Master Public Key and submit to the destination chain.
+  </Step>
+  <Step title="Block Inclusion">
+    The encrypted order is included in a block. Validators and MEV searchers cannot read the contents.
+  </Step>
+  <Step title="Decryption">
+    FairyRing validators derive the decryption key for the block height. The order decrypts and executes at fair price.
+  </Step>
+</Steps>
+
+## Applications
+
+| Use Case | Description |
+| --- | --- |
+| **Limit orders** | Hidden orders that cannot be front-run |
+| **Intent matching** | Confidential intent-based trading with optimal execution |
+| **Sealed-bid auctions** | Token sales, NFT auctions, liquidation auctions |
+| **Dark pools** | Institutional-grade confidential execution |
+
+## Integrations
+
+Available on CowSwap, Uniswap, and custom DEX implementations through FairyKit.

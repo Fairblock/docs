@@ -1,0 +1,58 @@
+---
+title: "Troubleshooting"
+description: "Common issues and solutions"
+---
+
+## SDK Issues
+
+| Issue | Solution |
+| --- | --- |
+| `ACCOUNT_NOT_SETUP` | Call `setupAccount()` before any operations |
+| `INSUFFICIENT_BALANCE` | Check balance with `getBalance()` before transferring |
+| `PROOF_FAILED` | Ensure amounts are within valid range (0 to 2^64 - 1) |
+| `NETWORK_UNSUPPORTED` | Verify the network string matches a supported network |
+| `RELAY_TIMEOUT` | Wait and retry. Check relay status on the block explorer |
+
+## Connection Issues
+
+### RPC Connection Failed
+
+Verify the RPC endpoint is correct and reachable:
+
+```bash
+curl https://rpc-testnet.fairblock.network/status
+```
+
+### Transaction Stuck
+
+If a transaction is pending for more than 2 minutes:
+
+1. Check the transaction hash on the block explorer
+2. Verify the relay between chains is operational
+3. If the relay is down, the transaction will complete when it recovers
+
+## Node Issues
+
+### Sync Failures
+
+```bash
+# Check sync status
+fairyringd status | jq '.SyncInfo'
+
+# Reset and resync if needed
+fairyringd tendermint unsafe-reset-all
+fairyringd start
+```
+
+### Keyshare Submission Failures
+
+Validators must be registered for the current epoch. Check registration:
+
+```bash
+fairyringd query keyshare list-validators
+```
+
+## Getting Help
+
+- [Discord](https://discord.gg/fairblock) for community support
+- [GitHub Issues](https://github.com/Fairblock) for bug reports

@@ -1,0 +1,74 @@
+---
+title: "High-Level Architecture"
+description: "The shared architecture every Fairblock integration passes through"
+---
+
+Fairblock lets any application add confidentiality without exposing private data onchain. The cryptography an app relies on can differ, for example identity-based encryption or homomorphic encryption, but the top-level architecture is the same.
+
+This page describes that shared architecture: the four components every integration passes through, and the end-to-end flow of an encrypted message from the user to Fairblock's cryptographic network and back to the integrated blockchain.
+
+<Note>
+  This page stays intentionally generic. We talk about "encrypted messages" and "private keys" rather than scheme-specific concepts. The deeper mechanics of each cryptographic approach live in the product-specific sections.
+</Note>
+
+## The Four Components
+
+Every Fairblock integration is built from the same four layers:
+
+<Steps>
+  <Step title="Encryption SDK (Application Layer)">
+    The Encryption SDK runs in the user's application (front-end or wallet) and encrypts private inputs locally before anything touches a chain, generating a zero-knowledge proof where one is required. Encryption happens end-to-end on the client side and does not rely on any third party.
+  </Step>
+  <Step title="Gateway Smart Contracts (FairyKit)">
+    The gateway contract receives and stores encrypted messages or transactions on the integrated chain. FairyKit provides these contracts for the network being integrated.
+  </Step>
+  <Step title="Relayer Layer (FairyPort)">
+    The communication layer that listens to the gateway and forwards encrypted state or inputs between the integrated chain and Fairblock, coordinating decryption and execution. FairyPort and IBC are examples.
+  </Step>
+  <Step title="Decentralized Cryptographic Network (FairyRing)">
+    FairyRing processes the compute request: it performs the confidential computation and/or generates the private key, then returns the result. These computations are onchain and verifiable, not a centralized offchain server.
+  </Step>
+</Steps>
+
+## How Integrations Differ: FairyKit vs Co-Processing
+
+The four components above are constant, but where the decryption and execution actually happen can vary. There are two main routes:
+
+<Tabs>
+  <Tab title="FairyKit">
+    Integration packages specific to the chain being integrated, allowing custom setups in which the partnering network carries out some or all of the decryption and execution itself.
+
+    Available for **Cosmos**, **EVMs**, and **RustVMs**. Fairblock can integrate with any network.
+  </Tab>
+  <Tab title="Co-Processing">
+    Fairblock carries out the decryption and execution and sends the end state back to the integrating network.
+
+    This is still onchain and verifiable, not a centralized offchain server. Depending on the design scenario, one route will be better suited than the other.
+  </Tab>
+</Tabs>
+
+## Apps Hosted on FairyRing vs External Chains
+
+FairyRing is itself a Cosmos chain, so the same four-layer flow applies whether an app lives natively on FairyRing or on another chain:
+
+<CardGroup cols={2}>
+  <Card title="Native FairyRing Apps" icon="cube">
+    Confidential computation and contract callbacks are native functions of the chain, so no external relayer is needed and return steps happen internally. Native apps benefit from more performant operations.
+  </Card>
+  <Card title="External Chains" icon="link">
+    The relayer layer (FairyPort or IBC) bridges the integrated chain and Fairblock, while FairyKit supplies the gateway contracts. FairyRing integrates frictionlessly with any chain, deepening liquidity and making the network more robust.
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+All of these integration methods provide the same ability to interact with Fairblock, with your own application logic layered on top. Once you have this high-level picture, head to the quick-start tutorials for the chain you're working with:
+
+<CardGroup cols={2}>
+  <Card title="Confidential Transfers" icon="lock" href="/ct/overview">
+    Get started with encrypted amounts and balances on public blockchains.
+  </Card>
+  <Card title="Pre-Execution Privacy" icon="shield-halved" href="/pep/overview">
+    Explore sealed-bid auctions, private governance, and encrypted transactions.
+  </Card>
+</CardGroup>

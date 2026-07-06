@@ -1,0 +1,62 @@
+---
+title: "Architecture"
+description: "How FairyRing connects with applications across ecosystems"
+---
+
+<Note>
+  Apps refer to applications living on EVMs or blockchains themselves, like those in the Cosmos ecosystem.
+</Note>
+
+## Building on FairyRing
+
+FairyRing is a Cosmos chain with two key properties:
+
+<Steps>
+  <Step title="Native Confidential Computation">
+    No relayers needed. Confidential computation and contract callbacks are native chain functions.
+  </Step>
+  <Step title="Cross-Chain Integration">
+    FairyRing integrates with any chain. An interconnected environment deepens liquidity and strengthens the network.
+  </Step>
+</Steps>
+
+## Core Components
+
+| Component | Description |
+| --- | --- |
+| **FairyRing** | Native chain abstracting cryptographic operations for applications |
+| **FairyKit** | Integration packages for one-click confidentiality on any protocol |
+| **Encryption SDK** | Offchain software for encrypting transactions before submission |
+| **Destination Chain** | Chain storing encrypted transactions and executing after decryption |
+| **Relayers** | Communication layer coordinating between FairyRing and destination chains |
+
+## Integration Routes
+
+<Tabs>
+  <Tab title="FairyKits">
+    Chain-specific integration packages where the partnering network handles some or all decryption and execution.
+
+    Available for **Cosmos**, **EVMs**, and **RustVMs**.
+  </Tab>
+  <Tab title="Co-Processing">
+    FairyRing handles decryption, execution, and sends the end state to the integrating network.
+
+    Ideal for chains that want confidentiality with minimal infrastructure changes.
+  </Tab>
+</Tabs>
+
+## Chain-Specific Details
+
+<Tabs>
+  <Tab title="EVM">
+    Precompiled contracts and escrow contracts as bridge endpoints. Tokens lock on EVM, encrypted balances appear on FairyRing.
+
+    **Supported:** Ethereum, Arbitrum, Base, Hyperliquid, and any EVM-compatible chain.
+  </Tab>
+  <Tab title="Cosmos">
+    Native IBC integration. FairyKit modules plug directly into the chain's module system with light-client verification.
+  </Tab>
+  <Tab title="Solana">
+    Cross-chain messaging layer connecting Solana programs with FairyRing's confidential computing.
+  </Tab>
+</Tabs>

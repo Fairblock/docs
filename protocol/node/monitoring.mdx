@@ -1,0 +1,48 @@
+---
+title: "Monitoring"
+description: "Monitor your FairyRing node and validator"
+---
+
+## Health Checks
+
+```bash
+# Check node status
+fairyringd status
+
+# Check sync status
+fairyringd status | jq '.sync_info'
+
+# Check validator signing info
+fairyringd query slashing signing-info $(fairyringd tendermint show-validator)
+```
+
+## Key Metrics
+
+| Metric | What to Watch |
+| --- | --- |
+| `catching_up` | Should be `false`: node is synced |
+| `latest_block_height` | Should increase with each block |
+| `missed_blocks_counter` | Should stay at 0 for validators |
+| DKG participation | Validator should participate in each epoch's DKG |
+| Keyshare submissions | Validator should submit keyshares when triggered |
+
+## Prometheus Metrics
+
+FairyRing exposes Prometheus metrics on port 26660:
+
+```bash
+# Enable in config.toml
+[instrumentation]
+prometheus = true
+prometheus_listen_addr = ":26660"
+```
+
+## Logs
+
+```bash
+# Follow node logs
+journalctl -u fairyringd -f
+
+# Follow client logs
+journalctl -u fairyringclient -f
+```

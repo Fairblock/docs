@@ -1,0 +1,200 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "aspen",
+  "name": "Fairblock",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/assets/icon.jpg",
+  "css": "/global.css",
+  "appearance": {
+    "default": "dark"
+  },
+  "colors": {
+    "primary": "#ffffff",
+    "light": "#ffffff",
+    "dark": "#000000"
+  },
+  "background": {
+    "color": {
+      "light": "#ffffff",
+      "dark": "#09090b"
+    }
+  },
+  "font": {
+    "headings": {
+      "family": "Inter",
+      "weight": 600
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 400
+    }
+  },
+  "navbar": {},
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Get Started",
+        "groups": [
+          {
+            "group": "Start Here",
+            "pages": [
+              "overview",
+              "high-level-architecture"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Confidential Transfers",
+        "groups": [
+          {
+            "group": "Confidential Transfers",
+            "pages": [
+              "ct/overview"
+            ]
+          },
+          {
+            "group": "Get Started",
+            "pages": [
+              "ct/get-started/architecture",
+              "ct/get-started/quick-start"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              {
+                "group": "Apps",
+                "pages": [
+                  "ct/guides/apps/stabletrust-app",
+                  "ct/guides/apps/cusd-app",
+                  "ct/guides/apps/yieldshield-app"
+                ]
+              },
+              {
+                "group": "Build",
+                "pages": [
+                  "ct/guides/build/building-with-sdk",
+                  "ct/guides/build/anonymous-transfers",
+                  "ct/guides/build/agentic-api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "How It Works",
+            "pages": [
+              "ct/how-it-works/deposit-transfer-withdraw",
+              "ct/how-it-works/anonymous-transfers",
+              "ct/how-it-works/integration-paths",
+              "ct/how-it-works/compliance"
+            ]
+          },
+          {
+            "group": "SDK Reference",
+            "pages": [
+              "ct/sdk-reference/methods",
+              "ct/sdk-reference/supported-networks",
+              "ct/sdk-reference/common-errors"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Pre-Execution Privacy",
+        "groups": [
+          {
+            "group": "Pre-Execution Privacy (MPC-IBE)",
+            "pages": [
+              "pep/overview"
+            ]
+          },
+          {
+            "group": "Get Started",
+            "pages": [
+              "pep/get-started/architecture",
+              "pep/get-started/quick-start"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              {
+                "group": "Apps",
+                "pages": [
+                  "pep/guides/apps/fairrates"
+                ]
+              },
+              {
+                "group": "Build",
+                "pages": [
+                  "pep/guides/build/sealed-bid-auctions",
+                  "pep/guides/build/private-governance",
+                  "pep/guides/build/encrypted-transactions",
+                  "pep/guides/build/private-decryption",
+                  "pep/guides/build/verifiable-randomness",
+                  {
+                    "group": "Platform Setup",
+                    "pages": [
+                      "pep/guides/build/platform-setup/cosmos-chains",
+                      "pep/guides/build/platform-setup/evm-arbitrum",
+                      "pep/guides/build/platform-setup/fairyring-native"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "How It Works",
+            "pages": [
+              "pep/how-it-works/conditional-encryption",
+              "pep/how-it-works/mpc-ibe",
+              "pep/how-it-works/decryption-modes",
+              "pep/how-it-works/network-flow"
+            ]
+          },
+          {
+            "group": "Module Reference",
+            "pages": [
+              "pep/module-reference/pep",
+              "pep/module-reference/keyshare"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/community",
+              "resources/glossary"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/0xfairblock",
+      "github": "https://github.com/Fairblock",
+      "discord": "https://discord.gg/fairblock"
+    }
+  },
+  "feedback": {
+    "thumbsRating": false,
+    "suggestEdit": false
+  },
+  "search": {
+    "prompt": "Search Fairblock docs..."
+  },
+  "contextual": {
+    "options": []
+  }
+}

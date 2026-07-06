@@ -1,0 +1,54 @@
+---
+title: "Zero-Knowledge Proofs"
+description: "Lightweight ZK proofs for balance verification and range checking"
+---
+
+Fairblock uses lightweight zero-knowledge proofs to verify confidential transfer correctness without revealing underlying values.
+
+## Design Philosophy
+
+Fairblock prioritizes **lightweight ZK** over general-purpose ZK circuits:
+
+| Approach | Gas Cost | Proof Time | Use Case |
+| --- | --- | --- | --- |
+| Lightweight ZK (Fairblock) | Low | Milliseconds | Balance proofs, range proofs |
+| General ZK circuits | High | Seconds–Minutes | Arbitrary computation |
+| FHE + ZK | Very High | Minutes | Full homomorphic verification |
+
+## Proof Types
+
+### Range Proofs
+
+Prove that a transfer amount is within valid bounds without revealing the amount:
+
+```
+Prove: 0 ≤ transfer_amount ≤ 2^64
+```
+
+### Balance Proofs
+
+Prove that the sender has sufficient encrypted balance to cover the transfer:
+
+```
+Prove: encrypted_balance - encrypted_amount ≥ 0
+```
+
+### Well-Formedness Proofs
+
+Prove that ciphertexts are correctly constructed Twisted ElGamal encryptions:
+
+```
+Prove: C = (r·G, b·G + r·PK) for known r, b
+```
+
+## Verification
+
+All proofs are verified onchain by FairyRing's CosmWasm contracts. The verification is:
+
+- **Non-interactive**: proofs are submitted alongside transfers, no back-and-forth
+- **Batch-verifiable**: multiple proofs can be verified together for efficiency
+- **Constant-size**: proof size doesn't grow with the number of transactions
+
+## Browser-Based Proof Generation
+
+The Stabletrust SDK generates ZK proofs locally in the browser using WebAssembly, ensuring that plaintext values never leave the user's device.

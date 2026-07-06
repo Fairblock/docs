@@ -1,0 +1,43 @@
+---
+title: "FairyRing"
+description: "Fairblock's native chain for confidential computing"
+---
+
+FairyRing is a Cosmos SDK-based blockchain purpose-built for confidential computing. It serves as the cryptographic engine for the entire Fairblock ecosystem.
+
+## Key Features
+
+| Feature | Description |
+| --- | --- |
+| **Native confidential computing** | Encryption, decryption, and verification are chain-level operations |
+| **No relayers for native apps** | Apps on FairyRing don't need cross-chain communication |
+| **CosmWasm support** | Write confidential smart contracts in Rust |
+| **IBC-native** | First-class cross-chain communication for external integrations |
+| **Epoch-based key rotation** | Master keys are regenerated each epoch for forward secrecy |
+
+## Epoch System
+
+FairyRing operates on an epoch-based schedule:
+
+1. **DKG Phase**: validators run distributed key generation to produce a new Master Public Key
+2. **Active Phase**: the MPK is used for encryption; validators derive condition-specific keys as needed
+3. **Rotation**: at epoch end, a new DKG round produces fresh keys
+
+## Network Parameters
+
+| Parameter | Value |
+| --- | --- |
+| Block time | ~6 seconds |
+| Consensus | CometBFT |
+| SDK | Cosmos SDK |
+| Smart contracts | CosmWasm |
+| Cross-chain | IBC |
+
+## Testnet
+
+| Property | Value |
+| --- | --- |
+| Chain ID | `fairyring-testnet-1` |
+| RPC | `https://rpc.testnet.fairblock.network` |
+| REST | `https://api.testnet.fairblock.network` |
+| Explorer | `https://explorer.testnet.fairblock.network` |

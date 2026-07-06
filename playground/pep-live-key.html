@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FairyRing live encryption key</title>
+    <style>
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+        color: #18181b;
+        background: transparent;
+      }
+      @media (prefers-color-scheme: dark) { body { color: #e4e4e7; } }
+      .card {
+        border: 1px solid rgba(127, 127, 127, 0.25);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+      button {
+        appearance: none;
+        border: 0;
+        border-radius: 8px;
+        background: #18181b;
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        padding: 8px 14px;
+        cursor: pointer;
+      }
+      @media (prefers-color-scheme: dark) { button { background: #fafafa; color: #18181b; } }
+      button:disabled { opacity: 0.55; cursor: default; }
+      .hint { opacity: 0.6; }
+      .out { margin-top: 14px; display: none; }
+      .out.show { display: block; }
+      .field { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid rgba(127,127,127,0.18); }
+      .label { opacity: 0.6; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; text-align: right; }
+      .err { color: #dc2626; margin-top: 12px; display: none; }
+      .err.show { display: block; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="row">
+        <button id="go">Fetch the live encryption key</button>
+        <span class="hint">Reads FairyRing testnet directly. No wallet, no funds.</span>
+      </div>
+
+      <div class="out" id="out">
+        <div class="field"><span class="label">Master Public Key</span><span class="mono" id="mpk"></span></div>
+        <div class="field"><span class="label">Key expires at block</span><span class="mono" id="expiry"></span></div>
+        <div class="field"><span class="label">Current block height</span><span class="mono" id="height"></span></div>
+        <div class="field"><span class="label">Rotates in</span><span class="mono" id="rotate"></span></div>
+      </div>
+
+      <div class="err" id="err"></div>
+    </div>
+
+    <script>
+      const API = "https://anon-testnet-api.fairblock.network";
+      const btn = document.getElementById("go");
+      const out = document.getElementById("out");
+      const err = document.getElementById("err");
+
+      async function getJSON(path) {
+        const res = await fetch(API + path, { signal: AbortSignal.timeout(15000) });
+        if (!res.ok) throw new Error(path + " returned " + res.status);
+        return res.json();
+      }
+
+      function short(hex) {
+        return hex.length > 24 ? hex.slice(0, 12) + "…" + hex.slice(-12) : hex;
+      }
+
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "Fetching…";
+        err.classList.remove("show");
+        try {
+          const [keys, block] = await Promise.all([
+            getJSON("/fairyring/keyshare/pubkey"),
+            getJSON("/cosmos/base/tendermint/v1beta1/blocks/latest"),
+          ]);
+          const pk = keys.active_pubkey || {};
+          const height = Number(block.block.header.height);
+          const expiry = Number(pk.expiry);
+
+          document.getElementById("mpk").textContent = short(pk.public_key || "—");
+          document.getElementById("expiry").textContent = expiry ? expiry.toLocaleString() : "—";
+          document.getElementById("height").textContent = height.toLocaleString();
+          const left = expiry - height;
+          document.getElementById("rotate").textContent =
+            expiry ? (left > 0 ? left.toLocaleString() + " blocks" : "rotating now") : "—";
+
+          out.classList.add("show");
+          btn.textContent = "Refresh";
+        } catch (e) {
+          err.textContent = "Could not reach FairyRing testnet: " + e.message;
+          err.classList.add("show");
+          btn.textContent = "Try again";
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

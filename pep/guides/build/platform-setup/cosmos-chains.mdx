@@ -1,0 +1,326 @@
+---
+title: "Cosmos Chains"
+description: "Integrate PEP on Cosmos chains via IBC"
+---
+
+A key thing to understand is that there are various FairyKits to select from when integrating with Fairblock and Cosmos Chains.
+
+A key design decision for which FairyKit method to choose revolves around the Decryption and Execution Layer.
+
+Chains integrating with Fairblock can often choose between the "FairyKit" or "Co-Processing" route, as shown in the below schematic, where the two high-level integration categories, FairyKit and Co-Processing, are described. Depending on the design scenario, one method will prove to be better suited than the other.
+
+![Cosmos Decryption and Execution Layer Schematic](/assets/CosmosDecryptionAndExecutionSchematic.png)
+
+A key aspect to note is that all of these integration methods provide the functionality to interact with FairyRing, and there can be underlying application logic working with these integrations.
+
+At a more granular level, Cosmos FairyKit integrates using the following one or more of the following methods:
+
+1. Module Integration
+2. Smart Contract Integration
+3. Underlying Execution Logic Integration
+4. A Combination of Any of the Above
+
+For example, the `privgov` tutorial covers a subset of the FairyKit methods available for Cosmos integration with Fairblock. Specifically, it is a combination of the underlying application logic and a mixture of the `x/pep` module details, that collectively construct today's `privgov` integration package.
+
+These four methods can each be used to implement app logic integrating with FairyRing, even the application of interest today, `privgov`.
+
+## Cosmos Appchain Integration
+
+In this section, we briefly go over the different ways to integrate with Fairyring.  
+You have two main options:
+
+- [Direct PEP Integration](#direct-pep-integration): Integrate the `x/pep` module directly into your app-chain for minimal implementation effort.
+- [Custom Integration](#custom-integration): Build custom communication logic and interact with Fairyring via IBC.
+
+Each approach has its advantages depending on the degree of control and flexibility you want.
+
+<Tip>
+  Explore both options to find what fits your architecture best.
+</Tip>
+
+
+### Integration Comparison
+
+Depending on the requirements and complexity of your appchain, you can choose either a fast plug-and-play integration or a fully customizable confidential workflow.  
+The table below outlines the key differences between the two methods.
+
+| Feature | Direct PEP Integration | Custom Integration |
+|:--------|:----------------------|:-------------------|
+| Setup Complexity | Low | High |
+| Communication Model | Internal automatic communication with Fairyring's `x/pep` module | Manual IBC messaging with Fairyring's `x/keyshare` module |
+| Control over Encryption/Decryption Flows | Limited (abstracted away) | Full |
+| Decryption Key Handling | Automatic | Appchain must handle key material manually |
+| Recommended For | Fast and simple integration into Cosmos SDK chains | Advanced chains needing custom confidential workflows |
+| Responsibility for Retry/Timeouts | Handled by Fairyring internally | Appchain must manage retries, timeouts, and state recovery |
+| MPK Updates | Automatically managed | Must be fetched manually via `CurrentKeysPacketData` |
+
+
+<Note>
+  Direct PEP Integration abstracts the interaction with Fairyring and handles decryption flows automatically. Custom Integration offers full flexibility but requires the appchain to manage IBC communication directly with the keyshare module.
+</Note>
+
+## Direct PEP Integration
+
+The `x/pep` module can be directly incorporated into any Cosmos SDK-based application chain to enable seamless privacy integration with Fairblock's FairyRing network.
+
+This approach provides a minimal-overhead method for allowing encrypted transactions and automatic decryption/execution flows.
+
+
+### Overview
+
+By integrating the `x/pep` module into your chain:
+
+- Your chain can **connect to the FairyRing chain**, constantly updating its Master Public Key (MPK) and automatically retrieving decryption keys as they are generated.
+- **Users can submit encrypted transactions** on your chain, which will be **automatically decrypted and executed** once the appropriate decryption keys are available from FairyRing.
+
+This enables Cosmos chains to easily unlock confidential compute flows without having to build custom encryption/decryption pipelines.
+
+
+### How to Integrate
+
+Integrating the `x/pep` module is similar to integrating a standard Cosmos SDK module, such as `bank` or `staking`.
+
+You need to:
+
+1. Import the `x/pep` module in your codebase.
+2. Wire the module in your `app.go`.
+3. Set the module parameters correctly (especially `is_source_chain = false`).
+
+
+#### 1. Import the PEP Module
+
+In your `app.go`:
+
+```go
+import (
+    // other imports
+    pepmodule "github.com/Fairblock/fairyring/x/pep"
+    pepkeeper "github.com/Fairblock/fairyring/x/pep/keeper"
+    peptypes "github.com/Fairblock/fairyring/x/pep/types"
+)
+```
+
+
+#### 2. Add Keeper to Your App
+
+Declare the PEP Keeper inside your `App` struct:
+
+```go
+type App struct {
+    // other keepers...
+
+    PepKeeper pepkeeper.Keeper
+}
+```
+
+Then initialize it inside the `NewApp` function:
+
+```go
+app.PepKeeper = *pepkeeper.NewKeeper(
+    appCodec,
+    keys[peptypes.StoreKey],
+    app.GetSubspace(peptypes.ModuleName),
+    app.AccountKeeper,
+    app.BankKeeper,
+)
+```
+
+
+#### 3. Register the Module
+
+Add `pepmodule.NewAppModule` to your list of modules:
+
+```go
+app.mm.SetOrderBeginBlockers(
+    // other modules...
+    peptypes.ModuleName,
+)
+
+app.mm.SetOrderEndBlockers(
+    // other modules...
+    peptypes.ModuleName,
+)
+
+app.mm.RegisterModules(
+    // other modules...
+    pepmodule.NewAppModule(appCodec, app.PepKeeper, app.AccountKeeper),
+)
+```
+
+And mount the store key:
+
+```go
+app.MountStores(
+    keys[peptypes.StoreKey],
+    // other keys...
+)
+```
+
+
+#### 4. Configure Genesis Parameters Carefully
+
+One critical parameter is:
+
+```proto
+bool is_source_chain = 2 [(gogoproto.moretags) = "yaml:\"is_source_chain\""];
+```
+
+<Warning>
+  In your chain's `app_state` for the `pep` module, make sure that `is_source_chain` is set to `false`.
+</Warning>
+
+Example:
+
+```yaml
+pep:
+  params:
+    is_source_chain: false
+```
+
+Setting `is_source_chain: false` tells the `x/pep` module that this chain is a consumer of decryption keys from FairyRing, rather than producing its own.
+
+If you leave this value `true` by mistake, your PEP module will not properly connect to FairyRing and decryption flows will fail.
+
+
+### Final Notes
+
+After completing these changes:
+
+- Your appchain will automatically monitor FairyRing for new decryption keys.
+- Encrypted transactions submitted by users will be automatically processed once decryption material is available.
+- You have enabled native confidential compute workflows inside your chain with minimal custom effort.
+
+This approach is ideal for chains that want to integrate Fairblock functionality without needing major architectural changes.
+
+## Custom Integration
+
+Custom integration provides greater flexibility by allowing the appchain to directly communicate with FairyRing's `x/keyshare` module over IBC. 
+
+This method requires the appchain to handle the logic for initiating IBC transactions to FairyRing and processing the corresponding responses. While it provides full control over encryption workflows, it demands more effort compared to direct `x/pep` integration.
+
+
+### Overview
+
+In the custom integration path:
+
+- The appchain establishes direct IBC communication with FairyRing's `keyshare` module.
+- The appchain must manage when to send IBC requests and how to handle IBC acknowledgments and responses.
+- Responsibility for queueing, timeout handling, retries, and state management lies with the appchain.
+
+This approach is suitable for advanced chains that want to implement their own confidential workflows or layer additional logic on top of FairyRing's capabilities.
+
+
+### Available IBC Endpoints
+
+FairyRing's `x/keyshare` module provides several IBC packet types that the appchain can interact with. Below is a summary of each available packet and its purpose.
+
+#### RequestDecryptionKeyPacketData
+
+Used by the appchain to request an identity from FairyRing.  
+This initiates the process of generating an encrypted identity and eventually obtaining its corresponding decryption key.
+
+#### GetDecryptionKeyPacketData
+
+Used by the appchain to request a decryption key for an already existing identity from FairyRing.  
+This packet is useful when the identity has already been requested previously, and only the key material is now needed.
+
+#### DecryptionKeyDataPacketData
+
+Sent by FairyRing to the appchain when a decryption key has been generated.  
+The appchain must be able to handle and consume this packet appropriately, such as by unlocking transactions encrypted under that identity.
+
+#### RequestPrivateDecryptionKeyPacketData
+
+Used by the appchain to request the generation of a **private identity** on FairyRing.  
+Private identities enable use cases where fine-grained access control is desired, such as user-specific confidential data.
+
+#### GetPrivateDecryptionKeyPacketData
+
+Used by the appchain to request a **list of encrypted keyshares** for an existing private identity from FairyRing.  
+This is part of enabling the private decryption workflow, where key material must be assembled in a privacy-preserving manner.
+
+#### PrivateDecryptionKeyDataPacketData
+
+Sent by FairyRing to the appchain containing the list of encrypted keyshares corresponding to a private identity.  
+The appchain must process this packet to reconstruct the private key securely when appropriate.
+
+#### CurrentKeysPacketData
+
+Used by the appchain to fetch the latest active and queued Master Public Keys (MPKs) from FairyRing.  
+This is critical to ensure that encryption operations on the appchain are always performed using the correct public key material.
+
+
+### General Integration Approach
+
+Custom integration requires the appchain to:
+
+1. Establish an IBC connection with the FairyRing chain targeting the `keyshare` module.
+2. Build and send IBC packets according to the desired workflow (e.g., requesting an identity, fetching decryption keys).
+3. Handle incoming packets (e.g., decryption keys, keyshares) in the IBC packet handler logic.
+4. Maintain local state, retries, timeouts, and re-request logic as necessary.
+
+This is an advanced integration mode and assumes familiarity with Cosmos SDK's IBC application development.
+
+
+### Example Code Snippets
+
+#### Sending a RequestDecryptionKeyPacket
+
+```go
+import keysharetypes "github.com/Fairblock/fairyring/x/keyshare/types"
+
+packet := keysharetypes.KeysharePacketData{
+    Packet: &keysharetypes.KeysharePacketData_RequestDecryptionKeyPacket{
+        RequestDecryptionKeyPacket: &keysharetypes.RequestDecryptionKeyPacketData{
+            Requester:      requesterAddress.String(),
+            Identity:       identity,
+            EstimatedDelay: durationpb.New(time.Minute * 5),
+        },
+    },
+}
+
+// Send the packet over IBC
+err := app.KeyshareKeeper.TransmitKeysharePacket(
+    ctx,
+    packet,
+    sourcePort,
+    sourceChannel,
+    timeoutHeight,
+    timeoutTimestamp,
+)
+if err != nil {
+    return sdkerrors.Wrap(err, "failed to send RequestDecryptionKeyPacketData")
+}
+```
+
+#### Handling a DecryptionKeyDataPacket
+
+```go
+func (am AppModule) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data keysharetypes.KeysharePacketData) exported.Acknowledgement {
+    switch pkt := data.Packet.(type) {
+    case *keysharetypes.KeysharePacketData_DecryptionKeyDataPacket:
+        return handleDecryptionKeyData(ctx, pkt.DecryptionKeyDataPacket)
+    // handle other packet types
+    default:
+        return channeltypes.NewErrorAcknowledgement(fmt.Sprintf("unrecognized keyshare packet type"))
+    }
+}
+
+func handleDecryptionKeyData(ctx sdk.Context, packet *keysharetypes.DecryptionKeyDataPacketData) exported.Acknowledgement {
+    // Example: store decryption key locally
+    k.SetDecryptionKey(ctx, packet.Identity, packet.DecryptionKey)
+
+    return channeltypes.NewResultAcknowledgement([]byte("decryption key stored"))
+}
+```
+
+### Important Considerations
+
+- IBC setup: Ensure a stable IBC connection exists with the FairyRing chain before sending any packets.
+- Timeouts: Handle packet timeouts properly to avoid dangling requests.
+- Retries: Implement retry logic where necessary, especially for long-lived decryption key generation processes.
+- State management: Track pending identities and decryption keys cleanly in your appchain's state.
+
+### Conclusion
+Custom integration offers full flexibility and enables building highly specialized confidential workflows using FairyRing's infrastructure.
+However, it demands careful IBC management, packet handling, and appchain-side orchestration.

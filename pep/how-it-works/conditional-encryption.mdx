@@ -1,0 +1,49 @@
+---
+title: "Conditional Encryption (IBE)"
+description: "How Identity-Based Encryption enables condition-triggered decryption"
+---
+
+Identity-based Encryption (also known as witness encryption or conditional decryption) enables the encryption of messages or transactions so that they can only be decrypted once a specific decryption condition or witness has been provided. This decryption condition or witness is often referred to as an identity or ID in the cryptographic literature.
+
+Fairblock employs threshold IBE, ensuring that no single party controls the decryption keys. Validators perform distributed key generation to produce a pair of keys:
+
+**Master Public Key (MPK):** The MPK, combined with the “decryption condition,” can be used to encrypt a transaction (or a batch of transactions) that will be decrypted and executed once the specified “decryption condition” is met.
+
+**Master Secret Key Shares:** Each validator holds a share of the master secret key, preventing any single entity from reconstructing the full master secret key. Once the “decryption condition” is met, each validator uses its master secret key share to generate a private key share for all transactions encrypted under that condition. When a threshold (e.g., 2/3) of these private key shares is collected, they can be combined to form a private key that decrypts all transactions tied to that same condition. In the case of Private Shared State, the data is decrypted publicly; for access control, the data is decrypted only for those who meet the required attributes.
+
+The above can be described in three equations.
+
+### Encryption:
+
+- Done with a function, called `encrypt()`.
+- A user wants to encrypt their transaction, `m`, to later be decrypted and executed once the condition is met.
+- The encrypted output will be represented by `c`.
+- A unique `condition id` will be obtained from FairyRing.
+
+$$
+encrypt(m, master public key, condition id) = c
+$$
+
+### Private Key Extraction
+
+- Done with a function, called `extract()`.
+- Uses `id` to derive a private key for decryption, `pk`, to decrypt the respective encrypted transaction.
+
+$$
+extract(id) = private key
+$$
+
+### Decryption Using the Private Key
+
+- Done with a function, called `decrypt()`.
+- Uses encrypted transaction (ciphertext), `c`, and private key for id, `private key`, to obtain the original transaction details, `m`.
+
+$$
+decrypt(c, private key) = m
+$$
+
+Altogether, one can see that the following property holds true when using IBE:
+
+$$
+decrypt(encrypt(m, id), extract(id)) = m
+$$

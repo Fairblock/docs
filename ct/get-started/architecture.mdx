@@ -1,0 +1,62 @@
+---
+title: "Architecture"
+description: "Architecture and cryptographic design of confidential transfers"
+---
+
+## Overview
+
+This page describes the high-level architecture for our cross-chain confidential transaction system that connects existing EVM blockchains to FairyRing, Fairblock's native chain and confidentiality execution layer.
+
+This system enables confidential balances and transactions for tokens (e.g., stablecoins) issued or circulating on EVM chains without requiring changes to the underlying token contracts and without changing user wallet behavior. Confidentiality is achieved by offloading privacy-sensitive logic to FairyRing, while settlement and liquidity remain on the originating EVM chain.
+
+Confidential transfers use lightweight additive homomorphic calculations and fast zero-knowledge (ZK)-proof verification, executed within the protocol flow. The system does not rely on fully homomorphic encryption over the discretized Torus (TFHE) from an offchain coprocessor. All homomorphic calculations and ZK proof verification are extremely lightweight, and execution runs on FairyRing.
+
+## System at a Glance
+
+The system is built with three layers:
+
+| Layer | Role | Technology |
+| --- | --- | --- |
+| **FairyRing** | Confidentiality execution | CosmWasm contracts, homomorphic calculations, ZK verification |
+| **EVM Escrow** | Bridge endpoints | Minimal contracts that lock tokens and interface cross-chain |
+| **Fairyport Relayer** | Cross-chain transport | Offchain relayer that moves messages between chains and FairyRing |
+
+At a high level, the user journey runs through four stages:
+
+<Steps>
+  <Step title="Deposit">
+    Users deposit tokens into the EVM escrow contract, which locks the funds.
+  </Step>
+  <Step title="Receive a confidential balance">
+    FairyRing issues an encrypted balance visible only to the account owner.
+  </Step>
+  <Step title="Transact confidentially">
+    Users send and receive confidential transfers using that balance, with amounts kept encrypted.
+  </Step>
+  <Step title="Redeem (optional)">
+    Users redeem back to the EVM chain when withdrawing to the underlying token.
+  </Step>
+</Steps>
+
+## Breaking Down the Layers
+
+### FairyRing: Confidentiality Provider
+
+FairyRing operates as a dedicated confidentiality execution layer. Its core logic is implemented as CosmWasm contracts that maintain a confidential ledger of encrypted balances per account and per asset. These contracts process confidential transactions based on ZK proof verification and lightweight homomorphic addition/subtraction, ensuring that all balance updates are internally consistent while never exposing the underlying amounts.
+
+FairyRing also supports selective disclosure under defined conditions. Users decrypt their own balances locally with their own keys, while only encrypted amounts are stored onchain. When required for compliance, audits, or investigations, authorized parties can be granted access to scoped decryption keys. This is enabled by FairyRing’s MPC identity-based encryption (IBE), which allows specific accounts or transaction subsets to be revealed under well-defined conditions without introducing a single persistent audit key that compromises global confidentiality.
+
+### EVM Escrow Contract
+
+On each EVM chain, a dedicated escrow contract serves as the bridge endpoint and local interface for users. Its primary functions are to lock and unlock tokens and to interface with the relayer.
+
+When a user deposits tokens, the escrow contract locks the funds and emits an event picked up by the relayer and sent to FairyRing. When a valid response is received from FairyRing through the relayer (for example, confirming a successful transaction or withdrawal), the contract updates its internal state and, in the case of withdrawals, releases the corresponding tokens back to the user.
+
+The escrow contract is intentionally minimal in logic. It handles token accounting and the relayer interface but avoids complex cryptographic operations. Heavy cryptographic verification and homomorphic balance management are delegated to FairyRing.
+
+### Fairyport Relayer
+
+The relayer layer moves encrypted messages between integrated chains and the cryptographic network. It is operated by Fairblock; partners are not required to run relayer infrastructure.
+
+The relayer is responsible only for transporting messages between chains and FairyRing. It does not perform cryptographic verification or balance management - that logic is delegated to FairyRing and the EVM escrow contracts.
+

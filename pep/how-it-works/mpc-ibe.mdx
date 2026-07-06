@@ -1,0 +1,12 @@
+---
+title: "MPC-IBE"
+description: "Multi-Party Computation for distributed key generation and threshold decryption"
+---
+
+
+
+The `fairyring` chain not only provides the capabilities to encrypt, decrypt, and communicate with inherent apps on its chain, and destination chains, but it also does so in a decentralized way. It does this by splitting up the master secret key amongst its decentralized validator set, and in order to obtain the respective decryption key for each condition ID, a threshold, `t`, of validators need to present their parts of the private key; explaining the term Threshold IBE.
+
+At a high-level, this is done through Lagrange interpolation, where the private key can be mathematically derived.
+
+This is done by having each validator take n parts of the master secret key every epoch, where a threshold, `t`, amount of validators need to present their part of the private key to aggregate the resultant private key for all transactions or data encrypted for the specific condition ID. Note that validators can frequently reuse their master secret key shares without running the DKG process and only use their master secret key share to generate private key shares for each condition ID. This is possible since the private key shares don't leak any information about the secret shares thanks to IBE.

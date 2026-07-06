@@ -1,0 +1,94 @@
+---
+title: "Network Flow"
+description: "End-to-end flow of encrypted data through the FairyRing network"
+---
+
+## Public Keys
+
+Users encrypt their transactions using a master public key (MPK) and then choose the condition for decryption (the ID).
+`fairyring` maintains at most two MPKs at any given time: an `ActivePubKey` and a `QueuedPubKey`.
+Both kinds of MPKs are submitted to the network with expiry block heights. These expiry block heights mark the end of epochs.
+The `ActivePubKey` is the one currently being used for encrypting transactions.
+The `QueuedPubKey`, as the name suggests, is an MPK that will replace the `ActivePubKey` once the current `ActivePubKey` expires.
+Active and Queued MPKs are generated and replaced at the end of epochs, which are encoded block heights for MPK generation and renewal.
+
+<iframe
+  title="FairyRing live encryption key"
+  width="100%"
+  height="90"
+  scrolling="no"
+  style={{ border: 0, display: "block" }}
+  srcDoc={`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{color-scheme:light dark}*{box-sizing:border-box}html,body{overflow:hidden}body{margin:0;font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;color:#18181b;background:transparent}@media(prefers-color-scheme:dark){body{color:#e4e4e7}}.card{border:1px solid rgba(127,127,127,.25);border-radius:12px;padding:16px}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}button{border:0;border-radius:8px;background:#18181b;color:#fff;font:inherit;font-weight:600;padding:8px 14px;cursor:pointer}@media(prefers-color-scheme:dark){button{background:#fafafa;color:#18181b}}button:disabled{opacity:.55}.hint{opacity:.6}.out{margin-top:14px;display:none}.out.show{display:block}.field{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-top:1px solid rgba(127,127,127,.18)}.label{opacity:.6}.mono{font-family:ui-monospace,Menlo,monospace;word-break:break-all;text-align:right}.err{color:#dc2626;margin-top:12px;display:none}.err.show{display:block}</style></head><body><div class="card"><div class="row"><button id="go">Fetch the live encryption key</button><span class="hint">Reads FairyRing testnet directly. No wallet, no funds.</span></div><div class="out" id="out"><div class="field"><span class="label">Master Public Key</span><span class="mono" id="mpk"></span></div><div class="field"><span class="label">Key expires at block</span><span class="mono" id="expiry"></span></div><div class="field"><span class="label">Current block height</span><span class="mono" id="height"></span></div><div class="field"><span class="label">Rotates in</span><span class="mono" id="rotate"></span></div></div><div class="err" id="err"></div></div><script>const API="https://anon-testnet-api.fairblock.network";const btn=document.getElementById("go"),out=document.getElementById("out"),err=document.getElementById("err");function fit(){try{if(window.frameElement)window.frameElement.style.height=document.documentElement.scrollHeight+"px"}catch(e){}}async function j(p){const r=await fetch(API+p,{signal:AbortSignal.timeout(15000)});if(!r.ok)throw new Error(p+" "+r.status);return r.json()}function s(h){return h&&h.length>24?h.slice(0,12)+"…"+h.slice(-12):(h||"—")}btn.addEventListener("click",async()=>{btn.disabled=true;btn.textContent="Fetching…";err.classList.remove("show");try{const[k,b]=await Promise.all([j("/fairyring/keyshare/pubkey"),j("/cosmos/base/tendermint/v1beta1/blocks/latest")]);const pk=k.active_pubkey||{},h=Number(b.block.header.height),e=Number(pk.expiry);document.getElementById("mpk").textContent=s(pk.public_key);document.getElementById("expiry").textContent=e?e.toLocaleString():"—";document.getElementById("height").textContent=h.toLocaleString();const left=e-h;document.getElementById("rotate").textContent=e?(left>0?left.toLocaleString()+" blocks":"rotating now"):"—";out.classList.add("show");btn.textContent="Refresh"}catch(x){err.textContent="Could not reach FairyRing testnet: "+x.message;err.classList.add("show");btn.textContent="Try again"}finally{btn.disabled=false;fit()}});window.addEventListener("load",fit);</script></body></html>`}
+/>
+
+## Encrypting Transactions
+
+Unlike normal transactions, encrypted transactions work a bit differently.
+Users can encrypt any transaction with the current `ActivePubKey`.
+The user must also specify the target block height of `fairyring` (condition) at which the transaction is to be executed on the chain the transaction resides on.
+The submitted encrypted transaction then resides in the [`x/pep`](/pep/module-reference/pep) module of the destination chain.
+
+For more details, refer to [this tutorial](/pep/guides/build/encrypted-transactions).
+
+## Keyshares and Aggregation
+
+
+
+### Keyshares
+
+Each MPK is derived from a Master Secret Key (MSK), which is generated each epoch by the Share Generation Client.
+Once the MSK is generated, the Share Generation Client then performs a function to
+
+1. Derive the MPK
+2. Splits up the MSK into individual keyshares encrypted by each validator's public key
+3. Submits the encrypted keyshares along with the MPK to `fairyring`
+4. Discards the full MSK.
+
+Each validator stores its share of the MSK locally and uses the `fairyringclient`
+to derive the private keyshare for each block height corresponding to the `ActivePubKey`.
+After the private keyshare is generated, the validator submits it via a transaction to `fairyring`.
+`fairyring` aggregates the private keyshares, and when the threshold for private key construction is met, derives the private key for the current block height.
+
+Each validator needs to run the `fairyringclient` in order to receive their MSK share each time it changes,
+derive their private keyshare according to the `ActivePubKey` for each condition,
+and then submit the private keyshare to `fairyring` for private key construction.
+
+The initial release will be a Proof of Authority (PoA) chain similar to the approach used by [Noble](https://github.com/strangelove-ventures/noble).
+There are some simple slashing conditions implemented for now (such as submitting incorrect keyshares, or skipping blocks), but this may change.
+
+### Keyshare Aggregation
+
+The key share aggregation process is made possible through threshold cryptography.
+Once enough validators have submitted keyshares for a particular block,
+the keyshares are aggregated to generate the derived private key for that block.
+The derived private key can then be used to decrypt all encrypted transactions under a certain condition and execute them.
+To create the aggregated keyshare, it is not required for every validator to submit their individual keyshares.
+The aggregation can be performed as long as a threshold number of keyshares are submitted.
+Currently, at least `2/3 + 1` of the validators have to submit keyshares to create the aggregated keyshare.
+
+## Transaction Decryption and Execution
+
+Upon reaching the target height, the transaction is decrypted using the derived private key of the particular block height
+and executed before any of the mempool transactions for that block can be processed.
+
+The derived private key for target block heights is sent to the destination chain via [`FairyPort`](/pep/get-started/architecture),
+a messaging bridge developed by the Fairblock team that reads the state of the destination chain and `fairyring` to communicate to
+`fairyring` when conditions for decryption are met on the destination chain.
+When `fairyring` is notified that the decryption conditions have been met,
+the validators compute their derived private key shares and submit them to `fairyring` for key share aggregation.
+When the threshold is met, `fairyring` constructs the derived private key, emits a state change with the derived private key in the state,
+and then `FairyPort` sends the private key to the destination chain after observing the FairyRing state change.
+
+Once the destination chain has access to the derived private key, it decrypts the encrypted transaction in the mempool and executes it.
+
+![Begin Block Logic](/assets/BeginBlockLogic.png)
+
+Note the following things:
+
+- encrypted transactions are stored in the [`x/pep`](/pep/module-reference/pep) of their corresponding chains. They are not transferred over IBC to `fairyring`.
+- encrypted transactions are executed in their corresponding chains (not `fairyring`).
+- the target height for executing an encrypted transaction corresponds to the height on `fairyring`. Decryption triggered by another chain's conditions is live for private governance, while alternative conditions for decryption on destination chains will soon be implemented.
+- interactions between `fairyring` and Cosmos chains will work differently than non-Cosmos chains. We will share information regarding non-Cosmos chains soon.
+
+Here is a diagram to show how this process works from end to end:
+![Cosmos architecture end to end](/assets/cosmos_architecture.png)

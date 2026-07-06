@@ -1,0 +1,39 @@
+---
+title: "API Reference"
+sidebarTitle: "Overview"
+description: "FairyRing RPC, REST, and gRPC endpoints"
+---
+
+
+<CardGroup cols={2}>
+  <Card title="RPC Endpoints" icon="plug" href="/api-reference/rpc-endpoints">
+    JSON-RPC and Tendermint RPC endpoints for interacting with FairyRing.
+  </Card>
+  <Card title="REST API" icon="globe" href="/api-reference/rest-api">
+    RESTful API for querying chain state, balances, and transaction history.
+  </Card>
+</CardGroup>
+
+## Connection Details
+
+| Protocol | Endpoint (Testnet) |
+| --- | --- |
+| **RPC** | `https://rpc.testnet.fairblock.network:443` |
+| **REST** | `https://api.testnet.fairblock.network` |
+| **gRPC** | `grpc.testnet.fairblock.network:9090` |
+| **WebSocket** | `wss://rpc.testnet.fairblock.network/websocket` |
+
+## Authentication
+
+Testnet endpoints are publicly accessible. No API keys required.
+
+## Rate Limits
+
+| Tier | Requests/min |
+| --- | --- |
+| Public (Testnet) | 100 |
+| Builder Program | 1,000 |
+
+<Info>
+  Need higher limits? Apply to the [Confidential Builders Program](https://build.fairblock.network).
+</Info>

@@ -1,0 +1,71 @@
+---
+title: "Stabletrust SDK"
+description: "Add confidential transfers to your application"
+---
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @fairblock/stabletrust
+```
+
+```bash yarn
+yarn add @fairblock/stabletrust
+```
+
+```bash pnpm
+pnpm add @fairblock/stabletrust
+```
+</CodeGroup>
+
+## Core Operations
+
+| Operation | Description |
+| --- | --- |
+| **Deposit** | Convert public ERC20 tokens into encrypted confidential balances |
+| **Transfer** | Execute private transfers that hide amounts and balances |
+| **Withdraw** | Move funds from the confidential layer back to public ERC20 tokens |
+
+## Quick Start
+
+```typescript
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+
+const client = new ConfidentialTransferClient({
+  network: "ethereum-sepolia",
+  signer: walletSigner,
+});
+
+await client.setupAccount();
+
+await client.deposit({ token: "USDC", amount: "1000" });
+
+await client.transfer({ to: "0xRecipient", amount: "250" });
+
+const balance = await client.getBalance("USDC");
+console.log("Balance:", balance.decrypted);
+```
+
+## Supported Networks
+
+| Network | Chain ID | Status |
+| --- | --- | --- |
+| Ethereum Sepolia | 11155111 | Live |
+| Arbitrum Sepolia | 421614 | Live |
+| Base Sepolia | 84532 | Live |
+| Stable Testnet | - | Live |
+| Arc | - | Live |
+| Tempo | - | Live |
+
+## Use Cases
+
+- Confidential payroll
+- Token launchpads with private allocation
+- Privacy wallets
+- Micropayments
+- DAO treasury management
+
+<Card title="Full SDK Reference" icon="book" href="/build/sdk/installation">
+  Complete SDK documentation with detailed guides for each operation.
+</Card>

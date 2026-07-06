@@ -1,0 +1,208 @@
+---
+title: "Anonymous Transfers"
+description: "Unlinkable confidential transactions"
+---
+
+The Stabletrust SDK ships two clients that serve different privacy models. This guide covers the **`AnonymousTransferClient`**, which hides the sender's wallet address entirely. If you only need encrypted amounts and balances (with a visible sender), use the `ConfidentialTransferClient` covered in [Building an App with the SDK](/ct/guides/build/building-with-sdk).
+
+## Confidential vs. Anonymous: which client?
+
+| Feature | `ConfidentialTransferClient` | `AnonymousTransferClient` |
+| :--- | :--- | :--- |
+| **Identity** | Onchain wallet address is visible | Account ID only; wallet address is hidden |
+| **Gas** | User pays gas for all transactions | Fairycloak relay pays gas (except deposit) |
+| **Setup** | Direct RPC connection | Requires a running Fairycloak relay server |
+| **Recipient** | Must have a confidential account | Can receive to another anonymous account or a public address |
+| **Key management** | Keys auto-derived from wallet signature | Keys derived per-account; store the private key yourself |
+| **Best for** | Privacy over balances/amounts with known senders | Full sender anonymity |
+
+With `AnonymousTransferClient`, transactions are routed through the **Fairycloak relay**, which submits them onchain and pays gas on your behalf (except deposits). The sender's wallet address is **never revealed** onchain: only a numeric anonymous account ID is associated with the transfer.
+
+<Info>
+  **Access required.** Anonymous transfers are available to teams building privacy-critical applications. To obtain a Fairycloak relay URL and API key, reach out to the Fairblock team at [hello@fairblock.network](mailto:hello@fairblock.network).
+</Info>
+
+## Installation
+
+```bash
+npm install @fairblock/stabletrust
+```
+
+Requires Node.js 16+ and ethers.js 6+ (installed automatically as a dependency).
+
+## Anonymous account ID rules
+
+Every `accountId` (and `senderAccountId` / `recipientId`) you pass must follow these rules, enforced both onchain and by the Fairycloak relay:
+
+- **Non-empty** string
+- **At most 20 characters** long
+- **Alphanumeric characters only** (`A-Z`, `a-z`, `0-9`): no spaces, punctuation, or Unicode
+- **Case-sensitive**: `"MyAccount"` and `"myaccount"` are different accounts; no normalization is applied
+
+The SDK validates these fields before making any request and throws a descriptive `Error` if they don't follow the rules.
+
+## Initialization
+
+```javascript
+import { AnonymousTransferClient } from "@fairblock/stabletrust";
+
+const client = new AnonymousTransferClient({
+  fairycloakUrl: "http://your-fairycloak-url", // provided by Fairblock
+  chainId: 84532,
+  rpcUrl: "https://sepolia.base.org",
+});
+```
+
+## Key derivation
+
+Anonymous accounts use a per-account ElGamal keypair derived from a wallet signature. **Store the returned `privateKey` securely**: it cannot be recovered without the original wallet and account ID.
+
+```javascript
+const keys = await client.deriveAnonymousKeys(authWallet, accountId);
+// keys.publicKey: base64, register this when creating an account
+// keys.privateKey: base64, keep this secret; used for decryption and proof generation
+```
+
+<Warning>
+  An auth signer can only ever be bound to a single anonymous account. Reusing a wallet across different `accountId`s will fail at creation time.
+</Warning>
+
+## End-to-end anonymous flow
+
+```javascript
+import { AnonymousTransferClient } from "@fairblock/stabletrust";
+import { ethers } from "ethers";
+
+const client = new AnonymousTransferClient({
+  fairycloakUrl: "http://your-fairycloak-url",
+  chainId: 84532,
+  rpcUrl: "https://sepolia.base.org",
+});
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
+const tokenAddress = "0xYourTokenAddress";
+const tokenDecimals = 6;
+
+// 1. Choose a unique account ID, derive keys, then ensure the account exists
+const accountId = "myUniqueAccountId"; // any valid account ID you choose
+const keys = await client.deriveAnonymousKeys(wallet, accountId);
+await client.ensureAnonymousAccount(wallet, accountId, keys.publicKey);
+
+// 2. Deposit (user pays gas)
+const depositResult = await client.deposit(
+  wallet,
+  accountId,
+  tokenAddress,
+  ethers.parseUnits("10", tokenDecimals),
+);
+await client.waitForRequest(depositResult.request_id);
+
+// 3. Check balance
+const balance = await client.getBalance(accountId, tokenAddress, keys.privateKey);
+console.log("Available:", balance.available, "Pending:", balance.pending);
+
+// 4. Top up the prepaid fee reserve if needed (user pays gas)
+const feeToken = await client.getFeeToken();
+const feeAmount = await client.getFeeAmount();
+const feeBalance = await client.getPrepaidFeeBalance(accountId, feeToken);
+if (feeBalance < feeAmount) {
+  const feeResult = await client.depositFees(
+    wallet,
+    accountId,
+    ethers.parseUnits("0.5", tokenDecimals),
+  );
+  await client.waitForRequest(feeResult.request_id);
+}
+
+// 5. Transfer to a public address (relay pays gas)
+const transferResult = await client.transferToPublic(wallet, accountId, {
+  recipient: "0xRecipientAddress",
+  token: tokenAddress,
+  elGamalPrivateKey: keys.privateKey,
+  amount: ethers.parseUnits("3", tokenDecimals),
+});
+await client.waitForRequest(transferResult.request_id);
+
+// 6. Withdraw (relay pays gas)
+const withdrawResult = await client.withdraw(wallet, accountId, {
+  destination: wallet.address,
+  token: tokenAddress,
+  plainAmount: ethers.parseUnits("2", tokenDecimals),
+  elGamalPrivateKey: keys.privateKey,
+});
+await client.waitForRequest(withdrawResult.request_id);
+```
+
+## Key methods
+
+### Account management
+
+- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new anonymous account via the relay (relay pays gas). `accountId` is a caller-chosen string following the [account ID rules](#anonymous-account-id-rules).
+- **`ensureAnonymousAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Idempotent helper: creates the account if it doesn't exist and (by default) waits until it has settled. Safe to call on every run with a stable `accountId`. Returns `{ accountId, accountInfo, created }`. Options: `deadlineOffset` (default `3600`), `waitUntilReady` (default `true`), `timeoutMs` (default `180000`), `pollIntervalMs` (default `2000`).
+- **`updateAuthKeys(authWallet, accountId, { add, remove }, options?)`**: Adds or removes authorised signers.
+- **`getAnonymousAccountInfo(accountId)`**: Returns onchain state: `exists`, `finalized`, `hasPendingAction`, `txId`, `elgamalPubkey`, `authNonce`.
+- **`isAuthorizedSigner(accountId, signerAddress)`**: Checks whether an address is an authorised signer for the account.
+
+### Balances
+
+- **`getBalance(accountId, tokenAddress, elGamalPrivateKey)`**: Returns decrypted balance totals: `{ amount, available, pending }`.
+- **`getAnonymousBalance(accountId, tokenAddress, elGamalPrivateKey)`**: Returns decrypted balances including raw ciphertexts (useful for generating proofs manually): `{ available: { amount, ciphertext }, pending: { amount, ciphertext } }`.
+
+### Moving funds
+
+- **`deposit(authWallet, accountId, tokenAddress, amount, options?)`**: Deposits tokens into an anonymous account. **The user pays gas.** Handles ERC-20 approval automatically.
+- **`transferToPublic(authWallet, accountId, params, options?)`**: Transfers from an anonymous account to a public EVM address (relay pays gas).
+- **`transferToAnonymous(authWallet, senderAccountId, params, options?)`**: Transfers between two anonymous accounts (relay pays gas).
+- **`applyPending(authWallet, accountId, options?)`**: Moves a pending incoming balance into available. **Must be called after receiving an anonymous-to-anonymous transfer** before the recipient can spend.
+- **`withdraw(authWallet, accountId, params, options?)`**: Withdraws from an anonymous account to a public EVM address (relay pays gas).
+
+### Manual proof mode
+
+`transferToPublic` supports an auto-proof mode (recommended: pass `elGamalPrivateKey` and `amount`) and a manual proof mode for advanced use:
+
+```javascript
+const proofHex = await client.generateTransferProof(keys.privateKey, {
+  currentBalanceCiphertext: ciphertext,
+  currentBalanceContractScale: balanceInContractScale,
+  transferAmountContractScale: amountInContractScale,
+  destinationPublicKey: recipientElGamalPubkey,
+});
+const result = await client.transferToPublic(wallet, accountId, {
+  recipient: "0xRecipientAddress",
+  token: tokenAddress,
+  proof: proofHex,
+});
+```
+
+## Prepaid fees
+
+Every `transferToPublic` and `transferToAnonymous` call deducts a protocol fee from the sender account's **prepaid fee reserve**. The SDK checks this balance before submitting and throws a descriptive error if it's insufficient: top up with `depositFees` before transferring.
+
+- **`getFeeToken()`**: Returns the currently configured ERC-20 fee token address. `depositFees` must use this token. The fee token can be rotated by the protocol; existing balances in old fee tokens remain withdrawable.
+- **`getFeeAmount()`**: Returns the per-transfer protocol fee (raw ERC-20 units), or `0n` if none is configured.
+- **`getPrepaidFeeBalance(accountId, token)`**: Returns the prepaid fee balance for an account and fee token.
+- **`depositFees(authWallet, accountId, amount, options?)`**: Deposits into the prepaid fee reserve. **The user pays gas.** Handles ERC-20 approval against the active fee token automatically.
+- **`withdrawFees(authWallet, accountId, { token, destination, amount }, options?)`**: Withdraws a specific amount from a given fee token's reserve (relay pays gas).
+- **`withdrawAllFees(authWallet, accountId, { destination }, options?)`**: Withdraws all prepaid fee balances across all (including historical) fee tokens (relay pays gas).
+
+## Request tracking
+
+All relay operations return a `{ request_id, tx_hash, status }` object. Track completion with:
+
+```javascript
+// Poll until terminal state (completed / confirmed / failed)
+const final = await client.waitForRequest(result.request_id);
+
+// Get current status
+const status = await client.getRequestStatus(result.request_id);
+
+// Get full event history (useful for reconnect/recovery)
+const history = await client.getRequestEvents(result.request_id);
+```
+
+
+## Security considerations
+
+- **Private keys**: Anonymous account `privateKey` values are as sensitive as wallet private keys. Never log them; store them in encrypted vaults or hardware-backed key stores.
+- **One signer per account**: An auth signer binds to a single anonymous account. Manage authorised signers with `updateAuthKeys`.
+- **Apply pending before spending**: Anonymous-to-anonymous recipients must call `applyPending()` before the received balance is spendable.
+- **Network**: Use HTTPS-only RPC endpoints and verify contract addresses before initialization.

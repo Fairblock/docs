@@ -1,0 +1,41 @@
+---
+title: "Consensus"
+description: "FairyRing's consensus mechanism and validator responsibilities"
+---
+
+FairyRing uses **CometBFT** (formerly Tendermint) consensus with additional validator responsibilities for cryptographic key management.
+
+## Validator Responsibilities
+
+FairyRing validators have duties beyond standard block production:
+
+| Duty | Description |
+| --- | --- |
+| **Block production** | Standard CometBFT consensus participation |
+| **DKG participation** | Contribute to distributed key generation each epoch |
+| **Keyshare submission** | Derive and submit condition-specific keyshares when triggered |
+| **Malicious behavior reporting** | Detect and report incorrect keyshares from other validators |
+
+## Validator Software
+
+Validators run the `fairyringclient` alongside the node software:
+
+- Participates in DKG rounds
+- Monitors for decryption conditions
+- Derives and submits keyshares automatically
+- Updates MSK shares on epoch transitions
+
+## Slashing Conditions
+
+| Behavior | Consequence |
+| --- | --- |
+| Submitting incorrect keyshares | Slashed: detected via onchain verification |
+| Withholding keyshares | Penalized after timeout |
+| Skipping DKG rounds | Excluded from active validator set |
+| Double signing | Standard CometBFT slashing |
+
+## Network Security
+
+- **Byzantine fault tolerance**: tolerates up to 1/3 malicious validators
+- **Epoch-based rotation**: key material is refreshed regularly
+- **Onchain verification**: all keyshare submissions are verified before acceptance

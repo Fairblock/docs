@@ -1,0 +1,45 @@
+---
+title: "x/keyshare Module"
+description: "Distributed key generation and keyshare management"
+---
+
+The `x/keyshare` module manages the distributed key generation protocol and validator keyshare submissions.
+
+## Functions
+
+| Function | Description |
+| --- | --- |
+| `RegisterValidator` | Register a validator for DKG participation |
+| `SubmitKeyshare` | Submit a condition-specific keyshare |
+| `SubmitGeneralKeyshare` | Submit a keyshare for general conditions |
+| `QueryMasterPublicKey` | Get the current epoch's MPK |
+
+## DKG Flow
+
+<Steps>
+  <Step title="Registration">
+    Validators register for the upcoming epoch's DKG round via `MsgRegisterValidator`.
+  </Step>
+  <Step title="Key Generation">
+    The DKG protocol runs offchain via the `fairyringclient`. Validators exchange shares and produce the Master Public Key.
+  </Step>
+  <Step title="MPK Publication">
+    The aggregated Master Public Key is published onchain and available for encryption.
+  </Step>
+  <Step title="Keyshare Submission">
+    When decryption conditions are met, validators submit their keyshares via `MsgSubmitKeyshare`.
+  </Step>
+</Steps>
+
+## Queries
+
+```bash
+# Get the current Master Public Key
+fairyringd query keyshare show-active-pub-key
+
+# List registered validators
+fairyringd query keyshare list-validators
+
+# Check keyshare submissions for a block
+fairyringd query keyshare list-keyshares [block-height]
+```

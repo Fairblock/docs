@@ -1,0 +1,52 @@
+---
+title: "RPC Endpoints"
+description: "JSON-RPC and Tendermint RPC reference"
+---
+
+## Tendermint RPC
+
+Base URL: `https://rpc.testnet.fairblock.network`
+
+### Key Endpoints
+
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| `/status` | GET | Node status and sync info |
+| `/block` | GET | Get block at a given height |
+| `/tx` | GET | Get transaction by hash |
+| `/validators` | GET | Get validator set |
+| `/abci_query` | GET | Query application state |
+
+### Example: Get Status
+
+```bash
+curl https://rpc.testnet.fairblock.network/status
+```
+
+### Example: Query Master Public Key
+
+```bash
+curl "https://rpc.testnet.fairblock.network/abci_query?path=%22/fairyring.keyshare.Query/ActivePubKey%22"
+```
+
+## FairyRing-Specific Queries
+
+### Keyshare Module
+
+```bash
+# Get active Master Public Key
+fairyringd query keyshare show-active-pub-key --node https://rpc.testnet.fairblock.network:443
+
+# List keyshare submissions
+fairyringd query keyshare list-keyshares --node https://rpc.testnet.fairblock.network:443
+```
+
+### PEP Module
+
+```bash
+# List encrypted transactions
+fairyringd query pep list-encrypted-tx --node https://rpc.testnet.fairblock.network:443
+
+# Get specific encrypted tx
+fairyringd query pep show-encrypted-tx [index] --node https://rpc.testnet.fairblock.network:443
+```

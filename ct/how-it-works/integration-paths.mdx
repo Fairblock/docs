@@ -1,0 +1,17 @@
+---
+title: "Integration Paths"
+description: "How confidential transfers connect to different ecosystems"
+---
+
+FairyRing provides the ability to make confidential transactions both natively and externally. Natively, developers can build confidential applications (cApps) directly on FairyRing. FairyRing is a self-sufficient chain that can host its own native cApps. At the same time, FairyRing can provide similar levels of confidentiality to external chains and systems seamlessly via IBC or relayers.
+
+### Stabletrust: The Complete Confidential Package
+Stabletrust is Fairblock's browser-based interface for confidential payments and transfers. It includes wallet integrations, browser-based local ZK proof generation, balance decryption, and the ability to execute on FairyRing or a chain that uses FairyRing for confidential transactions. It is a pre-built solution that can be used directly by both FairyRing users and users on different chains. Users on other chains do not need to interact with FairyRing directly. Stabletrust comes with built-in wallet integrations, which allow users to log in to their accounts on the chains they already use and make transactions without bridging funds. Stabletrust is an all-in-one interface to start making confidential transactions immediately without any prior setup or crytography knowledge.
+
+### Custom Integrations
+FairyRing is chain-agnostic and can extend confidentiality to other ecosystems (e.g. EVM, Solana, Stellar, etc.) seamlessly via IBC or custom relayers. No cross-chain token transfer is required. FairyRing acts as the core confidential execution layer and keeper of confidential ledgers.
+
+Developers can build bespoke user interfaces and applications using the available tools provided by Fairblock. APIs are available for submitting transactions and querying the native chain. Command-line utility and JavaScript packages support local ZK proof generation and balance decryption. Finally, developers can simply follow the wallet integration guide (as implemented in Stabletrust) to have their complete user interface, which runs on their native chain, with FairyRing as the confidential execution layer. The APIs and tools provided allow for seamless integration with not only browser-based frontends, but also anything from Telegram and Discord bots to AI agents.
+
+### Native Solutions
+While IBC provides trustless relaying between chains, custom relayers are available for IBC-incompatible systems. For systems and chains that prefer a native confidentiality implementation, Fairblock can provide custom integrations.

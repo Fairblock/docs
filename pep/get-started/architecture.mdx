@@ -1,0 +1,85 @@
+---
+title: "Architecture"
+description: "MPC-IBE system architecture and components"
+---
+
+## Overview
+
+This page describes the architecture behind **pre-execution privacy**: a system that lets users encrypt a transaction, order, or bid so it can only be decrypted once a defined condition is met, then decrypts and executes it automatically. This is what protects users from frontrunning and information leakage, and enables fair price discovery for auctions, governance, and trading.
+
+Pre-execution privacy is powered by **MPC identity-based encryption (MPC-IBE)**, where no single party ever holds the decryption key. Encryption and any required proofs are generated locally on the client, and the encrypted transaction waits on its originating chain until its condition triggers decentralized decryption on FairyRing.
+
+## System at a Glance
+
+The system is built with four layers:
+
+| Layer | Role | Technology |
+| --- | --- | --- |
+| **Encryption SDK** | Encrypts the transaction locally under the Master Public Key (MPK) and a chosen condition ID | Offchain client SDK |
+| **Gateway** | Receives and stores encrypted transactions on the integrated chain, then triggers execution | `x/pep` module, FairyKit |
+| **FairyPort Relayer** | Delivers the derived private key from FairyRing to the destination chain once the condition is met | inter-chain relayer |
+| **FairyRing** | Generates and aggregates threshold key shares into the decryption key | `x/keyshare` module, MPC-IBE |
+
+Pre-execution privacy moves an encrypted *transaction* through a condition gate:
+
+<Steps>
+  <Step title="Setup">
+    The integrated chain adds the `x/pep` module (or for  EVMs, FairyKit contracts and pre-compiles) so it can communicate with FairyRing and store encrypted transactions.
+  </Step>
+  <Step title="Encrypt under a condition">
+    The Encryption SDK encrypts the transaction on the client side using the MPK and a unique condition ID. The ciphertext is submitted to the gateway (`x/pep`) on the integrated chain.
+  </Step>
+  <Step title="Await the condition">
+    FairyRing waits for the condition tied to that ID. By default this is a target FairyRing block height, but it can also be a price trigger, a zero-knowledge proof, or a specific contract call.
+  </Step>
+  <Step title="Generate and aggregate keyshares">
+    Once the condition is met, each validator derives a private key share for that condition ID. When the threshold (currently `2/3N + 1`) is reached, FairyRing aggregates the shares into the derived decryption key.
+  </Step>
+  <Step title="Deliver, decrypt, and execute">
+    FairyPort observes the state change and delivers the derived key to the destination chain, which decrypts the transaction and executes it at the **beginning of the block** before any other mempool transactions can act on it.
+  </Step>
+</Steps>
+
+## Breaking Down the Layers
+
+### `x/pep`: Encrypted Transaction Handling
+
+`x/pep` runs on **both** FairyRing and the integrated chain. It accepts encrypted transactions, stores them locally against their condition ID, and triggers decryption and execution once the derived key arrives. Encrypted transactions stay on their originating chain they are not relayed to FairyRing and are executed there, not on FairyRing.
+
+### `x/keyshare`: MPC-IBE Key Generation
+
+`x/keyshare` runs **only** on FairyRing and is the cryptographic heart of the system:
+
+- Each epoch, a **Master Secret Key (MSK)** is generated and split into per-validator key shares; the corresponding **MPK** is published for encryption. FairyRing keeps at most two MPKs live; an `ActivePubKey` and a `QueuedPubKey` that rotate at epoch boundaries.
+- When a condition is met, validators each produce a private key share for that condition ID. No single validator can reconstruct the key.
+- Once `2/3N + 1` shares are submitted, FairyRing aggregates them into the derived private key that decrypts every transaction tied to that condition.
+
+See [Network Flow](/pep/how-it-works/network-flow) for the full key lifecycle and the [Module Reference](/pep/module-reference/pep) for message and query details.
+
+### FairyPort: Conditional Decryption Relay
+
+FairyPort is the relayer layer for external chains. It reads the state of both the destination chain and FairyRing, notifies FairyRing when a destination-chain condition is met, and delivers the derived private key back once it is constructed. It is operated by Fairblock; partners integrating over IBC or building native FairyRing apps do not need to run it.
+
+## Decryption Conditions
+
+The condition that gates decryption is what makes pre-execution privacy composable. Conditions decrypt in one of two modes, covered in [Decryption Modes](/pep/how-it-works/decryption-modes):
+
+- **Private Shared State (PSS)** publicly decryptable once a global condition is met (block height, price feed, ZK proof, contract call). Used for sealed-bid auctions, encrypted mempools, and fair ordering.
+- **Private Access Control (PAC)** decryptable only by an individual or group sharing an attribute. Used for private decryption and selective disclosure.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/pep/get-started/quick-start">
+    Run your first confidential app on FairyRing or an EVM in a few minutes.
+  </Card>
+  <Card title="Network Flow" icon="diagram-project" href="/pep/how-it-works/network-flow">
+    Follow the MPK, keyshare, and decryption lifecycle step by step.
+  </Card>
+  <Card title="Platform Setup" icon="layer-group" href="/pep/guides/build/platform-setup/cosmos-chains">
+    Integrate on Cosmos, EVM / Arbitrum, or FairyRing natively.
+  </Card>
+  <Card title="Module Reference" icon="cube" href="/pep/module-reference/pep">
+    Full details on the `x/pep` and `x/keyshare` modules.
+  </Card>
+</CardGroup>

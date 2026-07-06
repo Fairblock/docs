@@ -1,0 +1,450 @@
+/* Border radius */
+.card {
+  border-radius: 8px !important;
+}
+
+pre,
+#search-bar-entry,
+#topbar-cta-button,
+[data-component-part="code-block-root"],
+[role="tablist"],
+.callout {
+  border-radius: 6px !important;
+}
+
+/* Hide callout icons */
+[data-component-part="callout-icon"] {
+  display: none !important;
+}
+
+/* Space between navbar and tabs */
+#navbar {
+  padding-bottom: 8px !important;
+}
+
+/* Fonts */
+body {
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.01em !important;
+}
+
+h1 {
+  font-size: 1.55rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+
+h2 {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+
+h3 {
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+}
+
+p, li, td, th {
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+}
+
+/* Sidebar group headers — smaller than page links */
+.sidebar-group-header {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  opacity: 0.4 !important;
+}
+
+.sidebar-group-header .sidebar-title {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+/* Sidebar page links — normal size */
+.sidebar-group a {
+  font-size: 13px !important;
+}
+
+.sidebar-group a span {
+  font-size: 13px !important;
+}
+
+/* Fix active sidebar link invisible in light mode */
+:root:not(.dark) a[aria-current="page"],
+:root:not(.dark) a[aria-current="page"] span {
+  color: #000000 !important;
+}
+
+:root:not(.dark) a[aria-current="page"] {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Nav tabs — Tempo style */
+.nav-tabs-item {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.nav-tabs-item[data-active="true"] {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 500 !important;
+}
+
+:root:not(.dark) .nav-tabs-item,
+:root:not(.dark) .nav-tabs-item *,
+:root:not(.dark) .nav-tabs-item a,
+:root:not(.dark) .nav-tabs-item span {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+:root:not(.dark) .nav-tabs-item[data-active="true"],
+:root:not(.dark) .nav-tabs-item[data-active="true"] *,
+:root:not(.dark) .nav-tabs-item[data-active="true"] a,
+:root:not(.dark) .nav-tabs-item[data-active="true"] span {
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Remove hover underline from tabs */
+.nav-tabs-item div,
+.nav-tabs-item > div {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.nav-tabs-item:hover div,
+.nav-tabs-item:hover > div {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Keep active tab underline */
+.nav-tabs-item[data-active="true"] > div,
+.nav-tabs-item[aria-current] > div {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  height: 2px !important;
+}
+
+:root:not(.dark) .nav-tabs-item[data-active="true"] > div,
+:root:not(.dark) .nav-tabs-item[aria-current] > div {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* On this page sidebar — general */
+[class*="toc"] a,
+[class*="on-this-page"] a {
+  font-size: 12px !important;
+}
+
+/* Cards — Tempo style */
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  box-shadow: none !important;
+  transition: none !important;
+  transform: none !important;
+  padding: 12px 14px !important;
+  gap: 0 !important;
+}
+
+.card,
+.card *,
+.card:hover,
+.card:hover *,
+.card:focus,
+.card:focus-within,
+.card:focus-visible,
+.card:active,
+a:focus .card,
+a:focus-visible .card,
+a:hover .card,
+a .card,
+a:hover .card *,
+a:focus .card * {
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 0 0 transparent !important;
+  --tw-ring-offset-shadow: 0 0 0 0 transparent !important;
+  --tw-shadow: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  outline: none !important;
+}
+
+/* Override Tailwind hover:!border-primary on cards */
+.card.card.card:hover,
+.card.card.card:focus,
+.card.card.card:active {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+:root:not(.dark) .card.card.card:hover,
+:root:not(.dark) .card.card.card:focus,
+:root:not(.dark) .card.card.card:active {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  background: rgba(0, 0, 0, 0.01) !important;
+}
+
+:root:not(.dark) .card {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  background: rgba(0, 0, 0, 0.01) !important;
+}
+
+.card [data-component-part="card-title"] {
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  margin-top: 6px !important;
+  margin-bottom: 2px !important;
+}
+
+.card [data-component-part="card-description"],
+.card [data-component-part="card-content"],
+.card [data-component-part="card-content"] span,
+.card p {
+  font-size: 11.5px !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  opacity: 1 !important;
+  margin: 0 !important;
+  line-height: 1.45 !important;
+}
+
+:root:not(.dark) .card [data-component-part="card-description"],
+:root:not(.dark) .card [data-component-part="card-content"],
+:root:not(.dark) .card [data-component-part="card-content"] span,
+:root:not(.dark) .card p {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Tighten card internal spacing */
+.card > div,
+.card > a > div {
+  gap: 4px !important;
+  padding: 0 !important;
+}
+
+/* Card icons */
+[data-component-part="card-icon"] {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[data-component-part="card-icon"] svg {
+  width: 14px !important;
+  height: 14px !important;
+  opacity: 0.8 !important;
+}
+
+:root:not(.dark) [data-component-part="card-icon"] {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+:root:not(.dark) [data-component-part="card-icon"] svg {
+  color: rgba(0, 0, 0, 0.45) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Code blocks */
+pre {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-size: 12.5px !important;
+}
+
+:root:not(.dark) pre {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+code {
+  font-size: 12.5px !important;
+}
+
+/* Tables */
+th, td {
+  padding: 8px 12px !important;
+}
+
+th {
+  font-size: 11.5px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  opacity: 0.6 !important;
+  font-weight: 500 !important;
+}
+
+/* Hide breadcrumb and page eyebrow (duplicate group name above title) */
+[class*="breadcrumb"],
+.eyebrow {
+  display: none !important;
+}
+
+/* Search bar */
+#search-bar-entry {
+  font-size: 13px !important;
+}
+
+/* Content spacing */
+article > * + * {
+  margin-top: 1.25rem !important;
+}
+
+article > h2 {
+  margin-top: 2rem !important;
+}
+
+/* Space between prev/next nav and footer */
+#footer {
+  margin-top: 2rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+:root:not(.dark) #footer {
+  border-top-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Center social icons */
+#footer > div:first-child {
+  justify-content: center !important;
+}
+
+/* Smaller social icons */
+#footer svg {
+  width: 16px !important;
+  height: 16px !important;
+  opacity: 0.4 !important;
+}
+
+#footer svg:hover {
+  opacity: 0.7 !important;
+}
+
+/* Smaller "Powered by" text */
+#footer > a {
+  font-size: 11px !important;
+  opacity: 0.3 !important;
+}
+
+/* Hide all Ask AI / Assistant elements */
+[data-component-name="assistant"],
+[data-component-name="ask-assistant"],
+button[aria-label*="assistant" i],
+button[aria-label*="Ask" i],
+[class*="assistant-trigger"],
+.chat-assistant-floating-input,
+#chat-assistant-textarea {
+  display: none !important;
+}
+
+/* Hide "Copy page for AI" and "Was this helpful?" feedback */
+[data-component-name="copy-page-for-ai"],
+[class*="copy-page"],
+[class*="page-feedback"],
+[class*="helpful"] {
+  display: none !important;
+}
+
+/* Remove extra tab border — use the existing navbar divider line */
+.nav-tabs {
+  border-bottom: none !important;
+}
+
+/* Clean "On this page" sidebar — Tempo style */
+#table-of-contents {
+  padding: 0 !important;
+}
+
+#table-of-contents button {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  opacity: 0.45 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#table-of-contents button svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+#table-of-contents ul.toc {
+  margin-top: 12px !important;
+  padding: 0 !important;
+}
+
+#table-of-contents .toc-item {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#table-of-contents .toc-item a {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  padding: 6px 0 6px 16px !important;
+  border-left-width: 2px !important;
+  transition: all 0.15s ease !important;
+}
+
+/* Inactive items */
+#table-of-contents .toc-item:not([data-active="true"]) a {
+  color: rgba(255, 255, 255, 0.4) !important;
+  border-left-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+#table-of-contents .toc-item:not([data-active="true"]) a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-left-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Active item */
+#table-of-contents .toc-item[data-active="true"] a {
+  color: rgba(255, 255, 255, 0.95) !important;
+  border-left-color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+}
+
+/* Light mode */
+:root:not(.dark) #table-of-contents .toc-item:not([data-active="true"]) a {
+  color: rgba(0, 0, 0, 0.4) !important;
+  border-left-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+:root:not(.dark) #table-of-contents .toc-item:not([data-active="true"]) a:hover {
+  color: rgba(0, 0, 0, 0.75) !important;
+  border-left-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+:root:not(.dark) #table-of-contents .toc-item[data-active="true"] a {
+  color: rgba(0, 0, 0, 0.9) !important;
+  border-left-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Content tabs (Tabs component) — active tab text and underline invisible in light mode */
+:root:not(.dark) [data-component-part="tab-button"][data-active="true"] {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+:root:not(.dark) [data-component-part="tab-button"]:not([data-active="true"]) {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Steps: larger titles, smaller body */
+[data-component-part="step-title"] {
+  font-size: 18px !important;
+}
+
+[data-component-part="step-content"] {
+  font-size: 14px !important;
+}

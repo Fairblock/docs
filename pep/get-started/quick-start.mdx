@@ -1,0 +1,148 @@
+---
+title: "Quick Start"
+description: "Get started with pre-execution privacy"
+---
+
+This page walks you through building a Confidential App (cApp) on FairyRing. A cApp can run on FairyRing itself, on an EVM, or on its own chain.
+
+Most of our integration guides and tutorials focus on applications built using **MPC** and **IBE**, such as frontrunning protection, auctions, prediction markets, limit orders, decentralized selective disclosure, and access control.
+
+This quick start covers two examples:
+
+1. [Starting a cApp on FairyRing](#fairyring-capp)
+2. [Starting a cApp on an EVM](#evm-capp)
+
+Developers looking to build with FairyRing, either natively or within another chain, are encouraged to reference the respective tutorials in the build guides.
+
+Let's get started!
+
+## FairyRing cApp
+
+It's time to run your first cApp with FairyRing! This demo is expanded on more in detail within the [fairyring tutorial inside of the build section](/pep/guides/build/encrypted-transactions), and is especially useful for those interested in building their own unique apps using confidential computation on FairyRing.
+
+By the end, you'll understand how to send encrypted messages and token transfers using FairyRing and its inherent functionalities. More specifically:
+   - Create and sign transactions on Fairblock
+   - Encrypt transactions for deferred execution
+   - Retrieve transaction status and results
+
+A walkthrough of this quick demo is show in the video below. Feel free to watch it and follow along with the rest of this page.
+
+<Frame>
+  <iframe
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/G0Pz-iW_Fdk?si=UA_7d-ae1IORqDcH"
+    title="FairyRing Demo #1 - Encrypted Transactions"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+</Frame>
+
+To run this demo, simply download this repo, and switch to this specific feature branch, `feat-auction`.
+
+```bash
+git clone https://github.com/Fairblock/fairyring.git
+cd fairyring
+git checkout feat-auction
+```
+
+Now, simply run:
+
+```bash
+make devnet-up
+./bankMsgWithMemoAndDecryption.sh
+```
+
+Upon running the `./bankMsgWithMemoAndDecryption.sh` script, you will be prompted for the following basic inputs required to:
+
+1. Specify the recipient of said bank message,
+2. Encrypt the message with a target block height,
+3. Submit the encrypted transaction to the blockchain,
+4. Monitor the network for transaction processing, and show the decrypted result
+
+Once you have gone through the prompts, you will have successfully run your first cApp where you've sent a simple message, encrypted it, and awaited the condition (block height in this case) for it to be decrypted!
+
+## EVM cApp
+
+What if you want to run a cApp on an EVM network?
+
+As mentioned throughout the docs, FairyRing and its power of confidential computation can be used within many other networks, not limited to but including: EVMs, Cosmos chains, and RustVM chains.
+
+So let's start simple, and run your first cApp with an EVM leveraging FairyRing and its dynamic confidential computation. In this tutorial, you will run a Simple Sealed Bid Auction where encrypted bids are made, and once the auction is complete, are decrypted and assessed for the winning bid. The tutorial is run using a testnet Arbitrum Orbit L3 Chain that has already been deployed for purely educational purposes.
+
+<Note>
+  This demo is expanded on in more detail within this [EVM tutorial in the build section](/pep/guides/build/platform-setup/evm-arbitrum). The scripts alongside the tutorial README in the repo can be accessed further to help understand the workflow of integrating into an EVM.
+</Note>
+
+Firstly, clone both of these repos onto your machine, and make sure you use the correct branch:
+
+1. This repo - **make sure to use the branch `feat/fairblock-demo-orbit-chain`**: [Orbit Chain Setup Repo](https://github.com/hashedtitan/orbit-setup-script)
+2. This repo - **make sure to use the branch `feat/fairblock-precompile`**: [Nitro Repo with Precompiles](https://github.com/hashedtitan/nitro)
+
+Within the `nitro` repo, at the root, run the following command to install the dependencies.
+
+```shell
+git submodule sync
+git submodule update --init --recursive --force
+```
+
+Within the `orbit-setup-script` repo (this one), run `yarn` to install its dependencies.
+
+First, go to your nitro repo, and find a folder called `quickstart`. Within this folder, you will find a version of `contracts.go` that has the FairBlock pre-compiles already added in.
+
+Move the `contracts.go` to the path `go-ethereum/core/vm`, replacing the `contracts.go` file already there.
+
+Next, go back to the `quickstart` folder and move the `nodeConfig.json` file to the `config` folder. This config file corresponds to the registered Arbitrum Orbit Chain contracts on Arbitrum Sepolia that we have gone ahead and implemented. Again, these are just for educational purposes and not production.
+
+With all that in place, run the following command to regenerate your `nitro-node` docker image locally:
+
+```bash
+make docker
+```
+
+Run the following command within the terminal inside of your local nitro repo:
+
+```bash
+docker run --rm -it -v $(pwd)/config:/home/user/.arbitrum -p 8449:8449 nitro-node-dev --conf.file /home/user/.arbitrum/nodeConfig.json
+```
+
+Within this orbit-setup-script repo, you will find a folder called `quickstart` where there are two config JSON files. These JSON files correspond to a pre-initialized orbit chain and subsequent smart contracts related to the Arbitrum Sepolia Orbit Chain Factory smart contract and process.
+
+Simply move these files to the `config/` directory. Now this repo will work with the config details for the pre-existing orbit chain.
+
+<Note>
+  This is simply to avoid having to set up a brand new orbit chain and its respective Arbitrum Sepolia Orbit Chain Factory smart contracts each time for the quickstart. This process can be seen in the Arbitrum [docs](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
+</Note>
+
+Inside of the orbit-setup-script repo, with the config files are where they need to be, build the project out (installing submodules, rust, foundry) by running the following:
+
+```bash
+./build.sh
+```
+
+This should take about 1-2 minutes but may vary based on your internet connection speeds.
+
+Next, make sure to update your .env.
+
+<Note>
+  A `.env` file is provided with ready-to-go wallets and a pre-deployed Orbit Chain for your convenience. Please do not drain the ETH from these wallets; there's no point, it's a test Orbit chain.
+</Note>
+
+Finally, we can deploy the Sealed Bid Auction test contract and run tests against it. This showcases the use of the precompiles within the nitro node on your local docker container. Run the test script by running:
+
+```bash
+./sealedBidAuction.sh
+```
+
+That's it! At this point you have deployed the Fairblock pre-compile logic onto an EVM, via an Orbit Chain running on your local docker container, and tested it with a sealed bid auction example.
+
+When it comes to the Sealed Bid Auction Example, you will see terminal logs showing that:
+
+- A Sealed Bid Auction Example contract was deployed,
+- Encrypted bids were made in the auction, where the encrypted aspect was the bid amount itself using Fairblock technologies.
+- Two bids from different private wallets (as per the `.env`) are made, and then the auction ends.
+- The sealed bid auction was completed and a winner has been announced with a bid of 200.
+
+Using this example, many interesting apps can be built within EVMs. Make sure to join our [discord](https://discord.gg/fairblock) to discuss new ideas. A list of interesting ideas, currently worked on and to be worked on, will be available soon.

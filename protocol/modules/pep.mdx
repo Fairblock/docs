@@ -1,0 +1,56 @@
+---
+title: "x/pep Module"
+description: "Encrypted transaction submission and processing"
+---
+
+The `x/pep` module handles the lifecycle of encrypted transactions on FairyRing and integrated Cosmos chains.
+
+## Functions
+
+| Function | Description |
+| --- | --- |
+| `SubmitEncryptedTx` | Submit an encrypted transaction with a decryption condition |
+| `ProcessDecryptedTx` | Execute a transaction after decryption |
+| `QueryPendingTx` | Query pending encrypted transactions |
+
+## Message Types
+
+### MsgSubmitEncryptedTx
+
+```protobuf
+message MsgSubmitEncryptedTx {
+  string creator = 1;
+  bytes  data = 2;
+  uint64 target_block_height = 3;
+}
+```
+
+### MsgGeneralEncryptedTx
+
+For custom conditions beyond block height:
+
+```protobuf
+message MsgGeneralEncryptedTx {
+  string creator = 1;
+  bytes  data = 2;
+  string condition = 3;
+}
+```
+
+## Lifecycle
+
+1. User submits `MsgSubmitEncryptedTx` with encrypted data and condition
+2. The module stores the encrypted transaction
+3. When the condition is met (e.g., block height reached), the `x/keyshare` module provides the decryption key
+4. The `x/pep` module decrypts and executes the transaction
+5. Results are committed to state
+
+## Queries
+
+```bash
+# List pending encrypted transactions
+fairyringd query pep list-encrypted-tx
+
+# Get a specific encrypted transaction
+fairyringd query pep show-encrypted-tx [tx-index]
+```

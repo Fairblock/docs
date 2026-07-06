@@ -1,0 +1,31 @@
+---
+title: "Supported Networks"
+description: "Networks available for confidential transfers"
+---
+
+The Stabletrust SDK supports confidential transfers on the following **testnet** networks.
+
+| Network (Testnet) | Chain ID | Confidential Contract Address |
+| :--- | :--- | :--- |
+| Stable | 2201 | `0xB96aa42b246a956B170fE426A72fB610E4976f9E` |
+| Arc | 5042002 | `0xb20aB54e1c6AE55B0DD11FEB7FFf3fF1E9631f19` |
+| Base | 84532 | `0x962a8A7CD28BfFBb17C4F6Ec388782cca3ffd618` |
+| Ethereum | 11155111 | `0x2E48F3D9b8F4aCA9E6AF0630eaB2ceB7A3f5eEd1` |
+| Arbitrum | 421614 | `0x14Afd604971bee5b5fac52df2d56CaE421519Cc5` |
+| Tempo | 42431 | `0x08B6563C95dfe3a4F5533CAA6F7D55a74FCb4F6c` |
+
+## Custom deployments
+
+The SDK resolves the correct contract from the **chain ID** automatically, so you normally don't need the address. Pass it explicitly only for custom deployments:
+
+```javascript
+const client = new ConfidentialTransferClient(
+  "https://sepolia.base.org",
+  "0xYourCustomStabletrustContract",
+  84532,
+);
+```
+
+<Note>
+  On the Tempo network (chainId `42431`), the SDK uploads ZK proofs to IPFS instead of passing them as calldata and the chain uses token-based fees. Both are handled automatically, so no code change is required.
+</Note>

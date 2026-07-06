@@ -1,0 +1,46 @@
+---
+title: "Stabletrust"
+description: "Confidential stablecoins on public blockchains"
+---
+
+Confidential stablecoin transactions with encrypted amounts and balances on public chains. Addresses stay transparent for full DeFi composability.
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Payroll" icon="money-bill-wave">
+    Pay employees without broadcasting salary information onchain.
+  </Card>
+  <Card title="Cross-Border Commerce" icon="globe">
+    International payments with confidential amounts.
+  </Card>
+  <Card title="Trading" icon="chart-line">
+    Protect position sizes and strategies from MEV bots.
+  </Card>
+  <Card title="Treasury" icon="building-columns">
+    Manage corporate and DAO treasuries without public exposure.
+  </Card>
+</CardGroup>
+
+## How It Works
+
+Stabletrust uses **Twisted ElGamal** (fast additive homomorphic encryption) with lightweight ZK proofs:
+
+1. **Addresses stay transparent**: wallets, compliance tools, and apps see *who*
+2. **Amounts are encrypted**: no one sees *how much* unless authorized
+3. **Selective disclosure**: auditors decrypt exactly what policy allows
+
+Decryption keys are generated via distributed key generation (DKG), per-account and per-auditor.
+
+## Supported Networks
+
+Ethereum, Arbitrum, Base, Solana, Cosmos chains, and FairyRing.
+
+<CardGroup cols={2}>
+  <Card title="Try Stabletrust" icon="arrow-right" href="https://stabletrust.fairblock.network">
+    Launch the app and start making confidential transfers.
+  </Card>
+  <Card title="Integrate with SDK" icon="code" href="/confidential-transfers/stabletrust-sdk">
+    Add confidential transfers to your application.
+  </Card>
+</CardGroup>

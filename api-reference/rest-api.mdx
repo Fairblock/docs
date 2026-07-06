@@ -1,0 +1,55 @@
+---
+title: "REST API"
+description: "RESTful API for querying FairyRing chain state"
+---
+
+Base URL: `https://api.testnet.fairblock.network`
+
+## Endpoints
+
+### Chain Info
+
+| Endpoint | Description |
+| --- | --- |
+| `GET /cosmos/base/tendermint/v1beta1/node_info` | Node information |
+| `GET /cosmos/base/tendermint/v1beta1/blocks/latest` | Latest block |
+| `GET /cosmos/base/tendermint/v1beta1/blocks/{height}` | Block at height |
+
+### Accounts
+
+| Endpoint | Description |
+| --- | --- |
+| `GET /cosmos/auth/v1beta1/accounts/{address}` | Account info |
+| `GET /cosmos/bank/v1beta1/balances/{address}` | Account balances |
+
+### Staking
+
+| Endpoint | Description |
+| --- | --- |
+| `GET /cosmos/staking/v1beta1/validators` | List validators |
+| `GET /cosmos/staking/v1beta1/validators/{address}` | Validator details |
+
+### FairyRing Modules
+
+| Endpoint | Description |
+| --- | --- |
+| `GET /fairyring/keyshare/active_pub_key` | Current Master Public Key |
+| `GET /fairyring/keyshare/validators` | Registered keyshare validators |
+| `GET /fairyring/pep/encrypted_txs` | Pending encrypted transactions |
+
+## Example
+
+```bash
+# Get the current Master Public Key
+curl https://api.testnet.fairblock.network/fairyring/keyshare/active_pub_key
+```
+
+```json
+{
+  "active_pub_key": {
+    "public_key": "a1b2c3d4...",
+    "creator": "fairblock1...",
+    "expiry_height": 50000
+  }
+}
+```
