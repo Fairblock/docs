@@ -1,39 +1,96 @@
 ---
 title: "Compliance and Regulation"
-description: "Confidential amounts, transparent addresses"
+description: "Confidential and Compliant transfers"
 ---
 
-Fairblock encrypts amounts and balances by default, but keeps sender and receiver addresses transparent. Why this matters:
+# Compliance and Regulation
 
-- This is not a mixer. Traceability done right means auditability, not surveillance.
-- Regulators, auditors, and banks can still see who interacted with who.
-- You get confidentiality of sensitive financial data for business and commerce.
-- Alignment with the model (limited transparency with selective access) central banks and supervisors are proposing for digital payments ([OFAC](https://www.govinfo.gov/app/details/CFR-2010-title31-vol3/CFR-2010-title31-vol3-sec500-314),[FinCEN](https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1010/subpart-A/section-1010.100#p-1010.100), [MiCA](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1114#d1e4979-86) friendly).
+## Confidential amounts, transparent addresses
 
-This posture aligns with how TradFi and Big Tech manage sensitive financial data. Apple Pay doesn’t broadcast your transactions to the world, and banks don’t leak order size in real-time. However, both can produce records for auditors and regulators when required. It’s the same principle.
+Fairblock's compliance model is simple: encrypt commercially sensitive amounts, keep transaction counterparties auditable, and enable scoped disclosure when an authorized party has a legitimate need.
 
-### Selective disclosure
+Fairblock encrypts transaction amounts and balances by default while keeping sender and receiver addresses transparent. This provides financial confidentiality without sacrificing auditability.
 
-Instead of giving one centralized auditor silent, persistent access to everyone’s transaction history, Fairblock uses identity-based encryption and multiparty computation (IBE-MPC) to enable per-transaction disclosures.
+- Fairblock is **not a mixer**. Compliance controls can screen, block, and monitor illicit activity while also preserving transaction traceability and auditability.
+- Regulators, auditors, banks, and compliance teams can still see which addresses interacted.
+- Businesses gain confidentiality over commercially sensitive payment amounts and balances.
+- Encrypted amounts can be selectively disclosed when required for legitimate compliance, legal, or audit purposes.
+- This model is consistent with how regulated financial institutions handle sensitive financial data: public transparency is limited, while authorized parties can obtain access when appropriate.
 
-What this means:
+This is also how traditional financial systems operate. Banks do not publicly expose account balances or transaction amounts, and Apple Pay does not broadcast payments to the world. However, both can provide records to auditors, regulators, or law enforcement when legally required. Fairblock applies the same principle to onchain finance.
 
-- Nothing is automatically exposed
-- If access is required, a scoped view-key can be issued for that specific transaction
-- You stay compliant without handing permanent visibility to any single third party
+## Selective disclosure
 
-### AML and sanctions controls
+Transparent addresses are only one part of Fairblock's compliance model. Fairblock also supports granular selective disclosure of encrypted amounts using Identity-Based Encryption (IBE) and Multiparty Computation (MPC).
 
-We work with services like Chainalysis and Range Security to flag and block high-risk or sanctioned addresses. These are the same types of services institutions and regulators already recognize as credible for AML and OFAC filtering. Legitimate businesses, merchants, and financial institutions get confidentiality and bad actors get filtered out.
+Rather than giving a centralized auditor permanent visibility into every encrypted transaction, Fairblock follows a least-privilege model where disclosures are scoped to the minimum data required.
 
-### Confidentiality vs Anonymity
+Authorized disclosures can be limited to:
 
-Confidential stablecoins are composable with DeFi and usable today by banks, issuers, payment networks, and trading desks because addresses stay transparent.
+- A specific transaction
+- A specific user
+- A specific application
+- A defined time period
 
-For users that need obfuscated addresses, we support fully address privacy in controlled conditions:
+This allows institutions to satisfy legitimate regulatory, compliance, legal, and audit requirements without introducing a permanent surveillance backdoor.
 
-- Opt-in, KYB/KYC-scoped environments (merchants, trading desks, banks, etc.)
-- With sanctions screening and risk controls
-- With selective disclosure still available
+## Compliance dashboard and API
 
-Fairblock is designed to go beyond confidential amounts. It’s done responsibly to ensure users are not at risk of triggering regulatory flags.
+Fairblock provides a transparency dashboard for compliance officers, auditors, regulated institutions, and ecosystem partners to request access to encrypted transaction data when appropriate.
+
+Partners can also integrate the same functionality through an API, allowing disclosure requests and approval workflows to remain entirely within their own internal compliance systems.
+
+This enables organizations to:
+
+- Issue a scoped view key for a specific transaction, user, or application.
+- Maintain internal approval and compliance workflows.
+- Avoid granting permanent visibility to any centralized third party.
+- Preserve user confidentiality while remaining compliant with regulatory obligations.
+
+## AML, sanctions screening, and transaction monitoring
+
+Fairblock integrates with compliance and blockchain intelligence providers such as Predicate and Range Security to identify sanctioned or high-risk addresses.
+
+Compliance checks can be performed before assets enter confidential balances and before assets leave the confidential system. Depending on the asset issuer and deployment, deposits or withdrawals involving sanctioned, hacked, or otherwise high-risk addresses can be blocked or frozen according to the issuer's compliance policies.
+
+Because addresses remain transparent in Fairblock's default transfer model, existing AML infrastructure continues to work without modification.
+
+Institutions can continue using:
+
+- OFAC and sanctions screening
+- AML transaction monitoring
+- Address risk scoring
+- Transaction graph analysis
+- Blockchain forensic tools
+
+Confidentiality is added without removing the compliance surface institutions already depend on.
+
+## Taint analysis
+
+Fairblock remains fully compatible with taint analysis and other blockchain forensic techniques.
+
+Since transaction counterparties remain visible, compliance teams can continue tracing the lineage of assets, identifying exposure to illicit funds, and performing forensic investigations while transaction amounts remain confidential.
+
+This enables businesses to protect commercially sensitive financial information without sacrificing auditability.
+
+## Compliance-controlled unlinkability
+
+Fairblock's default model is confidential transfers with encrypted amounts and transparent addresses.
+
+For specific institutional deployments that require stronger privacy, Fairblock can also support unlinkable address flows where counterparties need protection from public relationship mapping. Examples include merchant payments, treasury management, VC fund operations, trading desks, and banking applications.
+
+These deployments are intended for controlled environments and can include:
+
+- Opt-in KYB/KYC-scoped deployments.
+- Deposit and withdrawal screening.
+- Issuer or application-level blocking and freezing controls where supported.
+- Selective disclosure for authorized compliance, audit, or legal requests.
+- Reconstruction of transaction lineage when required by authorized parties.
+
+Even in these deployments, confidentiality does not eliminate compliance. It simply limits unnecessary public disclosure while preserving the ability for authorized parties to investigate and audit activity when appropriate.
+
+## Built for regulated confidentiality
+
+Fairblock is designed for regulated confidentiality, not regulatory evasion.
+
+The goal is not to hide financial activity from institutions. The goal is to eliminate unnecessary public leakage of commercially sensitive information while preserving the compliance capabilities that regulated businesses, stablecoin issuers, payment providers, and financial institutions require.
