@@ -3,7 +3,7 @@ title: "High-Level Architecture"
 description: "The shared architecture every Fairblock integration passes through"
 ---
 
-Fairblock lets any application add confidentiality without exposing private data onchain. The cryptography an app relies on can differ, for example identity-based encryption or homomorphic encryption, but the top-level architecture is the same.
+Fairblock lets any application add confidentiality without exposing private data onchain. The optimized cryptograhic scheme an app relies on can differ based on the application, for example MPC, identity-based encryption, or homomorphic encryption, but the top-level architecture is the same.
 
 This page describes that shared architecture: the four components every integration passes through, and the end-to-end flow of an encrypted message from the user to Fairblock's cryptographic network and back to the integrated blockchain.
 
@@ -16,59 +16,45 @@ This page describes that shared architecture: the four components every integrat
 Every Fairblock integration is built from the same four layers:
 
 <Steps>
-  <Step title="Encryption SDK (Application Layer)">
-    The Encryption SDK runs in the user's application (front-end or wallet) and encrypts private inputs locally before anything touches a chain, generating a zero-knowledge proof where one is required. Encryption happens end-to-end on the client side and does not rely on any third party.
+  <Step title="Encryption SDK">
+    The Encryption SDK runs in the user's application (front-end, wallet, or app) and encrypts private inputs locally before anything touches a chain, also generating a zero-knowledge proof where one is required. Encryption and proof generation happens end-to-end on the client side and does not rely on any third party.
   </Step>
-  <Step title="Gateway Smart Contracts (FairyKit)">
-    The gateway contract receives and stores encrypted messages or transactions on the integrated chain. FairyKit provides these contracts for the network being integrated.
+  <Step title="Gateway Smart Contracts (or FairyKit)">
+  The Gateway smart contracts receive and store encrypted messages and transactions on supported chains. They enable users and applications to leverage confidential computing directly on their existing chain, without bridging assets, creating a new address, or using a new wallet.
+  </Step>gateway
+  <Step title="Relayer Layer (or FairyPort)">
+    The message passing layer that listens to the gateway and forwards encrypted state or inputs between the integrated chain and FairyRing, coordinating confidential execution and verification.
   </Step>
-  <Step title="Relayer Layer (FairyPort)">
-    The communication layer that listens to the gateway and forwards encrypted state or inputs between the integrated chain and Fairblock, coordinating decryption and execution. FairyPort and IBC are examples.
-  </Step>
-  <Step title="Decentralized Cryptographic Network (FairyRing)">
-    FairyRing processes the compute request: it performs the confidential computation and/or generates the private key, then returns the result. These computations are onchain and verifiable, not a centralized offchain server.
+  <Step title="Decentralized Cryptographic Network (or FairyRing)">
+    FairyRing processes the compute request: it performs the confidential computation operations such as HE, ZKP verfication, DKG, or generating decryption keys then returns the result. These computations are onchain and verifiable, not a centralized offchain server or optimistic coprocessor.
   </Step>
 </Steps>
 
-## How Integrations Differ: FairyKit vs Co-Processing
 
-The four components above are constant, but where the decryption and execution actually happen can vary. There are two main routes:
+# Apps Hosted on FairyRing itself vs. Integrated Chains
 
-<Tabs>
-  <Tab title="FairyKit">
-    Integration packages specific to the chain being integrated, allowing custom setups in which the partnering network carries out some or all of the decryption and execution itself.
-
-    Available for **Cosmos**, **EVMs**, and **RustVMs**. Fairblock can integrate with any network.
-  </Tab>
-  <Tab title="Co-Processing">
-    Fairblock carries out the decryption and execution and sends the end state back to the integrating network.
-
-    This is still onchain and verifiable, not a centralized offchain server. Depending on the design scenario, one route will be better suited than the other.
-  </Tab>
-</Tabs>
-
-## Apps Hosted on FairyRing vs External Chains
-
-FairyRing is itself a Cosmos chain, so the same four-layer flow applies whether an app lives natively on FairyRing or on another chain:
+FairyRing is primarily designed as a decentralized confidential computing layer with maximum flexibility for developers and users. FairyRing can seamlessly deliver confidential computing to existing chains and applications, or host applications natively. The choice depends on the desired tradeoff: frictionless integration and compatibility with existing ecosystems, or faster and lower-cost native execution.
 
 <CardGroup cols={2}>
-  <Card title="Native FairyRing Apps" icon="cube">
-    Confidential computation and contract callbacks are native functions of the chain, so no external relayer is needed and return steps happen internally. Native apps benefit from more performant operations.
+  <Card title="Native Execution" icon="cube">
+    Confidential computation and contract callbacks are native functions of the chain, so no external relayer (FairyPort) is required. Requests and callbacks remain entirely within FairyRing, resulting in faster execution, lower costs, and a simpler architecture.
   </Card>
-  <Card title="External Chains" icon="link">
-    The relayer layer (FairyPort or IBC) bridges the integrated chain and Fairblock, while FairyKit supplies the gateway contracts. FairyRing integrates frictionlessly with any chain, deepening liquidity and making the network more robust.
+  <Card title="Apps on Integrated Chains" icon="link">
+    FairyPort connects integrated chains to FairyRing (Decentralized Cryptographic Network). This enables applications to add confidential computing without requiring users to bridge assets, create new wallets, or migrate to another chain, preserving the existing user experience while adding privacy and confidential execution.
   </Card>
 </CardGroup>
 
-## Next Steps
+# Next Steps
 
-All of these integration methods provide the same ability to interact with Fairblock, with your own application logic layered on top. Once you have this high-level picture, head to the quick-start tutorials for the chain you're working with:
+Now that you have a high-level understanding of the architecture, continue to the documentation for the cryptographic technology and application you're building with:
 
 <CardGroup cols={2}>
-  <Card title="Confidential Transfers" icon="lock" href="/ct/overview">
-    Get started with encrypted amounts and balances on public blockchains.
+  <Card title="Confidential Transfers (Homomorphic Encryption)" icon="lock" href="/ct/overview">
+    Explore confidential assets, stablecoins, payments, treasury, payroll, and yield.
   </Card>
-  <Card title="Pre-Execution Privacy" icon="shield-halved" href="/pep/overview">
-    Explore sealed-bid auctions, private governance, and encrypted transactions.
+  <Card title="Pre-Execution Privacy (MPC-IBE)" icon="shield-halved" href="/pep/overview">
+    Explore sealed-bid auctions, frontrunning protection, encrypted predictions, and private governance.
   </Card>
 </CardGroup>
+
+
