@@ -7,7 +7,7 @@ Fairblock enables confidential transfers on public blockchains where transaction
 
 The system is designed to support financial institutions, neobanks, payroll providers, and trading firms that require privacy without introducing operational complexity or new trust assumptions.
 
-The design separates confidentiality from anonymity. Confidentiality is always enabled and ensures that transaction amounts and balances remain encrypted. Anonymity is optional and can be enabled for partners or flows that require it in KYB/KYC-scoped environments. This mirrors how encryption is universally used on the internet, while stronger privacy tools are applied selectively.
+The design separates confidentiality from hiding. Confidentiality is always enabled and ensures that transaction amounts and balances remain encrypted. Compliant unlinkability is optional for our partners only if necessary for certain applications such as merchants, funds, or market makers. This mirrors how encryption is universally used on the internet (e.g. HTTPS), while stronger privacy tools (e.g. VPNs) are applied selectively.
 
 ## Defining Confidential Transactions
 
@@ -15,7 +15,7 @@ Amounts and balances are encrypted while addresses stay transparent. This combin
 
 - Support DeFi composability and integrations
 - Stay traceable for audits
-- Selectively disclose only what’s needed on a transaction-level, only when it is required.
+- Selectively disclose encrypted amounts and balances, only when and what it is required
 
 It is not a mixer and not an anonymity pool. It is programmable confidentiality built for legitimate businesses and finance. This approach aligns with the model BIS, ECB, IMF, and others are describing for next-generation payment systems.
 
@@ -38,14 +38,14 @@ It is not a mixer and not an anonymity pool. It is programmable confidentiality 
   </Accordion>
 
   <Accordion title="Treasury & Institutional" icon="building-columns">
-    - Managing onchain VC liquid funds, corporate, DAO, and fund treasury operations
+    - Managing onchain VC liquid funds, corporate, and fund treasury operations
     - Confidential inter-subsidiary and OTC settlements
 
     Treasury activity is strategy. Get the benefits of moving funds onchain without broadcasting your strategy to the entire market.
   </Accordion>
 
-  <Accordion title="M&A and Strategic Deals" icon="handshake">
-    - Private acquisitions and token buyouts without market leaks
+  <Accordion title="Strategic Deals" icon="handshake">
+    - Private deals, acquisitions and token buyouts without market leaks
     - Pre-announcement confidentiality and selective auditability
 
     Onchain corporate actions expose you to frontrunners. They also create legal and regulatory questions if markets react before disclosure windows.
@@ -60,17 +60,16 @@ It is not a mixer and not an anonymity pool. It is programmable confidentiality 
 
   <Accordion title="Compliance & Regulation" icon="scale-balanced">
     - Selective disclosure and bad actor filtering
-    - Anti-money laundering (AML)-safe stablecoins and regulatory auditability
+    - OFAC and AML-compliant stablecoins and regulatory auditability
     - Protection against GDPR/MiCA/CCPA/Clarity related data exposure risk for institutions
 
     Regulators increasingly expect two things: don’t expose everything to everyone, and do let authorized parties verify under lawful authority. Fairblock follows this exact model. You can disclose a specific transaction, and only that transaction, to a tax authority, regulator, or auditor without revealing your entire financial history. This maps to how financial supervisors describe acceptable digital asset systems and how TradFi already handles sensitive trade and payments data.
   </Accordion>
 
-  <Accordion title="Infrastructure & Advanced Applications" icon="network-wired">
-    - Privacy-preserving credit, lending, and agentic payments
-    - Selective-disclosure rails for payment networks, issuers, and banks
+  <Accordion title="Agentic Finance" icon="network-wired">
+    - Confidential agentic payments for merchants, compute resources, nano-payments, and supplychain
 
-    You can’t run credit or agent-to-agent payments if every invoice, fee, and settlement is globally visible. Confidential rails are the prerequisite. With selective disclosures, regulated parties settle onchain and can still produce per-transaction details for compliance.
+    You can’t run agentic payments if every fee and settlement is globally visible.
   </Accordion>
 </AccordionGroup>
 

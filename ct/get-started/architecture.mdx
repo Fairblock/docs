@@ -5,11 +5,11 @@ description: "Architecture and cryptographic design of confidential transfers"
 
 ## Overview
 
-This page describes the high-level architecture for our cross-chain confidential transaction system that connects existing EVM blockchains to FairyRing, Fairblock's native chain and confidentiality execution layer.
+This page describes the high-level architecture for our cross-chain confidential transaction system that connects all EVM blockchains such as Arbitrum, Base, BNB, HyperEVM, Tempo, Ethereum, Stable, and Arc (as well as Stellar and Solana) to Fairblock's Decentralized Cryptogrpahic Computer (FairyRing).
 
 This system enables confidential balances and transactions for tokens (e.g., stablecoins) issued or circulating on EVM chains without requiring changes to the underlying token contracts and without changing user wallet behavior. Confidentiality is achieved by offloading privacy-sensitive logic to FairyRing, while settlement and liquidity remain on the originating EVM chain.
 
-Confidential transfers use lightweight additive homomorphic calculations and fast zero-knowledge (ZK)-proof verification, executed within the protocol flow. The system does not rely on fully homomorphic encryption over the discretized Torus (TFHE) from an offchain coprocessor. All homomorphic calculations and ZK proof verification are extremely lightweight, and execution runs on FairyRing.
+Confidential transfers use lightweight homomorphic calculations and fast zero-knowledge (ZK)-proof verification, executed within the protocol flow. The system does not rely on fully homomorphic encryption over the discretized Torus (TFHE) from an offchain coprocessor. All homomorphic calculations and ZK proof verification are extremely lightweight, and execution runs on FairyRing.
 
 ## System at a Glance
 
@@ -18,7 +18,7 @@ The system is built with three layers:
 | Layer | Role | Technology |
 | --- | --- | --- |
 | **FairyRing** | Confidential execution | Wasm contracts, homomorphic calculations, ZK verification |
-| **EVM Escrow** | Bridge endpoints | Minimal contracts that lock tokens and interface cross-chain |
+| **Gateway Contract** | Interoperability endpoints | Minimal contracts that lock tokens and interface cross-chain |
 | **Fairyport Relayer** | Cross-chain transport | Crosschain messsage passing relayer that moves messages between chains and FairyRing (not funds) |
 
 At a high level, the user journey runs through four stages:
@@ -48,7 +48,7 @@ FairyRing also supports selective disclosure under defined conditions. Users dec
 
 ### Gateway Contract
 
-On each integrated chain, a dedicated gateway contract serves as the bridge endpoint and local interface for users. Its primary functions are to lock and unlock tokens and to interface with the relayer.
+On each integrated chain, a dedicated gateway contract serves as the endpoint and local interface for users. Its primary functions are to lock and unlock tokens and to interface with the relayer.
 
 When a user deposits tokens, the gateway contract locks the funds and emits an event picked up by the relayer and sent to FairyRing. When a valid response is received from FairyRing through the relayer (for example, confirming a successful transaction or withdrawal), the contract updates its internal state and, in the case of withdrawals, releases the corresponding tokens back to the user.
 
@@ -56,7 +56,7 @@ The gateway contract is intentionally minimal in logic. It handles token account
 
 ### Fairyport Relayer
 
-The relayer layer moves encrypted messages between integrated chains and the decentralzied cryptographic network (not bridging funds). It is operated by Fairblock; partners are not required to run relayer infrastructure.
+The relayer moves encrypted messages between integrated chains and the decentralzied cryptographic network (not bridging funds). It is operated by Fairblock; partners are not required to run relayer infrastructure.
 
 The relayer is responsible only for transporting messages between chains and FairyRing. It does not perform cryptographic verification or balance management - that logic is delegated to FairyRing and the EVM escrow contracts.
 
