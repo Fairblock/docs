@@ -1,25 +1,25 @@
 ---
-title: "Anonymous Transfers"
+title: "Unlinkable Transfers"
 description: "Unlinkable confidential transactions"
 ---
 
 The Stabletrust SDK ships two clients that serve different privacy models. This guide covers the **`AnonymousTransferClient`**, which hides the sender's wallet address entirely. If you only need encrypted amounts and balances (with a visible sender), use the `ConfidentialTransferClient` covered in [Building an App with the SDK](/ct/guides/build/building-with-sdk).
 
-## Confidential vs. Anonymous: which client?
+## Confidential vs. Unlinkable: which client?
 
 | Feature | `ConfidentialTransferClient` | `AnonymousTransferClient` |
 | :--- | :--- | :--- |
 | **Identity** | Onchain wallet address is visible | Account ID only; wallet address is hidden |
 | **Gas** | User pays gas for all transactions | Fairycloak relay pays gas (except deposit) |
 | **Setup** | Direct RPC connection | Requires a running Fairycloak relay server |
-| **Recipient** | Must have a confidential account | Can receive to another anonymous account or a public address |
+| **Recipient** | Must have a confidential account | Can receive to another unlinkable account or a public address |
 | **Key management** | Keys auto-derived from wallet signature | Keys derived per-account; store the private key yourself |
 | **Best for** | Privacy over balances/amounts with known senders | Full sender anonymity |
 
 With `AnonymousTransferClient`, transactions are routed through the **Fairycloak relay**, which submits them onchain and pays gas on your behalf (except deposits). The sender's wallet address is **never revealed** onchain: only a numeric anonymous account ID is associated with the transfer.
 
 <Info>
-  **Access required.** Anonymous transfers are available to teams building privacy-critical applications. To obtain a Fairycloak relay URL and API key, reach out to the Fairblock team at [hello@fairblock.network](mailto:hello@fairblock.network).
+  **Access required.** Unlinkable transfers are available to teams building privacy-critical applications. To obtain a Fairycloak relay URL and API key, reach out to the Fairblock team at [hello@fairblock.network](mailto:hello@fairblock.network).
 </Info>
 
 ## Installation
@@ -30,7 +30,7 @@ npm install @fairblock/stabletrust
 
 Requires Node.js 16+ and ethers.js 6+ (installed automatically as a dependency).
 
-## Anonymous account ID rules
+## Unlinkable account ID rules
 
 Every `accountId` (and `senderAccountId` / `recipientId`) you pass must follow these rules, enforced both onchain and by the Fairycloak relay:
 
@@ -55,7 +55,7 @@ const client = new AnonymousTransferClient({
 
 ## Key derivation
 
-Anonymous accounts use a per-account ElGamal keypair derived from a wallet signature. **Store the returned `privateKey` securely**: it cannot be recovered without the original wallet and account ID.
+Unlinkable accounts use a per-account ElGamal keypair derived from a wallet signature. **Store the returned `privateKey` securely**: it cannot be recovered without the original wallet and account ID.
 
 ```javascript
 const keys = await client.deriveAnonymousKeys(authWallet, accountId);
@@ -64,10 +64,10 @@ const keys = await client.deriveAnonymousKeys(authWallet, accountId);
 ```
 
 <Warning>
-  An auth signer can only ever be bound to a single anonymous account. Reusing a wallet across different `accountId`s will fail at creation time.
+  An auth signer can only ever be bound to a single unlinkable account. Reusing a wallet across different `accountId`s will fail at creation time.
 </Warning>
 
-## End-to-end anonymous flow
+## End-to-end unlinkable flow
 
 ```javascript
 import { AnonymousTransferClient } from "@fairblock/stabletrust";
@@ -136,7 +136,7 @@ await client.waitForRequest(withdrawResult.request_id);
 
 ### Account management
 
-- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new anonymous account via the relay (relay pays gas). `accountId` is a caller-chosen string following the [account ID rules](#anonymous-account-id-rules).
+- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new unlinkable account via the relay (relay pays gas). `accountId` is a caller-chosen string following the [account ID rules](#anonymous-account-id-rules).
 - **`ensureAnonymousAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Idempotent helper: creates the account if it doesn't exist and (by default) waits until it has settled. Safe to call on every run with a stable `accountId`. Returns `{ accountId, accountInfo, created }`. Options: `deadlineOffset` (default `3600`), `waitUntilReady` (default `true`), `timeoutMs` (default `180000`), `pollIntervalMs` (default `2000`).
 - **`updateAuthKeys(authWallet, accountId, { add, remove }, options?)`**: Adds or removes authorised signers.
 - **`getAnonymousAccountInfo(accountId)`**: Returns onchain state: `exists`, `finalized`, `hasPendingAction`, `txId`, `elgamalPubkey`, `authNonce`.
@@ -149,11 +149,11 @@ await client.waitForRequest(withdrawResult.request_id);
 
 ### Moving funds
 
-- **`deposit(authWallet, accountId, tokenAddress, amount, options?)`**: Deposits tokens into an anonymous account. **The user pays gas.** Handles ERC-20 approval automatically.
-- **`transferToPublic(authWallet, accountId, params, options?)`**: Transfers from an anonymous account to a public EVM address (relay pays gas).
-- **`transferToAnonymous(authWallet, senderAccountId, params, options?)`**: Transfers between two anonymous accounts (relay pays gas).
+- **`deposit(authWallet, accountId, tokenAddress, amount, options?)`**: Deposits tokens into an unlinkable account. **The user pays gas.** Handles ERC-20 approval automatically.
+- **`transferToPublic(authWallet, accountId, params, options?)`**: Transfers from an unlinkable account to a public EVM address (relay pays gas).
+- **`transferToAnonymous(authWallet, senderAccountId, params, options?)`**: Transfers between two unlinkable accounts (relay pays gas).
 - **`applyPending(authWallet, accountId, options?)`**: Moves a pending incoming balance into available. **Must be called after receiving an anonymous-to-anonymous transfer** before the recipient can spend.
-- **`withdraw(authWallet, accountId, params, options?)`**: Withdraws from an anonymous account to a public EVM address (relay pays gas).
+- **`withdraw(authWallet, accountId, params, options?)`**: Withdraws from an unlinkable account to a public EVM address (relay pays gas).
 
 ### Manual proof mode
 
@@ -202,7 +202,7 @@ const history = await client.getRequestEvents(result.request_id);
 
 ## Security considerations
 
-- **Private keys**: Anonymous account `privateKey` values are as sensitive as wallet private keys. Never log them; store them in encrypted vaults or hardware-backed key stores.
-- **One signer per account**: An auth signer binds to a single anonymous account. Manage authorised signers with `updateAuthKeys`.
-- **Apply pending before spending**: Anonymous-to-anonymous recipients must call `applyPending()` before the received balance is spendable.
+- **Private keys**: Unlinkable account `privateKey` values are as sensitive as wallet private keys. Never log them; store them in encrypted vaults or hardware-backed key stores.
+- **One signer per account**: An auth signer binds to a single unlinkable account. Manage authorised signers with `updateAuthKeys`.
+- **Apply pending before spending**: Unlinkable-to-unlinkable recipients must call `applyPending()` before the received balance is spendable.
 - **Network**: Use HTTPS-only RPC endpoints and verify contract addresses before initialization.

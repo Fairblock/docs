@@ -80,7 +80,7 @@
                 "expanded": true,
                 "pages": [
                   "ct/guides/build/building-with-sdk",
-                  "ct/guides/build/anonymous-transfers",
+                  "ct/guides/build/unlinkable-transfers",
                   "ct/guides/build/agentic-api"
                 ]
               }

@@ -7,7 +7,7 @@ description: "SDK method reference for confidential transfers"
 The `@fairblock/stabletrust` SDK exposes two clients:
 
 - **`ConfidentialTransferClient`**: direct onchain transfers with encrypted amounts (sender address visible). Covered below.
-- **`AnonymousTransferClient`**: relay-routed transfers that also hide the sender's address. Signatures are listed below; see the [Anonymous Transfers guide](/ct/guides/build/anonymous-transfers) for usage.
+- **`AnonymousTransferClient`**: relay-routed transfers that also hide the sender's address. Signatures are listed below; see the [Unlinkable Transfers guide](/ct/guides/build/unlinkable-transfers) for usage.
 
 <Note>
   **Amount types.** `confidentialDeposit` takes a `BigInt` (base units, from `ethers.parseUnits`). `confidentialTransfer` and `withdraw` take a `number` (cast with `Number(ethers.parseUnits(...))`).
@@ -76,7 +76,7 @@ Returns the public ERC-20 balance for an address as a `BigInt`.
 
 ## AnonymousTransferClient
 
-Routes all operations through the Fairycloak relay, which pays gas (except deposits) and keeps the sender's wallet address offchain. See the [Anonymous Transfers guide](/ct/guides/build/anonymous-transfers) for setup, account-ID rules, and end-to-end examples.
+Routes all operations through the Fairycloak relay, which pays gas (except deposits) and keeps the sender's wallet address offchain. See the [Unlinkable Transfers guide](/ct/guides/build/unlinkable-transfers) for setup, account-ID rules, and end-to-end examples.
 
 ### Constructor
 
