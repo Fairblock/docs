@@ -136,7 +136,7 @@ await client.waitForRequest(withdrawResult.request_id);
 
 ### Account management
 
-- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new unlinkable account via the relay (relay pays gas). `accountId` is a caller-chosen string following the [account ID rules](#anonymous-account-id-rules).
+- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new unlinkable account via the relay (relay pays gas). `accountId` is a caller-chosen string following the [account ID rules](#unlinkable-account-id-rules).
 - **`ensureAnonymousAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Idempotent helper: creates the account if it doesn't exist and (by default) waits until it has settled. Safe to call on every run with a stable `accountId`. Returns `{ accountId, accountInfo, created }`. Options: `deadlineOffset` (default `3600`), `waitUntilReady` (default `true`), `timeoutMs` (default `180000`), `pollIntervalMs` (default `2000`).
 - **`updateAuthKeys(authWallet, accountId, { add, remove }, options?)`**: Adds or removes authorised signers.
 - **`getAnonymousAccountInfo(accountId)`**: Returns onchain state: `exists`, `finalized`, `hasPendingAction`, `txId`, `elgamalPubkey`, `authNonce`.
@@ -152,7 +152,7 @@ await client.waitForRequest(withdrawResult.request_id);
 - **`deposit(authWallet, accountId, tokenAddress, amount, options?)`**: Deposits tokens into an unlinkable account. **The user pays gas.** Handles ERC-20 approval automatically.
 - **`transferToPublic(authWallet, accountId, params, options?)`**: Transfers from an unlinkable account to a public EVM address (relay pays gas).
 - **`transferToAnonymous(authWallet, senderAccountId, params, options?)`**: Transfers between two unlinkable accounts (relay pays gas).
-- **`applyPending(authWallet, accountId, options?)`**: Moves a pending incoming balance into available. **Must be called after receiving an anonymous-to-anonymous transfer** before the recipient can spend.
+- **`applyPending(authWallet, accountId, options?)`**: Moves a pending incoming balance into available. **Must be called after receiving an unlinkable-to-unlinkable transfer** before the recipient can spend.
 - **`withdraw(authWallet, accountId, params, options?)`**: Withdraws from an unlinkable account to a public EVM address (relay pays gas).
 
 ### Manual proof mode
