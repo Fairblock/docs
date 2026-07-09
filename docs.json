@@ -34,28 +34,18 @@
   },
   "navbar": {},
   "navigation": {
-    "tabs": [
+    "groups": [
       {
-        "tab": "Get Started",
-        "groups": [
-          {
-            "group": "Start Here",
-            "pages": [
-              "overview",
-              "high-level-architecture"
-            ]
-          }
+        "group": "Get Started",
+        "pages": [
+          "overview",
+          "high-level-architecture"
         ]
       },
       {
-        "tab": "Confidential Transfers",
-        "groups": [
-          {
-            "group": "Confidential Transfers",
-            "pages": [
-              "ct/overview"
-            ]
-          },
+        "group": "Confidential Transfers",
+        "pages": [
+          "ct/overview",
           {
             "group": "Get Started",
             "pages": [
@@ -105,14 +95,9 @@
         ]
       },
       {
-        "tab": "Pre-Execution Privacy",
-        "groups": [
-          {
-            "group": "Pre-Execution Privacy (MPC-IBE)",
-            "pages": [
-              "pep/overview"
-            ]
-          },
+        "group": "Pre-Execution Privacy",
+        "pages": [
+          "pep/overview",
           {
             "group": "Get Started",
             "pages": [
@@ -171,15 +156,10 @@
         ]
       },
       {
-        "tab": "Resources",
-        "groups": [
-          {
-            "group": "Resources",
-            "pages": [
-              "resources/community",
-              "resources/glossary"
-            ]
-          }
+        "group": "Resources",
+        "pages": [
+          "resources/community",
+          "resources/glossary"
         ]
       }
     ]
