@@ -62,7 +62,8 @@
                 "pages": [
                   "ct/guides/apps/stabletrust-app",
                   "ct/guides/apps/cusd-app",
-                  "ct/guides/apps/yieldshield-app"
+                  "ct/guides/apps/yieldshield-app",
+                  "ct/guides/apps/compliance-dashboard-app"
                 ]
               },
               {

@@ -1,0 +1,64 @@
+---
+title: "Compliance Dashboard App"
+description: "Scoped auditing for confidential transfers"
+---
+
+The [Compliance Dashboard](https://compliance.fairblock.network/) lets authorized auditors and compliance officers review confidential token transfers. Transfer amounts stay encrypted onchain, and only users with approved access can decrypt and inspect the values they are permitted to see.
+
+<Info>
+  **Invite-only access.** This is not a general wallet or user product. Access is limited to people who have been approved as auditors.
+</Info>
+
+## Who it’s for
+
+<CardGroup cols={2}>
+  <Card title="Auditors and compliance officers" icon="user-shield">
+    Review confidential transfer activity within an assigned access scope.
+  </Card>
+  <Card title="Regulators and government officers" icon="building-columns">
+    Perform scoped oversight without permanent visibility into all encrypted activity.
+  </Card>
+</CardGroup>
+
+## What you can do
+
+- Browse encrypted transfer records for addresses within your access scope
+- Request decryption keys and reveal transfer amounts locally
+- Filter results by chain, token, and user address
+- Aggregate sent and received activity for a user and download CSV reports
+- Request access via signup, with admins approving or rejecting and setting permissions
+
+## How access works
+
+<Steps>
+  <Step title="Request access">
+    Submit a request with your name, email, company, and role.
+  </Step>
+  <Step title="Admin review">
+    An admin reviews the request and assigns access controls, including which chains, tokens, applications, and user addresses the auditor may see.
+  </Step>
+  <Step title="Accept invite and log in">
+    On approval, you receive an invite email, set a password, and can log in. Auditors only see transfers that match their assigned access controls.
+  </Step>
+</Steps>
+
+## Security model
+
+- **Authentication:** Email and password via Firebase Auth
+- **Authorization:** Only users registered as auditors can use the app
+- **Scoped visibility:** Access controls limit which addresses and transfers are shown
+- **Client-side decryption:** Amounts are decrypted in the browser after authorized key material is obtained; plaintext private keys are not stored on the server in usable form
+
+## Getting started
+
+<Steps>
+  <Step title="Open the Compliance Dashboard">
+    Launch the [Compliance Dashboard](https://compliance.fairblock.network/) and log in with your invite credentials.
+  </Step>
+  <Step title="Set filters">
+    Select chain and token filters, then choose a user address within your access scope.
+  </Step>
+  <Step title="Review transfers">
+    Browse confidential transfers, decrypt individual transfers or run bulk totals, and export results as needed.
+  </Step>
+</Steps>
