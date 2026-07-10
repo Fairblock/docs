@@ -16,7 +16,7 @@ The system is built with four layers:
 | Layer | Role | Technology |
 | --- | --- | --- |
 | **Encryption SDK** | Encrypts the transaction locally under the Master Public Key (MPK) and a chosen condition ID | Offchain client SDK |
-| **Gateway** | Receives and stores encrypted transactions on the integrated chain, then triggers execution | `x/pep` module, FairyKit |
+| **Gateway** | Receives and stores encrypted transactions on the integrated chain, then triggers execution | `x/pep` module, gateway contracts |
 | **FairyPort Relayer** | Delivers the derived private key from FairyRing to the destination chain once the condition is met | inter-chain relayer |
 | **FairyRing** | Generates and aggregates threshold key shares into the decryption key | `x/keyshare` module, MPC-IBE |
 
@@ -24,7 +24,7 @@ Pre-execution privacy moves an encrypted *transaction* through a condition gate:
 
 <Steps>
   <Step title="Setup">
-    The integrated chain adds the `x/pep` module (or for  EVMs, FairyKit contracts and pre-compiles) so it can communicate with FairyRing and store encrypted transactions.
+    The integrated chain adds the `x/pep` module (or for  EVMs, gateway contracts and pre-compiles) so it can communicate with FairyRing and store encrypted transactions.
   </Step>
   <Step title="Encrypt under a condition">
     The Encryption SDK encrypts the transaction on the client side using the MPK and a unique condition ID. The ciphertext is submitted to the gateway (`x/pep`) on the integrated chain.

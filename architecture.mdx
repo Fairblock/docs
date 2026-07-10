@@ -25,7 +25,7 @@ FairyRing is a Cosmos chain with two key properties:
 | Component | Description |
 | --- | --- |
 | **FairyRing** | Native chain abstracting cryptographic operations for applications |
-| **FairyKit** | Integration packages for one-click confidentiality on any protocol |
+| **Gateway Contracts** | Integration packages for one-click confidentiality on any protocol |
 | **Encryption SDK** | Offchain software for encrypting transactions before submission |
 | **Destination Chain** | Chain storing encrypted transactions and executing after decryption |
 | **Relayers** | Communication layer coordinating between FairyRing and destination chains |
@@ -33,7 +33,7 @@ FairyRing is a Cosmos chain with two key properties:
 ## Integration Routes
 
 <Tabs>
-  <Tab title="FairyKits">
+  <Tab title="Gateway Contracts">
     Chain-specific integration packages where the partnering network handles some or all decryption and execution.
 
     Available for **Cosmos**, **EVMs**, and **RustVMs**.
@@ -49,7 +49,7 @@ FairyRing is a Cosmos chain with two key properties:
 
 <Tabs>
   <Tab title="EVM">
-    Precompiled contracts and escrow contracts as bridge endpoints. Tokens lock on EVM, encrypted balances appear on FairyRing.
+    Precompiled contracts and gateway contracts as bridge endpoints. Tokens lock on EVM, encrypted balances appear on FairyRing.
 
     **Supported:** Ethereum, Arbitrum, Base, Hyperliquid, and any EVM-compatible chain.
   </Tab>
