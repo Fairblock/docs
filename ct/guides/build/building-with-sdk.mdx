@@ -11,7 +11,7 @@ This guide walks you through building a complete confidential decentralized appl
 
 ## What You Are Building
 
-Stabletrust uses Homomorphic Encryption (HE) to give each user a confidential token balance alongside their normal public balance. Once tokens enter the confidential layer, their amounta are encrypted onchain opaque to block explorers and other observers.
+Stabletrust uses Homomorphic Encryption (HE) to give each user a confidential token balance alongside their normal public balance. Once tokens enter the confidential layer, their amounts are encrypted onchain opaque to block explorers and other observers.
 
 The user flow:
 
@@ -24,7 +24,7 @@ The user flow:
 - Next.js 16 (App Router, TypeScript)
 - Privy for embedded wallet and authentication
 - ethers.js v6 for signer management and amount formatting
-- `@fairblock/Stabletrust` for confidential operations
+- `@fairblock/stabletrust` for confidential operations
 - viem for chain definitions
 
 ## Prerequisites
@@ -45,7 +45,7 @@ When prompted, choose: TypeScript, ESLint, Tailwind CSS, App Router.
 ## Step 2: Install Dependencies
 
 ```bash
-npm install @privy-io/react-auth viem ethers @fairblock/Stabletrust
+npm install @privy-io/react-auth viem ethers @fairblock/stabletrust
 ```
 
 | Package                  | Role                                             |
@@ -53,7 +53,7 @@ npm install @privy-io/react-auth viem ethers @fairblock/Stabletrust
 | `@privy-io/react-auth`   | Wallet connection and authentication             |
 | `viem`                   | Chain definitions for Privy configuration        |
 | `ethers`                 | Signer extraction, amount parsing and formatting |
-| `@fairblock/Stabletrust` | Confidential deposit, transfer, withdraw         |
+| `@fairblock/stabletrust` | Confidential deposit, transfer, withdraw         |
 
 ## Step 3: Environment Variables
 
@@ -143,7 +143,7 @@ Start by creating the file with its imports and state:
 import { useState, useEffect } from 'react';
 import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { ethers } from 'ethers';
-import { ConfidentialTransferClient } from '@fairblock/Stabletrust';
+import { ConfidentialTransferClient } from '@fairblock/stabletrust';
 
 const config = {
   rpcUrl: process.env.NEXT_PUBLIC_RPC_URL!,
@@ -387,7 +387,7 @@ const withdraw = async (humanAmount: string) => {
 
 ### 5.6 Transfer Send Tokens Privately
 
-Confidential transfer sends tokens from the caller's encrypted balance to another address's encrypted balance. The **amount is encrypted** onchain: block explorers show that a transfer occurred and between which addresses, but not the value moved. The sender and recipient addresses stay visible this client hides amounts, not identities. If you also need to hide the sender's address, use the [Unlinkable Transfers](./unlinkable-transfers) flow.
+Confidential transfer sends tokens from the caller's encrypted balance to another address's encrypted balance. The **amount is encrypted** onchain: block explorers show that a transfer occurred and between which addresses, but not the value moved. The sender and recipient addresses stay visible this client hides amounts, not identities. If you also need to hide the sender's address, use the [Unlinkable Transfers](/ct/guides/build/unlinkable-transfers) flow.
 
 Add this function to your hook:
 

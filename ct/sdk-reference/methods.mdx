@@ -112,6 +112,7 @@ new AnonymousTransferClient({ fairycloakUrl, chainId, rpcUrl })
 | `applyPending(authWallet, accountId, options?)` | Relay | Moves pending incoming balance into available (call after receiving) |
 | `withdraw(authWallet, accountId, params, options?)` | Relay | Withdraws to a public EVM address |
 | `generateTransferProof(privateKey, params)` | N/A | Generates a transfer proof for manual-proof mode |
+| `generateWithdrawProof(elGamalPrivateKey, params)` | N/A | Generates a withdraw proof for manual-proof withdraws |
 
 ### Prepaid fees
 
