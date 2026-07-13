@@ -54,27 +54,22 @@
             ]
           },
           {
-            "group": "Guides",
+            "group": "Apps",
+            "expanded": true,
             "pages": [
-              {
-                "group": "Apps",
-                "expanded": true,
-                "pages": [
-                  "ct/guides/apps/stabletrust-app",
-                  "ct/guides/apps/cusd-app",
-                  "ct/guides/apps/yieldshield-app",
-                  "ct/guides/apps/compliance-dashboard-app"
-                ]
-              },
-              {
-                "group": "Build",
-                "expanded": true,
-                "pages": [
-                  "ct/guides/build/building-with-sdk",
-                  "ct/guides/build/unlinkable-transfers",
-                  "ct/guides/build/agentic-api"
-                ]
-              }
+              "ct/guides/apps/stabletrust-app",
+              "ct/guides/apps/cusd-app",
+              "ct/guides/apps/yieldshield-app",
+              "ct/guides/apps/compliance-dashboard-app"
+            ]
+          },
+          {
+            "group": "Build",
+            "expanded": true,
+            "pages": [
+              "ct/guides/build/building-with-sdk",
+              "ct/guides/build/unlinkable-transfers",
+              "ct/guides/build/agentic-api"
             ]
           },
           {
@@ -107,33 +102,28 @@
             ]
           },
           {
-            "group": "Guides",
+            "group": "Apps",
+            "expanded": true,
             "pages": [
+              "pep/guides/apps/fairrates"
+            ]
+          },
+          {
+            "group": "Build",
+            "expanded": true,
+            "pages": [
+              "pep/guides/build/sealed-bid-auctions",
+              "pep/guides/build/private-governance",
+              "pep/guides/build/encrypted-transactions",
+              "pep/guides/build/private-decryption",
+              "pep/guides/build/verifiable-randomness",
               {
-                "group": "Apps",
+                "group": "Platform Setup",
                 "expanded": true,
                 "pages": [
-                  "pep/guides/apps/fairrates"
-                ]
-              },
-              {
-                "group": "Build",
-                "expanded": true,
-                "pages": [
-                  "pep/guides/build/sealed-bid-auctions",
-                  "pep/guides/build/private-governance",
-                  "pep/guides/build/encrypted-transactions",
-                  "pep/guides/build/private-decryption",
-                  "pep/guides/build/verifiable-randomness",
-                  {
-                    "group": "Platform Setup",
-                    "expanded": true,
-                    "pages": [
-                      "pep/guides/build/platform-setup/cosmos-chains",
-                      "pep/guides/build/platform-setup/evm-arbitrum",
-                      "pep/guides/build/platform-setup/fairyring-native"
-                    ]
-                  }
+                  "pep/guides/build/platform-setup/cosmos-chains",
+                  "pep/guides/build/platform-setup/evm-arbitrum",
+                  "pep/guides/build/platform-setup/fairyring-native"
                 ]
               }
             ]
