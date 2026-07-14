@@ -17,7 +17,7 @@ description: "Troubleshooting common SDK errors"
 
 | Error | Cause | Resolution |
 | :--- | :--- | :--- |
-| "Insufficient prepaid fee balance" | Prepaid fee reserve is below the per-transfer fee | Call `depositFees(wallet, accountId, amount)` to top up; check with `getFeeToken()`/`getFeeAmount()` |
+| "Insufficient prepaid fee balance" | Prepaid fee reserve is below the per-transfer fee | Call `depositFees(wallet, accountId, amount)` to top up; check with `getFeeToken()`/`getAnonymousInlineTransferFee()` |
 | Fairycloak HTTP error | Relay unreachable or request rejected | Check the relay URL, API key, and account authorization |
 | "Account finalization timeout" | Account creation is still processing | Wait a few minutes and retry |
 | "Insufficient balance" | Transfer amount exceeds available balance | Deposit more tokens or reduce the amount |

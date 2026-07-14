@@ -66,9 +66,13 @@ Withdraws from the confidential available balance back to public ERC-20. `amount
 
 - **Returns:** Transaction receipt.
 
-### `getFeeAmount()`
+### `getFeeToken()`
 
-Returns the native fee (in wei) required for confidential transfers on the current chain.
+Returns the fee-token address for the current chain (`address(0)` = native currency).
+
+### `getNonAnonymousTransferFee()`
+
+Returns the protocol fee for a direct confidential transfer, in the fee token's base units.
 
 ### `getPublicBalance(address, tokenAddress)`
 
@@ -119,7 +123,8 @@ new AnonymousTransferClient({ fairycloakUrl, chainId, rpcUrl })
 | Method | Description |
 | :--- | :--- |
 | `getFeeToken()` | Currently configured ERC-20 fee token address |
-| `getFeeAmount()` | Per-transfer protocol fee (raw units), or `0n` if none |
+| `getNonAnonymousTransferFee()` | Fee for a direct (non-anonymous) transfer, raw units |
+| `getAnonymousInlineTransferFee()` | Fee for an anonymous transfer, raw units |
 | `getPrepaidFeeBalance(accountId, token)` | Prepaid fee balance for an account and fee token |
 | `depositFees(authWallet, accountId, amount, options?)` | Tops up the prepaid fee reserve (user pays gas) |
 | `withdrawFees(authWallet, accountId, { token, destination, amount }, options?)` | Withdraws a specific fee-token amount |

@@ -102,7 +102,7 @@ console.log("Available:", balance.available, "Pending:", balance.pending);
 
 // 4. Top up the prepaid fee reserve if needed (user pays gas)
 const feeToken = await client.getFeeToken();
-const feeAmount = await client.getFeeAmount();
+const feeAmount = await client.getAnonymousInlineTransferFee();
 const feeBalance = await client.getPrepaidFeeBalance(accountId, feeToken);
 if (feeBalance < feeAmount) {
   const feeResult = await client.depositFees(
@@ -173,63 +173,12 @@ const result = await client.transferToPublic(wallet, accountId, {
 });
 ```
 
-## Offchain ZKP proofs (IPFS)
-
-By default an unlinkable proof is submitted **inline** through the Fairycloak relay. For `transferToPublic`, `transferToAnonymous`, and `withdraw` you can instead set **`offchainZKP: true`** to upload the proof to **StableTrust self-hosted IPFS** and put only the resulting **CID** on-chain. Fairycloak/Fairyport then fetches the full proof from IPFS and forwards the actual proof bytes to the CosmWasm contract. This keeps large (~2.5 KB) proofs out of calldata. The flag is optional and defaults to `false`, so the inline path is unchanged. These proof-carrying methods support it; `deposit` and `applyPending` do not (they carry no ZK proof).
-
-**Providing StableTrust IPFS upload config.** When `offchainZKP` is enabled the SDK uploads proof bytes to the configured StableTrust IPFS upload endpoint. Provide it either via the client config (recommended, and required in browsers where `process.env` is unavailable):
-
-```javascript
-const client = new AnonymousTransferClient({
-  fairycloakUrl: "http://127.0.0.1:8080",
-  chainId: 31337,
-  rpcUrl: "http://127.0.0.1:8545",
-  ipfsUploadUrl: process.env.STABLETRUST_IPFS_UPLOAD_URL,
-  ipfsApiKey: process.env.STABLETRUST_IPFS_API_KEY,
-});
-```
-
-…or, in Node.js, by setting `STABLETRUST_IPFS_UPLOAD_URL` and `STABLETRUST_IPFS_API_KEY` environment variables, used as fallback values when they are not passed in client config.
-
-**Usage** - add the flag to a normal transfer:
-
-```javascript
-// unlinkable -> unlinkable; proof stored on IPFS, CID on-chain
-await client.transferToAnonymous(wallet, "alice", {
-  recipientId: "bob",
-  token: tokenAddress,
-  amount: ethers.parseUnits("5", 18),
-  elGamalPrivateKey: keys.privateKey,
-  offchainZKP: true,
-});
-
-// unlinkable -> public EVM address
-await client.transferToPublic(wallet, "alice", {
-  recipient: "0xRecipientAddress",
-  token: tokenAddress,
-  amount: ethers.parseUnits("5", 18),
-  elGamalPrivateKey: keys.privateKey,
-  offchainZKP: true,
-});
-
-// withdraw to a public address; withdraw proof stored on IPFS, CID on-chain
-await client.withdraw(wallet, "alice", {
-  destination: "0xDestinationAddress",
-  token: tokenAddress,
-  plainAmount: ethers.parseUnits("5", 18),
-  elGamalPrivateKey: keys.privateKey,
-  offchainZKP: true,
-});
-```
-
-In manual-proof mode (when you pass a pre-computed `proof`) with `offchainZKP: true`, the SDK treats `proof` as an already-uploaded CID rather than re-uploading it.
-
 ## Prepaid fees
 
 Every `transferToPublic` and `transferToAnonymous` call deducts a protocol fee from the sender account's **prepaid fee reserve**. The SDK checks this balance before submitting and throws a descriptive error if it's insufficient: top up with `depositFees` before transferring.
 
 - **`getFeeToken()`**: Returns the currently configured ERC-20 fee token address. `depositFees` must use this token. The fee token can be rotated by the protocol; existing balances in old fee tokens remain withdrawable.
-- **`getFeeAmount()`**: Returns the per-transfer protocol fee (raw ERC-20 units), or `0n` if none is configured.
+- **`getNonAnonymousTransferFee()` / `getAnonymousInlineTransferFee()`**: Return the per-transfer protocol fee (raw ERC-20 units). For unlinkable transfers use `getAnonymousInlineTransferFee()`.
 - **`getPrepaidFeeBalance(accountId, token)`**: Returns the prepaid fee balance for an account and fee token.
 - **`depositFees(authWallet, accountId, amount, options?)`**: Deposits into the prepaid fee reserve. **The user pays gas.** Handles ERC-20 approval against the active fee token automatically.
 - **`withdrawFees(authWallet, accountId, { token, destination, amount }, options?)`**: Withdraws a specific amount from a given fee token's reserve (relay pays gas).
