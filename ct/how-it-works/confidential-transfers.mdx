@@ -31,6 +31,6 @@ When the user wishes to redeem their confidential balance to native stablecoins,
 The gateway contract emits an event for this withdrawal request. A relayer forwards it to FairyRing, where the CosmWasm contract verifies the proof and updates the encrypted balance accordingly.
 
 FairyRing then returns a response to the EVM chain. The gateway contract processes it and updates its internal state and releases the corresponding amount of locked tokens back to the user’s EVM address. The withdrawn amount becomes visible onchain as it returns to the user’s public balance, while the user’s remaining confidential balance stays encrypted.
-![alt text](/assets/image4.png)
+![alt text](/assets/withdraw.jpg)
 
 Throughout this lifecycle, the user interacts only with the EVM gateway contract. Deposits, transfers, and withdrawals appear as conventional EVM transactions, while cryptography and cross-chain coordination occur under the hood.
