@@ -212,10 +212,6 @@ const c = new ConfidentialTransferClient(
 );
 ```
 
-<Note>
-  On the Tempo network (chainId `42431`), the SDK uploads ZK proofs to IPFS instead of passing them as calldata. This is handled automatically, so no code change is required. To enable the same behaviour on other networks, see [Offchain ZKP proofs (IPFS)](#offchain-zkp-proofs-ipfs).
-</Note>
-
 ### 5.2 Wrap the Privy Wallet into an Ethers Signer
 
 The Stabletrust SDK expects a standard `ethers.Signer`. Privy provides its own wallet abstraction, so you need to extract the raw EIP-1193 provider from it and wrap it with ethers.
@@ -888,33 +884,6 @@ Open [http://localhost:3000](http://localhost:3000).
   Ensure your wallet has test ETH on Base Sepolia for gas. You can get test ETH from the [Base Sepolia faucet](https://www.alchemy.com/faucets/base-sepolia).
 </Tip>
 
-## Offchain ZKP proofs (IPFS)
-
-**Note on offchain ZKP/IPFS proofs**: The latest confidential-transfer contract exposes `transferConfidential(address,address,bytes,bool)` and `withdraw(address,uint256,bytes,bool)`. By default the SDK submits inline ABI-encoded proof bytes with `offchainZKP=false`. Set `offchainZKP: true` on `confidentialTransfer` or `withdraw` to upload the ABI-encoded proof bytes to StableTrust IPFS and put only the bare CID bytes on-chain. Tempo (chainId 42431) keeps the old SDK behaviour and defaults to `offchainZKP=true`; pass `{ offchainZKP: false }` to force inline proofs.
-
-```javascript
-const client = new ConfidentialTransferClient(rpcUrl, chainId, {
-  ipfsUploadUrl: process.env.STABLETRUST_IPFS_UPLOAD_URL,
-  ipfsApiKey: process.env.STABLETRUST_IPFS_API_KEY,
-});
-
-await client.confidentialTransfer(
-  signer,
-  recipientAddress,
-  tokenAddress,
-  amountToTransfer,
-  { offchainZKP: true },
-);
-
-await client.withdraw(
-  signer,
-  tokenAddress,
-  amountToWithdraw,
-  { offchainZKP: true },
-);
-```
-
-The deprecated option name `useOffchainVerify` is still accepted as an alias for `offchainZKP`.
 
 ## Further Reading
 
