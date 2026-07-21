@@ -1,46 +1,60 @@
 ---
 title: "Overview of Fairblock"
-description: "A privacy layer designed for enterprise adoption"
+description: "The turnkey confidentiality layer for digital assets and intelligent systems"
 ---
 
-Fairblock is the turnkey confidentiality layer for enterprise finance and AI. As stablecoins, tokenized assets scale onchain, institutions need privacy solutions that are compliant, performant, and embedded in the infrastructure they already run. Fairblock delivers. Confidential assets and transactions, live on the chains where users and liquidity already are.
+Fairblock provides programmable confidentiality for stablecoins, tokenized assets, transactions, and intelligent applications. It allows developers and partners to protect sensitive values and data while preserving performance, interoperability, compliance controls, and familiar user experiences.
+
+Fairblock's current product focus is confidential finance. Stablecoins and tokenized assets increasingly support payments, treasury operations, trading, and financial applications, but their balances and transaction amounts remain publicly exposed. Fairblock enables these assets to operate confidentially across existing chains, wallets, and applications.
+
+The same infrastructure can support confidential agents, private application workflows, and intelligent systems that interact with sensitive enterprise and financial data.
 
 ## Why Fairblock
 
-As stablecoins and tokenized assets move into the mainstream, enterprises and financial institutions need privacy to protect payroll, treasury operations, revenue flows, trading activity, and customer data. Public transactions create unnecessary compliance risks and expose sensitive business information to competitors.
+Public infrastructure exposes information that businesses normally protect: balances, payment amounts, payroll, treasury activity, trading flows, customer activity, and proprietary application data. This limits the use of public networks and intelligent systems for serious commercial activity.
 
-At the same time, AI adoption is accelerating, but businesses cannot always share their confidential data and IP with Anthropic and OpenAI. They need AI inference and agents that can access, process, and act on sensitive information without compromising privacy, security, or regulatory requirements.
-
-Privacy is no longer optional, it is a prerequisite for enterprise adoption. The challenge has been delivering it without sacrificing performance, usability, or interoperability.
-
-Fairblock is building the infrastructure for confidential finance and intelligence: performant and compliant privacy for stablecoins, RWAs, inference, agents, and enterprise applications.
+Fairblock provides a practical alternative to both full public exposure and isolated anonymity systems. Sensitive values remain confidential, while applications can retain address-level controls, interoperability, monitoring, selective disclosure, and partner-specific compliance policies.
 
 ## Built to Be Used
 
 <CardGroup cols={2}>
   <Card title="Performant" icon="bolt">
-    High throughput for institutional volume.
+    Fairblock selects cryptographic approaches based on each application's requirements, avoiding unnecessary computational overhead.
   </Card>
   <Card title="Compliant" icon="circle-check">
-    Full compliance through sanction/AML monitoring, selective disclosure, and traceability
+    Applications can support sanctions screening, entry and exit controls, freezing pathways, monitoring, traceability, and selective disclosure.
   </Card>
   <Card title="Frictionless" icon="arrows-rotate">
-    Privacy without bridging assets or changing wallets.
+    Users can access confidentiality through existing wallets, applications, assets, and chains without entering a separate privacy ecosystem.
   </Card>
   <Card title="Composable" icon="cubes">
-    Plug into any frontend, neobank, wallet, or agentic platform.
+    Developers can integrate confidential balances, transactions, and application workflows through Fairblock applications, SDKs, and APIs.
   </Card>
 </CardGroup>
 
-Note: For simplicity and clarity, this documentation focuses on confidentiality and privacy for onchain financial applications. Fairblock is also building confidential AI inference, AI agents, robotics, and other confidential compute capabilities. If you're interested in these use cases, please contact the Fairblock team.
+Note: These documentation pages primarily cover Fairblock's confidential finance products. Fairblock also supports confidential agentic and application workflows through its broader confidential intelligence platform.
 
-## Get Started
+## Products
 
 <CardGroup cols={2}>
-  <Card title="Confidential Transfers" icon="eye-slash" href="/ct/overview">
-    Confidential assets and payments using HE and ZK.
+  <Card title="Confidential Transfers" icon="eye-slash">
+    Add encrypted balances and confidential transfer amounts to stablecoins and tokenized assets.
+
+    [Explore Confidential Transfers](/ct/overview) · [Integrate the SDK](/ct/guides/build/building-with-sdk)
   </Card>
-  <Card title="Pre-Execution Privacy" icon="key" href="/pep/overview">
-    Sealed-bid auctions, private governance, and encrypted transactions using MPC-IBE.
+  <Card title="Confidential CUSD" icon="dollar-sign">
+    Use Fairblock's flagship confidential stablecoin, built with M0.
+
+    [Understand CUSD](/ct/guides/apps/cusd-overview) · [Launch CUSD](https://fairblock-cusd-app.vercel.app/)
+  </Card>
+  <Card title="Protected Execution" icon="key">
+    Protect orders, bids, intents, governance activity, and other sensitive inputs before execution.
+
+    [Explore Protected Execution](/pep/overview) · [Build a Protected Application](/pep/get-started/quick-start)
+  </Card>
+  <Card title="Confidential Intelligence" icon="brain">
+    Build agents and applications that interact with sensitive data and private workflows.
+
+    [Explore Confidential Intelligence](/confidential-intelligence/overview) · [View API Documentation](/api-reference/overview)
   </Card>
 </CardGroup>
