@@ -1,0 +1,213 @@
+---
+title: "CUSD by Fairblock and M0"
+description: "Confidential stablecoin payments with encrypted balances, configurable compliance, and selective disclosure."
+---
+
+## Overview
+
+CUSD is a confidential USD stablecoin built by Fairblock using M0 stablecoin infrastructure, with MxON supporting issuance and Predicate supporting compliance policies.
+
+CUSD combines transparent stablecoin functionality with an optional confidential mode. Users can protect transfer amounts and balances while preserving visible entry and exit points, address-level controls, freezing pathways, and selective disclosure.
+
+It is designed for payments, treasury operations, payroll, merchant settlement, trading, and other financial activity that should not be publicly exposed.
+
+## Why Fairblock Has a Flagship Stablecoin
+
+Fairblock is building a turnkey confidentiality layer for stablecoins and tokenized assets. CUSD is Fairblock's flagship confidential asset, enabling the network to deliver a fully integrated product experience, accelerate development, coordinate distribution, and align ecosystem economics.
+
+CUSD does not limit Fairblock to a single stablecoin. The same infrastructure can support confidential versions of existing stablecoins and tokenized assets. Issuers and partners can add confidentiality while preserving their own assets, liquidity, compliance systems, and distribution.
+
+## Roles in the CUSD Ecosystem
+
+| Partner | Role |
+| --- | --- |
+| **Fairblock** | Product, confidential transfers, developer integrations, selective disclosure, frontend and distribution |
+| **M0** | Stablecoin infrastructure and issuance framework |
+| **MxON** | Issuance, minting, backing and redemption |
+| **Predicate** | Policy enforcement, address screening and compliance controls |
+
+## Transparent and Confidential Modes
+
+**Transparent CUSD**: Standard CUSD held and transferred publicly, with visible addresses and amounts.
+
+**Confidential CUSD**: CUSD deposited into Fairblock, where internal transfer amounts and balances are encrypted.
+
+```mermaid
+flowchart LR
+    A["USDC or supported asset"] --> B["Transparent CUSD"]
+    B --> C["Fairblock confidential balance"]
+    C --> D["Confidential transfers"]
+    D --> E["Transparent withdrawal"]
+```
+
+<Note>
+  CUSD is the flagship implementation, not the limit of the platform. Fairblock's confidential transfer infrastructure can also be integrated with other stablecoins and tokenized assets.
+</Note>
+
+## Why CUSD Matters
+
+<CardGroup cols={3}>
+  <Card title="Protect Commercial Information" icon="building-shield">
+    Keep treasury balances, payroll, merchant revenue, supplier payments, trading flows, and institutional transfers from being publicly exposed.
+  </Card>
+  <Card title="Preserve Operational Controls" icon="shield-check">
+    Maintain visible entry and exit points, address screening, freezing pathways, monitoring, and selective disclosure.
+  </Card>
+  <Card title="Integrate Into Existing Products" icon="puzzle-piece">
+    Add confidentiality to wallets, payment applications, fintech platforms, treasury systems, and partner frontends without requiring a separate privacy chain or wallet.
+  </Card>
+</CardGroup>
+
+## How the CUSD Flow Works
+
+The CUSD flow has three stages: transparent entry, confidential transfer, and transparent exit.
+
+First, a user receives or purchases transparent CUSD. For example, the user may swap USDC into CUSD through a supported frontend. At this point, CUSD behaves like a normal transparent stablecoin. The user's address, transfer, and amount are visible and can be monitored using ordinary stablecoin compliance tools.
+
+Second, the user can deposit transparent CUSD into the Fairblock smart contract. This deposit is visible onchain. The deposit amount is visible. The depositing address is visible. This creates a confidential balance for the user inside the Fairblock system.
+
+Third, the user can make confidential transfers. Inside the Fairblock contract, transfers are represented as encrypted balance updates. The sender's encrypted balance is reduced and the receiver's encrypted balance is increased without publicly revealing the transfer amount.
+
+When a user wants to exit the confidential layer, the user withdraws from their confidential balance. The Fairblock smart contract sends transparent CUSD to the user's transparent address. This withdrawal is visible and can be screened.
+
+In practical terms, the user receives transparent CUSD, deposits it into the Fairblock contract, receives an encrypted balance, transfers confidentially, and withdraws transparent CUSD when they want to exit.
+
+## What Happens During a Confidential Transfer
+
+A confidential transfer inside Fairblock is not a normal public token transfer from one user address to another.
+
+Once CUSD has been deposited into the Fairblock smart contract, the transparent CUSD is held by the contract. Internal confidential transfers are handled through encrypted accounting. The sender's encrypted balance decreases and the receiver's encrypted balance increases.
+
+Fairblock uses homomorphic encryption to support this flow. Homomorphic encryption allows the system to perform valid operations on encrypted values. This means balances can be updated correctly without exposing the underlying transfer amounts to the public chain.
+
+This is the key technical distinction. Transparent CUSD movement happens at identifiable entry and exit points. Inside the confidential layer, Fairblock protects amounts and balances while preserving monitoring, selective disclosure, and partner-specific compliance workflows.
+
+## What Is Public and What Is Confidential
+
+CUSD does not make all activity invisible. It protects the financial data that should not be globally public.
+
+Addresses interacting with the system remain visible. Deposits into the Fairblock contract are visible. Withdrawals from the Fairblock contract are visible. Deposit and withdrawal amounts are visible. The timing of deposits and withdrawals is visible.
+
+What becomes confidential is the internal transfer amount, the user's confidential balance, and the encrypted accounting state inside the Fairblock layer.
+
+This distinction is central to CUSD. The system provides amount and balance confidentiality. It does not create an uncontrolled anonymity system.
+
+## Compliance and Controlled Disclosure
+
+### Entry and Exit Controls
+
+Deposits and withdrawals occur through visible transactions where addresses and amounts can be screened under applicable partner policies.
+
+### Freezing and Policy Enforcement
+
+Restricted transparent transfers, deposits, or withdrawals can be blocked or frozen through the relevant issuer, compliance-provider, or partner framework.
+
+### Selective Disclosure
+
+Authorized parties can receive scoped access to specific encrypted balances or transfers where operational, audit, compliance, or legal requirements apply.
+
+### Partner Oversight
+
+Partners can use Fairblock's dashboard or integrate approved monitoring providers for their own users and transaction flows.
+
+<Note>
+  Exact controls depend on the asset, network, issuer, jurisdiction, and partner configuration.
+</Note>
+
+## Why CUSD Is Not a Mixer
+
+CUSD protects transfer amounts and balances. It is not designed to break the relationship between deposits, withdrawals, and participating addresses. Deposits and withdrawals remain visible, entry and exit points can be screened, applicable transactions can be restricted, and encrypted information can be selectively disclosed.
+
+<Note>
+  Core confidentiality does not depend on a large anonymity set. Broader network participation can nevertheless improve metadata and transaction-pattern obfuscation.
+</Note>
+
+## The Fairblock Network Effect
+
+As more users, wallets, applications, and assets participate, CUSD benefits from deeper confidential liquidity, stronger economic incentives, broader utility, and improved network-level metadata obfuscation.
+
+The broader Fairblock network also prevents confidential assets from becoming isolated across separate chains and proprietary privacy systems. Applications can use shared infrastructure instead of maintaining multiple incompatible encryption integrations.
+
+## Why CUSD Is Different From Privacy Chains
+
+CUSD is also different from broad privacy chains, shielded pools, or private execution environments.
+
+Some privacy systems are designed to hide many aspects of activity at the protocol level, including transaction relationships or broader execution details. Those systems may be useful for certain applications, but they are often not the right fit for regulated stablecoin payments, enterprise use, or partner-led compliance programs.
+
+CUSD is more targeted.
+
+It focuses on confidential stablecoin transfers where amounts and balances are encrypted, while address-level compliance, entry and exit controls, freezing pathways, and selective disclosure remain available.
+
+This narrower design is intentional. Most businesses, payment companies, issuers, fintechs, and institutions do not need an anonymity network. They need stablecoin payments that protect sensitive amounts while satisfying compliance, monitoring, audit, and legal obligations.
+
+## Developer and Partner Integration Model
+
+CUSD is designed to integrate into existing wallets, stablecoin flows, payment applications, fintech products, and partner frontends.
+
+A developer or partner can support transparent CUSD by default and offer confidential CUSD as an optional privacy mode. Users do not need to move into a separate privacy chain or adopt a new wallet. They can interact with a familiar stablecoin flow that supports confidentiality when needed.
+
+Partners can configure compliance based on their own requirements. A partner may require screening before deposit, screening before withdrawal, dashboard access, internal review rights, third-party monitoring, or scoped disclosure access for its own transfer flow.
+
+This makes CUSD suitable for partners that want to offer confidentiality without taking on the risks or friction of an uncontrolled privacy system.
+
+## Benefits for Key Stakeholders
+
+<CardGroup cols={2}>
+  <Card title="Wallets and Fintechs" icon="wallet">
+    Offer confidential payments through an existing interface without building cryptographic or disclosure infrastructure internally.
+  </Card>
+  <Card title="Enterprises" icon="building">
+    Protect treasury, payroll, supplier, merchant, and operational payment information.
+  </Card>
+  <Card title="Stablecoin and Asset Issuers" icon="coins">
+    Add confidential functionality to existing assets while retaining control over issuance, distribution, and compliance policies.
+  </Card>
+  <Card title="Trading Firms" icon="chart-line">
+    Reduce public information leakage around balances, transfers, and settlement activity.
+  </Card>
+  <Card title="Developers" icon="code">
+    Integrate confidential balances and transfers through Fairblock's SDKs and APIs.
+  </Card>
+</CardGroup>
+
+## Core Compliance Position
+
+CUSD's compliance position is that confidentiality and compliance are compatible.
+
+CUSD protects sensitive amounts and balances from public exposure, but it does not remove the ability to screen addresses, monitor entry and exit points, freeze restricted transfers, support audits, or disclose specific information to authorized parties.
+
+Users first interact with transparent CUSD. They may optionally deposit into Fairblock to create a confidential balance. Internal transfers update encrypted balances. Withdrawals return transparent CUSD to a transparent address.
+
+This creates a practical compliance framework. Users enter through visible, screenable transactions. Users exit through visible, screenable transactions. Addresses remain part of the compliance perimeter. Amounts and balances are protected from public exposure. Authorized parties can receive targeted disclosure where required. Partners can configure additional monitoring for their own flows.
+
+M0 provides the stablecoin infrastructure. MxON supports issuance and minting. Predicate supports compliance across integrated chains. Fairblock provides the confidentiality, application layer, selective disclosure infrastructure, developer experience, partner onboarding, and go-to-market.
+
+This is the foundation of compliant confidential stablecoin infrastructure.
+
+## Public Positioning
+
+CUSD makes stablecoin payments private enough for real-world use and compliant enough for serious partners.
+
+It is not a mixer. It is not an anonymity protocol. It is not designed to remove oversight from stablecoin systems.
+
+CUSD gives issuers, wallets, fintechs, developers, institutions, merchants, market makers, neobanks, and payment companies a way to protect sensitive financial information while preserving the controls required for regulated financial activity.
+
+It offers common-sense confidentiality for balances, treasury activity, large trades, merchant payments, market-making flows, and institutional payments without requiring users to bridge to a privacy chain, adopt a new wallet, tolerate delays, or accept a weaker compliance posture.
+
+## Summary
+
+CUSD combines a transparent stablecoin with optional confidential balances and transfers. Fairblock protects sensitive amounts from public exposure while preserving visible entry and exit points, configurable compliance controls, and selective disclosure.
+
+CUSD is Fairblock's flagship confidential asset. The broader Fairblock platform can extend the same confidentiality infrastructure to additional stablecoins and tokenized assets.
+
+<CardGroup cols={3}>
+  <Card title="Launch CUSD" icon="rocket" href="https://fairblock-cusd-app.vercel.app/">
+    Start using CUSD today.
+  </Card>
+  <Card title="Integrate Confidential Transfers" icon="code" href="/ct/guides/build/building-with-sdk">
+    Build with the Stabletrust SDK.
+  </Card>
+  <Card title="Contact Fairblock" icon="envelope" href="https://x.com/0xfairblock">
+    Talk to the team about partnering.
+  </Card>
+</CardGroup>

@@ -39,7 +39,9 @@
         "group": "Get Started",
         "pages": [
           "overview",
-          "high-level-architecture"
+          "high-level-architecture",
+          "protocol/the-fairblock-network",
+          "ct/sdk-reference/supported-networks"
         ]
       },
       {
@@ -47,94 +49,87 @@
         "pages": [
           "ct/overview",
           {
-            "group": "Get Started",
+            "group": "How It Works",
             "pages": [
-              "ct/get-started/architecture",
-              "ct/get-started/quick-start"
+              "ct/how-it-works/confidential-transfers",
+              "ct/how-it-works/unlinkable-transfers"
             ]
           },
           {
-            "group": "Apps",
-            "expanded": true,
+            "group": "Confidential CUSD",
+            "pages": [
+              "ct/guides/apps/cusd-overview",
+              "ct/guides/apps/cusd-app"
+            ]
+          },
+          {
+            "group": "Stabletrust",
             "pages": [
               "ct/guides/apps/stabletrust-app",
-              "ct/guides/apps/cusd-app",
-              "ct/guides/apps/yieldshield-app",
+              "ct/guides/apps/yieldshield-app"
+            ]
+          },
+          {
+            "group": "Compliance and Disclosure",
+            "pages": [
+              "ct/how-it-works/compliance",
               "ct/guides/apps/compliance-dashboard-app"
             ]
           },
           {
-            "group": "Build",
-            "expanded": true,
+            "group": "SDK",
             "pages": [
+              "ct/get-started/architecture",
+              "ct/get-started/quick-start",
               "ct/guides/build/building-with-sdk",
               "ct/guides/build/unlinkable-transfers",
-              "ct/guides/build/agentic-api"
-            ]
-          },
-          {
-            "group": "How It Works",
-            "pages": [
-              "ct/how-it-works/confidential-transfers",
-              "ct/how-it-works/unlinkable-transfers",
-              "ct/how-it-works/compliance"
-            ]
-          },
-          {
-            "group": "SDK Reference",
-            "pages": [
+              "ct/guides/build/agentic-api",
               "ct/sdk-reference/methods",
-              "ct/sdk-reference/supported-networks",
               "ct/sdk-reference/common-errors"
+            ]
+          },
+          {
+            "group": "API Reference",
+            "pages": [
+              "api-reference/overview",
+              "api-reference/rpc-endpoints",
+              "api-reference/rest-api"
             ]
           }
         ]
       },
       {
-        "group": "Pre-Execution Privacy",
+        "group": "Protected Execution",
         "pages": [
           "pep/overview",
           {
-            "group": "Get Started",
+            "group": "Auctions and Intents",
             "pages": [
-              "pep/get-started/architecture",
-              "pep/get-started/quick-start"
-            ]
-          },
-          {
-            "group": "Apps",
-            "expanded": true,
-            "pages": [
-              "pep/guides/apps/fairrates"
-            ]
-          },
-          {
-            "group": "Build",
-            "expanded": true,
-            "pages": [
+              "pep/guides/apps/fairrates",
               "pep/guides/build/sealed-bid-auctions",
-              "pep/guides/build/private-governance",
+              "pep/guides/build/private-governance"
+            ]
+          },
+          {
+            "group": "Encrypted Transactions",
+            "pages": [
               "pep/guides/build/encrypted-transactions",
               "pep/guides/build/private-decryption",
               "pep/guides/build/verifiable-randomness",
-              {
-                "group": "Platform Setup",
-                "expanded": true,
-                "pages": [
-                  "pep/guides/build/platform-setup/cosmos-chains",
-                  "pep/guides/build/platform-setup/evm-arbitrum",
-                  "pep/guides/build/platform-setup/fairyring-native"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "How It Works",
-            "pages": [
               "pep/how-it-works/conditional-encryption",
               "pep/how-it-works/mpc-ibe",
               "pep/how-it-works/decryption-modes",
               "pep/how-it-works/network-flow"
+            ]
+          },
+          {
+            "group": "Integration Guide",
+            "pages": [
+              "pep/get-started/architecture",
+              "pep/get-started/quick-start",
+              "pep/guides/build/platform-setup/cosmos-chains",
+              "pep/guides/build/platform-setup/evm-arbitrum",
+              "pep/guides/build/platform-setup/fairyring-native"
             ]
           },
           {
@@ -147,9 +142,23 @@
         ]
       },
       {
+        "group": "Confidential Intelligence",
+        "pages": [
+          "confidential-intelligence/overview"
+        ]
+      },
+      {
         "group": "Resources",
         "pages": [
-          "resources/community",
+          {
+            "group": "Ecosystem",
+            "pages": [
+              "ecosystem/community",
+              "ecosystem/partners",
+              "ecosystem/supported-chains"
+            ]
+          },
+          "resources/faq",
           "resources/glossary"
         ]
       }
