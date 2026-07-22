@@ -58,8 +58,7 @@
           {
             "group": "Confidential CUSD",
             "pages": [
-              "ct/guides/apps/cusd-overview",
-              "ct/guides/apps/cusd-app"
+              "ct/guides/apps/cusd-overview"
             ]
           },
           {
