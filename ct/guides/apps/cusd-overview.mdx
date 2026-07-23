@@ -32,13 +32,7 @@ CUSD does not limit Fairblock to a single stablecoin. The same infrastructure ca
 
 **Confidential CUSD**: CUSD deposited into Fairblock, where internal transfer amounts and balances are encrypted.
 
-```mermaid
-flowchart LR
-    A["USDC or supported asset"] --> B["Transparent CUSD"]
-    B --> C["Fairblock confidential balance"]
-    C --> D["Confidential transfers"]
-    D --> E["Transparent withdrawal"]
-```
+![Transparent and Confidential Modes](/assets/cusd-transparent-confidential-modes.svg)
 
 <Note>
   CUSD is the flagship implementation, not the limit of the platform. Fairblock's confidential transfer infrastructure can also be integrated with other stablecoins and tokenized assets.
