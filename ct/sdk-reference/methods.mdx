@@ -88,12 +88,14 @@ Routes all operations through the Fairycloak relay, which pays gas (except depos
 new AnonymousTransferClient({ fairycloakUrl, chainId, rpcUrl })
 ```
 
+Pass `enableNativeFeeToken: true` (default `false`) only when the deployment's fee token is native ETH; leave it off otherwise.
+
 ### Accounts & keys
 
 | Method | Description |
 | :--- | :--- |
 | `deriveAnonymousKeys(authWallet, accountId)` | Derives the per-account ElGamal keypair `{ publicKey, privateKey }` |
-| `createAccount(authWallet, accountId, elgamalPublicKey, options?)` | Creates a new anonymous account via the relay |
+| `createAccount(authWallet, accountId, elgamalPublicKey, options?)` | Creates a new anonymous account via the relay. The fee payer funds an initial fee deposit (`options.initialFeeDeposit`, defaults to the contract minimum) that seeds the account's prepaid balance |
 | `ensureAnonymousAccount(authWallet, accountId, elgamalPublicKey, options?)` | Idempotent create-if-absent; returns `{ accountId, accountInfo, created }` |
 | `updateAuthKeys(authWallet, accountId, { add, remove }, options?)` | Adds/removes authorised signers |
 | `getAnonymousAccountInfo(accountId)` | Onchain state: `exists`, `finalized`, `hasPendingAction`, `txId`, `elgamalPubkey`, `authNonce` |
@@ -120,11 +122,17 @@ new AnonymousTransferClient({ fairycloakUrl, chainId, rpcUrl })
 
 ### Prepaid fees
 
+Every relay operation - create, `updateAuthKeys`, transfer, `applyPending`, and withdraw — charges a fixed fee, debited from the account's prepaid balance. `createAccount` seeds that balance with an initial deposit in the fee token; top it up any time with `depositFees`.
+
 | Method | Description |
 | :--- | :--- |
-| `getFeeToken()` | Currently configured ERC-20 fee token address |
-| `getNonAnonymousTransferFee()` | Fee for a direct (non-anonymous) transfer, raw units |
+| `getFeeToken()` | Currently configured fee-token address (`address(0)` = native) |
+| `getAnonymousCreateAccountFee()` | Fee charged on account creation, raw units |
+| `getAnonymousMinimumInitialFeeDeposit()` | Minimum initial fee deposit required at creation |
+| `getAnonymousUpdateKeysFee()` | Fee for an `updateAuthKeys` call, raw units |
+| `getAnonymousApplyPendingFee()` | Fee for an `applyPending` call, raw units |
 | `getAnonymousInlineTransferFee()` | Fee for an anonymous transfer, raw units |
+| `getAnonymousInlineWithdrawFee()` | Fee for an anonymous withdraw, raw units |
 | `getPrepaidFeeBalance(accountId, token)` | Prepaid fee balance for an account and fee token |
 | `depositFees(authWallet, accountId, amount, options?)` | Tops up the prepaid fee reserve (user pays gas) |
 | `withdrawFees(authWallet, accountId, { token, destination, amount }, options?)` | Withdraws a specific fee-token amount |
