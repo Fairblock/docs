@@ -53,6 +53,8 @@ const client = new AnonymousTransferClient({
 });
 ```
 
+Add `enableNativeFeeToken: true` (default `false`) only if the deployment uses a native-ETH fee token.
+
 ## Key derivation
 
 Unlinkable accounts use a per-account ElGamal keypair derived from a wallet signature. **Store the returned `privateKey` securely**: it cannot be recovered without the original wallet and account ID.
@@ -82,7 +84,9 @@ const wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
 const tokenAddress = "0xYourTokenAddress";
 const tokenDecimals = 6;
 
-// 1. Choose a unique account ID, derive keys, then ensure the account exists
+// 1. Choose a unique account ID, derive keys, then ensure the account exists.
+//    Creation charges a fee from an initial deposit, so the fee payer must hold
+//    and approve the fee token (the deposit defaults to the contract minimum).
 const accountId = "myUniqueAccountId"; // any valid account ID you choose
 const keys = await client.deriveAnonymousKeys(wallet, accountId);
 await client.ensureAnonymousAccount(wallet, accountId, keys.publicKey);
@@ -136,7 +140,7 @@ await client.waitForRequest(withdrawResult.request_id);
 
 ### Account management
 
-- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new unlinkable account via the relay (relay pays gas). `accountId` is a caller-chosen string following the [account ID rules](#unlinkable-account-id-rules).
+- **`createAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Creates a new unlinkable account via the relay (relay pays gas). The fee payer funds an initial fee deposit (`options.initialFeeDeposit`, defaults to the contract minimum) that seeds the account's prepaid balance. `accountId` is a caller-chosen string following the [account ID rules](#unlinkable-account-id-rules).
 - **`ensureAnonymousAccount(authWallet, accountId, elgamalPublicKey, options?)`**: Idempotent helper: creates the account if it doesn't exist and (by default) waits until it has settled. Safe to call on every run with a stable `accountId`. Returns `{ accountId, accountInfo, created }`. Options: `deadlineOffset` (default `3600`), `waitUntilReady` (default `true`), `timeoutMs` (default `180000`), `pollIntervalMs` (default `2000`).
 - **`updateAuthKeys(authWallet, accountId, { add, remove }, options?)`**: Adds or removes authorised signers.
 - **`getAnonymousAccountInfo(accountId)`**: Returns onchain state: `exists`, `finalized`, `hasPendingAction`, `txId`, `elgamalPubkey`, `authNonce`.
@@ -175,10 +179,10 @@ const result = await client.transferToPublic(wallet, accountId, {
 
 ## Prepaid fees
 
-Every `transferToPublic` and `transferToAnonymous` call deducts a protocol fee from the sender account's **prepaid fee reserve**. The SDK checks this balance before submitting and throws a descriptive error if it's insufficient: top up with `depositFees` before transferring.
+Every relay operation — account creation, `updateAuthKeys`, `transferToPublic`, `transferToAnonymous`, `applyPending`, and `withdraw` - deducts a fixed protocol fee from the account's **prepaid fee reserve**. `createAccount` seeds this reserve with an initial deposit (in the fee token); top it up any time with `depositFees`. The SDK checks the balance before submitting and throws a descriptive error if it's insufficient.
 
-- **`getFeeToken()`**: Returns the currently configured ERC-20 fee token address. `depositFees` must use this token. The fee token can be rotated by the protocol; existing balances in old fee tokens remain withdrawable.
-- **`getNonAnonymousTransferFee()` / `getAnonymousInlineTransferFee()`**: Return the per-transfer protocol fee (raw ERC-20 units). For unlinkable transfers use `getAnonymousInlineTransferFee()`.
+- **`getFeeToken()`**: Returns the currently configured fee-token address (`address(0)` = native currency). `depositFees` must use this token. The fee token can be rotated by the protocol; existing balances in old fee tokens remain withdrawable.
+- **Per-operation fee getters** (all return raw fee-token units): `getAnonymousCreateAccountFee()`, `getAnonymousMinimumInitialFeeDeposit()`, `getAnonymousUpdateKeysFee()`, `getAnonymousApplyPendingFee()`, `getAnonymousInlineTransferFee()`, and `getAnonymousInlineWithdrawFee()`.
 - **`getPrepaidFeeBalance(accountId, token)`**: Returns the prepaid fee balance for an account and fee token.
 - **`depositFees(authWallet, accountId, amount, options?)`**: Deposits into the prepaid fee reserve. **The user pays gas.** Handles ERC-20 approval against the active fee token automatically.
 - **`withdrawFees(authWallet, accountId, { token, destination, amount }, options?)`**: Withdraws a specific amount from a given fee token's reserve (relay pays gas).
