@@ -55,19 +55,7 @@
               "ct/how-it-works/unlinkable-transfers"
             ]
           },
-          {
-            "group": "Confidential CUSD",
-            "pages": [
-              "ct/guides/apps/cusd-overview"
-            ]
-          },
-          {
-            "group": "Stabletrust",
-            "pages": [
-              "ct/guides/apps/stabletrust-app",
-              "ct/guides/apps/yieldshield-app"
-            ]
-          },
+          "ct/guides/apps/stabletrust-app",
           {
             "group": "Compliance and Disclosure",
             "pages": [
@@ -76,25 +64,19 @@
             ]
           },
           {
-            "group": "SDK",
+            "group": "Stabletrust SDK",
             "pages": [
               "ct/get-started/architecture",
               "ct/get-started/quick-start",
               "ct/guides/build/building-with-sdk",
               "ct/guides/build/unlinkable-transfers",
-              "ct/guides/build/agentic-api",
               "ct/sdk-reference/methods",
               "ct/sdk-reference/common-errors"
             ]
           },
-          {
-            "group": "API Reference",
-            "pages": [
-              "api-reference/overview",
-              "api-reference/rpc-endpoints",
-              "api-reference/rest-api"
-            ]
-          }
+          "ct/guides/build/agentic-api",
+          "ct/guides/apps/cusd-overview",
+          "ct/guides/apps/yieldshield-app"
         ]
       },
       {
@@ -138,6 +120,14 @@
               "pep/module-reference/keyshare"
             ]
           }
+        ]
+      },
+      {
+        "group": "API Reference",
+        "pages": [
+          "api-reference/overview",
+          "api-reference/rpc-endpoints",
+          "api-reference/rest-api"
         ]
       },
       {
