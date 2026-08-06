@@ -1,0 +1,215 @@
+---
+title: "Privy"
+description: "Use a Privy embedded wallet as the signer for confidential transfers"
+---
+
+[Privy](https://privy.io) lets your users sign in the way they already do - email, social login, passkey, or an existing wallet - and gives each one a self-custodial embedded wallet with no seed phrase to manage. Because the Stabletrust SDK only needs a standard [`ethers`](https://docs.ethers.org/v6/) signer to operate, a Privy wallet plugs straight in: the same wallet the user signs in with holds their confidential balance and runs deposits, transfers, and withdrawals.
+
+Privy's role is unchanged. It authenticates the user, manages the embedded wallet, and produces signatures. Stabletrust uses those signatures to derive the user's encryption key and to broadcast confidential transactions - it never sees or stores the wallet's private key.
+
+<Note>
+  This is the recommended path when you don't want to custody raw private keys. The [Stabletrust API](/ct/guides/build/agentic-api) `ConfidentialTransferClient` accepts any `ethers.Signer`, so you pass a Privy signer instead of building an `ethers.Wallet` from a raw key. For a complete Next.js app built on this pattern, see [Building an App with the SDK](/ct/guides/build/building-with-sdk).
+</Note>
+
+## Compatibility
+
+| Environment | Supported | Notes |
+| :--- | :--- | :--- |
+| Browser | ✅ | React, Next.js - `@privy-io/react-auth` v2+ |
+| Server | ✅ | Node backends and agents - `@privy-io/server-auth` wallet API |
+| Signer interface | `ethers` v6 `Signer` | Derived from Privy's EIP-1193 provider |
+
+## How the integration works
+
+Three pieces cooperate, and the wallet's private key stays inside Privy the whole time:
+
+- **The user's Privy wallet** - produces every signature. That includes the one-time key-derivation signature and each on-chain transaction. Nothing moves without it.
+- **The `@fairblock/stabletrust` SDK** - runs in your app. It derives the user's encryption key from a wallet signature, generates the zero-knowledge proof locally in WebAssembly, and builds the confidential transactions.
+- **The chain** - the Privy wallet broadcasts the transaction directly. Amounts are encrypted on-chain; the sender and recipient addresses remain visible. There is no Fairblock enclave or relayer in this flow.
+
+<Info>
+  A confidential transfer hides the **amount**, not the participants. The sender and recipient addresses are visible on-chain - only the value moved is encrypted. To also hide the sender's address, use [Unlinkable Transfers](/ct/guides/build/unlinkable-transfers).
+</Info>
+
+## Installation
+
+```bash
+npm install @privy-io/react-auth ethers @fairblock/stabletrust
+```
+
+You will also need a Privy App ID from the [Privy dashboard](https://dashboard.privy.io) and a JSON-RPC endpoint for your target network.
+
+## 1. Get a signer from Privy
+
+Stabletrust expects a standard `ethers.Signer`. Privy exposes its wallet as an EIP-1193 provider, so wrap that provider with ethers and take the signer from it.
+
+```tsx
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { ethers } from "ethers";
+
+const CHAIN_ID = 84532; // Base Sepolia
+
+export function useStabletrustSigner() {
+  const { authenticated } = usePrivy();
+  const { wallets } = useWallets();
+
+  async function getSigner() {
+    if (!authenticated || wallets.length === 0) return null;
+
+    const wallet = wallets[0]; // the user's embedded Privy wallet
+
+    // 1. Make sure the wallet is on the right network first
+    await wallet.switchChain(CHAIN_ID);
+
+    // 2. Pull the raw EIP-1193 provider out of Privy
+    const eip1193 = await wallet.getEthereumProvider();
+
+    // 3. Wrap it with ethers and take the signer
+    const provider = new ethers.BrowserProvider(eip1193);
+    return provider.getSigner(); // ethers.Signer - this is all the SDK needs
+  }
+
+  return { getSigner };
+}
+```
+
+This is the exact signer used throughout [Building an App with the SDK](/ct/guides/build/building-with-sdk). Everything below is identical no matter how the signer was produced.
+
+<Tip>
+  On the server, use [`@privy-io/server-auth`](https://docs.privy.io/guide/server-wallets) to obtain a wallet for an agent, wrap its EIP-1193 provider with `ethers.BrowserProvider` the same way, and use the resulting signer with the SDK unchanged.
+</Tip>
+
+## 2. Point the SDK at the signer
+
+Create one `ConfidentialTransferClient` for the network, then call `ensureAccount` with the Privy signer. `ensureAccount` triggers a single wallet signature, derives the user's encryption keypair from it, and - the first time only - registers the public key on-chain.
+
+```tsx
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+
+const RPC_URL = "https://sepolia.base.org";
+const client = new ConfidentialTransferClient(RPC_URL, CHAIN_ID);
+
+const signer = await getSigner();
+
+// One signature → derives the confidential key. First call also registers it on-chain.
+const keys = await client.ensureAccount(signer);
+// keys = { publicKey, privateKey }  - the encryption keypair, derived, never the wallet key
+```
+
+
+
+## 3. Read the confidential balance
+
+The balance is stored encrypted on-chain. The SDK decrypts it client-side with the `privateKey` from `ensureAccount` - the wallet is not needed for a read.
+
+```tsx
+const tokenAddress = "0x036CbD53842c5426634e7929541eC2318f3dCF7e"; // test USDC on Base Sepolia
+const address = await signer.getAddress();
+
+const balance = await client.getConfidentialBalance(
+  address,
+  keys.privateKey,
+  tokenAddress,
+);
+
+console.log("total:",     ethers.formatUnits(balance.amount, 6));
+console.log("available:", ethers.formatUnits(balance.available.amount, 6));
+console.log("pending:",   ethers.formatUnits(balance.pending.amount, 6));
+```
+
+## 4. Deposit (shield)
+
+Move public ERC-20 tokens into the encrypted balance. The SDK handles the ERC-20 approval for you - no separate `approve` call.
+
+```tsx
+const amount = ethers.parseUnits("10", 6); // 10 USDC, in base units
+
+await client.confidentialDeposit(signer, tokenAddress, amount);
+```
+
+## 5. Transfer confidentially
+
+Send tokens from the sender's encrypted balance to another address's encrypted balance. The amount is hidden on-chain; the recipient must already have called `ensureAccount`.
+
+```tsx
+const amount = ethers.parseUnits("5", 6);
+
+await client.confidentialTransfer(
+  signer,           // sender's Privy signer
+  recipientAddress, // recipient's public address (0x...)
+  tokenAddress,
+  amount,
+);
+```
+
+## 6. Withdraw (unshield)
+
+Move tokens from the encrypted balance back to a public ERC-20 balance. After withdrawal the amount is visible on-chain again.
+
+```tsx
+const amount = ethers.parseUnits("2", 6);
+
+await client.withdraw(signer, tokenAddress, amount);
+```
+
+## Putting it together
+
+```tsx
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+import { ethers } from "ethers";
+
+const CHAIN_ID = 84532;
+const RPC_URL = "https://sepolia.base.org";
+const tokenAddress = "0x036CbD53842c5426634e7929541eC2318f3dCF7e";
+
+const client = new ConfidentialTransferClient(RPC_URL, CHAIN_ID);
+
+async function runConfidentialFlow(wallet, recipientAddress) {
+  // 1. Privy wallet → ethers signer
+  await wallet.switchChain(CHAIN_ID);
+  const provider = new ethers.BrowserProvider(await wallet.getEthereumProvider());
+  const signer = await provider.getSigner();
+
+  // 2. Derive the confidential key (one signature) + register on first use
+  const keys = await client.ensureAccount(signer);
+
+  // 3. Shield, transfer, unshield - amounts encrypted on-chain
+  await client.confidentialDeposit(signer, tokenAddress, ethers.parseUnits("10", 6));
+  await client.confidentialTransfer(signer, recipientAddress, tokenAddress, ethers.parseUnits("5", 6));
+  await client.withdraw(signer, tokenAddress, ethers.parseUnits("2", 6));
+
+  // 4. Read the decrypted balance
+  const balance = await client.getConfidentialBalance(
+    await signer.getAddress(),
+    keys.privateKey,
+    tokenAddress,
+  );
+  return ethers.formatUnits(balance.amount, 6);
+}
+```
+
+## Notes and security
+
+- **Self-custodial.** The wallet's private key stays inside Privy's infrastructure. Stabletrust only ever receives signatures and a derived encryption key - it cannot move the user's funds.
+- **The derived key never leaves the client.** `keys.privateKey` is a decryption key derived in the browser from a signature. It is re-derived on each session and is not the wallet's private key. Keep it in memory only; never log or persist it in plaintext.
+- **Keys are per chain and contract.** The same wallet derives a different confidential key on each network. Call `ensureAccount` once per chain you support.
+- **Account finalization takes time.** The first `ensureAccount` waits for on-chain finalization (roughly 45 seconds). It resolves once the account is ready.
+- **Recipients must exist.** `confidentialTransfer` fails if the recipient has never called `ensureAccount`. Verify the recipient account exists before sending.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Build an App with the SDK" icon="code" href="/ct/guides/build/building-with-sdk">
+    The full Next.js walkthrough this integration is based on.
+  </Card>
+  <Card title="Turnkey" icon="key" href="/ct/guides/build/api-integrations/turnkey">
+    The same flow with a Turnkey embedded wallet.
+  </Card>
+  <Card title="Method Reference" icon="list" href="/ct/sdk-reference/methods">
+    Every client method, parameter, and return type.
+  </Card>
+  <Card title="Unlinkable Transfers" icon="user-secret" href="/ct/guides/build/unlinkable-transfers">
+    Hide the sender's address as well as the amount.
+  </Card>
+</CardGroup>

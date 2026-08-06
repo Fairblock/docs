@@ -1,0 +1,244 @@
+---
+title: "Turnkey"
+description: "Use a Turnkey embedded wallet as the signer for confidential transfers"
+---
+
+[Turnkey](https://turnkey.com) gives you embedded wallets whose private keys are generated and held inside hardware-isolated secure enclaves and never exposed - to you, to your users, or to Turnkey. Users sign in with a passkey, email, or social login; agents and backends sign programmatically with an API key. Either way you get a standard [`ethers`](https://docs.ethers.org/v6/) signer, and the Stabletrust SDK only needs a signer to operate - so a Turnkey wallet plugs straight into `ConfidentialTransferClient`.
+
+Turnkey's role is unchanged. It holds the key and produces signatures. Stabletrust uses those signatures to derive the user's encryption key and to broadcast confidential transactions - the raw key never leaves the enclave.
+
+<Note>
+  This is the recommended path when you don't want to custody raw private keys. The [Stabletrust API](/ct/guides/build/agentic-api) `ConfidentialTransferClient` accepts any `ethers.Signer`, so you pass a Turnkey signer instead of building an `ethers.Wallet` from a raw key. This fits agent and server runtimes especially well: the agent's key lives in an enclave, not in an environment variable.
+</Note>
+
+## Compatibility
+
+| Environment | Supported | Notes |
+| :--- | :--- | :--- |
+| Server / agent | ✅ | Node backends and agents - `@turnkey/sdk-server` + `@turnkey/ethers` |
+| Browser | ✅ | Passkeys - `@turnkey/react-wallet-kit` + `@turnkey/ethers` |
+| Signer interface | `ethers` v6 `Signer` | `new TurnkeySigner(...).connect(provider)` |
+
+## How the integration works
+
+Three pieces cooperate, and the wallet's private key stays inside Turnkey's enclave the whole time:
+
+- **The Turnkey wallet** - produces every signature: the one-time key-derivation signature and each on-chain transaction. It signs inside a secure enclave; the raw key is never exported.
+- **The `@fairblock/stabletrust` SDK** - runs in your app or agent. It derives the encryption key from a wallet signature, generates the zero-knowledge proof locally in WebAssembly, and builds the confidential transactions.
+- **The chain** - the Turnkey signer broadcasts the transaction directly. Amounts are encrypted on-chain; sender and recipient addresses remain visible. There is no Fairblock enclave or relayer in this flow.
+
+<Info>
+  A confidential transfer hides the **amount**, not the participants. The sender and recipient addresses are visible on-chain - only the value moved is encrypted. To also hide the sender's address, use [Unlinkable Transfers](/ct/guides/build/unlinkable-transfers).
+</Info>
+
+## Installation
+
+```bash
+npm install @turnkey/sdk-server @turnkey/ethers ethers @fairblock/stabletrust
+```
+
+You will need a Turnkey organization with an API key pair and a wallet account, plus a JSON-RPC endpoint for your target network. Create these in the [Turnkey dashboard](https://app.turnkey.com).
+
+```env
+TURNKEY_API_BASE_URL=https://api.turnkey.com
+TURNKEY_API_PUBLIC_KEY=...
+TURNKEY_API_PRIVATE_KEY=...
+TURNKEY_ORGANIZATION_ID=...
+TURNKEY_SIGN_WITH=0x...   # the Turnkey wallet account's Ethereum address
+```
+
+## 1. Get a signer from Turnkey
+
+Stabletrust expects a standard `ethers.Signer`. Turnkey provides one directly through `@turnkey/ethers`: build a `TurnkeySigner`, then `connect` it to a JSON-RPC provider so it can read nonces and broadcast transactions.
+
+```ts
+import { Turnkey } from "@turnkey/sdk-server";
+import { TurnkeySigner } from "@turnkey/ethers";
+import { ethers } from "ethers";
+
+const CHAIN_ID = 84532;                 // Base Sepolia
+const RPC_URL = "https://sepolia.base.org";
+
+const turnkey = new Turnkey({
+  apiBaseUrl: process.env.TURNKEY_API_BASE_URL!,
+  apiPublicKey: process.env.TURNKEY_API_PUBLIC_KEY!,
+  apiPrivateKey: process.env.TURNKEY_API_PRIVATE_KEY!,
+  defaultOrganizationId: process.env.TURNKEY_ORGANIZATION_ID!,
+});
+
+const provider = new ethers.JsonRpcProvider(RPC_URL);
+
+const signer = new TurnkeySigner({
+  client: turnkey.apiClient(),
+  organizationId: process.env.TURNKEY_ORGANIZATION_ID!,
+  signWith: process.env.TURNKEY_SIGN_WITH!, // wallet account address
+}).connect(provider); // ethers.Signer - this is all the SDK needs
+```
+
+`TurnkeySigner` implements the full signer interface Stabletrust uses - `signTypedData` for key derivation and `sendTransaction` for on-chain operations. Everything below is identical no matter how the signer was produced.
+
+<Tip>
+  **In the browser (passkeys):** obtain the signer from Turnkey's React SDK instead, then use it with the SDK unchanged. The only difference is where the client comes from.
+
+  ```tsx
+  import { useTurnkey } from "@turnkey/react-wallet-kit";
+  import { TurnkeySigner } from "@turnkey/ethers";
+  import { ethers } from "ethers";
+
+  const { httpClient, session, wallets } = useTurnkey();
+  const account = wallets
+    .flatMap((w) => w.accounts)
+    .find((a) => a.addressFormat === "ADDRESS_FORMAT_ETHEREUM");
+
+  const signer = new TurnkeySigner({
+    client: httpClient,
+    organizationId: session.organizationId, // the user's sub-organization
+    signWith: account.address,
+  }).connect(new ethers.JsonRpcProvider(RPC_URL));
+  ```
+
+  See Turnkey's [React quickstart](https://docs.turnkey.com/sdks/react) for the exact hook fields. The invariant is the same: build a `TurnkeySigner` from the browser client, the user's sub-organization ID, and their Ethereum address, then `.connect()` a provider.
+</Tip>
+
+## 2. Point the SDK at the signer
+
+Create one `ConfidentialTransferClient` for the network, then call `ensureAccount` with the Turnkey signer. `ensureAccount` triggers a single signature, derives the encryption keypair from it, and - the first time only - registers the public key on-chain.
+
+```ts
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+
+const client = new ConfidentialTransferClient(RPC_URL, CHAIN_ID);
+
+// One signature → derives the confidential key. First call also registers it on-chain.
+const keys = await client.ensureAccount(signer);
+// keys = { publicKey, privateKey }  - the encryption keypair, derived, never the wallet key
+```
+
+
+
+## 3. Read the confidential balance
+
+The balance is stored encrypted on-chain. The SDK decrypts it client-side with the `privateKey` from `ensureAccount` - no signature needed for a read.
+
+```ts
+const tokenAddress = "0x036CbD53842c5426634e7929541eC2318f3dCF7e"; // test USDC on Base Sepolia
+const address = await signer.getAddress();
+
+const balance = await client.getConfidentialBalance(
+  address,
+  keys.privateKey,
+  tokenAddress,
+);
+
+console.log("total:",     ethers.formatUnits(balance.amount, 6));
+console.log("available:", ethers.formatUnits(balance.available.amount, 6));
+console.log("pending:",   ethers.formatUnits(balance.pending.amount, 6));
+```
+
+## 4. Deposit (shield)
+
+Move public ERC-20 tokens into the encrypted balance. The SDK handles the ERC-20 approval for you - no separate `approve` call.
+
+```ts
+const amount = ethers.parseUnits("10", 6); // 10 USDC, in base units
+
+await client.confidentialDeposit(signer, tokenAddress, amount);
+```
+
+## 5. Transfer confidentially
+
+Send tokens from the signer's encrypted balance to another address's encrypted balance. The amount is hidden on-chain; the recipient must already have called `ensureAccount`.
+
+```ts
+const amount = ethers.parseUnits("5", 6);
+
+await client.confidentialTransfer(
+  signer,           // sender's Turnkey signer
+  recipientAddress, // recipient's public address (0x...)
+  tokenAddress,
+  amount,
+);
+```
+
+## 6. Withdraw (unshield)
+
+Move tokens from the encrypted balance back to a public ERC-20 balance. After withdrawal the amount is visible on-chain again.
+
+```ts
+const amount = ethers.parseUnits("2", 6);
+
+await client.withdraw(signer, tokenAddress, amount);
+```
+
+## Putting it together
+
+```ts
+import { Turnkey } from "@turnkey/sdk-server";
+import { TurnkeySigner } from "@turnkey/ethers";
+import { ConfidentialTransferClient } from "@fairblock/stabletrust";
+import { ethers } from "ethers";
+
+const CHAIN_ID = 84532;
+const RPC_URL = "https://sepolia.base.org";
+const tokenAddress = "0x036CbD53842c5426634e7929541eC2318f3dCF7e";
+
+const provider = new ethers.JsonRpcProvider(RPC_URL);
+const client = new ConfidentialTransferClient(RPC_URL, CHAIN_ID);
+
+async function runConfidentialFlow(recipientAddress: string) {
+  // 1. Turnkey wallet → ethers signer
+  const turnkey = new Turnkey({
+    apiBaseUrl: process.env.TURNKEY_API_BASE_URL!,
+    apiPublicKey: process.env.TURNKEY_API_PUBLIC_KEY!,
+    apiPrivateKey: process.env.TURNKEY_API_PRIVATE_KEY!,
+    defaultOrganizationId: process.env.TURNKEY_ORGANIZATION_ID!,
+  });
+  const signer = new TurnkeySigner({
+    client: turnkey.apiClient(),
+    organizationId: process.env.TURNKEY_ORGANIZATION_ID!,
+    signWith: process.env.TURNKEY_SIGN_WITH!,
+  }).connect(provider);
+
+  // 2. Derive the confidential key (one signature) + register on first use
+  const keys = await client.ensureAccount(signer);
+
+  // 3. Shield, transfer, unshield - amounts encrypted on-chain
+  await client.confidentialDeposit(signer, tokenAddress, ethers.parseUnits("10", 6));
+  await client.confidentialTransfer(signer, recipientAddress, tokenAddress, ethers.parseUnits("5", 6));
+  await client.withdraw(signer, tokenAddress, ethers.parseUnits("2", 6));
+
+  // 4. Read the decrypted balance
+  const balance = await client.getConfidentialBalance(
+    await signer.getAddress(),
+    keys.privateKey,
+    tokenAddress,
+  );
+  return ethers.formatUnits(balance.amount, 6);
+}
+```
+
+## Notes and security
+
+- **The raw key never leaves the enclave.** Turnkey signs inside hardware-isolated secure enclaves; your app receives signatures, never the private key. Stabletrust cannot move funds - it only receives signatures and a derived encryption key.
+- **Custody depends on who holds the root.** With a server API key, your backend can sign for that wallet - treat the API key like any signing credential. With a passkey-rooted sub-organization (the browser flow), only the user's passkey can authorize signing, so neither you nor Turnkey can move the funds.
+- **The derived key never leaves the client.** `keys.privateKey` is a decryption key derived from a signature - not the wallet's private key. It is re-derived each session. Keep it in memory only; never log or persist it in plaintext.
+- **Keys are per chain and contract.** The same wallet derives a different confidential key on each network. Call `ensureAccount` once per chain you support.
+- **Account finalization takes time.** The first `ensureAccount` waits for on-chain finalization (roughly 45 seconds). It resolves once the account is ready.
+- **Recipients must exist.** `confidentialTransfer` fails if the recipient has never called `ensureAccount`. Verify the recipient account exists before sending.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Stabletrust API" icon="robot" href="/ct/guides/build/agentic-api">
+    Confidential payments for agents, driven from a server runtime.
+  </Card>
+  <Card title="Privy" icon="wallet" href="/ct/guides/build/api-integrations/privy">
+    The same flow with a Privy embedded wallet.
+  </Card>
+  <Card title="Method Reference" icon="list" href="/ct/sdk-reference/methods">
+    Every client method, parameter, and return type.
+  </Card>
+  <Card title="Unlinkable Transfers" icon="user-secret" href="/ct/guides/build/unlinkable-transfers">
+    Hide the sender's address as well as the amount.
+  </Card>
+</CardGroup>
