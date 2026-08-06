@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1999 1091" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <rect width="1999" height="1091" fill="#f4f4f5"/>
+
+  <text x="52" y="95" font-size="42" fill="#111111">The Network Flywheel</text>
+
+  <!-- Box style: fill #e6e6e6, rx 14 -->
+  <g fill="#e6e6e6">
+    <rect x="600" y="135" width="655" height="90" rx="14"/>
+    <rect x="600" y="281" width="655" height="94" rx="14"/>
+    <rect x="600" y="427" width="655" height="94" rx="14"/>
+    <rect x="600" y="573" width="655" height="94" rx="14"/>
+    <rect x="600" y="719" width="655" height="94" rx="14"/>
+    <rect x="600" y="865" width="655" height="94" rx="14"/>
+  </g>
+
+  <g font-size="28" fill="#111111" text-anchor="middle">
+    <text x="927" y="188">More supported assets and chains</text>
+
+    <text x="927" y="320">More wallets, applications,</text>
+    <text x="927" y="356">neobanks, and agents</text>
+
+    <text x="927" y="466">More users and confidential</text>
+    <text x="927" y="502">activity</text>
+
+    <text x="927" y="612">Stronger financial incentives and</text>
+    <text x="927" y="648">metadata obfuscation</text>
+
+    <text x="927" y="758">Deeper confidential liquidity and</text>
+    <text x="927" y="794">broader interoperability</text>
+
+    <text x="927" y="904">Lower integration costs for</text>
+    <text x="927" y="940">additional partners</text>
+  </g>
+
+  <g stroke="#111111" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="927" y1="225" x2="927" y2="277"/>
+    <line x1="927" y1="375" x2="927" y2="423"/>
+    <line x1="927" y1="521" x2="927" y2="569"/>
+    <line x1="927" y1="667" x2="927" y2="715"/>
+    <line x1="927" y1="813" x2="927" y2="861"/>
+  </g>
+
+  <!-- feedback loop: from bottom box right side, up to top box right side -->
+  <path d="M 1255 912 L 1390 912 L 1390 180 L 1259 180" stroke="#111111" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111111"/>
+    </marker>
+  </defs>
+</svg>
