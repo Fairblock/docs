@@ -40,8 +40,7 @@
         "pages": [
           "overview",
           "high-level-architecture",
-          "protocol/the-fairblock-network",
-          "ct/sdk-reference/supported-networks"
+          "protocol/the-fairblock-network"
         ]
       },
       {
@@ -71,7 +70,8 @@
               "ct/guides/build/building-with-sdk",
               "ct/guides/build/unlinkable-transfers",
               "ct/sdk-reference/methods",
-              "ct/sdk-reference/common-errors"
+              "ct/sdk-reference/common-errors",
+              "ct/sdk-reference/supported-networks"
             ]
           },
           "ct/guides/build/agentic-api",
