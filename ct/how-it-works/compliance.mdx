@@ -3,94 +3,107 @@ title: "Compliance and Regulation"
 description: "Confidential and Compliant transfers"
 ---
 
-# Compliance and Regulation
+Fairblock is designed so transaction confidentiality does not remove the controls expected by institutional payment infrastructure. Addresses and transaction relationships remain traceable. Only transaction amounts are encrypted.
 
-## Confidential amounts, transparent addresses
+The compliance model combines four independent layers: perimeter screening, protocol-level containment, issuer-level enforcement, and narrowly scoped selective disclosure.
 
-Fairblock's compliance model is simple: encrypt commercially sensitive amounts, keep transaction counterparties auditable, and enable scoped disclosure when an authorized party has a legitimate need.
+## 1. Perimeter Screening
 
-Fairblock encrypts transaction amounts and balances by default while keeping sender and receiver addresses transparent. This provides financial confidentiality without sacrificing auditability.
+Fairblock can support USDC, USDT, PYUSD, and other stablecoins or tokenized assets.
 
-- Fairblock is **not a mixer**. Compliance controls can screen, block, and monitor illicit activity while also preserving transaction traceability and auditability.
-- Regulators, auditors, banks, and compliance teams can still see which addresses interacted.
-- Businesses gain confidentiality over commercially sensitive payment amounts and balances.
-- Encrypted amounts can be selectively disclosed when required for legitimate compliance, legal, or audit purposes.
-- This model is consistent with how regulated financial institutions handle sensitive financial data: public transparency is limited, while authorized parties can obtain access when appropriate.
+At the deposit and withdrawal boundary, Fairblock can integrate compliance and blockchain-risk providers such as Predicate or Range Security.
 
-This is also how traditional financial systems operate. Banks do not publicly expose account balances or transaction amounts, and Apple Pay does not broadcast payments to the world. However, both can provide records to auditors, regulators, or law enforcement when legally required. Fairblock applies the same principle to onchain finance.
+The relevant transparent address can be screened for:
 
-## Selective disclosure
+- Sanctions exposure
+- Stolen or hacked funds
+- Illicit-finance exposure
+- Known compromised addresses
+- Other configured risk signals
 
-Transparent addresses are only one part of Fairblock's compliance model. Fairblock also supports granular selective disclosure of encrypted amounts using Identity-Based Encryption (IBE) and Multiparty Computation (MPC).
+This screening occurs before assets enter or leave Fairblock's confidentiality contract, allowing known high-risk transactions to be rejected at the perimeter.
 
-Rather than giving a centralized auditor permanent visibility into every encrypted transaction, Fairblock follows a least-privilege model where disclosures are scoped to the minimum data required.
+For assets such as USDC, USDT, and PYUSD, the underlying issuer already maintains its own compliance and freeze controls. Fairblock's screening is an additional layer rather than a replacement for those controls.
 
-Authorized disclosures can be limited to:
+This is particularly useful because issuer-level blocklists may differ in scope or response timing, especially for newly identified hacked or stolen funds. Fairblock can therefore reduce the risk of problematic assets entering the shared confidentiality contract before the underlying issuer takes action.
 
-- A specific transaction
-- A specific user
-- A specific application
-- A defined time period
+This model is consistent with how neobanks, exchanges, payment processors, custodians, and other applications that accept stablecoins typically approach compliance. These platforms do not generally treat the absence of an issuer-level freeze as sufficient evidence that funds are acceptable. They apply their own transaction-monitoring and risk policies to deposits and withdrawals, often combining blockchain analytics with customer-level controls.
 
-This allows institutions to satisfy legitimate regulatory, compliance, legal, and audit requirements without introducing a permanent surveillance backdoor.
+Fairblock follows the same principle. The issuer's controls remain an independent asset-level backstop, while Fairblock applies its own application-level screening to assets entering or leaving the confidential system. Confidentiality therefore does not create a separate compliance model; Fairblock extends the same layered controls used by institutional stablecoin applications into a system where transaction amounts are private by default.
 
-## Compliance dashboard and API
+## 2. Protocol-Level Containment
 
-Fairblock provides a compliance dashboard for compliance officers, auditors, regulated institutions, and ecosystem partners to request access to encrypted transaction data when appropriate.
+Fairblock also includes controls for risk identified after assets have entered the confidential state.
 
-Partners can also integrate the same functionality through an API, allowing disclosure requests and approval workflows to remain entirely within their own internal compliance systems.
+If an address is subsequently identified by a compliance provider, asset issuer, institutional counterparty, or relevant authority, an authorized Fairblock administrator can restrict that specific confidential account.
 
-This enables organizations to:
+The administrator can:
 
-- Issue a scoped view key for a specific transaction, user, or application.
-- Maintain internal approval and compliance workflows.
-- Avoid granting permanent visibility to any centralized third party.
-- Preserve user confidentiality while remaining compliant with regulatory obligations.
+- Freeze the account and prevent further confidential transfers, or
+- Where permitted by the underlying asset, force the balance to withdraw to the transparent address cryptographically bound to that confidential account
 
-## AML, sanctions screening, and transaction monitoring
+The administrative authority is deliberately narrow.
 
-Fairblock integrates with compliance and blockchain intelligence providers such as Predicate and Range Security to identify sanctioned or high-risk addresses.
+It cannot transfer user assets to Fairblock, another user, or an arbitrary wallet. It can only restrict activity or return assets to the user's own bound address.
 
-Compliance checks can be performed before assets enter confidential balances and before assets leave the confidential system. Depending on the asset issuer and deployment, deposits or withdrawals involving sanctioned, hacked, or otherwise high-risk addresses can be blocked or frozen according to the issuer's compliance policies.
+This allows Fairblock to contain identified risk without giving the administrator general custody or discretionary control over user funds.
 
-Because addresses remain transparent in Fairblock's default transfer model, existing AML infrastructure continues to work without modification.
+If the underlying asset issuer has already frozen the user's transparent address, the balance can remain frozen inside Fairblock pending resolution rather than being redirected elsewhere.
 
-Institutions can continue using:
+## 3. Underlying Asset Enforcement
 
-- OFAC and sanctions screening
-- AML transaction monitoring
-- Address risk scoring
-- Transaction graph analysis
-- Blockchain forensic tools
+For assets with native issuer-level controls, the underlying asset remains an additional independent enforcement layer.
 
-Confidentiality is added without removing the compliance surface institutions already depend on.
+Examples include:
 
-## Taint analysis
+- Circle for USDC
+- Tether for USDT
+- Paxos for PYUSD
+- Issuers of other stablecoins or tokenized assets that support address freezes, transfer restrictions, or similar controls
 
-Fairblock remains fully compatible with taint analysis and other blockchain forensic techniques.
+Fairblock therefore does not rely on a single compliance mechanism.
 
-Since transaction counterparties remain visible, compliance teams can continue tracing the lineage of assets, identifying exposure to illicit funds, and performing forensic investigations while transaction amounts remain confidential.
+The system combines:
 
-This enables businesses to protect commercially sensitive financial information without sacrificing auditability.
+- Application-level screening before deposits and withdrawals
+- Fairblock's own account-level freeze and forced-withdrawal controls
+- The underlying asset issuer's native enforcement capabilities
 
-## Compliance-controlled unlinkability
+These layers are complementary and provide multiple opportunities to prevent or contain prohibited activity.
 
-Fairblock's default model is confidential transfers with encrypted amounts and transparent addresses.
+## 4. Traceability and Selective Disclosure
 
-For specific institutional deployments that require stronger privacy, Fairblock can also support unlinkable address flows where counterparties need protection from public relationship mapping. Examples include merchant payments, treasury management, VC fund operations, trading desks, and banking applications.
+Fairblock does not make transaction relationships opaque.
 
-These deployments are intended for controlled environments and can include:
+Addresses remain traceable and the transaction graph remains visible, while transfer amounts are encrypted.
 
-- Opt-in KYB/KYC-scoped deployments.
-- Deposit and withdrawal screening.
-- Issuer or application-level blocking and freezing controls where supported.
-- Selective disclosure for authorized compliance, audit, or legal requests.
-- Reconstruction of transaction lineage when required by authorized parties.
+This preserves the ability to understand which addresses interacted while protecting commercially and financially sensitive transaction values.
 
-Even in these deployments, confidentiality does not eliminate compliance. It simply limits unnecessary public disclosure while preserving the ability for authorized parties to investigate and audit activity when appropriate.
+Where an authorized investigation requires additional visibility, Fairblock's Identity-Based Encryption-enabled selective disclosure system can reveal the relevant encrypted amounts.
 
-## Built for regulated confidentiality
+Disclosure is granular rather than system-wide.
 
-Fairblock is designed for regulated confidentiality, not regulatory evasion.
+Access can be scoped to the specific:
 
-The goal is not to hide financial activity from institutions. The goal is to eliminate unnecessary public leakage of commercially sensitive information while preserving the compliance capabilities that regulated businesses, stablecoin issuers, payment providers, and financial institutions require.
+- User or set of users
+- Application
+- Time period
+- Investigation scope
+
+Fairblock therefore does not need to proactively distribute a standing system-wide decryption key to compliance providers or other third parties.
+
+Disclosure access can instead be generated only for the requested scope, allowing relevant transaction amounts to be reconstructed without exposing unrelated users or activity.
+
+## End-to-End Model
+
+A typical transaction begins with a transparent address being screened before assets are accepted into Fairblock.
+
+Once deposited, users can transact inside the confidential state while addresses and transaction relationships remain traceable and amounts remain encrypted.
+
+If an address is identified as high-risk after deposit, Fairblock can freeze that account or, where permitted, return the balance to the user's cryptographically bound transparent address.
+
+Before withdrawal, the relevant transparent address can be screened again.
+
+The underlying stablecoin or tokenized-asset issuer remains an additional asset-level enforcement backstop.
+
+If further investigation is required, Fairblock's selective disclosure system can provide narrowly scoped access to the relevant encrypted amounts.
