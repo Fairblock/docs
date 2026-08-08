@@ -11,6 +11,23 @@ The design separates confidentiality from unlinkability. In both cases, transact
 Confidentiality is always enabled, ensuring that transaction amounts and balances remain encrypted. Compliant unlinkability is optional and can be enabled by partners only when needed for specific use cases such as merchants, funds, or market makers.
 This mirrors the internet: HTTPS is the default for everyone, while stronger privacy tools such as VPNs are used only when additional protection is required.
 
+## How the Fairblock Product Family Fits Together
+
+Fairblock is the underlying confidentiality infrastructure. It can add encrypted amounts and balances to any application, blockchain, or digital asset while preserving selective disclosure and configurable compliance.
+
+**Stabletrust** is Fairblock's product family for confidential and compliant stablecoin transfers across chains. Users can access flagship products built by Fairblock, while developers and partners can embed the same capabilities into their own wallets, neobanks, payment apps, agents, and financial systems.
+
+| Product | Built for | How it is used | How it connects |
+| --- | --- | --- | --- |
+| [**Stabletrust Pay**](/ct/guides/apps/stabletrust-app) | Individuals, businesses, traders, and institutions | Connect a wallet and send confidential stablecoin transfers through one universal app across supported stablecoins and chains. | Fairblock's flagship user app, powered by Stabletrust. |
+| [**Stabletrust SDK**](/ct/guides/build/building-with-sdk) | App developers, wallets, neobanks, fintechs, and asset issuers | Embed confidential deposits, balances, transfers, withdrawals, and disclosure flows into a custom app. Integrations can support many assets and chains or focus on a specific asset or network. | The client-side development toolkit for building directly on Stabletrust. |
+| [**Stabletrust API**](/ct/guides/build/agentic-api) | Agents, backend services, partner platforms, and automated financial systems | Add programmatic confidential transfer functionality without using Stabletrust Pay. | An integration path for server-side and agentic products powered by Stabletrust. |
+| [**Compliance Dashboard**](/ct/guides/apps/compliance-dashboard-app) | Approved auditors, compliance officers, regulators, and institutions | Review only the confidential activity within an assigned scope, decrypt approved records locally, and export reports. | Provides controlled oversight and selective disclosure for Stabletrust-powered transfers. |
+| [**CUSD**](/ct/guides/apps/cusd-overview) | Users, businesses, payments teams, and treasury operators | Use Fairblock's flagship confidential USD stablecoin for payments, payroll, settlement, and treasury activity. | A separate confidential stablecoin product built by Fairblock with M0, PayPal, and MoonPay using the same confidentiality infrastructure. |
+| [**YieldShield**](/ct/guides/apps/yieldshield-app) | Stablecoin holders seeking confidential onchain yield | Deposit into Morpho-powered vaults, earn yield, and transact while amounts and balances stay encrypted. | A flagship Fairblock app that applies the confidentiality layer to yield-bearing stablecoins. |
+
+In short, Fairblock provides the confidentiality layer, Stabletrust applies it to stablecoins, and the products above offer different ways to use or integrate that capability. Stabletrust Pay is the universal flagship app for sending transfers. The SDK and API let partners build the same functionality into their own products. The Compliance Dashboard provides scoped oversight, while CUSD and YieldShield show how the technology can power dedicated stablecoin and yield products.
+
 ## Defining Confidential Transactions
 
 Amounts and balances are encrypted while addresses stay transparent. This combination lets you:
