@@ -1,0 +1,22 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-vercel-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Trigger production deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: curl --fail-with-body --silent --show-error --request POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
