@@ -55,6 +55,7 @@
             ]
           },
           "ct/guides/apps/stabletrust-app",
+          "ct/guides/apps/stabletrust-pro",
           {
             "group": "Compliance and Disclosure",
             "pages": [
@@ -74,7 +75,14 @@
               "ct/sdk-reference/supported-networks"
             ]
           },
-          "ct/guides/build/agentic-api",
+          {
+            "group": "API Integration",
+            "pages": [
+              "ct/guides/build/agentic-api",
+              "ct/guides/build/api-integrations/privy",
+              "ct/guides/build/api-integrations/turnkey"
+            ]
+          },
           "ct/guides/apps/cusd-overview",
           "ct/guides/apps/yieldshield-app"
         ]

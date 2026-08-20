@@ -1,0 +1,103 @@
+---
+title: "Stabletrust Pro"
+description: "Confidential multi-approval payouts for Organisations and teams, powered by Fairblock and Turnkey"
+---
+
+
+Stabletrust Pro is a confidential, multi-approval treasury dashboard for teams, businesses, and institutions. A team shares a single on-chain wallet whose balances and payout amounts stay encrypted on-chain, and whose spends require approval from multiple members.
+
+Stabletrust Pro includes:
+
+- Confidential single and batch payouts
+- Configurable N-of-M approval thresholds for every spend
+- Encrypted balances and amounts, decryptable only by the team
+- Passwordless sign-in (email or Google) and email-based team invites
+
+<Info>
+  **No seed phrases, no extensions.** Members sign in with email or Google. The Organisation's wallet is held in a secure enclave.
+</Info>
+
+## What you can do
+
+- Pay contributors, vendors, or payroll without leaking amounts or balances
+- Require multiple approvals before any payout leaves the treasury
+- Fund the treasury with any single admin, while spends stay multi-signature
+- Manage your team: invite members, assign roles, and change the approval threshold
+
+## Who it's for
+
+<CardGroup cols={3}>
+  <Card title="Businesses" icon="building">
+    Confidential payroll, vendor, and contractor payouts with an approval trail.
+  </Card>
+  <Card title="DAOs & teams" icon="users">
+    A shared treasury where spends need team sign-off, without leaking amounts.
+  </Card>
+  <Card title="Institutions" icon="landmark">
+    Treasury operations with private balances and selective disclosure on request.
+  </Card>
+</CardGroup>
+
+## How it works
+
+Stabletrust Pro combines two independent layers:
+
+| Layer | Provider | Responsibility |
+| --- | --- | --- |
+| Signing & approvals | Turnkey secure enclaves | Custody of the treasury wallet, N-of-M approval policies, passwordless auth |
+| Confidential settlement | Fairblock | Encrypted balances and transfers  |
+
+Each treasury is an isolated Turnkey sub-organization holding one shared wallet. Turnkey never sees transaction amounts (they are encrypted before signing), and Fairblock never holds keys. For the developer-level integration, see the [Turnkey API integration](/ct/guides/build/api-integrations/turnkey) guide.
+
+## Approval model
+
+Approvals are enforced by policy at signing time, so a payout cannot be broadcast until enough members approve it.
+
+| Action | Approvals required |
+| --- | --- |
+| Deposit / add funds | Any single admin (1-of-M) |
+| Send a payout (transfer or withdrawal) | Team threshold (N-of-M) |
+| View or decrypt balances and amounts | Any single admin (1-of-M) |
+
+The threshold - for example 2-of-3, is chosen by the Owner of the Organisation and can be changed in Settings.
+
+
+## Supported networks
+
+Stabletrust Pro settles on the same confidential networks as [Stabletrust Pay](/ct/guides/apps/stabletrust-app).
+
+### Chains
+
+| Status | Networks |
+| --- | --- |
+| **Available** | Ethereum, Arbitrum, Base, Tempo, Arc, Noble AppLayer, Stable, FairyRing |
+| **Coming soon** | Solana, Stellar, and others |
+
+### Deposit assets
+
+| Status | Assets |
+| --- | --- |
+| **Available** | USDC |
+| **Coming soon** | RWAs, encrypted BTC and ETH, and more |
+
+<Note>
+  Additional assets can be added based on issuer and partner demand.
+</Note>
+
+
+## Getting started
+
+<Steps>
+  <Step title="Open Stabletrust Pro">
+    Launch the [dashboard](https://pro.stabletrust.io) and sign in with email or Google.
+  </Step>
+  <Step title="Create your treasury">
+    Name the organization and set your approval threshold (for example 2-of-3).
+  </Step>
+  <Step title="Invite your team">
+    Add members by email; each signs in passwordlessly and can approve payouts.
+  </Step>
+  <Step title="Fund and pay">
+    Deposit, then send single or batch confidential payouts for the team to approve.
+  </Step>
+</Steps>
