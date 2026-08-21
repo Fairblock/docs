@@ -339,7 +339,7 @@ const confidentialDeposit = async (humanAmount: string) => {
 
 ### 5.5 Withdraw: Move Tokens Back to Public
 
-Withdraw removes tokens from the encrypted confidential balance and returns them to the user's standard ERC20 balance. After withdrawal, the amount is visible onchain again.
+Withdraw removes tokens from the encrypted confidential balance and returns them to the user's standard ERC20 balance. After withdrawal, the amount is visible onchain again. A fixed fee may be charged in the fee token, and an optional percentage of the withdrawn tokens may be taken on success.
 
 Add this function to your hook:
 
@@ -489,7 +489,7 @@ const fetchBalances = async () => {
 | `available` | `{ amount: BigInt, ciphertext: string }` | Settled, spendable balance                   |
 | `pending`   | `{ amount: BigInt, ciphertext: string }` | Incoming balance not yet settled             |
 
-`available` is what can be transferred or withdrawn immediately. `pending` represents amounts that have been deposited but are still finalizing onchain after finalization, pending becomes available. For most display purposes, show `amount` (the total) and optionally break it down into available and pending.
+`available` is what can be transferred or withdrawn immediately. `pending` is incoming transfer credit that is not spendable until it is applied. For most display purposes, show `amount` (the total) and optionally break it down into available and pending.
 
 ### 5.8 Finish the Hook
 

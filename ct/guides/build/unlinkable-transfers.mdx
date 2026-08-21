@@ -16,7 +16,7 @@ The Stabletrust SDK ships two clients that serve different privacy models. This 
 | **Key management** | Keys auto-derived from wallet signature | Keys derived per-account; store the private key yourself |
 | **Best for** | Privacy over balances/amounts with known senders | Full sender anonymity |
 
-With `AnonymousTransferClient`, transactions are routed through the **Fairycloak relay**, which submits them onchain and pays gas on your behalf (except deposits). The sender's wallet address is **never revealed** onchain: only a numeric anonymous account ID is associated with the transfer.
+With `AnonymousTransferClient`, transactions are routed through the **Fairycloak relay**, which submits them onchain and pays gas on your behalf (except deposits). The sender's wallet address is **never revealed** onchain: only an alphanumeric anonymous account ID is associated with the transfer.
 
 <Info>
   **Access required.** Unlinkable transfers are available to teams building privacy-critical applications. To obtain a Fairycloak relay URL and API key, reach out to the Fairblock team at [hello@fairblock.network](mailto:hello@fairblock.network).
@@ -157,7 +157,7 @@ await client.waitForRequest(withdrawResult.request_id);
 - **`transferToPublic(authWallet, accountId, params, options?)`**: Transfers from an unlinkable account to a public EVM address (relay pays gas).
 - **`transferToAnonymous(authWallet, senderAccountId, params, options?)`**: Transfers between two unlinkable accounts (relay pays gas).
 - **`applyPending(authWallet, accountId, options?)`**: Moves a pending incoming balance into available. **Must be called after receiving an unlinkable-to-unlinkable transfer** before the recipient can spend.
-- **`withdraw(authWallet, accountId, params, options?)`**: Withdraws from an unlinkable account to a public EVM address (relay pays gas).
+- **`withdraw(authWallet, accountId, params, options?)`**: Withdraws from an unlinkable account to a public EVM address (relay pays gas). A fixed fee comes from the prepaid reserve. An optional percentage of the withdrawn tokens can also be taken on success.
 
 ### Manual proof mode
 
@@ -179,10 +179,10 @@ const result = await client.transferToPublic(wallet, accountId, {
 
 ## Prepaid fees
 
-Every relay operation — account creation, `updateAuthKeys`, `transferToPublic`, `transferToAnonymous`, `applyPending`, and `withdraw` - deducts a fixed protocol fee from the account's **prepaid fee reserve**. `createAccount` seeds this reserve with an initial deposit (in the fee token); top it up any time with `depositFees`. The SDK checks the balance before submitting and throws a descriptive error if it's insufficient.
+Account creation, `updateAuthKeys`, `transferToPublic`, `transferToAnonymous`, `applyPending`, and `withdraw` each deduct a fixed protocol fee from the account's **prepaid fee reserve** when the request is accepted. `createAccount` seeds this reserve with an initial deposit in the fee token. Top it up any time with `depositFees`. The SDK checks the balance before submitting and throws if it is insufficient. Withdrawals can also take an optional percentage of the withdrawn tokens on success, so the destination may receive less than the requested amount.
 
-- **`getFeeToken()`**: Returns the currently configured fee-token address (`address(0)` = native currency). `depositFees` must use this token. The fee token can be rotated by the protocol; existing balances in old fee tokens remain withdrawable.
-- **Per-operation fee getters** (all return raw fee-token units): `getAnonymousCreateAccountFee()`, `getAnonymousMinimumInitialFeeDeposit()`, `getAnonymousUpdateKeysFee()`, `getAnonymousApplyPendingFee()`, `getAnonymousInlineTransferFee()`, and `getAnonymousInlineWithdrawFee()`.
+- **`getFeeToken()`**: Returns the currently configured fee token address (`address(0)` = native currency). `depositFees` must use this token. The fee token can be rotated by the protocol; existing balances in old fee tokens remain withdrawable.
+- **Per operation fee getters** (raw fee token units unless noted): `getAnonymousCreateAccountFee()`, `getAnonymousMinimumInitialFeeDeposit()`, `getAnonymousUpdateKeysFee()`, `getAnonymousApplyPendingFee()`, `getAnonymousInlineTransferFee()`, `getAnonymousInlineWithdrawFee()`, and `getAnonymousWithdrawFeePpm()` (parts per million out of `1_000_000`).
 - **`getPrepaidFeeBalance(accountId, token)`**: Returns the prepaid fee balance for an account and fee token.
 - **`depositFees(authWallet, accountId, amount, options?)`**: Deposits into the prepaid fee reserve. **The user pays gas.** Handles ERC-20 approval against the active fee token automatically.
 - **`withdrawFees(authWallet, accountId, { token, destination, amount }, options?)`**: Withdraws a specific amount from a given fee token's reserve (relay pays gas).

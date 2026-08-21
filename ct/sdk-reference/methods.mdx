@@ -62,17 +62,25 @@ Transfers a confidential amount to a recipient. The recipient must have an exist
 
 ### `withdraw(wallet, tokenAddress, amount, options?)`
 
-Withdraws from the confidential available balance back to public ERC-20. `amount` is a `number` in token base units.
+Withdraws from the confidential available balance back to public ERC-20. `amount` is a `number` in token base units. A fixed fee may be charged in the fee token at request time. An optional percentage of the withdrawn tokens may also be taken on success, so the wallet can receive less than `amount`.
 
 - **Returns:** Transaction receipt.
 
 ### `getFeeToken()`
 
-Returns the fee-token address for the current chain (`address(0)` = native currency).
+Returns the fee token address for the current chain (`address(0)` = native currency).
 
 ### `getNonAnonymousTransferFee()`
 
-Returns the protocol fee for a direct confidential transfer, in the fee token's base units.
+Returns the fixed fee for a direct confidential transfer, in the fee token's base units.
+
+### `getNonAnonymousWithdrawFee()`
+
+Returns the fixed fee for a direct confidential withdraw, in the fee token's base units.
+
+### `getNonAnonymousWithdrawFeePpm()`
+
+Returns the percentage withdraw fee in parts per million (out of `1_000_000`). Taken from the withdrawn token on success.
 
 ### `getPublicBalance(address, tokenAddress)`
 
@@ -116,26 +124,27 @@ Pass `enableNativeFeeToken: true` (default `false`) only when the deployment's f
 | `transferToPublic(authWallet, accountId, params, options?)` | Relay | Transfers to a public EVM address |
 | `transferToAnonymous(authWallet, senderAccountId, params, options?)` | Relay | Transfers between two anonymous accounts |
 | `applyPending(authWallet, accountId, options?)` | Relay | Moves pending incoming balance into available (call after receiving) |
-| `withdraw(authWallet, accountId, params, options?)` | Relay | Withdraws to a public EVM address |
+| `withdraw(authWallet, accountId, params, options?)` | Relay | Withdraws to a public EVM address. Fixed prepaid fee at request time; optional percentage of withdrawn tokens on success |
 | `generateTransferProof(privateKey, params)` | N/A | Generates a transfer proof for manual-proof mode |
 | `generateWithdrawProof(elGamalPrivateKey, params)` | N/A | Generates a withdraw proof for manual-proof withdraws |
 
 ### Prepaid fees
 
-Every relay operation - create, `updateAuthKeys`, transfer, `applyPending`, and withdraw — charges a fixed fee, debited from the account's prepaid balance. `createAccount` seeds that balance with an initial deposit in the fee token; top it up any time with `depositFees`.
+Create, `updateAuthKeys`, transfer, `applyPending`, and withdraw each charge a fixed fee from the account's prepaid balance when the request is accepted. `createAccount` seeds that balance with an initial deposit in the fee token. Top it up any time with `depositFees`. Withdrawals can also take an optional percentage of the withdrawn tokens on success.
 
 | Method | Description |
 | :--- | :--- |
-| `getFeeToken()` | Currently configured fee-token address (`address(0)` = native) |
+| `getFeeToken()` | Currently configured fee token address (`address(0)` = native) |
 | `getAnonymousCreateAccountFee()` | Fee charged on account creation, raw units |
 | `getAnonymousMinimumInitialFeeDeposit()` | Minimum initial fee deposit required at creation |
 | `getAnonymousUpdateKeysFee()` | Fee for an `updateAuthKeys` call, raw units |
 | `getAnonymousApplyPendingFee()` | Fee for an `applyPending` call, raw units |
 | `getAnonymousInlineTransferFee()` | Fee for an anonymous transfer, raw units |
-| `getAnonymousInlineWithdrawFee()` | Fee for an anonymous withdraw, raw units |
+| `getAnonymousInlineWithdrawFee()` | Fixed fee for an anonymous withdraw, raw units |
+| `getAnonymousWithdrawFeePpm()` | Percentage withdraw fee in parts per million (out of `1_000_000`) |
 | `getPrepaidFeeBalance(accountId, token)` | Prepaid fee balance for an account and fee token |
 | `depositFees(authWallet, accountId, amount, options?)` | Tops up the prepaid fee reserve (user pays gas) |
-| `withdrawFees(authWallet, accountId, { token, destination, amount }, options?)` | Withdraws a specific fee-token amount |
+| `withdrawFees(authWallet, accountId, { token, destination, amount }, options?)` | Withdraws a specific fee token amount |
 | `withdrawAllFees(authWallet, accountId, { destination }, options?)` | Withdraws all prepaid fee balances across all fee tokens |
 
 ### Request tracking

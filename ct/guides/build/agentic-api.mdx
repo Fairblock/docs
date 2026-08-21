@@ -64,7 +64,7 @@ await client.withdraw(wallet, tokenAddress, withdrawAmount);
 
 ## Hiding the agent's address
 
-A standard confidential transfer keeps amounts and balances encrypted, but the sender's wallet address remains visible onchain. To hide the agent's address as well, use the `AnonymousTransferClient`, which routes transfers through the Fairycloak relay so only a numeric account ID appears onchain. See [Unlinkable Transfers](/ct/guides/build/unlinkable-transfers).
+A standard confidential transfer keeps amounts and balances encrypted, but the sender's wallet address remains visible onchain. To hide the agent's address as well, use the `AnonymousTransferClient`, which routes transfers through the Fairycloak relay so only an alphanumeric account ID appears onchain. See [Unlinkable Transfers](/ct/guides/build/unlinkable-transfers).
 
 ## Security considerations
 
