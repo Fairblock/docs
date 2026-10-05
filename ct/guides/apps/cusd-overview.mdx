@@ -7,6 +7,8 @@ description: "Confidential stablecoin payments with encrypted balances, configur
 
 CUSD is a confidential USD stablecoin built by Fairblock in partnership with M0, PayPal and MoonPay.
 
+CUSD is backed by **PYUSDx** - a yield-bearing stablecoin issued by MoonPay, collateralized by PayPal USD (PYUSD), and built on M0's stablecoin platform. Every CUSD is a confidential wrapper around one PYUSDx held in reserve, which lets CUSD inherit PYUSD's regulated backing and underlying yield while adding Fairblock's confidentiality layer on top.
+
 CUSD combines transparent stablecoin functionality with an optional confidential mode. Users can protect transfer amounts and balances while preserving visible entry and exit points, address-level controls, freezing pathways, and selective disclosure.
 
 It is designed for payments, treasury operations, payroll, merchant settlement, trading, and other financial activity that should not be publicly exposed.
@@ -22,9 +24,9 @@ CUSD does not limit Fairblock to a single stablecoin. The same infrastructure ca
 | Partner | Role |
 | --- | --- |
 | **Fairblock** | Product, confidential transfers, developer integrations, selective disclosure, frontend and distribution |
-| **M0** | Stablecoin infrastructure |
-| **PayPal** | Issuance and ecosystem partnership |
-| **MoonPay** | Fiat on-ramp and off-ramp |
+| **M0** | Stablecoin platform that PYUSDx (CUSD's reserve) is built on |
+| **PayPal** | PayPal USD (PYUSD) - the underlying reserve asset behind PYUSDx |
+| **MoonPay** | Issuer of PYUSDx (CUSD's backing token) and fiat on-ramp / off-ramp |
 | **Predicate** | Policy enforcement, address screening and compliance controls |
 
 ## Transparent and Confidential Modes
