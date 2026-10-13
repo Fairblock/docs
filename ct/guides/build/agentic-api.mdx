@@ -1,91 +1,327 @@
 ---
 title: "Stabletrust API"
-description: "Confidential payments for AI agents and agent-to-agent transactions"
+description: "A hosted HTTP API for confidential deposits, transfers, and withdrawals, built for AI agents and backend services"
 ---
 
-Agents that pay each other onchain expose every invoice, fee, and settlement to the public. Confidential transfers let an agent hold a balance and pay other agents without revealing amounts, while addresses stay transparent so regulated parties can still produce per-transaction details through selective disclosure.
+Agents that pay each other onchain expose every invoice, fee, and settlement to the public. The **Stabletrust API** lets an agent or backend service hold an encrypted balance and pay other accounts without revealing amounts, using plain HTTP requests. There is no SDK to install and no proof generation in your runtime: the API wraps the [`@fairblock/stabletrust`](/ct/guides/build/building-with-sdk) SDK and handles key derivation, zero-knowledge proofs, and transaction submission for you.
 
-<Note>
-  Agents use the same [`@fairblock/stabletrust`](/ct/guides/build/building-with-sdk) SDK as any other integration, driven from a server or agent runtime. See [Building an App with the SDK](/ct/guides/build/building-with-sdk) for the full walkthrough and the [Method Reference](/ct/sdk-reference/methods) for every method signature.
-</Note>
+**Base URL**
 
-## What you can build
-
-- **Agent-to-agent payments** where amounts and balances stay encrypted between the two agents
-- **x402 payments with confidential transfers**: fast, confidential micro-payments for subscriptions, APIs, or AI agents
-
-## Using the SDK
-
-An agent transacts with the `ConfidentialTransferClient` using an `ethers.Wallet`. The end-to-end confidential flow is:
-
-```javascript
-import { ConfidentialTransferClient } from "@fairblock/stabletrust";
-import { ethers } from "ethers";
-
-const client = new ConfidentialTransferClient(
-  "https://sepolia.base.org",
-  84532,
-);
-const wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
-const tokenAddress = "0xYourTokenAddress";
-const tokenDecimals = 6;
-
-// 1. Ensure account exists and get encryption keys
-const keys = await client.ensureAccount(wallet);
-
-// 2. Deposit
-const depositAmount = ethers.parseUnits("10", tokenDecimals);
-await client.confidentialDeposit(wallet, tokenAddress, depositAmount);
-
-// 3. Check balance
-const balance = await client.getConfidentialBalance(
-  wallet.address,
-  keys.privateKey,
-  tokenAddress,
-);
-console.log(
-  "Available:",
-  ethers.formatUnits(balance.available.amount, tokenDecimals),
-);
-
-// 4. Transfer (recipient must have called ensureAccount)
-const transferAmount = ethers.parseUnits("5", tokenDecimals);
-await client.confidentialTransfer(
-  wallet,
-  recipientAddress,
-  tokenAddress,
-  transferAmount,
-);
-
-// 5. Withdraw
-const withdrawAmount = ethers.parseUnits("2", tokenDecimals);
-await client.withdraw(wallet, tokenAddress, withdrawAmount);
+```text
+https://stabletrust-api.fairblock.network
 ```
 
-## Hiding the agent's address
+All endpoints accept and return JSON. Amounts and balances are encrypted onchain; wallet addresses stay visible.
 
-A standard confidential transfer keeps amounts and balances encrypted, but the sender's wallet address remains visible onchain. To hide the agent's address as well, use the `AnonymousTransferClient`, which routes transfers through the Fairycloak relay so only an alphanumeric account ID appears onchain. See [Unlinkable Transfers](/ct/guides/build/unlinkable-transfers).
 
-## Security considerations
 
-- **Private key management**: never expose or log private keys; store them securely (e.g. hardware wallets, encrypted vaults). Derived account `privateKey` values are equally sensitive.
-- **Account initialization**: always call `ensureAccount()` before any operation, and verify that recipient accounts exist before transferring funds.
-- **Balance verification**: check available balance before initiating transfers.
-- **Error handling**: implement retry logic for transient network failures.
+## Quickstart
 
-## Next steps
+Shield 10 USDC into a confidential account on Base Sepolia:
+
+<CodeGroup>
+
+```javascript JavaScript
+const res = await fetch("https://stabletrust-api.fairblock.network/deposit", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    privateKey: process.env.AGENT_KEY,
+    tokenAddress: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // USDC on Base Sepolia
+    amount: "10000000", // 10 USDC (6 decimals)
+    chainId: 84532, // Base Sepolia
+  }),
+});
+
+console.log(await res.json());
+// { success: true, message: "Deposit successful", tx: "0x..." }
+```
+
+```bash cURL
+curl -X POST https://stabletrust-api.fairblock.network/deposit \
+  -H "Content-Type: application/json" \
+  -d '{
+    "privateKey": "'"$AGENT_KEY"'",
+    "tokenAddress": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "amount": "10000000",
+    "chainId": 84532
+  }'
+```
+
+</CodeGroup>
+
+The wallet pays gas for every operation, so it needs the chain's native token (for example, Base Sepolia ETH) in addition to the tokens it deposits.
+
+## How it works
+
+<Steps>
+  <Step title="Create accounts">
+    `POST /account/create` provisions the wallet's confidential account. It's idempotent, so it's safe to call every time. A recipient **must** have an account before it can receive a transfer. Deposit, transfer, and withdraw create the caller's own account automatically if it's missing.
+  </Step>
+  <Step title="Deposit">
+    `POST /deposit` moves public ERC-20 tokens from the wallet into its confidential account. The balance is now encrypted onchain.
+  </Step>
+  <Step title="Transfer">
+    `POST /transfer` sends tokens to another confidential account. The amount is hidden onchain, and the funds arrive in the recipient's **pending** balance.
+  </Step>
+  <Step title="Apply (optional)">
+    `POST /apply` moves received funds from **pending** to **available**. Deposit, transfer, and withdraw already apply pending funds automatically when they need them, so call this when you want to settle received funds explicitly, for example before checking a balance.
+  </Step>
+  <Step title="Withdraw">
+    `POST /withdraw` moves tokens from the confidential balance back to the wallet as public ERC-20.
+  </Step>
+</Steps>
+
+Check a balance at any time with `POST /balance`. It's read-only and sends no transaction.
+
+## Request fields
+
+These fields are shared across endpoints:
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `privateKey` | string | Private key of the wallet that owns the confidential account. Used to sign transactions and to derive the account's decryption key. |
+| `chainId` | number | Target chain. See [Supported chains](#supported-chains). |
+| `tokenAddress` | string | ERC-20 token contract address. The token must be supported by Stabletrust on that chain. |
+| `amount` | string | Amount in the token's base units, for example `"10000000"` = 10 USDC (6 decimals). Pass it as a string to avoid precision loss; a number is also accepted. |
+| `waitForFinalization` | boolean | Optional, default `true`. When `true`, the API responds after the encrypted balance update is finalized. When `false`, it responds as soon as the transaction is mined, and the encrypted balance updates shortly after. |
+
+## Endpoints
+
+### `POST /account/create`
+
+Provisions the wallet's confidential account if it doesn't exist yet. Idempotent.
+
+| Field | Required |
+| :--- | :--- |
+| `privateKey` | yes |
+| `chainId` | yes |
+| `waitForFinalization` | no (default `true`) |
+
+```javascript
+const res = await fetch("https://stabletrust-api.fairblock.network/account/create", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ privateKey: process.env.AGENT_KEY, chainId: 84532 }),
+});
+```
+
+```json
+{
+  "success": true,
+  "address": "0x...",
+  "created": true,
+  "message": "Account created successfully"
+}
+```
+
+If the account already exists, `created` is `false` and `message` is `"Account already exists"`.
+
+### `POST /deposit`
+
+Moves public ERC-20 tokens from the wallet into its confidential account. The wallet must hold the tokens.
+
+| Field | Required |
+| :--- | :--- |
+| `privateKey` | yes |
+| `tokenAddress` | yes |
+| `amount` | yes |
+| `chainId` | yes |
+| `waitForFinalization` | no (default `true`) |
+
+```json
+{
+  "success": true,
+  "message": "Deposit successful",
+  "tx": "0x..."
+}
+```
+
+### `POST /transfer`
+
+Sends tokens confidentially to another account. The recipient must already have a confidential account.
+
+| Field | Required |
+| :--- | :--- |
+| `privateKey` | yes |
+| `recipientAddress` | yes |
+| `tokenAddress` | yes |
+| `amount` | yes |
+| `chainId` | yes |
+| `useOffchainVerify` | no (default `false`). When `true`, the zero-knowledge proof is stored off-chain on Stabletrust's IPFS storage and only its reference is submitted onchain, instead of the full proof. |
+| `waitForFinalization` | no (default `true`) |
+
+```javascript
+const res = await fetch("https://stabletrust-api.fairblock.network/transfer", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    privateKey: process.env.AGENT_KEY,
+    recipientAddress: "0xRecipientAddress",
+    tokenAddress: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    amount: "5000000", // 5 USDC
+    chainId: 84532,
+  }),
+});
+```
+
+```json
+{
+  "success": true,
+  "message": "Transfer successful",
+  "tx": "0x..."
+}
+```
+
+### `POST /apply`
+
+Moves the wallet's pending balance (received funds) to its available balance.
+
+| Field | Required |
+| :--- | :--- |
+| `privateKey` | yes |
+| `chainId` | yes |
+| `waitForFinalization` | no (default `true`) |
+
+```json
+{
+  "success": true,
+  "message": "Pending balance applied",
+  "tx": "0x..."
+}
+```
+
+If the wallet has no confidential account, the API returns `400` with `"No confidential account for this wallet; create one first"`.
+
+### `POST /withdraw`
+
+Moves tokens from the confidential balance back to the wallet as public ERC-20.
+
+| Field | Required |
+| :--- | :--- |
+| `privateKey` | yes |
+| `tokenAddress` | yes |
+| `amount` | yes |
+| `chainId` | yes |
+| `useOffchainVerify` | no (default `false`). Same as for `/transfer`. |
+| `waitForFinalization` | no (default `true`) |
+
+```json
+{
+  "success": true,
+  "message": "Withdrawal successful",
+  "tx": "0x..."
+}
+```
+
+### `POST /balance`
+
+Decrypts and returns the confidential balance. Read-only: it sends no transaction and never creates an account.
+
+| Field | Required |
+| :--- | :--- |
+| `privateKey` | yes |
+| `tokenAddress` | yes |
+| `chainId` | yes |
+| `address` | no. Defaults to the wallet derived from `privateKey`. A balance can only be decrypted with its owner's key, so query the wallet's own address. |
+
+```javascript
+const res = await fetch("https://stabletrust-api.fairblock.network/balance", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    privateKey: process.env.AGENT_KEY,
+    tokenAddress: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    chainId: 84532,
+  }),
+});
+```
+
+```json
+{
+  "success": true,
+  "address": "0x...",
+  "tokenAddress": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+  "exists": true,
+  "balance": {
+    "total": "10000000",
+    "available": "10000000",
+    "pending": "0"
+  }
+}
+```
+
+Balances are strings in the token's base units. If the account hasn't been created yet, `exists` is `false` and every balance is `"0"`.
+
+### `GET /health`
+
+Checks that the API is up.
+
+```json
+{ "message": "Server is working" }
+```
+
+## Errors
+
+| Status | When | Body |
+| :--- | :--- | :--- |
+| `400` | A required field is missing | `{ "error": "chainId is required" }` |
+| `400` | `/apply` on a wallet with no confidential account | `{ "success": false, "error": "No confidential account for this wallet; create one first" }` |
+| `429` | More than 30 requests per minute from the same IP | `{ "success": false, "error": "Too many requests, please try again later." }` |
+| `500` | The operation failed, for example insufficient balance, a recipient without an account, or an RPC error | `{ "success": false, "error": "<reason>" }` |
+
+## Supported chains
+
+| Chain | Chain ID | Network |
+| :--- | :--- | :--- |
+Ethereum |	`1`	| Mainnet |
+| Arbitrum One | `42161` | Mainnet |
+|Base |	`8453`	| Mainnet |
+| Base Sepolia | `84532` | Testnet |
+| Ethereum Sepolia | `11155111` | Testnet |
+| Arbitrum Sepolia | `421614` | Testnet |
+| Arc Testnet | `5042002` | Testnet |
+| Stable Testnet | `2201` | Testnet |
+
+See [Supported Networks](/ct/sdk-reference/supported-networks) for the Stabletrust contract on each chain.
+
+
+
+## Self-hosting
+
+The API is open source at [github.com/Fairblock/stabletrust-api](https://github.com/Fairblock/stabletrust-api). Run it yourself to keep private keys inside your own infrastructure:
+
+```bash
+git clone https://github.com/Fairblock/stabletrust-api.git
+cd stabletrust-api
+npm install
+npm start
+```
+
+It listens on `PORT` (default `3000`). Optional environment variables:
+
+| Variable | Purpose |
+| :--- | :--- |
+| `PORT` | Port to listen on. Default `3000`. |
+| `RPC_URL_<chainId>` | Override the RPC endpoint for a chain, for example `RPC_URL_84532`. |
+| `CONTRACT_ADDRESS_<chainId>` | Use a specific Stabletrust contract on a chain. To add a chain that isn't built in, such as a local devnet, set both `RPC_URL_<chainId>` and `CONTRACT_ADDRESS_<chainId>`. |
+
+## Best practices
+
+- **Use a dedicated agent wallet** funded with only what the agent needs, since its private key travels with every request.
+- **Create the recipient's account first.** A transfer to an address without a confidential account fails.
+- **Check the available balance** with `/balance` before transferring or withdrawing.
+- **Retry transient failures.** Retry `500` errors caused by network or RPC issues, and back off when you receive `429`.
+
+## When to use the SDK instead
+
+The API performs standard confidential transfers: amounts and balances are hidden, but wallet addresses are visible onchain. Use the SDK directly if you want private keys to stay in your own runtime, or if you need to hide the sender's address with unlinkable transfers.
 
 <CardGroup cols={2}>
   <Card title="Build an App with the SDK" icon="code" href="/ct/guides/build/building-with-sdk">
-    The full SDK walkthrough this guide builds on.
-  </Card>
-  <Card title="Method Reference" icon="list" href="/ct/sdk-reference/methods">
-    Every client method, parameter, and return type.
+    Use the `@fairblock/stabletrust` SDK directly in your app or agent runtime.
   </Card>
   <Card title="Unlinkable Transfers" icon="user-secret" href="/ct/guides/build/unlinkable-transfers">
-    Hide the agent's address as well as the amount.
-  </Card>
-  <Card title="Common Errors" icon="triangle-exclamation" href="/ct/sdk-reference/common-errors">
-    Failure modes and how to handle them.
+    Hide the sender's address as well as the amount.
   </Card>
 </CardGroup>
