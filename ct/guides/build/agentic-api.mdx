@@ -52,6 +52,8 @@ curl -X POST https://stabletrust-api.fairblock.network/deposit \
 
 The wallet pays gas for every operation, so it needs the chain's native token (for example, Base Sepolia ETH) in addition to the tokens it deposits.
 
+On mainnet (Arbitrum One, Base, and Ethereum), transfers and withdrawals also charge a protocol fee in ETH.
+
 ## How it works
 
 <Steps>
@@ -85,6 +87,8 @@ These fields are shared across endpoints:
 | `tokenAddress` | string | ERC-20 token contract address. The token must be supported by Stabletrust on that chain. |
 | `amount` | string | Amount in the token's base units, for example `"10000000"` = 10 USDC (6 decimals). Pass it as a string to avoid precision loss; a number is also accepted. |
 | `waitForFinalization` | boolean | Optional, default `true`. When `true`, the API responds after the encrypted balance update is finalized. When `false`, it responds as soon as the transaction is mined, and the encrypted balance updates shortly after. |
+
+Confidential balances keep 2 decimal places, so the smallest amount is 0.01 of a token (`"10000"` for USDC). Amounts with more precision are rounded down to 2 decimal places, and amounts below 0.01 are rejected.
 
 ## Endpoints
 
@@ -258,7 +262,7 @@ Balances are strings in the token's base units. If the account hasn't been creat
 Checks that the API is up.
 
 ```json
-{ "message": "Server is working" }
+{ "message": "API is healthy" }
 ```
 
 ## Errors
@@ -274,9 +278,9 @@ Checks that the API is up.
 
 | Chain | Chain ID | Network |
 | :--- | :--- | :--- |
-Ethereum |	`1`	| Mainnet |
 | Arbitrum One | `42161` | Mainnet |
-|Base |	`8453`	| Mainnet |
+| Base | `8453` | Mainnet |
+| Ethereum | `1` | Mainnet |
 | Base Sepolia | `84532` | Testnet |
 | Ethereum Sepolia | `11155111` | Testnet |
 | Arbitrum Sepolia | `421614` | Testnet |
