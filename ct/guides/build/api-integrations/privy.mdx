@@ -7,9 +7,6 @@ description: "Use a Privy embedded wallet as the signer for confidential transfe
 
 Privy's role is unchanged. It authenticates the user, manages the embedded wallet, and produces signatures. Stabletrust uses those signatures to derive the user's encryption key and to broadcast confidential transactions - it never sees or stores the wallet's private key.
 
-<Note>
-  This is the recommended path when you don't want to custody raw private keys. The [Stabletrust API](/ct/guides/build/agentic-api) `ConfidentialTransferClient` accepts any `ethers.Signer`, so you pass a Privy signer instead of building an `ethers.Wallet` from a raw key. For a complete Next.js app built on this pattern, see [Building an App with the SDK](/ct/guides/build/building-with-sdk).
-</Note>
 
 ## Compatibility
 
