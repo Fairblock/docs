@@ -7,9 +7,6 @@ description: "Use a Turnkey embedded wallet as the signer for confidential trans
 
 Turnkey's role is unchanged. It holds the key and produces signatures. Stabletrust uses those signatures to derive the user's encryption key and to broadcast confidential transactions - the raw key never leaves the enclave.
 
-<Note>
-  This is the recommended path when you don't want to custody raw private keys. The [Stabletrust API](/ct/guides/build/agentic-api) `ConfidentialTransferClient` accepts any `ethers.Signer`, so you pass a Turnkey signer instead of building an `ethers.Wallet` from a raw key. This fits agent and server runtimes especially well: the agent's key lives in an enclave, not in an environment variable.
-</Note>
 
 ## Compatibility
 
